@@ -10,7 +10,7 @@ public static class Log
         Debug.unityLogger.Log(LogType.Log, msg);
     }
 
-    public static void Succes(object msg)
+    public static void Success(object msg)
     {
 
         Debug.unityLogger.Log(LogType.Log, $"<color={s_successColor}>{msg}</color>");

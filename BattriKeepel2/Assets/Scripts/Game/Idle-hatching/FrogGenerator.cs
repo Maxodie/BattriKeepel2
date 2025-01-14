@@ -22,7 +22,7 @@ public class FrogGenerator
         frogName = frogNameInputField.text.ToString();
         Frog frog = new Frog(frogName, EN_FrogColors.RED, rarity, QueryRaritySO(rarity));
 
-        Log.Succes("WOW, FROG GENERATED ! :)");
+        Log.Success("WOW, FROG GENERATED ! :)");
         return frog;
     }
 

@@ -48,6 +48,6 @@ public class FrogsManager : MonoBehaviour
             gameObject.transform.position = new Vector3(caca * 2, 0);
             caca += 1;
         }
-        Log.Succes("All frogs spawned !");
+        Log.Success("All frogs spawned !");
     }
 }
