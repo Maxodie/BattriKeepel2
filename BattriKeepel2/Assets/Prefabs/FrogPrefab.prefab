@@ -97,6 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2226174775014889760}
   - component: {fileID: 7298650505326258685}
+  - component: {fileID: 4143104199083270462}
   m_Layer: 0
   m_Name: FrogPrefab
   m_TagString: Untagged
@@ -118,6 +119,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3567532099133873923}
+  - {fileID: 2113486009594606292}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7298650505326258685
@@ -140,3 +142,48 @@ MonoBehaviour:
     m_FlyLevel: 0
     m_SwimLevel: 0
   emptyFrogSprite: {fileID: 7154956688608553163}
+--- !u!114 &4143104199083270462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2310092430552217590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2506e4703c743f458bc905f5a03c6cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_transform: {fileID: 2226174775014889760}
+  m_LeapPosition: {fileID: 2113486009594606292}
+--- !u!1 &4201879641084953300
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2113486009594606292}
+  m_Layer: 0
+  m_Name: LeapPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2113486009594606292
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4201879641084953300}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2226174775014889760}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
