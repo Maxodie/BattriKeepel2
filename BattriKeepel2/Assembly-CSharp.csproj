@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Game\Idle-hatching\EN_Frog\EN_FrogColors.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\FrogGenerator.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\EN_Frog\EN_FrogRarity.cs" />
+    <Compile Include="Assets\Scripts\DebuggerTool\DebuggerLog.cs" />
     <Compile Include="Assets\Scripts\Game\Boss\BossPaternScriptableObject.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\DebuggerTool.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\SO_EggRarityRate.cs" />

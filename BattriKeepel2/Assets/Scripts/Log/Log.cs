@@ -23,20 +23,23 @@ public static class Log
     static Log()
     {
         m_loggers = new();
-        CreateLogger<DefaultLogger>();
+        Log.CreateLogger<DefaultLogger>();
     }
 
-    public static void CreateLogger<T>() where T: Logger, new()
+    public static Logger CreateLogger<T>() where T: Logger, new()
     {
         Logger logger = m_loggers.Find(delegate(Logger item){ return item is T; });
         if(logger == null)
         {
+            T t = new T();
+            t.IsActive = true;
             m_loggers.Add(new T());
-            Log.Success($"Logger of type : {typeof(T)} has been added");
+            return t;
         }
         else
         {
             Log.Error($"Logger of type : {typeof(T)} already exist");
+            return null;
         }
 
     }
@@ -55,22 +58,22 @@ public static class Log
         }
     }
 
-    public static void DeactivateLogger<T>() where T: Logger
+    public static void DeactivateLogger<T>() where T: Logger, new()
     {
         Logger logger = m_loggers.Find(delegate(Logger item){ return item is T; });
 
         if(logger != null)
         {
             logger.IsActive = false;
-            Log.Info($"Logger of type : {typeof(T)} has been deactivated");
+            Log.Info<T>($"Logger of type : {typeof(T)} has been deactivated");
         }
         else
         {
-            Log.Warn($"Could not find logger of type : {typeof(T)}");
+            Log.Warn<T>($"Could not find logger of type : {typeof(T)}");
         }
     }
 
-    public static void Info<T>(object msg) where T: Logger
+    public static void Info<T>(object msg) where T: Logger, new()
     {
         LogToLogger<T>(LogType.Log, msg);
     }
@@ -80,7 +83,7 @@ public static class Log
         LogToLogger<DefaultLogger>(LogType.Log, msg);
     }
 
-    public static void Trace<T>(object msg) where T: Logger
+    public static void Trace<T>(object msg) where T: Logger, new()
     {
         LogToLogger<T>(LogType.Log, $"<color={s_traceColor}>{msg}</color>");
     }
@@ -90,7 +93,7 @@ public static class Log
         LogToLogger<DefaultLogger>(LogType.Log, $"<color={s_traceColor}>{msg}</color>");
     }
 
-    public static void Success<T>(object msg) where T: Logger
+    public static void Success<T>(object msg) where T: Logger, new()
     {
         LogToLogger<T>(LogType.Log, $"<color={s_successColor}>{msg}</color>");
     }
@@ -100,7 +103,7 @@ public static class Log
         LogToLogger<DefaultLogger>(LogType.Log, $"<color={s_successColor}>{msg}</color>");
     }
 
-    public static void Warn<T>(object msg) where T: Logger
+    public static void Warn<T>(object msg) where T: Logger, new()
     {
         LogToLogger<T>(LogType.Warning, $"<color={s_warnColor}>{msg}</color>");
     }
@@ -110,7 +113,7 @@ public static class Log
         LogToLogger<DefaultLogger>(LogType.Warning, $"<color={s_warnColor}>{msg}</color>");
     }
 
-    public static void Error<T>(object msg) where T: Logger
+    public static void Error<T>(object msg) where T: Logger, new()
     {
         LogToLogger<T>(LogType.Error, $"<color={s_errorColor}>{msg}</color>");
     }
@@ -120,16 +123,22 @@ public static class Log
         LogToLogger<DefaultLogger>(LogType.Error, $"<color={s_errorColor}>{msg}</color>");
     }
 
-    static void LogToLogger<T>(LogType logType, object msg) where T: Logger
+    static void LogToLogger<T>(LogType logType, object msg) where T: Logger, new()
     {
         Logger logger = m_loggers.Find(delegate(Logger item){ return item is T; });
-        if(logger != null && logger.IsActive)
+
+        if(logger == null)
+        {
+            logger = CreateLogger<T>();
+        }
+
+        if(logger.IsActive)
         {
             Debug.unityLogger.Log(logType, msg);
         }
         else
         {
-            Debug.unityLogger.Log(LogType.Error, $"Logger of type ${typeof(T)} could not be found");
+            Debug.unityLogger.Log(LogType.Error, $"Logger of type {typeof(T)} could not be found");
         }
     }
 }

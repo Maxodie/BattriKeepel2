@@ -15,6 +15,7 @@ public class DebuggerTool : MonoBehaviour
             m_devToolGO = Instantiate(m_devToolGOPrefab);
             DontDestroyOnLoad(m_devToolGO);
         }
+        Log.Success<DebuggerLogger>($"Debugger Awake test logger");
     }
 
     void CreateActiveTool<T>() where T: DebuggerToolBase, new()
@@ -23,11 +24,11 @@ public class DebuggerTool : MonoBehaviour
         if(tool == null)
         {
             m_activeTools.Add(new T());
-            Log.Success($"Debugger tool of type : {typeof(T)} has been added");
+            Log.Success<DebuggerLogger>($"Debugger tool of type : {typeof(T)} has been added");
         }
         else
         {
-            Log.Warn($"Active debugger tool of type : {typeof(T)} already exist");
+            Log.Warn<DebuggerLogger>($"Active debugger tool of type : {typeof(T)} already exist");
         }
     }
 
@@ -37,11 +38,11 @@ public class DebuggerTool : MonoBehaviour
         if(tool != null)
         {
             m_activeTools.Remove(tool);
-            Log.Success($"Debugger tool of type : {typeof(T)} has been removed");
+            Log.Success<DebuggerLogger>($"Debugger tool of type : {typeof(T)} has been removed");
         }
         else
         {
-            Log.Warn($"Could not find active debugger tool of type : {typeof(T)}");
+            Log.Warn<DebuggerLogger>($"Could not find active debugger tool of type : {typeof(T)}");
         }
     }
 
