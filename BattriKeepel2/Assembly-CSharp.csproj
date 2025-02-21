@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Game\Idle-hatching\Frog.cs" />
+    <Compile Include="Assets\Scripts\DebuggerTool\DebuggerToolUI\DebuggerToolUIRTPProfiler.cs" />
     <Compile Include="Assets\Scripts\Utilities\ReferenceContainer.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\RTProfiler.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\PurFunTwoThousand.cs" />

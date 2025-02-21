@@ -15,6 +15,7 @@ public class DebuggerTool : MonoBehaviour
             DontDestroyOnLoad(gameObject);
 
             m_devToolNavigator.AddDebuggerTab<DebuggertoolUILogger>();
+            m_devToolNavigator.AddDebuggerTab<DebuggertoolUIRTProfiler>();
         }
     }
 
