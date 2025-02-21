@@ -3,19 +3,19 @@ using System.Collections.Generic;
 
 public class DebuggerTool : MonoBehaviour
 {
-    GameObject m_devToolGO;
-
-    [SerializeField] GameObject m_devToolGOPrefab;
+    DebuggerToolNavigatorUI m_devToolNavigator;
+    [SerializeField] DebuggerToolNavigatorUI m_devToolNavigatorPrefab;
     List<DebuggerToolBase> m_activeTools = new List<DebuggerToolBase>();
 
     void Awake()
     {
-        if(!m_devToolGO)
+        if(!m_devToolNavigator)
         {
-            m_devToolGO = Instantiate(m_devToolGOPrefab);
-            DontDestroyOnLoad(m_devToolGO);
+            m_devToolNavigator = Instantiate(m_devToolNavigatorPrefab, transform);
+            DontDestroyOnLoad(gameObject);
+
+            m_devToolNavigator.AddDebuggerTab<DebuggertoolUILogger>();
         }
-        Log.Success<DebuggerLogger>($"Debugger Awake test logger");
     }
 
     void CreateActiveTool<T>() where T: DebuggerToolBase, new()
