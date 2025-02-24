@@ -15,7 +15,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Possition",
+                    "name": "Position",
                     "type": "PassThrough",
                     "id": "fe4080f7-9026-490b-8206-981c31a20952",
                     "expectedControlType": "",
@@ -43,7 +43,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Possition",
+                    "action": "Position",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

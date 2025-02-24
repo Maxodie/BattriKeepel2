@@ -13,7 +13,8 @@ namespace Components {
         UnityEngine.InputSystem.TouchPhase m_isPressed;
 
         public void OnPosition(Vector2 position) {
-            m_newPos = position;
+            m_newPos = Camera.main.ScreenToWorldPoint(position);
+
             Debug.Log(m_newPos);
             if (m_isPressed != UnityEngine.InputSystem.TouchPhase.Moved) {
                 m_offSet = m_newPos - new Vector2(m_transform.position.x, m_transform.position.y);

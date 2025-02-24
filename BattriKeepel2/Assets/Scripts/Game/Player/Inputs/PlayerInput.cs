@@ -37,7 +37,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Possition"",
+                    ""name"": ""Position"",
                     ""type"": ""PassThrough"",
                     ""id"": ""fe4080f7-9026-490b-8206-981c31a20952"",
                     ""expectedControlType"": """",
@@ -65,7 +65,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Possition"",
+                    ""action"": ""Position"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -77,7 +77,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Press = m_Player.FindAction("Press", throwIfNotFound: true);
-        m_Player_Possition = m_Player.FindAction("Possition", throwIfNotFound: true);
+        m_Player_Position = m_Player.FindAction("Position", throwIfNotFound: true);
     }
 
     ~@PlayerInput()
@@ -145,13 +145,13 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Press;
-    private readonly InputAction m_Player_Possition;
+    private readonly InputAction m_Player_Position;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
         public PlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Press => m_Wrapper.m_Player_Press;
-        public InputAction @Possition => m_Wrapper.m_Player_Possition;
+        public InputAction @Position => m_Wrapper.m_Player_Position;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -164,9 +164,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Press.started += instance.OnPress;
             @Press.performed += instance.OnPress;
             @Press.canceled += instance.OnPress;
-            @Possition.started += instance.OnPossition;
-            @Possition.performed += instance.OnPossition;
-            @Possition.canceled += instance.OnPossition;
+            @Position.started += instance.OnPosition;
+            @Position.performed += instance.OnPosition;
+            @Position.canceled += instance.OnPosition;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -174,9 +174,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Press.started -= instance.OnPress;
             @Press.performed -= instance.OnPress;
             @Press.canceled -= instance.OnPress;
-            @Possition.started -= instance.OnPossition;
-            @Possition.performed -= instance.OnPossition;
-            @Possition.canceled -= instance.OnPossition;
+            @Position.started -= instance.OnPosition;
+            @Position.performed -= instance.OnPosition;
+            @Position.canceled -= instance.OnPosition;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -197,6 +197,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnPress(InputAction.CallbackContext context);
-        void OnPossition(InputAction.CallbackContext context);
+        void OnPosition(InputAction.CallbackContext context);
     }
 }
