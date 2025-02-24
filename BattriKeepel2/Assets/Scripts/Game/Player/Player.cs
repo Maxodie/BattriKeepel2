@@ -7,15 +7,16 @@ public class Player : MonoBehaviour {
     [SerializeField] private Movement m_movement;
 
     private void Start() {
-        //m_inputManager.BindPosition(m_movement.OnPosition);
-        //m_inputManager.BindPress(m_movement.OnPress);
+        m_inputManager.BindPosition(m_movement.OnPosition);
+        m_inputManager.BindPress(m_movement.OnPress);
     }
 
-    private void FixedUpdate() {
-        //m_movement.FixedUpdate();
+    private void Update() {
+        m_movement.Update();
+        Debug.Log(IsScreenPressed());
     }
 
-    public bool IsMoving() {
-        return true;
+    public bool IsScreenPressed() {
+        return m_movement.IsScreenPressed();
     }
 }
