@@ -11,11 +11,12 @@ public class Player : MonoBehaviour {
         m_inputManager.BindPress(m_movement.OnPress);
     }
 
-    private void FixedUpdate() {
-        m_movement.FixedUpdate();
+    private void Update() {
+        m_movement.Update();
+        Debug.Log(IsScreenPressed());
     }
 
-    public bool IsMoving() {
-        return true;
+    public bool IsScreenPressed() {
+        return m_movement.IsScreenPressed();
     }
 }
