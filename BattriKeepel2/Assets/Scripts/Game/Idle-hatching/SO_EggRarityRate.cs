@@ -1,4 +1,3 @@
-using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SO_EggRarityRate", menuName = "Scriptable Objects/SO_EggRarityRate")]
