@@ -37,7 +37,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Delta"",
+                    ""name"": ""Possition"",
                     ""type"": ""PassThrough"",
                     ""id"": ""fe4080f7-9026-490b-8206-981c31a20952"",
                     ""expectedControlType"": """",
@@ -61,11 +61,11 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e3769afd-18ef-4dd0-851a-5dcf3b7bef2b"",
-                    ""path"": ""<Touchscreen>/delta"",
+                    ""path"": ""<Touchscreen>/primaryTouch/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Delta"",
+                    ""action"": ""Possition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -77,7 +77,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Press = m_Player.FindAction("Press", throwIfNotFound: true);
-        m_Player_Delta = m_Player.FindAction("Delta", throwIfNotFound: true);
+        m_Player_Possition = m_Player.FindAction("Possition", throwIfNotFound: true);
     }
 
     ~@PlayerInput()
@@ -145,13 +145,13 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Press;
-    private readonly InputAction m_Player_Delta;
+    private readonly InputAction m_Player_Possition;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
         public PlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Press => m_Wrapper.m_Player_Press;
-        public InputAction @Delta => m_Wrapper.m_Player_Delta;
+        public InputAction @Possition => m_Wrapper.m_Player_Possition;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -164,9 +164,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Press.started += instance.OnPress;
             @Press.performed += instance.OnPress;
             @Press.canceled += instance.OnPress;
-            @Delta.started += instance.OnDelta;
-            @Delta.performed += instance.OnDelta;
-            @Delta.canceled += instance.OnDelta;
+            @Possition.started += instance.OnPossition;
+            @Possition.performed += instance.OnPossition;
+            @Possition.canceled += instance.OnPossition;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -174,9 +174,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Press.started -= instance.OnPress;
             @Press.performed -= instance.OnPress;
             @Press.canceled -= instance.OnPress;
-            @Delta.started -= instance.OnDelta;
-            @Delta.performed -= instance.OnDelta;
-            @Delta.canceled -= instance.OnDelta;
+            @Possition.started -= instance.OnPossition;
+            @Possition.performed -= instance.OnPossition;
+            @Possition.canceled -= instance.OnPossition;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -197,6 +197,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnPress(InputAction.CallbackContext context);
-        void OnDelta(InputAction.CallbackContext context);
+        void OnPossition(InputAction.CallbackContext context);
     }
 }

@@ -15,7 +15,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Delta",
+                    "name": "Possition",
                     "type": "PassThrough",
                     "id": "fe4080f7-9026-490b-8206-981c31a20952",
                     "expectedControlType": "",
@@ -39,11 +39,11 @@
                 {
                     "name": "",
                     "id": "e3769afd-18ef-4dd0-851a-5dcf3b7bef2b",
-                    "path": "<Touchscreen>/delta",
+                    "path": "<Touchscreen>/primaryTouch/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Delta",
+                    "action": "Possition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

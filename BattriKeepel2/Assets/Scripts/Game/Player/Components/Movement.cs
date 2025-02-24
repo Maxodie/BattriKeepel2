@@ -8,18 +8,32 @@ namespace Components {
 
         [SerializeField] public Transform m_transform;
 
-        Vector2 m_movementDirection;
+        Vector2 m_newPos = new Vector2();
+        Vector2 m_offSet = new Vector2();
+        UnityEngine.InputSystem.TouchPhase m_isPressed;
 
-        public void OnDelta(Vector2 delta) {
-            m_movementDirection = delta.normalized;
+        public void OnPosition(Vector2 position) {
+            m_newPos = position;
+            Debug.Log(m_newPos);
+            if (m_isPressed != UnityEngine.InputSystem.TouchPhase.Moved) {
+                m_offSet = m_newPos - new Vector2(m_transform.position.x, m_transform.position.y);
+            }
+        }
+
+        public void OnPress(UnityEngine.InputSystem.TouchPhase state) {
+            m_isPressed = state;
         }
 
         private void HandleMovement() {
-            Vector3 newPosition = new Vector3(m_movementDirection.x * m_movementMultiplier, m_movementDirection.y * m_movementMultiplier, 0);
-            m_transform.position += newPosition;
+            if (m_isPressed == UnityEngine.InputSystem.TouchPhase.Began
+                    || m_isPressed == UnityEngine.InputSystem.TouchPhase.Ended
+                    || m_isPressed == UnityEngine.InputSystem.TouchPhase.None) {
+                return;
+            }
+            m_transform.position = new Vector3(m_newPos.x - m_offSet.x, m_newPos.y - m_offSet.y, 0);
         }
 
-        public void Update() {
+        public void FixedUpdate() {
             HandleMovement();
         }
     }

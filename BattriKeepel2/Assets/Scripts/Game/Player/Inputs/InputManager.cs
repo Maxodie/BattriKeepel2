@@ -7,7 +7,7 @@ namespace Inputs {
     {
         PlayerInput m_playerInputs;
 
-        UnityEvent<Vector2> m_onDelta = new UnityEvent<Vector2>();
+        UnityEvent<Vector2> m_onPosition = new UnityEvent<Vector2>();
         UnityEvent<UnityEngine.InputSystem.TouchPhase> m_onPress = new UnityEvent<UnityEngine.InputSystem.TouchPhase>();
 
         void Awake() {
@@ -26,9 +26,9 @@ namespace Inputs {
 
             m_playerInputs
                 .Player
-                .Delta
+                .Position
                 .performed
-                += OnDelta;
+                += OnPosition;
         }
 
         void OnDisable() {
@@ -36,20 +36,20 @@ namespace Inputs {
         }
 
         void OnPress(InputAction.CallbackContext context) {
-            // m_onPress.Invoke(context.ReadValue<UnityEngine.InputSystem.TouchPhase>());
+            m_onPress.Invoke(context.ReadValue<UnityEngine.InputSystem.TouchPhase>());
         }
 
-        void OnDelta(InputAction.CallbackContext context) {
-            Vector2 delta = context.ReadValue<Vector2>();
-            m_onDelta.Invoke(delta);
+        void OnPosition(InputAction.CallbackContext context) {
+            Vector2 position = context.ReadValue<Vector2>();
+            m_onPosition.Invoke(position);
         }
 
         public void BindPress(UnityAction<UnityEngine.InputSystem.TouchPhase> action) {
             m_onPress.AddListener(action);
         }
 
-        public void BindDelta(UnityAction<Vector2> action) {
-            m_onDelta.AddListener(action);
+        public void BindPosition(UnityAction<Vector2> action) {
+            m_onPosition.AddListener(action);
         }
     }
 }
