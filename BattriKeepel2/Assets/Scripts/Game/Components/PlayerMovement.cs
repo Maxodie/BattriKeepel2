@@ -3,9 +3,8 @@ using UnityEngine;
 namespace Components {
     [System.Serializable]
     public class Movement {
-        [Header("data")] // replace with scriptable object
-        [SerializeField] public Transform m_transform;
 
+        [HideInInspector] public Transform m_transform;
         Vector2 m_newPos = new Vector2();
         Vector2 m_offSet = new Vector2();
         UnityEngine.InputSystem.TouchPhase m_isPressed;
