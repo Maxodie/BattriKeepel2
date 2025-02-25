@@ -7,6 +7,8 @@ public class DebuggerTool : MonoBehaviour
     [SerializeField] DebuggerToolNavigatorUI m_devToolNavigatorPrefab;
     List<DebuggerToolBase> m_activeTools = new List<DebuggerToolBase>();
 
+    RTProfiler profiler;
+
     void Awake()
     {
         if(!m_devToolNavigator)
@@ -14,9 +16,13 @@ public class DebuggerTool : MonoBehaviour
             m_devToolNavigator = Instantiate(m_devToolNavigatorPrefab, transform);
             DontDestroyOnLoad(gameObject);
 
-            m_devToolNavigator.AddDebuggerTab<DebuggertoolUILogger>();
-            m_devToolNavigator.AddDebuggerTab<DebuggertoolUIRTProfiler>();
+
         }
+    }
+
+    void UpdateTabs()
+    {
+            //m_devToolNavigator.AddDebuggerTab<DebuggertoolUIRTProfiler>();
     }
 
     void CreateActiveTool<T>() where T: DebuggerToolBase, new()

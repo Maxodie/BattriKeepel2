@@ -1,10 +1,11 @@
 using Unity.Profiling;
 
+[DebuggerToolAccess]
 public class ProfilerStats
 {
-    public double FrameTime{set; get;}
-    public long GCMemoryMB{set; get;}
-    public long SysMemoryMB{set; get;}
+    [DebuggerToolAccess] public double FrameTime{set; get;}
+    [DebuggerToolAccess] public long GCMemoryMB{set; get;}
+    [DebuggerToolAccess] public long SysMemoryMB{set; get;}
 }
 
 public class RTProfiler : DebuggerToolBase

@@ -13,7 +13,7 @@ public class DefaultLogger: Logger
 
 public static class Log
 {
-    static List<Logger> m_loggers;
+    [DebuggerToolAccess] static List<Logger> m_loggers;
 
     static string s_successColor = "#008714";
     static string s_traceColor = "#287a92";

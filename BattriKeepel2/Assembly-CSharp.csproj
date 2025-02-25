@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Game\Idle-hatching\Frog.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\DebuggerToolUI\DebuggerToolUIRTPProfiler.cs" />
+    <Compile Include="Assets\Scripts\DebuggerTool\Debuggable.cs" />
     <Compile Include="Assets\Scripts\Utilities\ReferenceContainer.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\RTProfiler.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\PurFunTwoThousand.cs" />
@@ -74,7 +75,6 @@
     <Compile Include="Assets\Scripts\Game\Idle-hatching\EN_Frog\EN_FrogRarity.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\DebuggerLog.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\DebuggerToolUI\NavigatorBase\DebuggerToolUITabContent.cs" />
-    <Compile Include="Assets\Scripts\Game\Boss\BossPaternScriptableObject.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\DebuggerTool.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\DebuggerToolUI\NavigatorBase\DebuggerToolUIFieldToggle.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\DebuggerToolUI\NavigatorBase\DebuggerToolUIField.cs" />
@@ -82,7 +82,9 @@
     <Compile Include="Assets\Scripts\Systems\GameManager.cs" />
     <Compile Include="Assets\Scripts\Log\Log.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\DebuggerToolUI\DebuggerToolUILogger.cs" />
+    <Compile Include="Assets\Scripts\DebuggerTool\DebuggerToolAccessAttribute.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\FrogsManager.cs" />
+    <Compile Include="Assets\Scripts\Game\Boss\SO_BossPatern.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\SO_FrogLevelData\SO_FrogLevelData.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\FrogGraphics.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\DebuggerToolBase.cs" />
