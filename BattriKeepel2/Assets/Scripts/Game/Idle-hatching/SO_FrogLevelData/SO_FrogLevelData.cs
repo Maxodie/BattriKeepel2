@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.LightTransport;
 
 [CreateAssetMenu(fileName = "FrogLevelData", menuName = "Scriptable Objects/SO_FrogLevelData")]
 public class SO_FrogLevelData : ScriptableObject
