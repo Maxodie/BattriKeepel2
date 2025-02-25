@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d3acfc7ac35ed64a82652c7e191c0d1, type: 3}
+  m_Name: DistanceAttackSet
+  m_EditorClassIdentifier: 
+  BasicAttack: {fileID: 11400000, guid: df4c32e60422d0f4ab85769dc7be07d3, type: 2}
+  AbilityAttack: {fileID: 11400000, guid: 4e491d468810bb84d81ae794b443d79d, type: 2}
+  UltimateAttack: {fileID: 11400000, guid: ac0470703b477714c9f087390e69cd50, type: 2}
