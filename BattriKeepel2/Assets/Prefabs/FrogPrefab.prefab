@@ -155,7 +155,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_transform: {fileID: 2226174775014889760}
-  m_LeapPosition: {fileID: 2113486009594606292}
+  m_leapPosition: {fileID: 2113486009594606292}
+  m_leapCooldown: 3
 --- !u!1 &4201879641084953300
 GameObject:
   m_ObjectHideFlags: 0

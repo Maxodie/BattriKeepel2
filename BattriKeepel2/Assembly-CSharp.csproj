@@ -69,17 +69,11 @@
     <Compile Include="Assets\Scripts\Game\Idle-hatching\FrogBehavior.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\EN_Frog\EN_FrogRarity.cs" />
     <Compile Include="Assets\Scripts\Game\Boss\BossPaternScriptableObject.cs" />
-<<<<<<< HEAD
-    <Compile Include="Assets\Scripts\Log\Log.cs" />
-    <Compile Include="Assets\Scripts\Game\Idle-hatching\FrogsManager.cs" />
-    <Compile Include="Assets\Scripts\Game\Idle-hatching\SO_EggRarityRate\SO_EggRarityRate.cs" />
-=======
     <Compile Include="Assets\Scripts\Game\Components\Hitbox.cs" />
-    <Compile Include="Assets\Scripts\Game\Idle-hatching\SO_EggRarityRate.cs" />
     <Compile Include="Assets\Scripts\Log\Log.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\FrogsManager.cs" />
     <Compile Include="Assets\Scripts\Game\Player\Player.cs" />
->>>>>>> main
+    <Compile Include="Assets\Scripts\Game\Idle-hatching\SO_EggRarityRate\SO_EggRarityRate.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\SO_FrogLevelData\SO_FrogLevelData.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\FrogGraphics.cs" />
     <Compile Include="Assets\Scripts\Game\Components\PlayerMovement.cs" />
