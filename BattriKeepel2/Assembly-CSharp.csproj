@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Game\AttackSystem\Attacks\AttackSet.cs" />
+    <Compile Include="Assets\Scripts\Game\WaveSystem\SO_WavesData.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\Frog.cs" />
     <Compile Include="Assets\Scripts\Game\AttackSystem\Definitions\PlayerAttacksDefinition.cs" />
     <Compile Include="Assets\Scripts\Game\AttackSystem\Definitions\BossAttacksDefinition.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Assets\Scripts\Game\Managers\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\Game\Components\Hitbox.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\SO_EggRarityRate.cs" />
+    <Compile Include="Assets\Scripts\Game\WaveSystem\WaveEnemy.cs" />
     <Compile Include="Assets\Scripts\Game\AttackSystem\Definitions\AttackDefinitions.cs" />
     <Compile Include="Assets\Scripts\Log\Log.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\FrogsManager.cs" />
