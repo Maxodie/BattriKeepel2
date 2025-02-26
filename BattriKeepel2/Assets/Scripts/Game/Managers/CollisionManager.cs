@@ -103,8 +103,13 @@ public class SpatialHash {
             visitedCells.Add(cell);
 
             Vector2 cellCenter = (Vector2)cell * m_cellSize + Vector2.one * (m_cellSize / 2);
+            Vector2 direction = cellCenter - hitboxPosition;
+
+            Vector2 edgeCell = GetCell(hitboxPosition + direction.normalized * hitboxSize);
+
+
             // get cellCenter to world pos, get direction from hitbox origin, if radius in direction is in cell, then add, if not then remove;
-            if (Vector2.Distance(cellCenter, hitboxPosition) <= hitboxSize || centerCell == cell) {
+            if (edgeCell == cell || centerCell == cell) {
                 if (!m_grid.ContainsKey(cell)) {
                     m_grid[cell] = new List<Hitbox>();
                 }
