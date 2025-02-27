@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Game\Idle-hatching\SO_MaxExpPoints\SO_MaxExpPoints.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\Build Scripts\Build.cs" />
+    <Compile Include="Assets\Scripts\Game\Idle-hatching\EN_Builds\EN_BuildType.cs" />
     <Compile Include="Assets\Scripts\Game\Managers\CollisionManager.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\EN_Frog\EN_FrogLevels.cs" />
     <Compile Include="Assets\Scripts\Game\Player\Inputs\PlayerInput.cs" />

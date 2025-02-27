@@ -36,7 +36,7 @@ public class FrogsManager : MonoBehaviour
     public void GiveEXPToFrog()
     {
         Frog frog = frogList[0];
-        frog.AddExpAmount(EN_FrogLevels.RUN, 50);
+        frog.AddExpAmount(EN_FrogLevels.RUN, 60);
     }
 
     private EN_FrogRarity ProcessFrogRarity()

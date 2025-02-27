@@ -94,6 +94,7 @@ public class FrogLevelling
             if(currentEXP >= SO_MaxExpPoints.EXPPointsToGainLevel[currentLevel])
             {
                 SetLevelUp(type);
+                AddExpAmount(type, currentEXP - SO_MaxExpPoints.EXPPointsToGainLevel[currentLevel]); //On ajoute au niveau suivant l'EXP restant si y'en a trop, c'est po perdu quoient
             }
         }
     }
