@@ -7,8 +7,11 @@ namespace Components {
     {
         private UnityEvent<Transform> m_onCollision = new UnityEvent<Transform>();
         [HideInInspector] public Transform m_transform;
+        public HitboxType m_type;
 
         [SerializeField] private float m_size;
+        [SerializeField] private Vector2 m_dimensions;
+
         [SerializeField] private Vector2 m_offSet = new Vector2();
         private Vector2 m_position;
 
@@ -26,6 +29,10 @@ namespace Components {
             return m_size;
         }
 
+        public Vector2 GetDimensions() {
+            return m_dimensions;
+        }
+
         public void OnCollisionBehavior(Transform hit) {
             m_onCollision.Invoke(hit);
             lastHitObject = hit;
@@ -34,5 +41,10 @@ namespace Components {
         public void BindOnCollision(UnityAction<Transform> action) {
             m_onCollision.AddListener(action);
         }
+    }
+
+    public enum HitboxType {
+        Circle,
+        RectangularParallelepiped
     }
 }
