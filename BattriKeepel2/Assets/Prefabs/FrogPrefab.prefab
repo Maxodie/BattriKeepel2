@@ -96,8 +96,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2226174775014889760}
-  - component: {fileID: 7298650505326258685}
-  - component: {fileID: 4143104199083270462}
+  - component: {fileID: 71105878463350057}
   m_Layer: 0
   m_Name: FrogPrefab
   m_TagString: Untagged
@@ -122,7 +121,7 @@ Transform:
   - {fileID: 2113486009594606292}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7298650505326258685
+--- !u!114 &71105878463350057
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,32 +130,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 2310092430552217590}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aff4772e5eba2324cacf1870937c4f38, type: 3}
+  m_Script: {fileID: 11500000, guid: ff0dd777dbc600149a0bb8f8cc1e31b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frogData:
-    m_Name: 
-    m_Color: 0
-    m_Rarity: 0
+  m_Name: 
+  m_Color: 0
+  m_Rarity: 0
+  m_Graphics:
+    emptyFrogSprite: {fileID: 7154956688608553163}
+  m_Behavior:
+    m_transform: {fileID: 2226174775014889760}
+    m_leapPosition: {fileID: 2113486009594606292}
+    m_leapCooldown: 3
+  m_Levelling:
     m_RunLevel: 0
+    m_RunLevelEXP: 0
     m_FlyLevel: 0
+    m_FlyLevelEXP: 0
     m_SwimLevel: 0
-  emptyFrogSprite: {fileID: 7154956688608553163}
---- !u!114 &4143104199083270462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2310092430552217590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2506e4703c743f458bc905f5a03c6cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_transform: {fileID: 2226174775014889760}
-  m_leapPosition: {fileID: 2113486009594606292}
-  m_leapCooldown: 3
+    m_SwimLevelEXP: 0
+    SO_MaxExpPoints: {fileID: 11400000, guid: 2d2b0a2b2bad8f84a8d0692465c0f1f3, type: 2}
 --- !u!1 &4201879641084953300
 GameObject:
   m_ObjectHideFlags: 0

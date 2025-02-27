@@ -1,17 +1,24 @@
 using UnityEngine;
 
-public class FrogGraphics : MonoBehaviour
+[System.Serializable]
+public class FrogGraphics
 {
-    [SerializeField] public Frog frogData;
+    private Frog frogData;
 
     [SerializeField] private SpriteRenderer emptyFrogSprite;
 
-    public void SetFrogData(Frog fData)
+    public void InitFrogGraphics(Frog f)
+    {
+        SetFrogData(f);
+        ComputeColor();
+    }
+
+    private void SetFrogData(Frog fData)
     {
         frogData = fData;
     }
 
-    public void ComputeColor()
+    private void ComputeColor()
     {
         switch (frogData.m_Color)
         {

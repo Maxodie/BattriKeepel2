@@ -1,8 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
-public class FrogBehavior : MonoBehaviour
+[System.Serializable]
+public class FrogBehavior
 {
+    private MonoBehaviour m_MonoBehaviour; //Remplacer MonoBehaviour par Frog si besoin à un moment de la Frog
+
     [SerializeField] private Transform m_transform;
     [SerializeField] private Transform m_leapPosition;
     [SerializeField] private float m_leapCooldown;
@@ -17,13 +20,20 @@ public class FrogBehavior : MonoBehaviour
     private float m_rotationTimer;
     private float m_leapTimer;
 
-    private void Start()
+    public void InitFrogBehavior(MonoBehaviour mono)
     {
-        Vector3 newDir = SearchNewDirection();
-        StartCoroutine(WaitBetweenLeaps(m_leapCooldown));
+        m_MonoBehaviour = mono;
+        StartBehavior();
+        
     }
 
-    private void Update()
+    private void StartBehavior()
+    {
+        Vector3 newDir = SearchNewDirection();
+        m_MonoBehaviour.StartCoroutine(WaitBetweenLeaps(m_leapCooldown));
+    }
+
+    public void UpdateBehavior()
     {
         if (m_isRotating)
         {
@@ -50,7 +60,7 @@ public class FrogBehavior : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         Vector3 newDir = SearchNewDirection();
         m_isRotating = true;
-        StartCoroutine(WaitBetweenLeaps(m_leapCooldown));
+        m_MonoBehaviour.StartCoroutine(WaitBetweenLeaps(m_leapCooldown));
     }
 
     void ExecuteRotation()

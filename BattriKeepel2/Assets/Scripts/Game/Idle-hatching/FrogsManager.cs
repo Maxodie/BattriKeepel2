@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using TMPro;
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 using caca = System.Nullable;
 
@@ -6,19 +8,27 @@ using caca = System.Nullable;
 public class FrogsManager : MonoBehaviour
 {
     [SerializeField] private List<Frog> frogList = new();
-    [SerializeField] private FrogGenerator m_Generator;
     [SerializeField] private SO_EggRarityRate SO_EggRarityRate;
 
-    [SerializeField] private GameObject frogPrefab;
+    [SerializeField] private TMP_InputField frogNameInputField;
 
+    [SerializeField] private SO_FrogLevelData commonFrogLevelData;
+    [SerializeField] private SO_FrogLevelData uncommonFrogLevelData;
+    [SerializeField] private SO_FrogLevelData rareFrogLevelData;
+    [SerializeField] private SO_FrogLevelData epicFrogLevelData;
+    [SerializeField] private SO_FrogLevelData keepelFrogLevelData;
+
+    [SerializeField] private Frog frogPrefab;
+
+    private string frogName;
     public void CreateNewFrog()
     {
-        Frog newFrog = m_Generator.GenerateFrog(ProcessFrogRarity());
-        AddFrog(newFrog);
-    }
-
-    private void AddFrog(Frog frog)
-    {
+        EN_FrogRarity rarity = ProcessFrogRarity();
+        frogName = frogNameInputField.text.ToString();
+        Frog frog = Instantiate(frogPrefab);
+        frog.Init(frogName, EN_FrogColors.RED, rarity, QueryRarityLevel(rarity));
+        Log.Success("WOW, FROG GENERATED ! :)");
+        
         frogList.Add(frog);
     }
 
@@ -34,20 +44,24 @@ public class FrogsManager : MonoBehaviour
         return rarity;
     }
 
-    public void SpawnAllFrogs() 
+    private SO_FrogLevelData QueryRarityLevel(EN_FrogRarity rarity)
     {
-        FrogGraphics frogGraphics = null;
-        GameObject gameObject = null;
-        int caca = 1;
-        foreach( Frog f in frogList)
+        switch (rarity)
         {
-            gameObject = Instantiate( frogPrefab );
-            frogGraphics = gameObject.GetComponent<FrogGraphics>();
-            frogGraphics.SetFrogData(f);
-            frogGraphics.ComputeColor();
-            gameObject.transform.position = new Vector3(caca * 2, 0);
-            caca += 1;
+            case EN_FrogRarity.COMMON:
+                return commonFrogLevelData;
+            case EN_FrogRarity.UNCOMMUN:
+                return uncommonFrogLevelData;
+            case EN_FrogRarity.RARE:
+                return rareFrogLevelData;
+            case EN_FrogRarity.EPIC:
+                return epicFrogLevelData;
+            case EN_FrogRarity.KEEPEL:
+                return keepelFrogLevelData;
+            default:
+                Log.Error("Rarity not found, bip boup");
+                break;
         }
-        Log.Success("All frogs spawned !");
+        return null;
     }
 }

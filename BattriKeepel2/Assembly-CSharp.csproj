@@ -63,14 +63,16 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Game\Idle-hatching\Frog.cs" />
     <Compile Include="Assets\Scripts\Game\Managers\CollisionManager.cs" />
+    <Compile Include="Assets\Scripts\Game\Idle-hatching\SO_MaxExpPoints.cs" />
+    <Compile Include="Assets\Scripts\Game\Idle-hatching\EN_Frog\EN_FrogLevels.cs" />
     <Compile Include="Assets\Scripts\Game\Player\Inputs\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\EN_Frog\EN_FrogColors.cs" />
-    <Compile Include="Assets\Scripts\Game\Idle-hatching\FrogGenerator.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\FrogBehavior.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\EN_Frog\EN_FrogRarity.cs" />
     <Compile Include="Assets\Scripts\Game\Boss\BossPaternScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Game\Components\Hitbox.cs" />
     <Compile Include="Assets\Scripts\Log\Log.cs" />
+    <Compile Include="Assets\Scripts\Game\Idle-hatching\FrogLevelling.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\FrogsManager.cs" />
     <Compile Include="Assets\Scripts\Game\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\SO_EggRarityRate\SO_EggRarityRate.cs" />

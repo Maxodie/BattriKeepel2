@@ -112,3 +112,4 @@ fmod_editor.log
 /Assets/FMODAssets/*
 /Assets/FMODStudioCache.meta
 BattriKeepel2/Assembly-CSharp.csproj
+*.csproj
