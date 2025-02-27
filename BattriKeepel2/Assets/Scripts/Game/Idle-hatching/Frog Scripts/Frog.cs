@@ -29,6 +29,7 @@ public class Frog : MonoBehaviour
     public void AddExpAmount(EN_FrogLevels type, int amount)
     {
         m_Levelling.AddExpAmount(type, amount);
+        m_Levelling.CheckForLevelUp(type);
     }
 
     public void SetLevelUp(EN_FrogLevels type)

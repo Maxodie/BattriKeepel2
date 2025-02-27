@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.Android.Gradle.Manifest;
 using UnityEngine;
@@ -30,6 +31,12 @@ public class FrogsManager : MonoBehaviour
         Log.Success("WOW, FROG GENERATED ! :)");
         
         frogList.Add(frog);
+    }
+
+    public void GiveEXPToFrog()
+    {
+        Frog frog = frogList[0];
+        frog.AddExpAmount(EN_FrogLevels.RUN, 50);
     }
 
     private EN_FrogRarity ProcessFrogRarity()

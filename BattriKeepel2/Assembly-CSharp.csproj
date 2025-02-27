@@ -61,24 +61,25 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.24f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Game\Idle-hatching\Frog.cs" />
+    <Compile Include="Assets\Scripts\Game\Idle-hatching\SO_MaxExpPoints\SO_MaxExpPoints.cs" />
+    <Compile Include="Assets\Scripts\Game\Idle-hatching\Build Scripts\Build.cs" />
     <Compile Include="Assets\Scripts\Game\Managers\CollisionManager.cs" />
-    <Compile Include="Assets\Scripts\Game\Idle-hatching\SO_MaxExpPoints.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\EN_Frog\EN_FrogLevels.cs" />
     <Compile Include="Assets\Scripts\Game\Player\Inputs\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\EN_Frog\EN_FrogColors.cs" />
-    <Compile Include="Assets\Scripts\Game\Idle-hatching\FrogBehavior.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\EN_Frog\EN_FrogRarity.cs" />
     <Compile Include="Assets\Scripts\Game\Boss\BossPaternScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Game\Components\Hitbox.cs" />
     <Compile Include="Assets\Scripts\Log\Log.cs" />
-    <Compile Include="Assets\Scripts\Game\Idle-hatching\FrogLevelling.cs" />
-    <Compile Include="Assets\Scripts\Game\Idle-hatching\FrogsManager.cs" />
+    <Compile Include="Assets\Scripts\Game\Idle-hatching\Frog Scripts\Frog.cs" />
+    <Compile Include="Assets\Scripts\Game\Idle-hatching\Frog Scripts\FrogLevelling.cs" />
     <Compile Include="Assets\Scripts\Game\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\SO_EggRarityRate\SO_EggRarityRate.cs" />
+    <Compile Include="Assets\Scripts\Game\Idle-hatching\Frog Scripts\FrogsManager.cs" />
+    <Compile Include="Assets\Scripts\Game\Idle-hatching\Frog Scripts\FrogGraphics.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\SO_FrogLevelData\SO_FrogLevelData.cs" />
-    <Compile Include="Assets\Scripts\Game\Idle-hatching\FrogGraphics.cs" />
     <Compile Include="Assets\Scripts\Game\Components\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\Game\Idle-hatching\Frog Scripts\FrogBehavior.cs" />
     <Compile Include="Assets\Scripts\Game\Player\Inputs\InputManager.cs" />
   </ItemGroup>
   <ItemGroup>

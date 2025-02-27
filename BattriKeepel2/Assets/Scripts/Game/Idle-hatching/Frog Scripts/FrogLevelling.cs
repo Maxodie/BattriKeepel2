@@ -12,6 +12,8 @@ public class FrogLevelling
     public int m_SwimLevel;
     public int m_SwimLevelEXP = 0;
 
+    private int m_MaxLevel = 10;
+
     [SerializeField] private SO_MaxExpPoints SO_MaxExpPoints;
 
     public void InitFrogLevelling(Frog f, SO_FrogLevelData frogLevelData)
@@ -48,16 +50,51 @@ public class FrogLevelling
         {
             case EN_FrogLevels.RUN:
                 m_RunLevel += 1;
+                m_RunLevelEXP = 0;
                 break;
             case EN_FrogLevels.FLY:
                 m_FlyLevel += 1;
+                m_FlyLevelEXP = 0;
                 break;
             case EN_FrogLevels.SWIM:
                 m_SwimLevel += 1;
+                m_SwimLevelEXP = 0;
                 break;
             default:
                 Log.Error("Cannot find the correct type");
                 break;
+        }
+    }
+
+    public void CheckForLevelUp(EN_FrogLevels type)
+    {
+        int currentLevel = 0;
+        int currentEXP = 0;
+        switch (type)
+        {
+            case EN_FrogLevels.RUN:
+                currentLevel = m_RunLevel;
+                currentEXP = m_RunLevelEXP;
+                break;
+            case EN_FrogLevels.FLY:
+                currentLevel = m_FlyLevel;
+                currentEXP = m_FlyLevelEXP;
+                break;
+            case EN_FrogLevels.SWIM:
+                currentLevel = m_SwimLevel;
+                currentEXP = m_SwimLevelEXP;
+                break;
+            default:
+                Log.Error("Cannot find the correct type");
+                break;
+        }
+
+        if(currentLevel < m_MaxLevel) //éviter que la frog passe au dessus du niveau 10
+        {
+            if(currentEXP >= SO_MaxExpPoints.EXPPointsToGainLevel[currentLevel])
+            {
+                SetLevelUp(type);
+            }
         }
     }
 }
