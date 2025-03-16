@@ -6,8 +6,7 @@ public class DebuggerTool : MonoBehaviour
     DebuggerToolNavigatorUI m_devToolNavigator;
     [SerializeField] DebuggerToolNavigatorUI m_devToolNavigatorPrefab;
     List<DebuggerToolBase> m_activeTools = new List<DebuggerToolBase>();
-
-    RTProfiler profiler;
+    List<System.Type> m_activeUITools = new List<System.Type>();
 
     void Awake()
     {
@@ -16,13 +15,25 @@ public class DebuggerTool : MonoBehaviour
             m_devToolNavigator = Instantiate(m_devToolNavigatorPrefab, transform);
             DontDestroyOnLoad(gameObject);
 
-
+            CreateActiveTool<RTProfiler>();
         }
+    }
+
+    void Update()
+    {
+        UpdateTabs();
+        Log.Info("test : " + Log.m_loggers[0].IsActive);
     }
 
     void UpdateTabs()
     {
-            //m_devToolNavigator.AddDebuggerTab<DebuggertoolUIRTProfiler>();
+
+       // m_devToolNavigator.AddDebuggerTab<DebuggertoolUIRTProfiler>();
+        if(Log.m_loggers[0] != null && !m_activeUITools.Contains(typeof(DebuggertoolUILogger)))
+        {
+            m_devToolNavigator.AddDebuggerTab<DebuggertoolUILogger>(Log.m_loggers[0]);
+            m_activeUITools.Add(typeof(DebuggertoolUILogger));
+        }
     }
 
     void CreateActiveTool<T>() where T: DebuggerToolBase, new()

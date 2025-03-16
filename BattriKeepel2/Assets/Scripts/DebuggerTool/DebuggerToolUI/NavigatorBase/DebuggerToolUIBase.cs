@@ -1,16 +1,28 @@
 public abstract class DebuggerToolUIBase
 {
-    private static void GenerateFields(ref object obj)
+    private void GenerateFields(DebuggerToolUITabContent tabContent, object obj)
     {
-        System.Attribute[] attrs = System.Attribute.GetCustomAttributes(obj.GetType());
 
-        foreach (System.Attribute attr in attrs)
+        /*foreach (System.Attribute attr in attrs)*/
+        /*{*/
+        /*    Log.Info<DebuggerLogger>("attr : " + attr.ToString());*/
+        /*    if (attr is DebuggerToolAccessAttribute)*/
+        /*    {*/
+        /*        foreach(System.Reflection.PropertyInfo property in attr.GetType().GetProperties())*/
+        /*        {*/
+        /*            Log.Info<DebuggerLogger>("new filed : " + property.Name + " | " + obj.ToString());*/
+        /*            CreateField(tabContent, property, obj);*/
+        /*        }*/
+        /*    }*/
+        /*}*/
+        foreach(System.Reflection.PropertyInfo property in obj.GetType().GetProperties())
         {
-            if (attr is DebuggerToolAccessAttribute a)
+            foreach(System.Attribute attr in property.GetCustomAttributes(true))
             {
-                foreach(System.Reflection.PropertyInfo property in a.GetType().GetProperties())
+                if(attr is DebuggerToolAccessAttribute)
                 {
-                    //CreateField(ref property.GetValue(obj));
+                    Log.Info<DebuggerLogger>("new filed : " + property.Name + " | " + obj.ToString());
+                    CreateField(tabContent, property.GetValue(obj).GetType(), property,  obj);
                 }
             }
         }
@@ -18,11 +30,11 @@ public abstract class DebuggerToolUIBase
 
     public void CreateUI(DebuggerToolUITabContent tabContent, object script)
     {
-        GenerateFields(ref script);
+        GenerateFields(tabContent, script);
     }
 
-    protected void CreateField(DebuggerToolUITabContent tabContent, System.Type fieldType, ref object value)
+    protected void CreateField(DebuggerToolUITabContent tabContent,System.Type type, System.Reflection.PropertyInfo property, object script)
     {
-       tabContent.AddField(fieldType, ref value);
+       tabContent.AddField(type, property, script);
     }
 }

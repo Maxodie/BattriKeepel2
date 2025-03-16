@@ -1,8 +1,32 @@
+/*
+ *
+ * pour créeer un logger il faut faire une classe enfant de 'Logger'
+ * exemple :
+ * public class DefaultLogger: Logger
+ * {
+ *
+ * }
+ *
+ * pour utiliser le logger
+ * Log.{LogLevel}<LeNouveauLogger>("hello");
+ *
+ * exemple complet :
+ *
+ * public class TestLogger: Logger
+ * {
+ *
+ * }
+ *
+ * Log.Success<TestLogger>("caca");
+ *
+ */
+
 using UnityEngine;
 using System.Collections.Generic;
 
 public abstract class Logger
 {
+<<<<<<< Updated upstream
     public bool IsActive{set;get;}
 
     public virtual void OnCreated()
@@ -14,6 +38,9 @@ public abstract class Logger
     {
 
     }
+=======
+    [DebuggerToolAccess] public bool IsActive{set;get;}
+>>>>>>> Stashed changes
 }
 
 public class DefaultLogger: Logger
@@ -22,7 +49,7 @@ public class DefaultLogger: Logger
 
 public static class Log
 {
-    [DebuggerToolAccess] static List<Logger> m_loggers;
+    public static List<Logger> m_loggers;
 
     static string s_successColor = "#008714";
     static string s_traceColor = "#287a92";
@@ -147,7 +174,11 @@ public static class Log
 
         if(logger.IsActive)
         {
+<<<<<<< Updated upstream
             Debug.unityLogger.Log(logType, $"<color={s_loggerColor}>[" + logger.GetType().FullName + "]</color> " + msg);
+=======
+            Debug.unityLogger.Log(logType, "|" + logger.GetType().Name + "| " + msg);
+>>>>>>> Stashed changes
         }
     }
 }

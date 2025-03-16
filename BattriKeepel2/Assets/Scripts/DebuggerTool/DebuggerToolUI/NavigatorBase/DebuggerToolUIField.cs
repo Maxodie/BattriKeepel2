@@ -1,11 +1,23 @@
 using UnityEngine;
 
-public class DebuggerToolUIField<T> : MonoBehaviour
+public abstract class DebuggerToolUIField : MonoBehaviour
 {
-    ReferenceContainer<T> value;
-    public void SetValue(ReferenceContainer<T> o)
+    System.Reflection.PropertyInfo m_property;
+    object m_obj;
+
+    public void Init(System.Reflection.PropertyInfo property, object obj)
     {
-        value = o;
+        m_property = property;
+        m_obj = obj;
+
+        InitUI();
+    }
+
+    protected abstract void InitUI();
+
+    protected void SetValue(object value)
+    {
+        m_property.SetValue(m_obj, value);
     }
 }
 
