@@ -4,11 +4,20 @@ using System.Collections.Generic;
 public abstract class Logger
 {
     public bool IsActive{set;get;}
+
+    public virtual void OnCreated()
+    {
+        IsActive = true;
+    }
+
+    public virtual void OnLogStart()
+    {
+
+    }
 }
 
 public class DefaultLogger: Logger
 {
-
 }
 
 public static class Log
@@ -19,6 +28,7 @@ public static class Log
     static string s_traceColor = "#287a92";
     static string s_warnColor = "#e57f1f";
     static string s_errorColor = "#e51f1f";
+    static string s_loggerColor = "#7decf0";
 
     static Log()
     {
@@ -32,8 +42,8 @@ public static class Log
         if(logger == null)
         {
             T t = new T();
-            t.IsActive = true;
-            m_loggers.Add(new T());
+            t.OnCreated();
+            m_loggers.Add(t);
             return t;
         }
         else
@@ -130,15 +140,14 @@ public static class Log
         if(logger == null)
         {
             logger = CreateLogger<T>();
+            Debug.Log("logger created : " + logger.ToString());
         }
+
+        logger.OnLogStart();
 
         if(logger.IsActive)
         {
-            Debug.unityLogger.Log(logType, msg);
-        }
-        else
-        {
-            Debug.unityLogger.Log(LogType.Error, $"Logger of type {typeof(T)} could not be found");
+            Debug.unityLogger.Log(logType, $"<color={s_loggerColor}>[" + logger.GetType().FullName + "]</color> " + msg);
         }
     }
 }

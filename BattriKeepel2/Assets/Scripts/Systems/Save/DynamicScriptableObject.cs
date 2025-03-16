@@ -1,4 +1,5 @@
-class DynamicScriptableObject
+[System.Serializable]
+public class DynamicScriptableObject
 {
 
 }
