@@ -83,14 +83,14 @@ public static class Log
         }
     }
 
-    public static void Info<T>(object msg) where T: Logger, new()
-    {
-        LogToLogger<T>(LogType.Log, msg);
-    }
-
     public static void Info(object msg)
     {
         LogToLogger<DefaultLogger>(LogType.Log, msg);
+    }
+
+    public static void Info<T>(object msg) where T: Logger, new()
+    {
+        LogToLogger<T>(LogType.Log, msg);
     }
 
     public static void Trace<T>(object msg) where T: Logger, new()
