@@ -17,12 +17,12 @@ Log.Error("Hello");
 
 public class CustomLogger : Logger
 {
-    //Creation callback function
+    //Creation callback function (falcultatif)
     public override void OnCreated()
     {
     }
 
-    //Log start callback function
+    //Log start callback function (falcultatif)
     public override void OnLogStart()
     {
     }
