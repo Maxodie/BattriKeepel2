@@ -47,7 +47,7 @@ public class MyData : DynamicScriptableObject
     public int test;
 }
 
-//Save data exemple with a simple container but work with every c# object
+//Save data exemple with a simple container but that works with every c# object
 
 public class DataContainerExemple
 {
