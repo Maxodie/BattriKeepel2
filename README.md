@@ -39,7 +39,7 @@ Log.Error<CustomLogger>("Hello");
 
 ### Save System
 You can save and load dynamic data
-```
+```c#
 //Data must inherite from DynamicScriptableObject
 
 public class MyData : DynamicScriptableObject
