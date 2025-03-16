@@ -72,7 +72,7 @@ public class DataContainerExemple
     DataContainerExemple()
     {
         int myDataId = 0;
-        List<MyData> loadedDate = SaveSystem.Load<MyData>(this);
+        List<MyData> loadedData = SaveSystem.Load<MyData>(this);
         dataToSave.test = loadedDate[myDataId].test;
     }
 }
