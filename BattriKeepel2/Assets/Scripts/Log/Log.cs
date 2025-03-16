@@ -26,8 +26,7 @@ using System.Collections.Generic;
 
 public abstract class Logger
 {
-<<<<<<< Updated upstream
-    public bool IsActive{set;get;}
+    [DebuggerToolAccess] public bool IsActive{set;get;}
 
     public virtual void OnCreated()
     {
@@ -38,9 +37,6 @@ public abstract class Logger
     {
 
     }
-=======
-    [DebuggerToolAccess] public bool IsActive{set;get;}
->>>>>>> Stashed changes
 }
 
 public class DefaultLogger: Logger
@@ -167,18 +163,14 @@ public static class Log
         if(logger == null)
         {
             logger = CreateLogger<T>();
-            Debug.Log("logger created : " + logger.ToString());
+            Log.Info<DefaultLogger>("logger created : " + logger.ToString());
         }
 
         logger.OnLogStart();
 
         if(logger.IsActive)
         {
-<<<<<<< Updated upstream
             Debug.unityLogger.Log(logType, $"<color={s_loggerColor}>[" + logger.GetType().FullName + "]</color> " + msg);
-=======
-            Debug.unityLogger.Log(logType, "|" + logger.GetType().Name + "| " + msg);
->>>>>>> Stashed changes
         }
     }
 }

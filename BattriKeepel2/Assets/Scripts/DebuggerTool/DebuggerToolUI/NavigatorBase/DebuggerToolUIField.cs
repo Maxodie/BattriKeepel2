@@ -1,15 +1,19 @@
 using UnityEngine;
+using TMPro;
 
 public abstract class DebuggerToolUIField : MonoBehaviour
 {
-    System.Reflection.PropertyInfo m_property;
+    public System.Reflection.PropertyInfo PropertyField{set; get;}
     object m_obj;
+    [SerializeField] TMP_Text m_text;
 
-    public void Init(System.Reflection.PropertyInfo property, object obj)
+    public void Init(System.Reflection.PropertyInfo property, object obj, string fieldTitle)
     {
-        m_property = property;
+        m_text.text = fieldTitle;
+        PropertyField = property;
         m_obj = obj;
 
+        SetValue(property.GetValue(obj));
         InitUI();
     }
 
@@ -17,7 +21,7 @@ public abstract class DebuggerToolUIField : MonoBehaviour
 
     protected void SetValue(object value)
     {
-        m_property.SetValue(m_obj, value);
+        PropertyField.SetValue(m_obj, value);
     }
 }
 

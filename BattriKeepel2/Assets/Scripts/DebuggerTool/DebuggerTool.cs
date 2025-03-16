@@ -7,6 +7,7 @@ public class DebuggerTool : MonoBehaviour
     [SerializeField] DebuggerToolNavigatorUI m_devToolNavigatorPrefab;
     List<DebuggerToolBase> m_activeTools = new List<DebuggerToolBase>();
     List<System.Type> m_activeUITools = new List<System.Type>();
+    bool isActive = true;
 
     void Awake()
     {
@@ -17,22 +18,32 @@ public class DebuggerTool : MonoBehaviour
 
             CreateActiveTool<RTProfiler>();
         }
+
+        GenerateDebuggerTab<DebuggertoolUILogger>();
     }
 
     void Update()
     {
-        UpdateTabs();
-        Log.Info("test : " + Log.m_loggers[0].IsActive);
+        if(!isActive) return;
+
+        UpdateTabs(); //system d'entity et utpdate ça quand y'a un nouvel entity
     }
 
     void UpdateTabs()
     {
-
-       // m_devToolNavigator.AddDebuggerTab<DebuggertoolUIRTProfiler>();
-        if(Log.m_loggers[0] != null && !m_activeUITools.Contains(typeof(DebuggertoolUILogger)))
+        foreach(Logger logger in Log.m_loggers)
         {
-            m_devToolNavigator.AddDebuggerTab<DebuggertoolUILogger>(Log.m_loggers[0]);
-            m_activeUITools.Add(typeof(DebuggertoolUILogger));
+            m_devToolNavigator.GenerateField<DebuggertoolUILogger>(logger);
+        }
+
+    }
+
+    void GenerateDebuggerTab<T>() where T: DebuggerToolUIBase, new()
+    {
+        if(!m_activeUITools.Contains(typeof(T)))
+        {
+            m_devToolNavigator.AddDebuggerTab<T>();
+            m_activeUITools.Add(typeof(T));
         }
     }
 
