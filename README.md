@@ -57,7 +57,7 @@ public class DataContainerExemple
     {
         dataToSave.test = 5;
         int myDataId = 0;
-        SaveSystem.Save<Mydata>(dataToSave, container, myDataId);
+        SaveSystem.Save<Mydata>(dataToSave, this, myDataId);
     }
 }
 
