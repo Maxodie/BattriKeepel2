@@ -33,7 +33,7 @@ public class FrogsManager : MonoBehaviour
         frogList.Add(frog);
     }
 
-    public void GiveEXPToFrog()
+    public void GiveEXPToFrog() //Méthode test du système d'EXP, à commenter à un moment
     {
         Frog frog = frogList[0];
         frog.AddExpAmount(EN_FrogLevels.RUN, 60);
