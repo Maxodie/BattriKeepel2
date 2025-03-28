@@ -12,10 +12,10 @@ namespace Components {
         [SerializeField] private Vector2 m_offSet = new Vector2();
         private Vector2 m_position;
 
-        public Transform lastHitObject;
+        [HideInInspector] public Transform lastHitObject;
 
         public void Start() {
-            // add instance to collision manager
+            CollisionManager.GetInstance().AddElement(this);
         }
 
         public Vector2 GetPosition() {

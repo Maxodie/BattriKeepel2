@@ -21,11 +21,11 @@ public class Player : MonoBehaviour {
     private void BindActions() {
         m_inputManager.BindPosition(m_movement.OnPosition);
         m_inputManager.BindPress(m_movement.OnPress);
+        m_hitBox.BindOnCollision((other) => {Log.Info("caca");});
     }
 
     private void Update() {
         m_movement.Update();
-        Debug.Log(IsScreenPressed());
     }
 
     public bool IsScreenPressed() {
