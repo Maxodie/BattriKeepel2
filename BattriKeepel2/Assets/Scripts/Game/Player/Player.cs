@@ -1,8 +1,10 @@
 using UnityEngine;
 using Components;
+using Game.AttackSystem.Bullet;
+using Game.Entities;
 using Inputs;
 
-public class Player : MonoBehaviour {
+public class Player : Entity {
     [SerializeField] private InputManager m_inputManager;
     [SerializeField] private Movement m_movement;
     [SerializeField] private Hitbox m_hitBox;
@@ -30,5 +32,10 @@ public class Player : MonoBehaviour {
 
     public bool IsScreenPressed() {
         return m_movement.IsScreenPressed();
+    }
+    
+    public override void TakeDamage(Bullet bullet)
+    {
+        
     }
 }

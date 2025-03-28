@@ -1,51 +1,54 @@
-using UnityEngine;
+using System;
+using Game.Entities;
 
 namespace Game.AttackSystem.Bullet
 {
-    public class Bullet : MonoBehaviour
+    public class Bullet : GameEntityMonoBehaviour
     {
-        private CollisionManager _collisionManager;
-        
-        private BulletBehaviour _bulletBehaviour;
-        
-        private float _speed;
-        private float _damage;
+        private CollisionManager collisionManager;
+        private BulletBehaviour bulletBehaviour;
+
+        private Entity owner;
+        private float speed;
+        private float damage;
     
         private void Awake()
         {
-            _collisionManager = GetComponent<CollisionManager>();
+            collisionManager = GetComponent<CollisionManager>();
         }
 
         private void InitBullet(BulletData bulletData)
         {
-            _bulletBehaviour = bulletData.BulletBehaviour;
-            _speed = bulletData.Speed;
-            _damage = bulletData.Damage;
+            bulletBehaviour = bulletData.BulletBehaviour;
+            speed = bulletData.Speed;
+            damage = bulletData.Damage;
         }
 
         private void FixedUpdate()
         {
-            if (_bulletBehaviour.NeedConstantUpdate)
-            {
-                _bulletBehaviour.RaiseBullet(this);
+            if (bulletBehaviour.NeedConstantUpdate) {
+                bulletBehaviour.RaiseBullet(this);
             }
         }
 
-        private void TakeDamage(Collider entity) //Replace "Collider" with "Entity"
+        private void DamageEntity(Entity entity)
         {
-            if (entity.transform.CompareTag("Player"))
-            {
-                //Code for player damage
-            }
-            else if (entity.transform.CompareTag("Enemy"))
-            {
-                //Code for enemy damage
-            }
+            if ((owner.entityType == Entity.EntityType.Enemy || owner.entityType == Entity.EntityType.Boss) && (entity.entityType == Entity.EntityType.Enemy || entity.entityType == Entity.EntityType.Boss)) return;
+            if (owner.entityType == Entity.EntityType.Player && entity.entityType == Entity.EntityType.Player) return;
+            
+            entity.TakeDamage(this);
+        }
+
+        public float GetSpeed()
+        {
+            return speed;
         }
     }
 
+    [Serializable]
     public struct BulletData
     {
+        public Entity Owner;
         public BulletBehaviour BulletBehaviour;
         public float Speed;
         public float Damage;

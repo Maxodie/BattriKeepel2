@@ -7,7 +7,7 @@ namespace Game.AttackSystem.Bullet
     {
         public void BasicBullet(Bullet bullet)
         {
-            
+            bullet.transform.position += new Vector3(bullet.GetSpeed(), 0, 0);
         }
     }
 }
