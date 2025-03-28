@@ -101,6 +101,7 @@
     <Compile Include="Assets\Scripts\Game\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Game\AttackSystem\Attacks\Attack.cs" />
     <Compile Include="Assets\Scripts\Game\Boss\SO_BossPatern.cs" />
+    <Compile Include="Assets\Scripts\Systems\GameEntity\EntityManager.cs" />
     <Compile Include="Assets\Scripts\Systems\Save\DynamicScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\SO_FrogLevelData\SO_FrogLevelData.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\FrogGraphics.cs" />
