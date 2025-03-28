@@ -9,6 +9,7 @@ public class Frog : MonoBehaviour
     [SerializeField] private FrogGraphics m_Graphics;
     [SerializeField] private FrogBehavior m_Behavior;
     [SerializeField] private FrogLevelling m_Levelling;
+    [SerializeField] private FrogInteraction m_Interaction;
 
     public void Init(string name, EN_FrogColors color, EN_FrogRarity rarity, SO_FrogLevelData frogLevelData)
     {
