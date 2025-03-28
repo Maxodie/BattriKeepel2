@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets/Scripts/Game/AttackSystem/Attacks/AttackSet.cs" />
+    <Compile Include="Assets/Scripts/Game/Components/Movement.cs" />
     <Compile Include="Assets/Scripts/Game/Idle-hatching/Frog.cs" />
     <Compile Include="Assets/Scripts/Game/AttackSystem/Definitions/PlayerAttacksDefinition.cs" />
     <Compile Include="Assets/Scripts/Game/AttackSystem/Definitions/BossAttacksDefinition.cs" />

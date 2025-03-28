@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Components {
     [System.Serializable]
-    public class Movement {
+    public class PlayerMovement : Movement {
 
         [HideInInspector] public Transform m_transform;
         Vector2 m_newPos = new Vector2();
@@ -21,7 +21,7 @@ namespace Components {
             m_isPressed = state;
         }
 
-        private void HandleMovement() {
+        protected override void HandleMovement() {
             if (m_isPressed == UnityEngine.InputSystem.TouchPhase.Began
                     || m_isPressed == UnityEngine.InputSystem.TouchPhase.Ended
                     || m_isPressed == UnityEngine.InputSystem.TouchPhase.None) {
@@ -30,7 +30,7 @@ namespace Components {
             m_transform.position = new Vector3(m_newPos.x - m_offSet.x, m_newPos.y - m_offSet.y, 0);
         }
 
-        public void Update() {
+        public override void Update() {
             HandleMovement();
         }
 
