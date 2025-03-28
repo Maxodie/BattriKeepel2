@@ -16,8 +16,6 @@ MonoBehaviour:
   batchingPriority: 25
   scenesMap:
     list:
-    - Key: Movement
-      Value: 1
     - Key: 
       Value: 1
   validatorTypesMap:

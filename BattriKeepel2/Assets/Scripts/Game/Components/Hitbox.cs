@@ -26,11 +26,11 @@ namespace Components {
         }
 
         public float GetSize() {
-            return m_size;
+            return m_size * m_transform.localScale.x;
         }
 
         public Vector2 GetDimensions() {
-            return m_dimensions;
+            return m_dimensions * m_transform.localScale;
         }
 
         public void OnCollisionBehavior(Transform hit) {

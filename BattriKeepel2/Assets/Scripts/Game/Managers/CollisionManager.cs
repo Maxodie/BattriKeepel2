@@ -76,7 +76,23 @@ public class CollisionManager : MonoBehaviour {
 
 
     private bool IsCircleRectangleCollision(Hitbox circle, Hitbox rectangularParallelepiped) {
+        Vector2 circlePosition = circle.GetPosition();
+        float circleRadius = circle.GetSize() / 2;
 
+        Vector2 rectPosition = rectangularParallelepiped.GetPosition();
+        Vector2 rectDimensions = rectangularParallelepiped.GetDimensions();
+
+        Vector2 rectMinBound = new Vector2(rectPosition.x - (rectDimensions.x / 2), rectPosition.y - (rectDimensions.y / 2));
+        Vector2 rectMaxBound = new Vector2(rectPosition.x + (rectDimensions.x / 2), rectPosition.y + (rectDimensions.y / 2));
+
+        float closestX = Mathf.Clamp(circlePosition.x, rectMinBound.x, rectMaxBound.x);
+        float closestY = Mathf.Clamp(circlePosition.y, rectMinBound.y, rectMaxBound.y);
+
+        Vector2 closestPoint = new Vector2(closestX, closestY);
+
+        float distance = Vector2.Distance(circlePosition, closestPoint);
+
+        return distance <= circleRadius;
     }
 
     private bool IsRectangleCollision(Hitbox r1, Hitbox r2) {
