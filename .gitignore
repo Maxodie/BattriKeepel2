@@ -111,3 +111,7 @@ fmod_editor.log
 # FMOD 1.10.x (Legacy)
 /Assets/FMODAssets/*
 /Assets/FMODStudioCache.meta
+
+# cpp
+BattriKeepel2_cpp/build
+BattriKeepel2_cpp/.cache
