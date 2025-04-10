@@ -4,7 +4,6 @@ public class GameManagerLogger : Logger
 {
 }
 
-
 class BossEntity : IGameEntity
 {
     BossGraphics entityGraphics;
@@ -12,7 +11,7 @@ class BossEntity : IGameEntity
 
     public BossEntity(Transform spawnLocation, BossGraphics bossGrpahics)
     {
-        entityGraphics = EntityManager.Get().GenerateVisualInfos<BossGraphics>(bossGrpahics, spawnLocation);
+        entityGraphics = GraphicsManager.Get().GenerateVisualInfos<BossGraphics>(bossGrpahics, spawnLocation);
     }
 
     public void TakeDamage(int amount)
@@ -35,7 +34,7 @@ public class GameManager : GameEntityMonoBehaviour
     int id2;
     void Start()
     {
-        id = EntityManager.Get().CreatePersistentEntity<BossEntity>(out entity0, tr, bg);
+        id = EntityManager.Get().CreatePersistentEntity(out entity0, tr, bg);
         entity0.TakeDamage(25);
         id1 = EntityManager.Get().CreatePersistentEntity<BossEntity>(out entity1, tr, bg);
         id2 = EntityManager.Get().CreatePersistentEntity<BossEntity>(out entity2, tr, bg);

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine;
 using System;
 using UnityEngine.Events;
 
@@ -12,9 +11,8 @@ class EntityManagerLogger : Logger
 
 class EntityManager
 {
-    UnityEvent<IGameEntity> OnEntityAddedCallback;
-    UnityEvent<GameEntityGraphics> OnVisualCreatedCallback;
-    UnityEvent<Type> OnEntityDestroyedCallback;
+    public UnityEvent<IGameEntity> OnEntityAddedCallback;
+    public UnityEvent<Type> OnEntityDestroyedCallback;
     List<IGameEntity> m_loadedEntities = new();
     /*List<EntityID> m_loadedEntityIDs = new();*/
     /*int persistentDataOffset = 0;*/
@@ -123,14 +121,24 @@ class EntityManager
     /*    return entityID;*/
     /*}*/
     /**/
-    public bool IsEntityExisting(EntityID id)
+    public bool Exists<TEntity>(TEntity entityToCheck) where TEntity : IGameEntity
+    {
+        return m_loadedEntities.FindIndex((IGameEntity entity) => { return entity == (IGameEntity)entityToCheck;}) != -1;
+    }
+
+    public bool Exists(EntityID id)
     {
         return m_loadedEntitiesActiveState.Count > id && m_loadedEntitiesActiveState[id];
     }
     /**/
+
+    public void DestroyPersistentEntity<TEntity>(TEntity entityToCheck) where TEntity : IGameEntity
+    {
+        DestroyPersistentEntity(GetEntity(entityToCheck));
+    }
     public void DestroyPersistentEntity(EntityID id)
     {
-        if(IsEntityExisting(id))
+        if(Exists(id))
         {
             OnEntityDestroyedCallback.Invoke(m_loadedEntities[id].GetType());
             m_loadedEntities[id] = null;
@@ -138,37 +146,17 @@ class EntityManager
         }
     }
 
+    public EntityID GetEntity<TEntity>(TEntity entityToGet) where TEntity : IGameEntity
+    {
+        return m_loadedEntities.FindIndex((IGameEntity entity) => { return entity == (IGameEntity)entityToGet;});
+    }
     public TEntity GetEntity<TEntity>(EntityID id) where TEntity : IGameEntity
     {
-        if(IsEntityExisting(id))
+        if(Exists(id))
         {
             return (TEntity)m_loadedEntities[id];
         }
 
         return default;
-    }
-
-    public TGraphicsScript GenerateVisualInfos<TGraphicsScript>(GameEntityGraphics graphicsPrefab, Transform transform) where TGraphicsScript : GameEntityGraphics
-    {
-        TGraphicsScript result = UnityEngine.Object.Instantiate<TGraphicsScript>((TGraphicsScript)graphicsPrefab, transform);
-
-        if(OnVisualCreatedCallback != null)
-        {
-            OnVisualCreatedCallback.Invoke(result);
-        }
-
-        return result;
-    }
-
-    public GameObject GenerateVisualInfos(GameObject graphicsPrefab, Transform transform)
-    {
-        GameObject result = UnityEngine.Object.Instantiate(graphicsPrefab, transform) ;
-
-        if(OnVisualCreatedCallback != null)
-        {
-            OnVisualCreatedCallback.Invoke(null);
-        }
-
-        return result;
     }
 }
