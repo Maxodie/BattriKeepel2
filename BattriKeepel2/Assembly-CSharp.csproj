@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Game\AttackSystem\Attacks\AttackSet.cs" />
+    <Compile Include="Assets\Scripts\Systems\GameEntity\GraphicsDataManager.cs" />
     <Compile Include="Assets\Scripts\Systems\GameEntity\IGameEntity.cs" />
     <Compile Include="Assets\Scripts\Game\Components\Movement.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\Frog.cs" />
