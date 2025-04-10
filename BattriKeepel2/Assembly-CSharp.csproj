@@ -69,7 +69,6 @@
     <Compile Include="Assets\Scripts\Game\AttackSystem\Definitions\PlayerAttacksDefinition.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\DebuggerToolUI\DebuggerToolUIRTPProfiler.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\Debuggable.cs" />
-    <Compile Include="Assets\Scripts\Utilities\ReferenceContainer.cs" />
     <Compile Include="Assets\Scripts\Game\AttackSystem\Definitions\BossAttacksDefinition.cs" />
     <Compile Include="Assets\Scripts\Game\Managers\CollisionManager.cs" />
     <Compile Include="Assets\Scripts\Game\Managers\test.cs" />
