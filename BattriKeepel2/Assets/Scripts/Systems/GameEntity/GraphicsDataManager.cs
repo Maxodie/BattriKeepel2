@@ -17,11 +17,11 @@ public class GraphicsManager
         return s_instance;
     }
 
-    public TGraphicsScript GenerateVisualInfos<TGraphicsScript>(GameEntityGraphics graphicsPrefab, Transform transform, bool isChild = true, bool dontDestroyOnLoad = false) where TGraphicsScript : GameEntityGraphics
+    public TGraphicsScript GenerateVisualInfos<TGraphicsScript>(GameEntityGraphics graphicsPrefab, Transform transform, IGameEntity owner, bool isChild = true, bool dontDestroyOnLoad = false) where TGraphicsScript : GameEntityGraphics
     {
         TGraphicsScript result = UnityEngine.Object.Instantiate<TGraphicsScript>((TGraphicsScript)graphicsPrefab, transform, true);
 
-        VisualInfosSpawnSetup(result, isChild, dontDestroyOnLoad);
+        VisualInfosSpawnSetup(result, owner, isChild, dontDestroyOnLoad);
 
         if(OnVisualCreatedCallback != null)
         {
@@ -31,11 +31,11 @@ public class GraphicsManager
         return result;
     }
 
-    public GameObject GenerateVisualInfos(GameObject graphicsPrefab, Transform transform, bool isChild = true, bool dontDestroyOnLoad = false)
+    public GameObject GenerateVisualInfos(GameObject graphicsPrefab, Transform transform, IGameEntity owner, bool isChild = true, bool dontDestroyOnLoad = false)
     {
         GameObject result = UnityEngine.Object.Instantiate(graphicsPrefab, transform);
 
-        VisualInfosSpawnSetup(result, isChild, dontDestroyOnLoad);
+        VisualInfosSpawnSetup(result, owner, isChild, dontDestroyOnLoad);
 
         if(OnVisualCreatedCallback != null)
         {
@@ -45,24 +45,30 @@ public class GraphicsManager
         return result;
     }
 
-    private void VisualInfosSpawnSetup<TGraphicsScript>(TGraphicsScript graphicsInfos, bool isChild, bool dontDestroyOnLoad) where TGraphicsScript : GameEntityGraphics
+    private void VisualInfosSpawnSetup<TGraphicsScript>(TGraphicsScript graphicsInfos, IGameEntity owner, bool isChild, bool dontDestroyOnLoad) where TGraphicsScript : GameEntityGraphics
     {
+        graphicsInfos.Init(owner);
+
         if(!isChild)
         {
             graphicsInfos.transform.SetParent(null);
         }
+
         if(dontDestroyOnLoad)
         {
             UnityEngine.Object.DontDestroyOnLoad(graphicsInfos);
         }
     }
 
-    private void VisualInfosSpawnSetup(GameObject graphicsInfos, bool isChild, bool dontDestroyOnLoad)
+    private void VisualInfosSpawnSetup(GameObject graphicsInfos, IGameEntity owner, bool isChild, bool dontDestroyOnLoad)
     {
+        graphicsInfos.GetComponent<GameEntityGraphics>().Init(owner);
+
         if(!isChild)
         {
             graphicsInfos.transform.SetParent(null);
         }
+
         if(dontDestroyOnLoad)
         {
             UnityEngine.Object.DontDestroyOnLoad(graphicsInfos);
