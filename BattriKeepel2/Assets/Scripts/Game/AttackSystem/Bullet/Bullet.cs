@@ -14,13 +14,13 @@ namespace Game.AttackSystem.Bullet
         private float speed;
         private float damage;
 
-        public BulletGraphics BulletGraphics;
+        private BulletGraphics bulletGraphics;
 
         private void InitBullet(BulletData bulletData, Transform spawnTransform)
         {
-            BulletGraphics = GraphicsManager.Get().GenerateVisualInfos<BulletGraphics>(bulletData.BulletGraphics, spawnTransform, false);
+            bulletGraphics = GraphicsManager.Get().GenerateVisualInfos<BulletGraphics>(bulletData.BulletGraphics, spawnTransform, false);
             
-            hitbox.Init(BulletGraphics.transform);
+            hitbox.Init(bulletGraphics.transform);
             hitbox.BindOnCollision(OnBulletCollision);
             
             bulletBehaviour = bulletData.BulletBehaviour;
@@ -48,6 +48,11 @@ namespace Game.AttackSystem.Bullet
         public float GetSpeed()
         {
             return speed;
+        }
+
+        public BulletGraphics GetBulletGraphics()
+        {
+            return bulletGraphics;
         }
     }
 
