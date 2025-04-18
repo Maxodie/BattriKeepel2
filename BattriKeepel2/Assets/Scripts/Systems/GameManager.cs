@@ -11,7 +11,7 @@ class BossEntity : IGameEntity
 
     public BossEntity(Transform spawnLocation, BossGraphics bossGrpahics)
     {
-        entityGraphics = GraphicsManager.Get().GenerateVisualInfos<BossGraphics>(bossGrpahics, spawnLocation);
+        entityGraphics = GraphicsManager.Get().GenerateVisualInfos<BossGraphics>(bossGrpahics, spawnLocation, this);
     }
 
     public void TakeDamage(int amount)

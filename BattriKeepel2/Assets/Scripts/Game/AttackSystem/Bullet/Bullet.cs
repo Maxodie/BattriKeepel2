@@ -18,11 +18,11 @@ namespace Game.AttackSystem.Bullet
 
         private void InitBullet(BulletData bulletData, Transform spawnTransform)
         {
-            bulletGraphics = GraphicsManager.Get().GenerateVisualInfos<BulletGraphics>(bulletData.BulletGraphics, spawnTransform, false);
-            
+            bulletGraphics = GraphicsManager.Get().GenerateVisualInfos<BulletGraphics>(bulletData.BulletGraphics, spawnTransform, this, false);
+
             hitbox.Init(bulletGraphics.transform);
             hitbox.BindOnCollision(OnBulletCollision);
-            
+
             bulletBehaviour = bulletData.BulletBehaviour;
             speed = bulletData.Speed;
             damage = bulletData.Damage;
@@ -38,10 +38,10 @@ namespace Game.AttackSystem.Bullet
         private void OnBulletCollision(Transform transformCollision)
         {
             Entity collisionEntity = transformCollision.GetComponent<Entity>();
-            
+
             if ((owner.entityType == Entity.EntityType.Enemy || owner.entityType == Entity.EntityType.Boss) && (collisionEntity.entityType == Entity.EntityType.Enemy || collisionEntity.entityType == Entity.EntityType.Boss)) return;
             if (owner.entityType == Entity.EntityType.Player && collisionEntity.entityType == Entity.EntityType.Player) return;
-            
+
             collisionEntity.TakeDamage(this);
         }
 
