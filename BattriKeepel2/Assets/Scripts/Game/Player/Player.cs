@@ -1,3 +1,4 @@
+using System;
 using Components;
 using Game.AttackSystem.Bullet;
 using Game.Entities;
@@ -6,16 +7,17 @@ using UnityEngine;
 
 namespace Game.Player
 {
-    public class Player : Entity {
-        [SerializeField] private InputManager m_inputManager;
-        [SerializeField] private PlayerMovement m_movement;
-        [SerializeField] private Hitbox m_hitBox;
-        
-
-        private void Start() {
+    [Serializable]
+    public class Player : Entity
+    {
+        public Player(Transform spawnTransform) {
             Init();
             BindActions();
         }
+
+        [SerializeField] private InputManager m_inputManager;
+        [SerializeField] private PlayerMovement m_movement;
+        [SerializeField] private Hitbox m_hitBox;
 
         private void Init() {
             m_hitBox.Init(GetEntityGraphics().transform);

@@ -7,7 +7,7 @@ namespace Game.AttackSystem.Bullet
 {
     public class Bullet : IGameEntity
     {
-        [SerializeField] private Hitbox hitbox;
+        private Hitbox hitbox;
         private BulletBehaviour bulletBehaviour;
 
         private Entity owner;
@@ -28,13 +28,6 @@ namespace Game.AttackSystem.Bullet
             damage = bulletData.Damage;
         }
 
-        private void FixedUpdate()
-        {
-            if (bulletBehaviour.NeedConstantUpdate) {
-                bulletBehaviour.RaiseBullet(this);
-            }
-        }
-
         private void OnBulletCollision(Transform transformCollision)
         {
             Entity collisionEntity = transformCollision.GetComponent<Entity>();
@@ -53,6 +46,11 @@ namespace Game.AttackSystem.Bullet
         public BulletGraphics GetBulletGraphics()
         {
             return bulletGraphics;
+        }
+
+        public BulletBehaviour GetBulletBehaviour()
+        {
+            return bulletBehaviour;
         }
     }
 

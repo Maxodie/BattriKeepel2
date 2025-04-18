@@ -7,5 +7,12 @@ namespace Game.AttackSystem.Bullet
     {
         [SerializeField] private Image sprite;
         [SerializeField] private Bullet bullet;
+        
+        private void FixedUpdate()
+        {
+            if (bullet.GetBulletBehaviour().NeedConstantUpdate) {
+                bullet.GetBulletBehaviour().RaiseBullet(bullet);
+            }
+        }
     }
 }
