@@ -66,8 +66,8 @@ public class CollisionManager : MonoBehaviour {
                     }
 
                     if (hasCollided) {
-                        c_hitbox.OnCollisionBehavior(o_hitbox.m_transform);
-                        o_hitbox.OnCollisionBehavior(c_hitbox.m_transform);
+                        c_hitbox.OnCollisionBehavior(o_hitbox.GetTransform());
+                        o_hitbox.OnCollisionBehavior(c_hitbox.GetTransform());
                     }
                 }
             }
