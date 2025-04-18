@@ -1,0 +1,26 @@
+[
+{
+  "directory": "E:/UnityProject/BattriKeepel2/BattriKeepel2_c/build",
+  "command": "C:\\LLVM_clang\\clang+llvm-19.1.5-x86_64\\bin\\clang.exe -DASSERT -DBK2_EXPORTS -DBattriKeepel2_EXPORTS @CMakeFiles/BattriKeepel2.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu17 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\BattriKeepel2.dir\\src\\ECS.c.obj -c E:\\UnityProject\\BattriKeepel2\\BattriKeepel2_c\\src\\ECS.c",
+  "file": "E:/UnityProject/BattriKeepel2/BattriKeepel2_c/src/ECS.c",
+  "output": "CMakeFiles/BattriKeepel2.dir/src/ECS.c.obj"
+},
+{
+  "directory": "E:/UnityProject/BattriKeepel2/BattriKeepel2_c/build",
+  "command": "C:\\LLVM_clang\\clang+llvm-19.1.5-x86_64\\bin\\clang.exe -DASSERT -DBK2_EXPORTS -DBattriKeepel2_EXPORTS @CMakeFiles/BattriKeepel2.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu17 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\BattriKeepel2.dir\\src\\ECSSystems.c.obj -c E:\\UnityProject\\BattriKeepel2\\BattriKeepel2_c\\src\\ECSSystems.c",
+  "file": "E:/UnityProject/BattriKeepel2/BattriKeepel2_c/src/ECSSystems.c",
+  "output": "CMakeFiles/BattriKeepel2.dir/src/ECSSystems.c.obj"
+},
+{
+  "directory": "E:/UnityProject/BattriKeepel2/BattriKeepel2_c/build",
+  "command": "C:\\LLVM_clang\\clang+llvm-19.1.5-x86_64\\bin\\clang.exe -DASSERT -DBK2_EXPORTS -DBattriKeepel2_EXPORTS @CMakeFiles/BattriKeepel2.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu17 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\BattriKeepel2.dir\\src\\ByteFlag.c.obj -c E:\\UnityProject\\BattriKeepel2\\BattriKeepel2_c\\src\\ByteFlag.c",
+  "file": "E:/UnityProject/BattriKeepel2/BattriKeepel2_c/src/ByteFlag.c",
+  "output": "CMakeFiles/BattriKeepel2.dir/src/ByteFlag.c.obj"
+},
+{
+  "directory": "E:/UnityProject/BattriKeepel2/BattriKeepel2_c/build",
+  "command": "C:\\LLVM_clang\\clang+llvm-19.1.5-x86_64\\bin\\clang.exe -DASSERT -DBK2_EXPORTS -DBattriKeepel2_EXPORTS @CMakeFiles/BattriKeepel2.dir/includes_C.rsp -O0 -g -Xclang -gcodeview -std=gnu17 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\BattriKeepel2.dir\\src\\List.c.obj -c E:\\UnityProject\\BattriKeepel2\\BattriKeepel2_c\\src\\List.c",
+  "file": "E:/UnityProject/BattriKeepel2/BattriKeepel2_c/src/List.c",
+  "output": "CMakeFiles/BattriKeepel2.dir/src/List.c.obj"
+}
+]

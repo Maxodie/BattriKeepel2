@@ -6,7 +6,7 @@ using Inputs;
 
 public class Player : Entity {
     [SerializeField] private InputManager m_inputManager;
-    [SerializeField] private Movement m_movement;
+    [SerializeField] private PlayerMovement m_movement;
     [SerializeField] private Hitbox m_hitBox;
 
     private void Start() {
