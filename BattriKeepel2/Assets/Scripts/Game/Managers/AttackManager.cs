@@ -24,7 +24,7 @@ namespace Game.Managers
             List<Entity> enemies = EnemyManager.Instance.currentEnemies;
             foreach (Entity enemy in enemies)
             {
-                float distance = Vector2.Distance(transform.position, enemy.transform.position);
+                float distance = Vector2.Distance(transform.position, enemy.GetEntityGraphics().transform.position);
                 if (distance > minDistance) continue;
 
                 nearestTarget = enemy;
