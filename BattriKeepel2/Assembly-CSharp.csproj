@@ -68,14 +68,17 @@
     <Compile Include="Assets\Scripts\Game\Idle-hatching\Frog.cs" />
     <Compile Include="Assets\Scripts\Game\AttackSystem\Definitions\PlayerAttacksDefinition.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\DebuggerToolUI\DebuggerToolUIRTPProfiler.cs" />
+    <Compile Include="Assets\Scripts\Systems\UISystem\SO_UIData.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\Debuggable.cs" />
     <Compile Include="Assets\Scripts\Game\AttackSystem\Definitions\BossAttacksDefinition.cs" />
     <Compile Include="Assets\Scripts\Game\Managers\CollisionManager.cs" />
     <Compile Include="Assets\Scripts\Game\Managers\test.cs" />
+    <Compile Include="Assets\Scripts\Systems\UISystem\UIManager.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\RTProfiler.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\PurFunTwoThousand.cs" />
     <Compile Include="Assets\Scripts\Game\AttackSystem\Definitions\EnemyAttacksDefinition.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\DebuggerToolUI\NavigatorBase\DebuggerToolNavigatorUI.cs" />
+    <Compile Include="Assets\Scripts\Systems\UISystem\UIMenuBase.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\DebuggerToolUI\NavigatorBase\DebuggerToolUIBase.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\DebuggerToolUI\NavigatorBase\DebuggerNavigatorTab.cs" />
     <Compile Include="Assets\Scripts\Game\Player\Inputs\PlayerInput.cs" />
@@ -98,6 +101,7 @@
     <Compile Include="Assets\Scripts\Game\Components\Hitbox.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\SO_EggRarityRate.cs" />
     <Compile Include="Assets\Scripts\Systems\BossGraphics.cs" />
+    <Compile Include="Assets\Scripts\Systems\UISystem\UIMenus\UIBossMenu.cs" />
     <Compile Include="Assets\Scripts\Systems\GameManager.cs" />
     <Compile Include="Assets\Scripts\Game\AttackSystem\Bullet\BulletEvents.cs" />
     <Compile Include="Assets\Scripts\Game\Entities\Enemy.cs" />
@@ -106,6 +110,7 @@
     <Compile Include="Assets\Scripts\Log\Log.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\DebuggerToolUI\DebuggerToolUILogger.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\DebuggerToolAccessAttribute.cs" />
+    <Compile Include="Assets\Scripts\Systems\UISystem\SO_BossMenu.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\FrogsManager.cs" />
     <Compile Include="Assets\Scripts\Game\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Systems\GameEntity\GameEntityGraphics.cs" />
