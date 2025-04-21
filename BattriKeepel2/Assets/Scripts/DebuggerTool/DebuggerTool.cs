@@ -14,6 +14,7 @@ public class DebuggerTool : MonoBehaviour
         if(!m_devToolNavigator)
         {
             m_devToolNavigator = Instantiate(m_devToolNavigatorPrefab, transform);
+            m_devToolNavigator.Init(this);
             DontDestroyOnLoad(gameObject);
 
             CreateActiveTool<RTProfiler>();
@@ -35,7 +36,6 @@ public class DebuggerTool : MonoBehaviour
         {
             m_devToolNavigator.GenerateField<DebuggertoolUILogger>(logger);
         }
-
     }
 
     void GenerateDebuggerTab<T>() where T: DebuggerToolUIBase, new()
@@ -84,5 +84,11 @@ public class DebuggerTool : MonoBehaviour
                 tool.Update();
             }
         }
+    }
+
+    public void SetActiveDebugger(bool state)
+    {
+        m_devToolNavigator.SetActiveDebugger(state);
+        isActive = state;
     }
 }

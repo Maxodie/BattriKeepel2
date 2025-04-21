@@ -1,8 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class DebuggerToolNavigatorUI : MonoBehaviour
 {
+    DebuggerTool m_debuggerTool;
+
     List<GameObject> m_tabContents = new();
     List<DebuggerToolUIBase> m_tabDebuggersUI = new();
     List<GameObject> m_navigationTab = new();
@@ -14,6 +17,15 @@ public class DebuggerToolNavigatorUI : MonoBehaviour
     [Header("UI Parents")]
     [SerializeField] Transform m_navigationTabTransform;
     [SerializeField] Transform m_tabContentTransform;
+
+    [Header("Var")]
+    [SerializeField] Button closeBtn;
+
+    public void Init(DebuggerTool debuggerTool)
+    {
+        m_debuggerTool = debuggerTool;
+        closeBtn.onClick.AddListener(CloseDebugger);
+    }
 
     public void AddDebuggerTab<UI>() where UI: DebuggerToolUIBase, new()
     {
@@ -68,4 +80,13 @@ public class DebuggerToolNavigatorUI : MonoBehaviour
         uiBase.GenerateFields(script);
     }
 
+    public void CloseDebugger()
+    {
+        m_debuggerTool.SetActiveDebugger(false);
+    }
+
+    public void SetActiveDebugger(bool state)
+    {
+        gameObject.SetActive(state);
+    }
 }

@@ -1,5 +1,10 @@
 using UnityEngine;
 
+public class MainMenuLogger : Logger
+{
+
+}
+
 public class MainMenuManager : GameManager
 {
     [SerializeField] SO_UIBossMenu m_uiBossMenu;

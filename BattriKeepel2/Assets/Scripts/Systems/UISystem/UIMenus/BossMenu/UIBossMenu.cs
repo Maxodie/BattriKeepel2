@@ -6,6 +6,7 @@ public class UIBossMenu : UIMenuBase
     [SerializeField] Transform m_bossSelectionNavigationContent;
 
     GameObject[] navigationsPanels;
+    int currentMenuID = -1;
 
     public void Init(SO_UIBossMenu data)
     {
@@ -22,9 +23,15 @@ public class UIBossMenu : UIMenuBase
 
     void ChangeNavigationMenu(int id)
     {
+        if(id == currentMenuID)
+        {
+            return;
+        }
+
         for(int i=0; i < navigationsPanels.Length; i++)
         {
-            navigationsPanels[id].SetActive(i == id);
+            navigationsPanels[i].SetActive(i == id);
         }
+        Log.Success<MainMenuLogger>("Boss selection menu id : " + id);
     }
 }
