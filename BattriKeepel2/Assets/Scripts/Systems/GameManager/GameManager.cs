@@ -11,6 +11,7 @@ public class GameManager : GameEntityMonoBehaviour
 
     void Awake()
     {
+        m_uiManager = new UIManager();
         m_uiManager.GenerateUIData(m_uiBossMenu);
     }
 

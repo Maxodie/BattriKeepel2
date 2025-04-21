@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Game\Idle-hatching\Frog.cs" />
     <Compile Include="Assets\Scripts\Game\AttackSystem\Definitions\PlayerAttacksDefinition.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\DebuggerToolUI\DebuggerToolUIRTPProfiler.cs" />
+    <Compile Include="Assets\Scripts\Game\Boss\SO_BossSelection.cs" />
     <Compile Include="Assets\Scripts\Systems\UISystem\SO_UIData.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\Debuggable.cs" />
     <Compile Include="Assets\Scripts\Game\AttackSystem\Definitions\BossAttacksDefinition.cs" />
@@ -101,16 +102,16 @@
     <Compile Include="Assets\Scripts\Game\Components\Hitbox.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\SO_EggRarityRate.cs" />
     <Compile Include="Assets\Scripts\Systems\BossGraphics.cs" />
-    <Compile Include="Assets\Scripts\Systems\UISystem\UIMenus\UIBossMenu.cs" />
-    <Compile Include="Assets\Scripts\Systems\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Systems\UISystem\UIMenus\BossMenu\SO_BossMenu.cs" />
+    <Compile Include="Assets\Scripts\Systems\UISystem\UIMenus\BossMenu\UIBossMenu.cs" />
     <Compile Include="Assets\Scripts\Game\AttackSystem\Bullet\BulletEvents.cs" />
     <Compile Include="Assets\Scripts\Game\Entities\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Systems\GameManager\GameManager.cs" />
     <Compile Include="Assets\Scripts\Systems\GameEntity\GameEntityMonoBehaviour.cs" />
     <Compile Include="Assets\Scripts\Game\AttackSystem\Definitions\AttackDefinitions.cs" />
     <Compile Include="Assets\Scripts\Log\Log.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\DebuggerToolUI\DebuggerToolUILogger.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\DebuggerToolAccessAttribute.cs" />
-    <Compile Include="Assets\Scripts\Systems\UISystem\SO_BossMenu.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\FrogsManager.cs" />
     <Compile Include="Assets\Scripts\Game\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Systems\GameEntity\GameEntityGraphics.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="Assets\Scripts\Game\Entities\Entity.cs" />
     <Compile Include="Assets\Scripts\Game\Boss\SO_BossPatern.cs" />
     <Compile Include="Assets\Scripts\Systems\GameEntity\EntityManager.cs" />
+    <Compile Include="Assets\Scripts\Systems\GameManager\MainMenuManager.cs" />
     <Compile Include="Assets\Scripts\Systems\Save\DynamicScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\SO_FrogLevelData\SO_FrogLevelData.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\FrogGraphics.cs" />
