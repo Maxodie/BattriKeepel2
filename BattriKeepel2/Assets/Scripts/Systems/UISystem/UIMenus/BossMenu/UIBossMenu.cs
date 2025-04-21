@@ -1,23 +1,30 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UIBossMenu : UIMenuBase
 {
-    [SerializeField] Button StartBossBtn;
+    [SerializeField] Transform m_bossSelectionInfoContent;
+    [SerializeField] Transform m_bossSelectionNavigationContent;
 
-    public override void Init<TUIData>(TUIData data)
+    GameObject[] navigationsPanels;
+
+    public void Init(SO_UIBossMenu data)
     {
-        StartBossBtn.onClick.AddListener(OnStartBossBtnClick);
+        navigationsPanels = new GameObject[data.bossSelectionInfos.Length];
+        for(int i=0; i < data.bossSelectionInfos.Length; i++)
+        {
+            int iCopy = i;
+            UIDataResult result = data.bossSelectionInfos[i].Init(m_bossSelectionInfoContent);
+            navigationsPanels[i] = result.Go;
+
+            Object.Instantiate(data.bossSelectionNavigation, m_bossSelectionNavigationContent).onClick.AddListener(() => { ChangeNavigationMenu(iCopy); });
+        }
     }
 
-    void OnStartBossBtnClick()
+    void ChangeNavigationMenu(int id)
     {
-        Log.Info("start boss");
-        //start anim
-    }
-
-    void OnBossFightAnnimationend()
-    {
-        //anim event on end
+        for(int i=0; i < navigationsPanels.Length; i++)
+        {
+            navigationsPanels[id].SetActive(i == id);
+        }
     }
 }

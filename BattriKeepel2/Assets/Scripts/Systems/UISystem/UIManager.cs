@@ -2,9 +2,8 @@ using UnityEngine;
 
 public class UIManager
 {
-    public void GenerateUIData(SO_UIData data)
+    public void GenerateUIData(SO_UIData data, Transform spawnCanvasTr)
     {
-        UIMenuBase instance = Object.Instantiate(data.menuBasePrefab);
-        instance.Init(data);
+        data.Init(spawnCanvasTr);
     }
 }

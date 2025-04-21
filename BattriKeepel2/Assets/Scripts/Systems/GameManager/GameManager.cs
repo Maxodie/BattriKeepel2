@@ -4,19 +4,20 @@ public class GameManagerLogger : Logger
 {
 }
 
-public class GameManager : GameEntityMonoBehaviour
+public abstract class GameManager : GameEntityMonoBehaviour
 {
-    UIManager m_uiManager;
-    [SerializeField] SO_UIBossMenu m_uiBossMenu;
+    protected UIManager m_uiManager;
 
     void Awake()
     {
         m_uiManager = new UIManager();
-        m_uiManager.GenerateUIData(m_uiBossMenu);
+        OnUIManagerCreated();
     }
 
     void Update()
     {
 
     }
+
+    protected abstract void OnUIManagerCreated();
 }

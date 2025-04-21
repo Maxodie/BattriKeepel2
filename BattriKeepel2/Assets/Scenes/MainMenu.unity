@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
@@ -857,28 +857,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 748305181}
-  - component: {fileID: 748305180}
+  - component: {fileID: 748305182}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: MainMenuManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &748305180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 748305179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 803b02ee59945354397621da61ebbc23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tr: {fileID: 335039588}
-  bg: {fileID: 1088560002370169380, guid: 41ebe2f8b6c643a4b9cfa5e2328b727c, type: 3}
 --- !u!4 &748305181
 Transform:
   m_ObjectHideFlags: 0
@@ -894,6 +880,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &748305182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748305179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01fc22c58ad21cf4aa8dc4157610bfb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_uiBossMenu: {fileID: 11400000, guid: 520c5a37abb1928449a385412b5661a0, type: 2}
+  m_mainMenuCanvasTr: {fileID: 1391341713}
 --- !u!224 &974004702 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6226563019531608734, guid: 02f407b024fe8cc47995162ac4e4d928, type: 3}
@@ -987,6 +987,7 @@ GameObject:
   - component: {fileID: 1391341711}
   - component: {fileID: 1391341710}
   - component: {fileID: 1391341714}
+  - component: {fileID: 1391341715}
   m_Layer: 5
   m_Name: MainMenuCanva
   m_TagString: Untagged
@@ -1099,6 +1100,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1391341715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391341709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73024757a353fe8478b67231eca5c829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConformX: 1
+  ConformY: 1
+  Logging: 0
 --- !u!1 &1948808072
 GameObject:
   m_ObjectHideFlags: 0

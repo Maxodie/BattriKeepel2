@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Game\AttackSystem\Attacks\AttackSet.cs" />
+    <Compile Include="Assets\Scripts\Systems\UISystem\UIMenus\BossMenu\UIBossSelectionInfo.cs" />
     <Compile Include="Assets\Scripts\Systems\GameEntity\GraphicsDataManager.cs" />
     <Compile Include="Assets\Scripts\Systems\GameEntity\IGameEntity.cs" />
     <Compile Include="Assets\Scripts\Game\Components\Movement.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Assets\Scripts\Game\Idle-hatching\FrogGenerator.cs" />
     <Compile Include="Assets\Scripts\Game\AttackSystem\Bullet\Bullet.cs" />
     <Compile Include="Assets\Scripts\Systems\Save\SaveSystem.cs" />
+    <Compile Include="Assets\Scripts\Systems\UISystem\SafeArea.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\EN_Frog\EN_FrogRarity.cs" />
     <Compile Include="Assets\Scripts\Game\AttackSystem\Bullet\BulletDefinitions.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\DebuggerLog.cs" />

@@ -1,7 +1,17 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "UIData", menuName = "UIManager/UIData")]
-public class SO_UIData : ScriptableObject
+public abstract class SO_UIData : ScriptableObject
 {
-    public UIMenuBase menuBasePrefab;
+    public abstract UIDataResult Init(Transform spawnParentTr);
+}
+
+public class UIDataResult
+{
+    public UIDataResult(GameObject go)
+    {
+        Go = go;
+    }
+
+    public GameObject Go;
 }
