@@ -8,13 +8,13 @@ public abstract class GameManager : GameEntityMonoBehaviour
 {
     protected UIManager m_uiManager;
 
-    void Awake()
+    protected virtual void Awake()
     {
         m_uiManager = new UIManager();
         OnUIManagerCreated();
     }
 
-    void Update()
+    protected virtual void Update()
     {
 
     }
