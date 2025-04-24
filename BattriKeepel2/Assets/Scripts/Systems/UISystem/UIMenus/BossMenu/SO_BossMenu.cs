@@ -4,7 +4,7 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "BossMenu", menuName = "UIManager/BossMenu")]
 public class SO_UIBossMenu : SO_UIData
 {
-    public SO_BossSelectionInfos[] bossSelectionInfos;
+    public SO_UIData[] bossSelectionInfos;
     public Button bossSelectionNavigation;
     public UIBossMenu menuBasePrefab;
 

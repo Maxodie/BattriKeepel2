@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb37d06f78ae8e43a11368818154dae, type: 3}
+  m_Name: UIMainMenu
+  m_EditorClassIdentifier: 
+  mainMenuPrefab: {fileID: 7344279314981130022, guid: 1ad02fb35e75f5243a7ca05e935482a6, type: 3}
+  idleScenePath: Assets/Scenes/IdleHatching.unity
+  startScenePath: Assets/Scenes/Movement.unity
+  bossMenu: {fileID: 11400000, guid: 520c5a37abb1928449a385412b5661a0, type: 2}

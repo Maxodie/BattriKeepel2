@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\Game\Managers\CollisionManager.cs" />
     <Compile Include="Assets\Scripts\Game\Managers\test.cs" />
     <Compile Include="Assets\Scripts\Systems\UISystem\UIManager.cs" />
+    <Compile Include="Assets\Scripts\Systems\UISystem\UIMenus\MainMenu\UIMainMenu.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\RTProfiler.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\PurFunTwoThousand.cs" />
     <Compile Include="Assets\Scripts\Game\AttackSystem\Definitions\EnemyAttacksDefinition.cs" />
@@ -120,6 +121,7 @@
     <Compile Include="Assets\Scripts\Game\AttackSystem\Attacks\Attack.cs" />
     <Compile Include="Assets\Scripts\Game\Entities\Entity.cs" />
     <Compile Include="Assets\Scripts\Game\Boss\SO_BossPatern.cs" />
+    <Compile Include="Assets\Scripts\Systems\UISystem\UIMenus\MainMenu\SO_UIMainMenu.cs" />
     <Compile Include="Assets\Scripts\Systems\GameEntity\EntityManager.cs" />
     <Compile Include="Assets\Scripts\Systems\GameManager\MainMenuManager.cs" />
     <Compile Include="Assets\Scripts\Systems\Save\DynamicScriptableObject.cs" />

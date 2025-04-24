@@ -7,11 +7,11 @@ public class MainMenuLogger : Logger
 
 public class MainMenuManager : GameManager
 {
-    [SerializeField] SO_UIBossMenu m_uiBossMenu;
+    [SerializeField] SO_UIMainMenu m_uiMainMenu;
     [SerializeField] Transform m_mainMenuCanvasTr;
 
     protected override void OnUIManagerCreated()
     {
-        m_uiManager.GenerateUIData(m_uiBossMenu, m_mainMenuCanvasTr);
+        UIDataResult mainMenu = UIManager.GenerateUIData(m_uiMainMenu, m_mainMenuCanvasTr);
     }
 }

@@ -14,11 +14,13 @@ public class UIBossMenu : UIMenuBase
         for(int i=0; i < data.bossSelectionInfos.Length; i++)
         {
             int iCopy = i;
-            UIDataResult result = data.bossSelectionInfos[i].Init(m_bossSelectionInfoContent);
+            UIDataResult result = UIManager.GenerateUIData(data.bossSelectionInfos[i], m_bossSelectionInfoContent);
             navigationsPanels[i] = result.Go;
 
             Object.Instantiate(data.bossSelectionNavigation, m_bossSelectionNavigationContent).onClick.AddListener(() => { ChangeNavigationMenu(iCopy); });
         }
+
+        gameObject.SetActive(false);
     }
 
     void ChangeNavigationMenu(int id)
