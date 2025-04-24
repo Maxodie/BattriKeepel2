@@ -562,6 +562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56a55e9615f7278499adc90ab3e4fdaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_visual: {fileID: 8386828538894576495}
   bossMainVisual: {fileID: 3854511153593304672}
   bossStartButton: {fileID: 252174735261560509}
   bossText: {fileID: 5056052619860652638}

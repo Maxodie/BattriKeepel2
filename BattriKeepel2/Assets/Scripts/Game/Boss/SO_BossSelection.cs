@@ -8,11 +8,12 @@ public class SO_BossSelectionInfos : SO_UIData
     public string bossName;
     public string bossDesc;
     public Color bossTitleColor;
+    public SO_LevelData levelData;
 
     public override UIDataResult Init(Transform spawnParentTr)
     {
         UIBossSelectionInfo selectionInfo = Object.Instantiate(bossSelectionInfoPrefab, spawnParentTr);
         selectionInfo.Init(this);
-        return new(selectionInfo.gameObject);
+        return new(selectionInfo.gameObject, selectionInfo);
     }
 }

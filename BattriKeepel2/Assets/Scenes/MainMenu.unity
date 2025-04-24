@@ -424,9 +424,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01fc22c58ad21cf4aa8dc4157610bfb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_uiBossMenu: {fileID: 11400000, guid: 520c5a37abb1928449a385412b5661a0, type: 2}
+  m_dataInstance: {fileID: 0}
   m_uiMainMenu: {fileID: 11400000, guid: ea2c2485e32fc524eb7b1c21096cece9, type: 2}
   m_mainMenuCanvasTr: {fileID: 1391341713}
+  m_gameInstance: {fileID: 11400000, guid: 7c4faeb2fa10cb048b959a18b6eb6c34, type: 2}
 --- !u!1 &1391341709
 GameObject:
   m_ObjectHideFlags: 0

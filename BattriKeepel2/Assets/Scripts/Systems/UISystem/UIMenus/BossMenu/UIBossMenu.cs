@@ -20,7 +20,8 @@ public class UIBossMenu : UIMenuBase
             Object.Instantiate(data.bossSelectionNavigation, m_bossSelectionNavigationContent).onClick.AddListener(() => { ChangeNavigationMenu(iCopy); });
         }
 
-        gameObject.SetActive(false);
+        ChangeNavigationMenu(0);
+        SetActive(false);
     }
 
     void ChangeNavigationMenu(int id)

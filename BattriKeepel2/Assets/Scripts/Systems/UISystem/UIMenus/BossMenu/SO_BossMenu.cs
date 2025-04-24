@@ -12,6 +12,6 @@ public class SO_UIBossMenu : SO_UIData
     {
         UIBossMenu bossMenu = Object.Instantiate(menuBasePrefab, spawnParentTr);
         bossMenu.Init(this);
-        return new(bossMenu.gameObject);
+        return new(bossMenu.gameObject, bossMenu);
     }
 }

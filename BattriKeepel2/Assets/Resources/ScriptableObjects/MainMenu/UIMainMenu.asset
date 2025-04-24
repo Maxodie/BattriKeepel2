@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: UIMainMenu
   m_EditorClassIdentifier: 
   mainMenuPrefab: {fileID: 7344279314981130022, guid: 1ad02fb35e75f5243a7ca05e935482a6, type: 3}
-  idleScenePath: Assets/Scenes/IdleHatching.unity
-  startScenePath: Assets/Scenes/Movement.unity
+  idleSceneData: {fileID: 11400000, guid: 339f9d930aaf33c4c836eac14ec163b8, type: 2}
+  startSceneData: {fileID: 11400000, guid: 70d025a7f90b8df458bf8ce46d3c7e99, type: 2}
   bossMenu: {fileID: 11400000, guid: 520c5a37abb1928449a385412b5661a0, type: 2}

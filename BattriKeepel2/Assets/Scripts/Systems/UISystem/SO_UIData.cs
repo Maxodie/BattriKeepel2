@@ -8,10 +8,12 @@ public abstract class SO_UIData : ScriptableObject
 
 public class UIDataResult
 {
-    public UIDataResult(GameObject go)
+    public UIDataResult(GameObject go, UIMenuBase menu)
     {
         Go = go;
+        Menu = menu;
     }
 
     public GameObject Go;
+    public UIMenuBase Menu;
 }
