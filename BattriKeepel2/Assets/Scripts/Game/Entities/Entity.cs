@@ -1,14 +1,15 @@
 using Game.AttackSystem.Attacks;
 using Game.AttackSystem.Bullet;
-using UnityEngine;
+using Game.Managers;
 
 namespace Game.Entities
 {
     public class Entity : IGameEntity
     {
-        [SerializeField] private AttackSet attackSet;
-        [SerializeField] private BulletData bulletData;
-        [SerializeField] private EntityGraphics entityGraphics;
+        private AttackSet attackSet;
+        private BulletData bulletData;
+        private EntityGraphics entityGraphics;
+        private AttackManager attackManager;
         
         public enum EntityType {Player, Enemy, Boss}
         public EntityType entityType;
@@ -18,6 +19,12 @@ namespace Game.Entities
 
         public virtual void TakeDamage(Bullet bullet) { }
 
+        protected virtual void Init()
+        {
+            attackManager = new AttackManager();
+            attackManager.Init(entityType == EntityType.Player, attackSet, this);
+        }
+        
         public float GetHealth()
         {
             return Health;

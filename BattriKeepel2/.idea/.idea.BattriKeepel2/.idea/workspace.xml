@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="60bc8d2a-76b2-42bf-9edb-68b6c3a919cd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BattriKeepel2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BattriKeepel2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game/AttackSystem/Bullet/Bullet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game/AttackSystem/Bullet/Bullet.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game/AttackSystem/Bullet/BulletGraphics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game/AttackSystem/Bullet/BulletGraphics.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game/Entities/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game/Entities/Enemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game/Entities/Entity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game/Entities/Entity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game/Managers/AttackManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game/Managers/AttackManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game/Player/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game/Player/Player.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -113,6 +114,7 @@
       <workItem from="1740476545442" duration="5882000" />
       <workItem from="1740648144994" duration="4567000" />
       <workItem from="1744965912394" duration="4209000" />
+      <workItem from="1745495213592" duration="2324000" />
     </task>
     <servers />
   </component>

@@ -11,7 +11,6 @@ namespace Game.Player
     public class Player : Entity
     {
         public Player(Transform spawnTransform) {
-            Init();
             BindActions();
         }
 
@@ -19,7 +18,8 @@ namespace Game.Player
         [SerializeField] private PlayerMovement m_movement;
         [SerializeField] private Hitbox m_hitBox;
 
-        private void Init() {
+        protected override void Init() {
+            base.Init();
             m_hitBox.Init(GetEntityGraphics().transform);
             m_movement.m_transform = GetEntityGraphics().transform;
         }
