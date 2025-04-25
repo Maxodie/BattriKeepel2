@@ -6,7 +6,7 @@ namespace Components {
     public class Hitbox
     {
         private UnityEvent<Transform> m_onCollision = new UnityEvent<Transform>();
-        [HideInInspector] public Transform m_transform;
+        private Transform m_transform;
         public HitboxType m_type;
 
         [SerializeField] private float m_size;
@@ -17,9 +17,10 @@ namespace Components {
         private Vector2 m_position;
 
         [HideInInspector] public Transform lastHitObject;
-
-        public void Start() {
+        
+        public void Init(Transform transformHitbox) {
             CollisionManager.GetInstance().AddElement(this);
+            m_transform = transformHitbox;
         }
 
         public Vector2 GetPosition() {
@@ -41,6 +42,10 @@ namespace Components {
 
         public void BindOnCollision(UnityAction<Transform> action) {
             m_onCollision.AddListener(action);
+        }
+
+        public Transform GetTransform() {
+            return m_transform;
         }
     }
 
