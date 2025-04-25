@@ -71,7 +71,6 @@
     <Compile Include="Assets\Scripts\DebuggerTool\DebuggerToolUI\DebuggerToolUIRTPProfiler.cs" />
     <Compile Include="Assets\Scripts\Game\Boss\SO_BossSelection.cs" />
     <Compile Include="Assets\Scripts\Systems\UISystem\SO_UIData.cs" />
-    <Compile Include="Assets\Scripts\DebuggerTool\Debuggable.cs" />
     <Compile Include="Assets\Scripts\Game\AttackSystem\Definitions\BossAttacksDefinition.cs" />
     <Compile Include="Assets\Scripts\Game\Managers\CollisionManager.cs" />
     <Compile Include="Assets\Scripts\Game\Managers\test.cs" />
@@ -94,6 +93,7 @@
     <Compile Include="Assets\Scripts\Systems\Save\SaveSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\UISystem\SafeArea.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\EN_Frog\EN_FrogRarity.cs" />
+    <Compile Include="Assets\Scripts\DebuggerTool\DebuggerToolUI\DebuggerToolUIFrog.cs" />
     <Compile Include="Assets\Scripts\Game\AttackSystem\Bullet\BulletDefinitions.cs" />
     <Compile Include="Assets\Scripts\Systems\GameManager\GameInstance\SO_GameInstance.cs" />
     <Compile Include="Assets\Scripts\DebuggerTool\DebuggerLog.cs" />
@@ -131,7 +131,6 @@
     <Compile Include="Assets\Scripts\Game\Idle-hatching\SO_FrogLevelData\SO_FrogLevelData.cs" />
     <Compile Include="Assets\Scripts\Systems\GameManager\GameInstance\GameInstance.cs" />
     <Compile Include="Assets\Scripts\Game\Idle-hatching\FrogGraphics.cs" />
-    <Compile Include="Assets\Scripts\DebuggerTool\DebuggerToolBase.cs" />
     <Compile Include="Assets\Scripts\Game\AttackSystem\Attacks\AttackEvents.cs" />
     <Compile Include="Assets\Scripts\Game\Components\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Game\AttackSystem\Bullet\BulletBehaviour.cs" />

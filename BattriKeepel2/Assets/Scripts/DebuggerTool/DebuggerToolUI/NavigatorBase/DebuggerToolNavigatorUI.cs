@@ -1,3 +1,4 @@
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ public class DebuggerToolNavigatorUI : MonoBehaviour
     DebuggerTool m_debuggerTool;
 
     List<GameObject> m_tabContents = new();
-    List<DebuggerToolUIBase> m_tabDebuggersUI = new();
+    [HideInInspector] public List<DebuggerToolUIBase> m_tabDebuggersUI = new();
     List<GameObject> m_navigationTab = new();
 
     [Header("UI Prefabs")]
@@ -66,6 +67,7 @@ public class DebuggerToolNavigatorUI : MonoBehaviour
         UI uiBase = new UI();
         m_tabDebuggersUI.Add(uiBase);
         m_tabContents.Add(uiBase.Init(m_tabContentPrefab, m_tabContentTransform));
+        uiBase.Create();
     }
 
     public void GenerateField<UI>(object script) where UI: DebuggerToolUIBase, new()
@@ -90,3 +92,4 @@ public class DebuggerToolNavigatorUI : MonoBehaviour
         gameObject.SetActive(state);
     }
 }
+#endif

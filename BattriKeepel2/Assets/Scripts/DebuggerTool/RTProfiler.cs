@@ -1,3 +1,4 @@
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
 using Unity.Profiling;
 
 [DebuggerToolAccess]
@@ -8,7 +9,7 @@ public class ProfilerStats
     [DebuggerToolAccess] public long SysMemoryMB{set; get;}
 }
 
-public class RTProfiler : DebuggerToolBase
+public class RTProfiler : DebuggerToolUIBase
 {
     ProfilerStats m_stats;
     ProfilerRecorder m_systemMemoryRecorder;
@@ -65,3 +66,4 @@ public class RTProfiler : DebuggerToolBase
     }
 
 }
+#endif

@@ -1,5 +1,6 @@
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
-public class DebuggertoolUIRTProfiler : DebuggerToolUIBase
+
+public class DebufferToolUIFrog : DebuggerToolUIBase
 {
     public override void Create()
     {

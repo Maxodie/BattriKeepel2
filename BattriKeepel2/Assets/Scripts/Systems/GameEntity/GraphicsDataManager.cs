@@ -5,7 +5,7 @@ public class GraphicsManager
 {
     static GraphicsManager s_instance;
 
-    public UnityEvent<GameEntityGraphics> OnVisualCreatedCallback;
+    public UnityEvent<GameEntityGraphics> OnVisualCreatedCallback = new();
 
     public static GraphicsManager Get()
     {

@@ -34,7 +34,7 @@ public class FrogsManager : MonoBehaviour
         return rarity;
     }
 
-    public void SpawnAllFrogs() 
+    public void SpawnAllFrogs()
     {
         FrogGraphics frogGraphics = null;
         GameObject gameObject = null;

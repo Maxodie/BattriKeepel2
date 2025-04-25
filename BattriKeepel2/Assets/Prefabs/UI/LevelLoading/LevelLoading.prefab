@@ -89,3 +89,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_visual: {fileID: 7820031111485585590}
+  loadingScreen: {fileID: 8999537795568908986}

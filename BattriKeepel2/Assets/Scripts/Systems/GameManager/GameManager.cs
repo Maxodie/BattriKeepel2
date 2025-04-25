@@ -6,11 +6,11 @@ public class GameManagerLogger : Logger
 
 public abstract class GameManager : GameEntityMonoBehaviour
 {
-    [SerializeField] SO_GameInstance m_dataInstance;
+    [SerializeField] SO_GameInstance m_gameInstance;
 
     protected virtual void Awake()
     {
-        GameInstance.StartGameInstance(m_dataInstance);
+        GameInstance.StartGameInstance(m_gameInstance);
         OnUIManagerCreated();
     }
 
