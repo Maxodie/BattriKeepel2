@@ -17,7 +17,7 @@ namespace Components {
         private Vector2 m_position;
 
         [HideInInspector] public Transform lastHitObject;
-        
+
         public void Init(Transform transformHitbox) {
             CollisionManager.GetInstance().AddElement(this);
             m_transform = transformHitbox;

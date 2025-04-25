@@ -1,8 +1,9 @@
 using Components;
 using Game.Entities;
 using Inputs;
+using UnityEngine;
 
-namespace Game.Player
+namespace GameEntity.Player
 {
     public class Player : Entity {
         [SerializeField] private InputManager m_inputManager;
@@ -11,7 +12,7 @@ namespace Game.Player
         private Transform transform;
 
         private Vector2 m_currentTarget = new Vector2();
-        private void Start() {
+        public void Start() {
             Init();
             BindActions();
         }
@@ -28,7 +29,7 @@ namespace Game.Player
             m_hitBox.BindOnCollision(HandleCollisions);
         }
 
-        private void Update() {
+        public void Update() {
             m_movement.HandleMovement(m_currentTarget);
             m_currentTarget = m_movement.targetPosition;
         }

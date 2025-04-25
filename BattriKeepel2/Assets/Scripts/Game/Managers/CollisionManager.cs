@@ -2,21 +2,17 @@ using UnityEngine;
 using Components;
 using System.Collections.Generic;
 
-public class CollisionManager : MonoBehaviour {
+public class CollisionManager {
     static CollisionManager s_Instance;
     private List<Hitbox> m_elements = new List<Hitbox>();
     [SerializeField] private SpatialHash m_spatialHash;
     private List<Vector2> m_gridWorldPositions;
 
-    private void Awake() {
-        if (s_Instance != null && s_Instance != this) {
-            Destroy(this.gameObject);
-        } else {
-            s_Instance = this;
-        }
-    }
-
     public static CollisionManager GetInstance() {
+        if (s_Instance == null) {
+            s_Instance = new CollisionManager();
+        }
+
         return s_Instance;
     }
 
@@ -35,7 +31,7 @@ public class CollisionManager : MonoBehaviour {
         m_elements.Remove(element);
     }
 
-    private void FixedUpdate() {
+    public void Update() {
         PopulateHash();
         DetectCollisions();
     }
