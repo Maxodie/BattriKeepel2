@@ -6,6 +6,10 @@ namespace Components {
 
         }
 
+        public virtual void HandleMovement(Vector2 vel) {
+
+        }
+
         public virtual void Update() {
 
         }

@@ -11,6 +11,7 @@ namespace Components {
 
         [SerializeField] private float m_size;
         [SerializeField] private Vector2 m_dimensions;
+        [SerializeField] public bool isWall;
 
         [SerializeField] private Vector2 m_offSet = new Vector2();
         private Vector2 m_position;
