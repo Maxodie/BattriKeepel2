@@ -10,6 +10,8 @@ namespace GameEntity.Player
         [SerializeField] private PlayerMovement m_movement;
         [SerializeField] private Hitbox m_hitBox;
         private Transform transform;
+        private PlayerGraphics m_playerGraphics;
+
 
         private Vector2 m_currentTarget = new Vector2();
         public void Start() {
@@ -37,8 +39,6 @@ namespace GameEntity.Player
         public bool IsScreenPressed() {
             return m_movement.IsScreenPressed();
         }
-
-        //TODO: faire le truc pour update dans le bon ordre parce que sinon casse les couilles en sah
 
         private void HandleCollisions(Transform other) {
             if (other.gameObject.GetComponent<Wall>()) {
