@@ -48,7 +48,7 @@ public class PurFunTwoThousand : DebuggerToolUIBase
         }
     }
 
-    public override void Create()
+    public override void OnCreate()
     {
 
     }

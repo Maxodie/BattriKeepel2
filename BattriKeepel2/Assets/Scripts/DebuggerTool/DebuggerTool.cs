@@ -23,7 +23,7 @@ public class DebuggerTool : MonoBehaviour
         }
 
         GenerateDebuggerTab<DebuggertoolUIRTProfiler>();
-        m_devToolNavigator.GenerateField<DebuggertoolUIRTProfiler>(m_rtProfiler);
+        m_devToolNavigator.GenerateField<DebuggertoolUIRTProfiler>(m_rtProfiler, true);
 
         GraphicsManager.Get().OnVisualCreatedCallback.AddListener(UpdateTabs);
         Log.m_onLoggerCreated.AddListener(UpdateTabs);
@@ -52,7 +52,7 @@ public class DebuggerTool : MonoBehaviour
         }
     }
 
-    void UpdateTools()
+    void Update()
     {
         foreach(DebuggerToolUIBase tool in m_devToolNavigator.m_tabDebuggersUI)
         {

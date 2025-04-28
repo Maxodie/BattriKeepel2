@@ -23,6 +23,8 @@
 
 using UnityEngine;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System;
 using UnityEngine.Events;
 
 public abstract class Logger
@@ -46,7 +48,10 @@ public class DefaultLogger: Logger
 
 public static class Log
 {
-    public static int m_cacaCount = 1;
+    public static int s_cacaCount = 0;
+    static StackTrace stackTrace = new StackTrace();
+    static Dictionary<string, int> s_cacaCountDic = new();
+
     public static List<Logger> m_loggers;
     public static UnityEvent<Logger> m_onLoggerCreated = new();
 
@@ -55,6 +60,7 @@ public static class Log
     static string s_warnColor = "#e57f1f";
     static string s_errorColor = "#e51f1f";
     static string s_loggerColor = "#7decf0";
+
 
     static Log()
     {
@@ -112,55 +118,55 @@ public static class Log
 
     public static void Info(object msg=null)
     {
-        LogToLogger<DefaultLogger>(LogType.Log, msg);
+        LogToLogger<DefaultLogger>(LogType.Log, s_traceColor, msg);
     }
 
     public static void Info<T>(object msg=null) where T: Logger, new()
     {
-        LogToLogger<T>(LogType.Log, msg);
+        LogToLogger<T>(LogType.Log, s_traceColor, msg);
     }
 
     public static void Trace<T>(object msg=null) where T: Logger, new()
     {
-        LogToLogger<T>(LogType.Log, $"<color={s_traceColor}>{msg}</color>");
+        LogToLogger<T>(LogType.Log, s_traceColor, msg);
     }
 
     public static void Trace(object msg=null)
     {
-        LogToLogger<DefaultLogger>(LogType.Log, $"<color={s_traceColor}>{msg}</color>");
+        LogToLogger<DefaultLogger>(LogType.Log, s_traceColor, msg);
     }
 
     public static void Success<T>(object msg=null) where T: Logger, new()
     {
-        LogToLogger<T>(LogType.Log, $"<color={s_successColor}>{msg}</color>");
+        LogToLogger<T>(LogType.Log, s_successColor, msg);
     }
 
     public static void Success(object msg=null)
     {
-        LogToLogger<DefaultLogger>(LogType.Log, $"<color={s_successColor}>{msg}</color>");
+        LogToLogger<DefaultLogger>(LogType.Log, s_successColor, msg);
     }
 
     public static void Warn<T>(object msg=null) where T: Logger, new()
     {
-        LogToLogger<T>(LogType.Warning, $"<color={s_warnColor}>{msg}</color>");
+        LogToLogger<T>(LogType.Warning, s_warnColor, msg);
     }
 
     public static void Warn(object msg=null)
     {
-        LogToLogger<DefaultLogger>(LogType.Warning, $"<color={s_warnColor}>{msg}</color>");
+        LogToLogger<DefaultLogger>(LogType.Warning, s_warnColor, msg);
     }
 
     public static void Error<T>(object msg=null) where T: Logger, new()
     {
-        LogToLogger<T>(LogType.Error, $"<color={s_errorColor}>{msg}</color>");
+        LogToLogger<T>(LogType.Error, s_errorColor, msg);
     }
 
     public static void Error(object msg=null)
     {
-        LogToLogger<DefaultLogger>(LogType.Error, $"<color={s_errorColor}>{msg}</color>");
+        LogToLogger<DefaultLogger>(LogType.Error, s_errorColor, msg);
     }
 
-    static void LogToLogger<T>(LogType logType, object msg) where T: Logger, new()
+    static void LogToLogger<T>(LogType logType, string color, object msg) where T: Logger, new()
     {
         Logger logger = m_loggers.Find(delegate(Logger item){ return item is T; });
 
@@ -176,10 +182,19 @@ public static class Log
         {
             if(msg == null)
             {
-                msg = "caca" + m_cacaCount++;
+                string trace = Environment.StackTrace;
+                if(s_cacaCountDic.ContainsKey(trace))
+                {
+                    msg = "caca" + s_cacaCountDic[trace];
+                }
+                else
+                {
+                    s_cacaCountDic.Add(trace, ++s_cacaCount);
+                    msg = "caca" + s_cacaCountDic[trace];
+                }
             }
 
-            Debug.unityLogger.Log(logType, $"<color={s_loggerColor}>[" + logger.GetType().FullName + "]</color> " + msg);
+            UnityEngine.Debug.unityLogger.Log(logType, $"<color={s_loggerColor}>[{logger.GetType().FullName}]</color> <{color}>{msg}</color>");
         }
     }
 }

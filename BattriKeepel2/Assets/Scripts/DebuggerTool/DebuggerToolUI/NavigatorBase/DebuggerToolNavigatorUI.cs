@@ -73,7 +73,6 @@ public class DebuggerToolNavigatorUI : MonoBehaviour
         UI uiBase = new UI();
         m_tabDebuggersUI.Add(uiBase);
         m_tabContents.Add(uiBase.Init(m_tabContentPrefab, m_tabContentTransform));
-        uiBase.Create();
     }
 
     public void GenerateField<UI>(object script, bool readOnly = false) where UI: DebuggerToolUIBase, new()
