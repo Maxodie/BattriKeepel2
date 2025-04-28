@@ -11,14 +11,16 @@ public class ProfilerStats
 
 public class DebuggertoolUIRTProfiler : DebuggerToolUIBase
 {
-    ProfilerStats m_stats;
     ProfilerRecorder m_systemMemoryRecorder;
     ProfilerRecorder m_gcMemoryRecorder;
     ProfilerRecorder m_mainThreadTimeRecorder;
 
+    ProfilerStats m_stats;
+
     public override void Create()
     {
         Log.Info<DebuggerLogger>("RT Profiler created");
+        m_stats = (ProfilerStats)script;
         m_systemMemoryRecorder = ProfilerRecorder.StartNew(ProfilerCategory.Memory, "System Used Memory");
         m_gcMemoryRecorder = ProfilerRecorder.StartNew(ProfilerCategory.Memory, "GC Reserved Memory");
         m_mainThreadTimeRecorder = ProfilerRecorder.StartNew(ProfilerCategory.Memory, "Main Thread", 15);

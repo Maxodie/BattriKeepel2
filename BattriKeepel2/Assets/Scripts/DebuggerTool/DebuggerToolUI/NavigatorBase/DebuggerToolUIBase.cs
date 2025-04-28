@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class DebuggerToolUIBase
 {
+    protected object script;
+
     public abstract void Create();
     public abstract void Destroy();
     public abstract void Update();
@@ -17,6 +19,7 @@ public abstract class DebuggerToolUIBase
 
     public void GenerateFields(object obj, bool readOnly)
     {
+        script = obj;
         foreach(System.Reflection.PropertyInfo property in obj.GetType().GetProperties())
         {
             foreach(System.Attribute attr in property.GetCustomAttributes(true))
