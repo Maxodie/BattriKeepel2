@@ -2,7 +2,7 @@
 
 public class DebufferToolUIFrog : DebuggerToolUIBase
 {
-    public override void Create()
+    public override void OnCreate()
     {
 
     }

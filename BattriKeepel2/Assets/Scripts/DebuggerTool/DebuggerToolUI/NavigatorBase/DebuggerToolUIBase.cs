@@ -4,7 +4,9 @@ using UnityEngine;
 
 public abstract class DebuggerToolUIBase
 {
-    public abstract void Create();
+    protected object script;
+
+    public abstract void OnCreate();
     public abstract void Destroy();
     public abstract void Update();
 
@@ -15,23 +17,26 @@ public abstract class DebuggerToolUIBase
         return content.gameObject;
     }
 
-    public void GenerateFields(object obj)
+    public void GenerateFields(object obj, bool readOnly)
     {
+        script = obj;
         foreach(System.Reflection.PropertyInfo property in obj.GetType().GetProperties())
         {
             foreach(System.Attribute attr in property.GetCustomAttributes(true))
             {
                 if(!content.ContainField(property) && attr is DebuggerToolAccessAttribute)
                 {
-                    CreateField(property.GetValue(obj).GetType(), property,  obj);
+                    CreateField(property.GetValue(obj).GetType(), property,  obj, readOnly);
                 }
             }
         }
+
+        OnCreate();
     }
 
-    protected void CreateField(System.Type type, System.Reflection.PropertyInfo property, object script)
+    protected void CreateField(System.Type type, System.Reflection.PropertyInfo property, object script, bool readOnly)
     {
-       content.AddField(type, property, script);
+       content.AddField(type, property, script, readOnly);
     }
 }
 

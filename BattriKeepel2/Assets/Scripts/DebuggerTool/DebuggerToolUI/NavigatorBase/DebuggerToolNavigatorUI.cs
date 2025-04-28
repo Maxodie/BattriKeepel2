@@ -42,6 +42,7 @@ public class DebuggerToolNavigatorUI : MonoBehaviour
 
         GenerateTabContent<UI>();
 
+        newNavigationTab.SetNavigatorTabTitle(typeof(UI).ToString());
         newNavigationTab.AddNavigationTabBtnListener(
             delegate()
             {
@@ -59,6 +60,11 @@ public class DebuggerToolNavigatorUI : MonoBehaviour
             tab.SetActive(false);
         }
 
+        foreach(DebuggerToolUIBase ui in m_tabDebuggersUI)
+        {
+            ui.Update();
+        }
+
         m_tabContents[tabContentID].SetActive(true);
     }
 
@@ -67,10 +73,9 @@ public class DebuggerToolNavigatorUI : MonoBehaviour
         UI uiBase = new UI();
         m_tabDebuggersUI.Add(uiBase);
         m_tabContents.Add(uiBase.Init(m_tabContentPrefab, m_tabContentTransform));
-        uiBase.Create();
     }
 
-    public void GenerateField<UI>(object script) where UI: DebuggerToolUIBase, new()
+    public void GenerateField<UI>(object script, bool readOnly = false) where UI: DebuggerToolUIBase, new()
     {
         DebuggerToolUIBase uiBase = m_tabDebuggersUI.Find(delegate(DebuggerToolUIBase item){ return item is UI; });
         if(uiBase == null)
@@ -79,7 +84,7 @@ public class DebuggerToolNavigatorUI : MonoBehaviour
             return;
         }
 
-        uiBase.GenerateFields(script);
+        uiBase.GenerateFields(script, readOnly);
     }
 
     public void CloseDebugger()
