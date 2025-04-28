@@ -76,7 +76,7 @@ public class DebuggerToolNavigatorUI : MonoBehaviour
         uiBase.Create();
     }
 
-    public void GenerateField<UI>(object script) where UI: DebuggerToolUIBase, new()
+    public void GenerateField<UI>(object script, bool readOnly = false) where UI: DebuggerToolUIBase, new()
     {
         DebuggerToolUIBase uiBase = m_tabDebuggersUI.Find(delegate(DebuggerToolUIBase item){ return item is UI; });
         if(uiBase == null)
@@ -85,7 +85,7 @@ public class DebuggerToolNavigatorUI : MonoBehaviour
             return;
         }
 
-        uiBase.GenerateFields(script);
+        uiBase.GenerateFields(script, readOnly);
     }
 
     public void CloseDebugger()

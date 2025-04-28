@@ -12,33 +12,33 @@ public class DebuggerToolUITabContent : MonoBehaviour
 
     List<DebuggerToolUIField> fields = new();
 
-    public void AddField(System.Type fieldType, System.Reflection.PropertyInfo property, object script)
+    public void AddField(System.Type fieldType, System.Reflection.PropertyInfo property, object script, bool readOnly)
     {
         if(fieldType == typeof(bool))
         {
             DebuggerToolUIFieldToggle toggle = Instantiate(m_toggleField, m_fieldParent);
-            toggle.Init(property, script, script.GetType().FullName + " " + property.Name);
+            toggle.Init(property, script, script.GetType().FullName + " " + property.Name, readOnly);
             fields.Add(toggle);
             return;
         }
         else if(fieldType == typeof(double))
         {
             DebuggerToolUIFieldDouble doubleField = Instantiate(m_doubleField, m_fieldParent);
-            doubleField.Init(property, script, script.GetType().FullName + " " + property.Name);
+            doubleField.Init(property, script, script.GetType().FullName + " " + property.Name, readOnly);
             fields.Add(doubleField);
             return;
         }
         else if(fieldType == typeof(long))
         {
             DebuggerToolUIFieldLong longFiled = Instantiate(m_longField, m_fieldParent);
-            longFiled.Init(property, script, script.GetType().FullName + " " + property.Name);
+            longFiled.Init(property, script, script.GetType().FullName + " " + property.Name, readOnly);
             fields.Add(longFiled);
             return;
         }
         else if(fieldType == typeof(int))
         {
             DebuggerToolUIFieldInt intField = Instantiate(m_intField, m_fieldParent);
-            intField.Init(property, script, script.GetType().FullName + " " + property.Name);
+            intField.Init(property, script, script.GetType().FullName + " " + property.Name, readOnly);
             fields.Add(intField);
             return;
         }
