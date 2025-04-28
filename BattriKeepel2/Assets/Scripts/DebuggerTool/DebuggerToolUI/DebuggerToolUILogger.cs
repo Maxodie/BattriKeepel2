@@ -1,6 +1,6 @@
 public class DebuggertoolUILogger : DebuggerToolUIBase
 {
-    public override void Create()
+    public override void OnCreate()
     {
 
     }

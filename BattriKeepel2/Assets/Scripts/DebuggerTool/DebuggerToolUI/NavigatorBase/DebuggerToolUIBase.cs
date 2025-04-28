@@ -6,7 +6,7 @@ public abstract class DebuggerToolUIBase
 {
     protected object script;
 
-    public abstract void Create();
+    public abstract void OnCreate();
     public abstract void Destroy();
     public abstract void Update();
 
@@ -30,6 +30,8 @@ public abstract class DebuggerToolUIBase
                 }
             }
         }
+
+        OnCreate();
     }
 
     protected void CreateField(System.Type type, System.Reflection.PropertyInfo property, object script, bool readOnly)
