@@ -21,8 +21,8 @@ public class DebuggerTool : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
 
-        GenerateDebuggerTab<DebuggertoolUIRTProfiler>();
-        m_devToolNavigator.GenerateField<DebuggertoolUIRTProfiler>();
+        /*GenerateDebuggerTab<DebuggertoolUIRTProfiler>();*/
+        /*m_devToolNavigator.GenerateField<DebuggertoolUIRTProfiler>();*/
 
         GraphicsManager.Get().OnVisualCreatedCallback.AddListener(UpdateTabs);
         Log.m_onLoggerCreated.AddListener(UpdateTabs);
