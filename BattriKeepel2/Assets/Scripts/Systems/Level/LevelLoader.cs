@@ -7,12 +7,16 @@ public static class LevelLoader
 {
     public static void LoadLevel(SO_LevelData data)
     {
-        LoadLevelID(SceneUtility.GetBuildIndexByScenePath(data.path));
+        LoadLevelID(data);
     }
 
-    static void LoadLevelID(int id)
+    static void LoadLevelID(SO_LevelData data)
     {
         UIDataResult result = UIManager.GenerateUIData(GameInstance.m_data, null);
+        UILevelLoadingScreen loadingScreen = (UILevelLoadingScreen)result.Menu;
+        loadingScreen.SetLoadingScreen(data.levelImage);
+
+        int id = SceneUtility.GetBuildIndexByScenePath(data.path);
         result.Menu.StartCoroutine(LoadLevelAsync(StartOperation(id)));
     }
 

@@ -1,11 +1,10 @@
 using Game.AttackSystem.Attacks;
 using Game.AttackSystem.Bullet;
 using Game.Managers;
-using UnityEngine;
 
 namespace Game.Entities
 {
-    public class Entity : IGameEntity
+    public abstract class Entity : IGameEntity
     {
         private AttackSet attackSet;
         private BulletData bulletData;
@@ -17,16 +16,16 @@ namespace Game.Entities
 
         protected float MaxHealth;
         protected float Health;
-        
+
         protected virtual void Init()
         {
             attackManager = new AttackManager();
             attackManager.InitAttacking(entityType == EntityType.Player, attackSet, this);
         }
 
-        public virtual void TakeDamage(Bullet bullet) { }
+        public abstract void TakeDamage(Bullet bullet);
 
-        public float GetHealth()
+        public virtual float GetHealth()
         {
             return Health;
         }
