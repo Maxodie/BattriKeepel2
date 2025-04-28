@@ -1,5 +1,6 @@
 using UnityEngine;
 using Game.Entities;
+using Game.AttackSystem.Bullet;
 
 public class BossEntity : Entity
 {
@@ -11,5 +12,10 @@ public class BossEntity : Entity
         m_data = data;
 
         m_bossGraphics = GraphicsManager.Get().GenerateVisualInfos<BossGraphicsEntity>(data.bossGraphicsEntity, spawnPoint, this);
+    }
+
+    public override void TakeDamage(Bullet bullet)
+    {
+
     }
 }
