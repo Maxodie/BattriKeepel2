@@ -9,7 +9,6 @@ public class DebuggerTool : MonoBehaviour
     [SerializeField] DebuggerToolNavigatorUI m_devToolNavigatorPrefab;
     List<System.Type> m_activeUITools = new List<System.Type>();
     bool m_isActive = true;
-    ProfilerStats m_rtProfiler = new();
 #endif
 
     void Awake()
@@ -23,7 +22,7 @@ public class DebuggerTool : MonoBehaviour
         }
 
         GenerateDebuggerTab<DebuggertoolUIRTProfiler>();
-        m_devToolNavigator.GenerateField<DebuggertoolUIRTProfiler>(m_rtProfiler);
+        m_devToolNavigator.GenerateField<DebuggertoolUIRTProfiler>();
 
         GraphicsManager.Get().OnVisualCreatedCallback.AddListener(UpdateTabs);
         Log.m_onLoggerCreated.AddListener(UpdateTabs);

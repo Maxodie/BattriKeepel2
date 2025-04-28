@@ -91,6 +91,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_fieldParent: {fileID: 582124814053076489}
   m_toggleField: {fileID: 2948671590895193435, guid: caae470b21337e24b97e09cc07be92b8, type: 3}
+  m_doubleField: {fileID: 4658953739705334509, guid: 2d2b46f076da2fe46a4f13a121a470b9, type: 3}
+  m_longField: {fileID: -3851571592812481614, guid: 80036c4026dc1aa41937ea2636e7be61, type: 3}
+  m_intField: {fileID: 198226522338985135, guid: 6618c1036df177e46be80225c5a82791, type: 3}
 --- !u!114 &6075026326248590274
 MonoBehaviour:
   m_ObjectHideFlags: 0

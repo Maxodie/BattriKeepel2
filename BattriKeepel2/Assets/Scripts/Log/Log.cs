@@ -46,6 +46,7 @@ public class DefaultLogger: Logger
 
 public static class Log
 {
+    public static int m_cacaCount;
     public static List<Logger> m_loggers;
     public static UnityEvent<Logger> m_onLoggerCreated = new();
 
@@ -157,6 +158,11 @@ public static class Log
     public static void Error(object msg)
     {
         LogToLogger<DefaultLogger>(LogType.Error, $"<color={s_errorColor}>{msg}</color>");
+    }
+
+    public static void LogCaca(object msg = null)
+    {
+        LogToLogger<DefaultLogger>(LogType.Error, $"<color={s_errorColor}>caca {m_cacaCount++}, {msg}</color>");
     }
 
     static void LogToLogger<T>(LogType logType, object msg) where T: Logger, new()
