@@ -1,19 +1,18 @@
 using UnityEngine;
 
 namespace Components {
-    [System.Serializable]
     public class PlayerMovement : Movement {
 
-        [HideInInspector] public Transform m_transform;
-        Vector2 m_newPos = new Vector2();
-        Vector2 m_offSet = new Vector2();
-        UnityEngine.InputSystem.TouchPhase m_isPressed;
+        public Transform m_transform;
+        private Vector2 newPos = new Vector2();
+        private Vector2 offset = Vector2.zero;
+        private UnityEngine.InputSystem.TouchPhase m_isPressed;
 
         public void OnPosition(Vector2 position) {
-            m_newPos = Camera.main.ScreenToWorldPoint(position);
+            newPos = Camera.main.ScreenToWorldPoint(position);
 
-            if (m_isPressed != UnityEngine.InputSystem.TouchPhase.Moved) {
-                m_offSet = m_newPos - new Vector2(m_transform.position.x, m_transform.position.y);
+            if (m_isPressed == UnityEngine.InputSystem.TouchPhase.Began) {
+                offset = newPos - new Vector2(m_transform.position.x, m_transform.position.y);
             }
         }
 
@@ -21,17 +20,20 @@ namespace Components {
             m_isPressed = state;
         }
 
-        protected override void HandleMovement() {
+        public Vector2 targetPosition = new Vector2();
+
+        public override void HandleMovement(Vector2 target) {
             if (m_isPressed == UnityEngine.InputSystem.TouchPhase.Began
                     || m_isPressed == UnityEngine.InputSystem.TouchPhase.Ended
                     || m_isPressed == UnityEngine.InputSystem.TouchPhase.None) {
                 return;
             }
-            m_transform.position = new Vector3(m_newPos.x - m_offSet.x, m_newPos.y - m_offSet.y, 0);
-        }
 
-        public override void Update() {
-            HandleMovement();
+            targetPosition = newPos - offset;
+
+            Debug.Log(target);
+
+            m_transform.position = new Vector3(target.x, target.y, m_transform.position.z);
         }
 
         public bool IsScreenPressed() {
@@ -42,3 +44,4 @@ namespace Components {
         }
     }
 }
+

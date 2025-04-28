@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Game.AttackSystem.Attacks;
 using Game.Entities;
@@ -5,53 +6,38 @@ using UnityEngine;
 
 namespace Game.Managers
 {
-    public class AttackManager
+    public class AttackManager : GameEntityMonoBehaviour
     {
-        private bool _isPlayer;
-        private AttackSet _attacks;
-        private Entity _entityAttached;
+        [SerializeField] private bool isPlayer;
+        [SerializeField] private AttackSet attacks;
 
-        public void Init(bool isPlayer, AttackSet attackSet, Entity entityAttached)
+        public void InitAttacking()
         {
-            _isPlayer = isPlayer;
-            _attacks = attackSet;
-            _entityAttached = entityAttached;
-            
-            StartAttacking();
-        }
-        
-        private void StartAttacking()
-        {
-            DelayAttacks(_attacks.BasicAttack);
+            StartCoroutine(DelayedAttacks(attacks.BasicAttack));
         }
 
         private Entity GetNearestTarget()
         {
             Entity nearestTarget = null;
             float minDistance = float.MaxValue;
-            
+
             List<Entity> enemies = EnemyManager.Instance.currentEnemies;
             foreach (Entity enemy in enemies)
             {
-                float distance = Vector2.Distance( _entityAttached.GetEntityGraphics().transform.position, enemy.GetEntityGraphics().transform.position);
-                if (distance > minDistance) continue;
+//              float distance = Vector2.Distance(transform.position, enemy.GetEntityGraphics().transform.position); // ça existe pas ta merde là jose nique bien tes morts
+                //if (distance > minDistance) continue;
 
                 nearestTarget = enemy;
-                minDistance = distance;
+                //minDistance = distance;
             }
             return nearestTarget;
         }
 
-        private async void DelayAttacks(Attack attack)
+        private IEnumerator DelayedAttacks(Attack attack)
         {
-            float cooldown = Time.deltaTime;
-            
-            while (Time.deltaTime - cooldown > attack.BaseCooldown) {
-                await Awaitable.NextFrameAsync();
-            }
-            
+            yield return new WaitForSeconds(attack.BaseCooldown);
+
             attack.RaiseAttack(GetNearestTarget());
-            DelayAttacks(attack);
         }
     }
 }

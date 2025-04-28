@@ -37,6 +37,7 @@ BattriKeepel2/.consulo/
 BattriKeepel2/.vscode/
 BattriKeepel2/.idea/
 BattriKeepel2/*.csproj
+BattriKeepel2/*/*.csproj
 BattriKeepel2/*.unityproj
 BattriKeepel2/*.sln
 BattriKeepel2/*.idea
@@ -117,3 +118,7 @@ fmod_editor.log
 # cpp
 BattriKeepel2_cpp/build
 BattriKeepel2_cpp/.cache
+BattriKeepel2/Assembly-CSharp-Editor.csproj
+BattriKeepel2/Assembly-CSharp-Editor.csproj
+BattriKeepel2/Assembly-CSharp-Editor.csproj
+BattriKeepel2/Assembly-CSharp.csproj

@@ -14,9 +14,11 @@ public abstract class GameManager : GameEntityMonoBehaviour
         OnUIManagerCreated();
     }
 
+    protected virtual void Start() {
+    }
+
     protected virtual void Update()
     {
-
     }
 
     protected abstract void OnUIManagerCreated();
