@@ -27,7 +27,7 @@ namespace Components {
             return new Vector2(m_transform.position.x, m_transform.position.y) + m_offSet;
         }
 
-        public float GetSize() {
+        public float GetDiameter() {
             return m_size * m_transform.localScale.x;
         }
 
@@ -41,7 +41,6 @@ namespace Components {
 
         public void OnCollisionBehavior(Hit hit) {
             m_onCollision.Invoke(hit);
-            lastHitObject = hit;
         }
 
         public void BindOnCollision(UnityAction<Hit> action) {

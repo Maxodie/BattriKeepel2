@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace Components {
     public class PlayerMovement : Movement {
-
         public Transform m_transform;
         private Vector2 newPos = new Vector2();
         private Vector2 dirtyPos = Vector2.zero;
@@ -31,10 +30,8 @@ namespace Components {
                 return;
             }
 
-            vel = (newPos - dirtyPos) / Time.deltaTime;
+            vel = newPos - dirtyPos;
             dirtyPos = newPos;
-
-            vel *= Time.deltaTime;
 
             m_transform.position += new Vector3(velo.x, velo.y, m_transform.position.z);
         }

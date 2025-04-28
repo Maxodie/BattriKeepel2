@@ -8,7 +8,7 @@ namespace GameEntity
     public class Player : Entity {
         private InputManager m_inputManager;
         private PlayerMovement m_movement;
-        private Hitbox m_hitBox;
+        public Hitbox m_hitBox;
         private Transform transform;
         private PlayerGraphics m_playerGraphics;
 
@@ -44,23 +44,31 @@ namespace GameEntity
             return m_movement.IsScreenPressed();
         }
 
-        private void HandleCollisions(Hit other)
-        {
+        private void HandleCollisions(Hit other) {
             Wall wall = other.hitObject.gameObject.GetComponent<Wall>();
-            if (wall != null)
-            {
+            if (wall != null) {
                 Vector2 playerPosition = transform.position;
                 Vector2 collisionPoint = other.hitPosition;
+                Vector2 hitBoxCenter = wall.m_hitBox.GetPosition();
 
-                Vector2 directionToCollision = collisionPoint - playerPosition;
+                Vector2 directionToCollision = (collisionPoint - playerPosition).normalized;
+                float depth = m_hitBox.GetDiameter();
+                depth -= Vector2.Distance(hitBoxCenter, collisionPoint);
+                Log.Info(directionToCollision);
+                Log.Info(depth);
 
-                AdjustVelocityToAvoidCollision(directionToCollision);
+                if (depth <= 0.001 && depth >= -0.001) {
+                    depth = 0;
+                }
+
+                // do not check center for boxes, otherwise depth is crazy broken
+
+                AdjustVelocityToAvoidCollision(directionToCollision, depth / 2);
             }
         }
 
-        private void AdjustVelocityToAvoidCollision(Vector2 directionToAvoid)
-        {
-            m_currentVel -= directionToAvoid / 23; // we don't talk about that nerds
+        private void AdjustVelocityToAvoidCollision(Vector2 directionToAvoid, float depth) {
+            m_currentVel -= directionToAvoid * depth;
         }
     }
 }
