@@ -37,6 +37,7 @@ BattriKeepel2/.consulo/
 BattriKeepel2/.vscode/
 BattriKeepel2/.idea/
 BattriKeepel2/*.csproj
+BattriKeepel2/*/*.csproj
 BattriKeepel2/*.unityproj
 BattriKeepel2/*.sln
 BattriKeepel2/*.idea
