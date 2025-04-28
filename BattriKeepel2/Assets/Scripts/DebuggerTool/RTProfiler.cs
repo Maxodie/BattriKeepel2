@@ -18,6 +18,7 @@ public class RTProfiler : DebuggerToolUIBase
 
     public override void Create()
     {
+        Log.Info<DebuggerLogger>("RT Profiler created");
         m_systemMemoryRecorder = ProfilerRecorder.StartNew(ProfilerCategory.Memory, "System Used Memory");
         m_gcMemoryRecorder = ProfilerRecorder.StartNew(ProfilerCategory.Memory, "GC Reserved Memory");
         m_mainThreadTimeRecorder = ProfilerRecorder.StartNew(ProfilerCategory.Memory, "Main Thread", 15);
@@ -25,6 +26,7 @@ public class RTProfiler : DebuggerToolUIBase
 
     public override void Destroy()
     {
+        Log.Info<DebuggerLogger>("RT Profiler destroyed");
         m_systemMemoryRecorder.Dispose();
         m_gcMemoryRecorder.Dispose();
         m_mainThreadTimeRecorder.Dispose();

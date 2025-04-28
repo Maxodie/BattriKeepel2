@@ -4,7 +4,7 @@ using TMPro;
 public abstract class DebuggerToolUIField : MonoBehaviour
 {
     public System.Reflection.PropertyInfo PropertyField{set; get;}
-    object m_obj;
+    protected object m_obj;
     [SerializeField] TMP_Text m_text;
 
     public void Init(System.Reflection.PropertyInfo property, object obj, string fieldTitle)
@@ -15,9 +15,16 @@ public abstract class DebuggerToolUIField : MonoBehaviour
 
         SetValue(property.GetValue(obj));
         InitUI();
+        SetUIValue();
     }
 
     protected abstract void InitUI();
+    protected abstract void SetUIValue();
+
+    public void Update()
+    {
+        SetUIValue();
+    }
 
     protected void SetValue(object value)
     {

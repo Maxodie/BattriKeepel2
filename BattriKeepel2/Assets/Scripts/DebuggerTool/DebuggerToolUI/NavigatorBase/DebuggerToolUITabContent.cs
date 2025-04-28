@@ -1,11 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
 public class DebuggerToolUITabContent : MonoBehaviour
 {
     [SerializeField] Transform m_fieldParent;
     [SerializeField] DebuggerToolUIFieldToggle m_toggleField;
     [SerializeField] DebuggerToolUIFieldDouble m_doubleField;
+    [SerializeField] DebuggerToolUIFieldLong m_longField;
+    [SerializeField] DebuggerToolUIFieldInt m_intField;
 
     List<DebuggerToolUIField> fields = new();
 
@@ -25,8 +28,30 @@ public class DebuggerToolUITabContent : MonoBehaviour
             fields.Add(doubleField);
             return;
         }
+        else if(fieldType == typeof(long))
+        {
+            DebuggerToolUIFieldLong longFiled = Instantiate(m_longField, m_fieldParent);
+            longFiled.Init(property, script, script.GetType().FullName + " " + property.Name);
+            fields.Add(longFiled);
+            return;
+        }
+        else if(fieldType == typeof(int))
+        {
+            DebuggerToolUIFieldInt intField = Instantiate(m_intField, m_fieldParent);
+            intField.Init(property, script, script.GetType().FullName + " " + property.Name);
+            fields.Add(intField);
+            return;
+        }
 
         Log.Warn<DebuggerLogger>("given field type is unknown : " + fieldType.Name);
+    }
+
+    void Update()
+    {
+        foreach(DebuggerToolUIField field in fields)
+        {
+             field.Update();
+        }
     }
 
     public bool ContainField(System.Reflection.PropertyInfo property)
@@ -41,3 +66,4 @@ public class DebuggerToolUITabContent : MonoBehaviour
         return false;
     }
 }
+#endif

@@ -10,6 +10,11 @@ public class DebuggerToolUIFieldToggle : DebuggerToolUIField
         m_toogle.onValueChanged.AddListener(UpdateProperty);
     }
 
+    protected override void SetUIValue()
+    {
+        m_toogle.isOn = (bool)PropertyField.GetValue(m_obj);
+    }
+
     public void UpdateProperty(bool value)
     {
         SetValue(value);

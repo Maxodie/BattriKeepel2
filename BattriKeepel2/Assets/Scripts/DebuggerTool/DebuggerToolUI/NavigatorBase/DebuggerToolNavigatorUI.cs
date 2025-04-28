@@ -42,6 +42,7 @@ public class DebuggerToolNavigatorUI : MonoBehaviour
 
         GenerateTabContent<UI>();
 
+        newNavigationTab.SetNavigatorTabTitle(typeof(UI).ToString());
         newNavigationTab.AddNavigationTabBtnListener(
             delegate()
             {
@@ -57,6 +58,11 @@ public class DebuggerToolNavigatorUI : MonoBehaviour
         foreach(GameObject tab in m_tabContents)
         {
             tab.SetActive(false);
+        }
+
+        foreach(DebuggerToolUIBase ui in m_tabDebuggersUI)
+        {
+            ui.Update();
         }
 
         m_tabContents[tabContentID].SetActive(true);
