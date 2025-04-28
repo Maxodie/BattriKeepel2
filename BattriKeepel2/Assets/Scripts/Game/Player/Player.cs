@@ -12,7 +12,7 @@ namespace GameEntity
         private Transform transform;
         private PlayerGraphics m_playerGraphics;
 
-        private Vector2 m_currentTarget = new Vector2();
+        private Vector2 m_currentVel = new Vector2();
 
         public Player(SO_PlayerData data, Transform spawnPoint) {
             Init(data, spawnPoint);
@@ -36,35 +36,31 @@ namespace GameEntity
         }
 
         public void Update() {
-            m_movement.HandleMovement(m_currentTarget);
-            m_currentTarget = m_movement.targetPosition;
+            m_movement.HandleMovement(m_currentVel);
+            m_currentVel = m_movement.vel;
         }
 
         public bool IsScreenPressed() {
             return m_movement.IsScreenPressed();
         }
 
-        private void HandleCollisions(Hit other) {
+        private void HandleCollisions(Hit other)
+        {
             Wall wall = other.hitObject.gameObject.GetComponent<Wall>();
-            if (wall != null) {
-                Hitbox hit = wall.m_hitBox;
-                Vector2 hitPosition = hit.GetPosition();
-                Vector2 playerPosition = this.transform.position;
+            if (wall != null)
+            {
+                Vector2 playerPosition = transform.position;
+                Vector2 collisionPoint = other.hitPosition;
 
-                if (hit.GetHitboxType() == HitboxType.Circle) {
-                    float radius = hit.GetSize();
-                    float distance = Vector2.Distance(hitPosition, playerPosition);
+                Vector2 directionToCollision = collisionPoint - playerPosition;
 
-                    Vector2 direction = (playerPosition - hitPosition).normalized;
-                    m_currentTarget = playerPosition + direction * (radius - distance);
-                } else {
-                    if (Mathf.Abs(hitPosition.x - playerPosition.x) < Mathf.Abs(hitPosition.y - playerPosition.y)) {
-                        m_currentTarget.y = playerPosition.y;
-                    } else {
-                        m_currentTarget.x = playerPosition.x;
-                    }
-                }
+                AdjustVelocityToAvoidCollision(directionToCollision);
             }
+        }
+
+        private void AdjustVelocityToAvoidCollision(Vector2 directionToAvoid)
+        {
+            m_currentVel -= directionToAvoid / 23; // we don't talk about that nerds
         }
     }
 }

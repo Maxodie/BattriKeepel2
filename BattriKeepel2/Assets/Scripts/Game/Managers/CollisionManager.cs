@@ -42,7 +42,7 @@ public class CollisionManager {
     }
 
     private void DetectCollisions() {
-        Tuple<bool, Vector2> info;
+        Tuple<bool, Vector2> info = new (false, new Vector2());
         foreach (Vector2 position in m_gridWorldPositions) {
             List<Hitbox> hitboxes = m_spatialHash.QuerySpace(position);
 
@@ -52,25 +52,22 @@ public class CollisionManager {
                 for (int j = i + 1; j < hitboxes.Count; j++) {
                     Hitbox o_hitbox = hitboxes[j];
 
-                    bool hasCollided = false;
-                    Vector2 hitPosition = new Vector2();
-
                     if (c_hitbox.m_type == HitboxType.Circle && o_hitbox.m_type == HitboxType.Circle) {
-                        //hasCollided = IsCircleCollision(c_hitbox, o_hitbox);
+                        info = IsCircleCollision(c_hitbox, o_hitbox);
                     }
                     else if (c_hitbox.m_type == HitboxType.RectangularParallelepiped && o_hitbox.m_type == HitboxType.RectangularParallelepiped) {
-                        hasCollided = IsRectangleCollision(c_hitbox, o_hitbox);
+                        info = IsRectangleCollision(c_hitbox, o_hitbox);
                     }
                     else if (c_hitbox.m_type == HitboxType.Circle && o_hitbox.m_type == HitboxType.RectangularParallelepiped) {
-                        hasCollided = IsCircleRectangleCollision(c_hitbox, o_hitbox);
+                        info = IsCircleRectangleCollision(c_hitbox, o_hitbox);
                     }
                     else if (c_hitbox.m_type == HitboxType.RectangularParallelepiped && o_hitbox.m_type == HitboxType.Circle) {
-                        hasCollided = IsCircleRectangleCollision(o_hitbox, c_hitbox);
+                        info = IsCircleRectangleCollision(o_hitbox, c_hitbox);
                     }
 
-                    if (hasCollided) {
-                        Hit hit1 = new Hit(hitPosition, o_hitbox.GetTransform());
-                        Hit hit2 = new Hit(hitPosition, c_hitbox.GetTransform());
+                    if (info.Item1) {
+                        Hit hit1 = new Hit(info.Item2, o_hitbox.GetTransform());
+                        Hit hit2 = new Hit(info.Item2, c_hitbox.GetTransform());
                         c_hitbox.OnCollisionBehavior(hit1);
                         o_hitbox.OnCollisionBehavior(hit2);
                     }
@@ -80,7 +77,7 @@ public class CollisionManager {
     }
 
 
-    private bool IsCircleRectangleCollision(Hitbox circle, Hitbox rectangularParallelepiped) {
+    private Tuple<bool, Vector2> IsCircleRectangleCollision(Hitbox circle, Hitbox rectangularParallelepiped) {
         Vector2 circlePosition = circle.GetPosition();
         float circleRadius = circle.GetSize() / 2;
 
@@ -97,10 +94,16 @@ public class CollisionManager {
 
         float distance = Vector2.Distance(circlePosition, closestPoint);
 
-        return distance <= circleRadius;
+        if (distance <= circleRadius) {
+            Vector2 dir = (closestPoint - circlePosition).normalized;
+            Vector2 contact = circlePosition + dir * circleRadius;
+
+            return new Tuple<bool, Vector2>(true, contact);
+        }
+        return new Tuple<bool, Vector2>(false, new Vector2());
     }
 
-    private bool IsRectangleCollision(Hitbox r1, Hitbox r2) {
+    private Tuple<bool, Vector2> IsRectangleCollision(Hitbox r1, Hitbox r2) {
         Vector2 r1Position = r1.GetPosition();
         Vector2 r1MinBound = new Vector2(r1Position.x - (r1.GetDimensions().x / 2), r1Position.y - (r1.GetDimensions().y / 2));
         Vector2 r1MaxBound = new Vector2(r1Position.x + (r1.GetDimensions().x / 2), r1Position.y + (r1.GetDimensions().y / 2));
@@ -110,14 +113,19 @@ public class CollisionManager {
         Vector2 r2MaxBound = new Vector2(r2Position.x + (r2.GetDimensions().x / 2), r2Position.y + (r2.GetDimensions().y / 2));
 
         if (r1MaxBound.x < r2MinBound.x || r1MinBound.x > r2MaxBound.x) {
-            return false;
+            return new Tuple<bool, Vector2>(false, new Vector2());
         }
 
         if (r1MaxBound.y < r2MinBound.y || r1MinBound.y > r2MaxBound.y) {
-            return false;
+            return new Tuple<bool, Vector2>(false, new Vector2());
         }
 
-        return true;
+        Vector2 contact = new Vector2(
+        Math.Max(r1MinBound.x, r2MinBound.x),
+        Math.Max(r1MinBound.y, r2MinBound.y)
+    );
+
+        return new Tuple<bool, Vector2>(true, contact);
     }
 
     private Tuple<bool, Vector2> IsCircleCollision(Hitbox c1, Hitbox c2) {
@@ -125,7 +133,10 @@ public class CollisionManager {
         float combinedSize = (c1.GetSize() + c2.GetSize()) / 2;
 
         if (distance <= combinedSize) {
-            return new Tuple<bool, Vector2>(true, new Vector2());
+            Vector2 ab = c2.GetPosition() - c1.GetPosition();
+            Vector2 dir = ab.normalized;
+            Vector2 hitPosition = c1.GetPosition() + dir * c1.GetSize();
+            return new Tuple<bool, Vector2>(true, hitPosition);
         }
 
         return new Tuple<bool, Vector2>(false, new Vector2());

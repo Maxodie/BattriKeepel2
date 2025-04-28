@@ -5,14 +5,16 @@ namespace Components {
 
         public Transform m_transform;
         private Vector2 newPos = new Vector2();
-        private Vector2 offset = Vector2.zero;
+        private Vector2 dirtyPos = Vector2.zero;
+        public Vector2 vel;
         private UnityEngine.InputSystem.TouchPhase m_isPressed;
 
         public void OnPosition(Vector2 position) {
             newPos = Camera.main.ScreenToWorldPoint(position);
 
             if (m_isPressed == UnityEngine.InputSystem.TouchPhase.Began) {
-                offset = newPos - new Vector2(m_transform.position.x, m_transform.position.y);
+                dirtyPos = newPos;
+                vel = Vector2.zero;
             }
         }
 
@@ -22,18 +24,19 @@ namespace Components {
 
         public Vector2 targetPosition = new Vector2();
 
-        public override void HandleMovement(Vector2 target) {
+        public override void HandleMovement(Vector2 velo) {
             if (m_isPressed == UnityEngine.InputSystem.TouchPhase.Began
                     || m_isPressed == UnityEngine.InputSystem.TouchPhase.Ended
                     || m_isPressed == UnityEngine.InputSystem.TouchPhase.None) {
                 return;
             }
 
-            targetPosition = newPos - offset;
+            vel = (newPos - dirtyPos) / Time.deltaTime;
+            dirtyPos = newPos;
 
-            Debug.Log(target);
+            vel *= Time.deltaTime;
 
-            m_transform.position = new Vector3(target.x, target.y, m_transform.position.z);
+            m_transform.position += new Vector3(velo.x, velo.y, m_transform.position.z);
         }
 
         public bool IsScreenPressed() {
