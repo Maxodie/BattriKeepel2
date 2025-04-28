@@ -1,7 +1,13 @@
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
+
 using UnityEngine;
 
 public abstract class DebuggerToolUIBase
 {
+    public abstract void Create();
+    public abstract void Destroy();
+    public abstract void Update();
+
     DebuggerToolUITabContent content;
     public GameObject Init(DebuggerToolUITabContent  contentPrefab, Transform contentTransform)
     {
@@ -28,3 +34,5 @@ public abstract class DebuggerToolUIBase
        content.AddField(type, property, script);
     }
 }
+
+#endif

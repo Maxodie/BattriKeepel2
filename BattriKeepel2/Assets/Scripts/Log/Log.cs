@@ -23,6 +23,7 @@
 
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 public abstract class Logger
 {
@@ -46,6 +47,7 @@ public class DefaultLogger: Logger
 public static class Log
 {
     public static List<Logger> m_loggers;
+    public static UnityEvent<Logger> m_onLoggerCreated = new();
 
     static string s_successColor = "#008714";
     static string s_traceColor = "#287a92";
@@ -65,8 +67,9 @@ public static class Log
         if(logger == null)
         {
             T t = new T();
-            t.OnCreated();
             m_loggers.Add(t);
+            t.OnCreated();
+            m_onLoggerCreated.Invoke(t);
             return t;
         }
         else
