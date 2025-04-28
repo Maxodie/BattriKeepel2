@@ -8,8 +8,7 @@ namespace Game.Entities
     {
         [SerializeField] private AttackSet attackSet;
         [SerializeField] private BulletData bulletData;
-        [SerializeField] private EntityGraphics entityGraphics;
-        
+
         public enum EntityType {Player, Enemy, Boss}
         public EntityType entityType;
 
@@ -21,11 +20,6 @@ namespace Game.Entities
         public float GetHealth()
         {
             return Health;
-        }
-
-        public EntityGraphics GetEntityGraphics()
-        {
-            return entityGraphics;
         }
     }
 }

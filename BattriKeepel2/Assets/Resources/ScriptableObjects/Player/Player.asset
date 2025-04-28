@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5218a656c0b37d4e893f507e95ee2f6, type: 3}
+  m_Name: Player
+  m_EditorClassIdentifier: 
+  playerGraphics: {fileID: 5993750878380200919, guid: 25469902a7057d2499f4d254badf93be, type: 3}
+  hitBox:
+    m_type: 0
+    m_size: 1
+    m_dimensions: {x: 0, y: 0}
+    isWall: 0
+    m_offSet: {x: 0, y: 0}
+    lastHitObject: {fileID: 0}

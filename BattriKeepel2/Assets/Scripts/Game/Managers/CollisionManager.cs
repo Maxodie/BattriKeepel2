@@ -1,12 +1,17 @@
 using UnityEngine;
+using System;
 using Components;
 using System.Collections.Generic;
 
 public class CollisionManager {
     static CollisionManager s_Instance;
     private List<Hitbox> m_elements = new List<Hitbox>();
-    [SerializeField] private SpatialHash m_spatialHash;
+    private SpatialHash m_spatialHash = new SpatialHash();
     private List<Vector2> m_gridWorldPositions;
+
+    public void SetParameters(SO_CollisionManagerData data) {
+        m_spatialHash.SetCellSize(data.cellSize);
+    }
 
     public static CollisionManager GetInstance() {
         if (s_Instance == null) {
@@ -37,6 +42,7 @@ public class CollisionManager {
     }
 
     private void DetectCollisions() {
+        Tuple<bool, Vector2> info;
         foreach (Vector2 position in m_gridWorldPositions) {
             List<Hitbox> hitboxes = m_spatialHash.QuerySpace(position);
 
@@ -47,9 +53,10 @@ public class CollisionManager {
                     Hitbox o_hitbox = hitboxes[j];
 
                     bool hasCollided = false;
+                    Vector2 hitPosition = new Vector2();
 
                     if (c_hitbox.m_type == HitboxType.Circle && o_hitbox.m_type == HitboxType.Circle) {
-                        hasCollided = IsCircleCollision(c_hitbox, o_hitbox);
+                        //hasCollided = IsCircleCollision(c_hitbox, o_hitbox);
                     }
                     else if (c_hitbox.m_type == HitboxType.RectangularParallelepiped && o_hitbox.m_type == HitboxType.RectangularParallelepiped) {
                         hasCollided = IsRectangleCollision(c_hitbox, o_hitbox);
@@ -62,8 +69,10 @@ public class CollisionManager {
                     }
 
                     if (hasCollided) {
-                        c_hitbox.OnCollisionBehavior(o_hitbox.GetTransform());
-                        o_hitbox.OnCollisionBehavior(c_hitbox.GetTransform());
+                        Hit hit1 = new Hit(hitPosition, o_hitbox.GetTransform());
+                        Hit hit2 = new Hit(hitPosition, c_hitbox.GetTransform());
+                        c_hitbox.OnCollisionBehavior(hit1);
+                        o_hitbox.OnCollisionBehavior(hit2);
                     }
                 }
             }
@@ -111,15 +120,15 @@ public class CollisionManager {
         return true;
     }
 
-    private bool IsCircleCollision(Hitbox c1, Hitbox c2) {
+    private Tuple<bool, Vector2> IsCircleCollision(Hitbox c1, Hitbox c2) {
         float distance = Vector2.Distance(c1.GetPosition(), c2.GetPosition());
         float combinedSize = (c1.GetSize() + c2.GetSize()) / 2;
 
         if (distance <= combinedSize) {
-            return true;
+            return new Tuple<bool, Vector2>(true, new Vector2());
         }
 
-        return false;
+        return new Tuple<bool, Vector2>(false, new Vector2());
     }
 
 
@@ -136,10 +145,22 @@ public class CollisionManager {
     }
 }
 
-[System.Serializable]
+public class Hit {
+    public Hit(Vector2 hitPos, Transform hitObj) {
+        hitPosition = hitPos;
+        hitObject = hitObj;
+    }
+    public Vector2 hitPosition;
+    public Transform hitObject;
+}
+
 public class SpatialHash {
     private Dictionary<Vector2Int, List<Hitbox>> m_grid = new Dictionary<Vector2Int, List<Hitbox>>();
-    [SerializeField] private float m_cellSize;
+    private float m_cellSize;
+
+    public void SetCellSize(float size) {
+        m_cellSize = size;
+    }
 
     private Vector2Int GetCell(Vector2 position) {
         return new Vector2Int(Mathf.FloorToInt(position.x / m_cellSize), Mathf.FloorToInt(position.y / m_cellSize));

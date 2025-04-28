@@ -3,24 +3,28 @@ using Game.Entities;
 using Inputs;
 using UnityEngine;
 
-namespace GameEntity.Player
+namespace GameEntity
 {
     public class Player : Entity {
-        [SerializeField] private InputManager m_inputManager;
-        [SerializeField] private PlayerMovement m_movement;
-        [SerializeField] private Hitbox m_hitBox;
+        private InputManager m_inputManager;
+        private PlayerMovement m_movement;
+        private Hitbox m_hitBox;
         private Transform transform;
         private PlayerGraphics m_playerGraphics;
 
-
         private Vector2 m_currentTarget = new Vector2();
-        public void Start() {
-            Init();
+
+        public Player(SO_PlayerData data, Transform spawnPoint) {
+            Init(data, spawnPoint);
             BindActions();
         }
 
-        private void Init() {
-            transform = GetEntityGraphics().transform;
+        private void Init(SO_PlayerData data, Transform spawnPoint) {
+            m_movement = new PlayerMovement();
+            m_hitBox = data.hitBox;
+            m_playerGraphics = GraphicsManager.Get().GenerateVisualInfos<PlayerGraphics>(data.playerGraphics, spawnPoint, this);
+            m_inputManager = m_playerGraphics.inputManager;
+            transform = m_playerGraphics.transform;
             m_hitBox.Init(transform);
             m_movement.m_transform = transform;
         }
@@ -40,16 +44,25 @@ namespace GameEntity.Player
             return m_movement.IsScreenPressed();
         }
 
-        private void HandleCollisions(Transform other) {
-            if (other.gameObject.GetComponent<Wall>()) {
-                Hitbox hit = other.gameObject.GetComponent<Wall>().m_hitBox;
+        private void HandleCollisions(Hit other) {
+            Wall wall = other.hitObject.gameObject.GetComponent<Wall>();
+            if (wall != null) {
+                Hitbox hit = wall.m_hitBox;
                 Vector2 hitPosition = hit.GetPosition();
                 Vector2 playerPosition = this.transform.position;
 
-                if (Mathf.Abs(hitPosition.x - playerPosition.x) < Mathf.Abs(hitPosition.y - playerPosition.y)) {
-                    m_currentTarget.y = playerPosition.y;
+                if (hit.GetHitboxType() == HitboxType.Circle) {
+                    float radius = hit.GetSize();
+                    float distance = Vector2.Distance(hitPosition, playerPosition);
+
+                    Vector2 direction = (playerPosition - hitPosition).normalized;
+                    m_currentTarget = playerPosition + direction * (radius - distance);
                 } else {
-                    m_currentTarget.x = playerPosition.x;
+                    if (Mathf.Abs(hitPosition.x - playerPosition.x) < Mathf.Abs(hitPosition.y - playerPosition.y)) {
+                        m_currentTarget.y = playerPosition.y;
+                    } else {
+                        m_currentTarget.x = playerPosition.x;
+                    }
                 }
             }
         }

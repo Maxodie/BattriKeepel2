@@ -1,18 +1,22 @@
-using GameEntity.Player;
+using GameEntity;
 using UnityEngine;
 
 public class LevelManager : GameManager {
     [SerializeField] Player player;
-    CollisionManager m_collisionManager;
+    [SerializeField] SO_PlayerData playerData;
+    [SerializeField] Transform playerTransform;
+    private CollisionManager m_collisionManager;
+    [SerializeField] SO_CollisionManagerData m_collisionManagerData;
 
     protected override void Awake()
     {
-        player.Start();
+        player = new Player(playerData, playerTransform);
+        m_collisionManager = CollisionManager.GetInstance();
+        m_collisionManager.SetParameters(m_collisionManagerData);
     }
 
     protected override void Update()
     {
-        // TODO: player graphics
         player.Update();
         m_collisionManager.Update();
     }

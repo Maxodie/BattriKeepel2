@@ -1,10 +1,9 @@
 using UnityEngine;
 
 namespace Components {
-    [System.Serializable]
     public class PlayerMovement : Movement {
 
-        [HideInInspector] public Transform m_transform;
+        public Transform m_transform;
         private Vector2 newPos = new Vector2();
         private Vector2 offset = Vector2.zero;
         private UnityEngine.InputSystem.TouchPhase m_isPressed;

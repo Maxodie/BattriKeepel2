@@ -20,15 +20,15 @@ namespace Game.Managers
         {
             Entity nearestTarget = null;
             float minDistance = float.MaxValue;
-            
+
             List<Entity> enemies = EnemyManager.Instance.currentEnemies;
             foreach (Entity enemy in enemies)
             {
-                float distance = Vector2.Distance(transform.position, enemy.GetEntityGraphics().transform.position);
-                if (distance > minDistance) continue;
+//              float distance = Vector2.Distance(transform.position, enemy.GetEntityGraphics().transform.position); // ça existe pas ta merde là jose nique bien tes morts
+                //if (distance > minDistance) continue;
 
                 nearestTarget = enemy;
-                minDistance = distance;
+                //minDistance = distance;
             }
             return nearestTarget;
         }
@@ -36,7 +36,7 @@ namespace Game.Managers
         private IEnumerator DelayedAttacks(Attack attack)
         {
             yield return new WaitForSeconds(attack.BaseCooldown);
-            
+
             attack.RaiseAttack(GetNearestTarget());
         }
     }
