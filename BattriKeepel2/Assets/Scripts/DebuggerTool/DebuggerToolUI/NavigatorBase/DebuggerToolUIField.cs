@@ -16,11 +16,11 @@ public abstract class DebuggerToolUIField : MonoBehaviour
         m_readOnly = readOnly;
 
         SetValue(property.GetValue(obj));
-        InitUI();
+        InitUI(readOnly);
         SetUIValue();
     }
 
-    protected abstract void InitUI();
+    protected abstract void InitUI(bool readOnly);
     protected abstract void SetUIValue();
 
     public void Update()

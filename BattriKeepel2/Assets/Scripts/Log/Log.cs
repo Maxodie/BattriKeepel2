@@ -46,7 +46,7 @@ public class DefaultLogger: Logger
 
 public static class Log
 {
-    public static int m_cacaCount;
+    public static int m_cacaCount = 1;
     public static List<Logger> m_loggers;
     public static UnityEvent<Logger> m_onLoggerCreated = new();
 
@@ -110,59 +110,54 @@ public static class Log
         }
     }
 
-    public static void Info(object msg)
+    public static void Info(object msg=null)
     {
         LogToLogger<DefaultLogger>(LogType.Log, msg);
     }
 
-    public static void Info<T>(object msg) where T: Logger, new()
+    public static void Info<T>(object msg=null) where T: Logger, new()
     {
         LogToLogger<T>(LogType.Log, msg);
     }
 
-    public static void Trace<T>(object msg) where T: Logger, new()
+    public static void Trace<T>(object msg=null) where T: Logger, new()
     {
         LogToLogger<T>(LogType.Log, $"<color={s_traceColor}>{msg}</color>");
     }
 
-    public static void Trace(object msg)
+    public static void Trace(object msg=null)
     {
         LogToLogger<DefaultLogger>(LogType.Log, $"<color={s_traceColor}>{msg}</color>");
     }
 
-    public static void Success<T>(object msg) where T: Logger, new()
+    public static void Success<T>(object msg=null) where T: Logger, new()
     {
         LogToLogger<T>(LogType.Log, $"<color={s_successColor}>{msg}</color>");
     }
 
-    public static void Success(object msg)
+    public static void Success(object msg=null)
     {
         LogToLogger<DefaultLogger>(LogType.Log, $"<color={s_successColor}>{msg}</color>");
     }
 
-    public static void Warn<T>(object msg) where T: Logger, new()
+    public static void Warn<T>(object msg=null) where T: Logger, new()
     {
         LogToLogger<T>(LogType.Warning, $"<color={s_warnColor}>{msg}</color>");
     }
 
-    public static void Warn(object msg)
+    public static void Warn(object msg=null)
     {
         LogToLogger<DefaultLogger>(LogType.Warning, $"<color={s_warnColor}>{msg}</color>");
     }
 
-    public static void Error<T>(object msg) where T: Logger, new()
+    public static void Error<T>(object msg=null) where T: Logger, new()
     {
         LogToLogger<T>(LogType.Error, $"<color={s_errorColor}>{msg}</color>");
     }
 
-    public static void Error(object msg)
+    public static void Error(object msg=null)
     {
         LogToLogger<DefaultLogger>(LogType.Error, $"<color={s_errorColor}>{msg}</color>");
-    }
-
-    public static void LogCaca(object msg = null)
-    {
-        LogToLogger<DefaultLogger>(LogType.Error, $"<color={s_errorColor}>caca {m_cacaCount++}, {msg}</color>");
     }
 
     static void LogToLogger<T>(LogType logType, object msg) where T: Logger, new()
@@ -179,6 +174,11 @@ public static class Log
 
         if(logger.IsActive)
         {
+            if(msg == null)
+            {
+                msg = "caca" + m_cacaCount++;
+            }
+
             Debug.unityLogger.Log(logType, $"<color={s_loggerColor}>[" + logger.GetType().FullName + "]</color> " + msg);
         }
     }
