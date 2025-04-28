@@ -3,10 +3,14 @@ using System.Collections.Generic;
 
 public class DebuggerTool : MonoBehaviour
 {
+
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
     DebuggerToolNavigatorUI m_devToolNavigator;
     [SerializeField] DebuggerToolNavigatorUI m_devToolNavigatorPrefab;
     List<System.Type> m_activeUITools = new List<System.Type>();
-    bool isActive = true;
+    bool m_isActive = true;
+    ProfilerStats m_rtProfiler = new();
+#endif
 
     void Awake()
     {
@@ -19,6 +23,7 @@ public class DebuggerTool : MonoBehaviour
         }
 
         GenerateDebuggerTab<DebuggertoolUIRTProfiler>();
+        m_devToolNavigator.GenerateField<DebuggertoolUIRTProfiler>(m_rtProfiler);
 
         GraphicsManager.Get().OnVisualCreatedCallback.AddListener(UpdateTabs);
         Log.m_onLoggerCreated.AddListener(UpdateTabs);
@@ -30,6 +35,7 @@ public class DebuggerTool : MonoBehaviour
 #endif
     }
 
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
     void UpdateTabs(object infos)
     {
         if(infos != null)
@@ -66,6 +72,7 @@ public class DebuggerTool : MonoBehaviour
     public void SetActiveDebugger(bool state)
     {
         m_devToolNavigator.SetActiveDebugger(state);
-        isActive = state;
+        m_isActive = state;
     }
+#endif
 }
