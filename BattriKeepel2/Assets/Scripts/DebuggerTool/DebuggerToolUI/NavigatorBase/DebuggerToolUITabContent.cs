@@ -5,6 +5,7 @@ public class DebuggerToolUITabContent : MonoBehaviour
 {
     [SerializeField] Transform m_fieldParent;
     [SerializeField] DebuggerToolUIFieldToggle m_toggleField;
+    [SerializeField] DebuggerToolUIFieldDouble m_doubleField;
 
     List<DebuggerToolUIField> fields = new();
 
@@ -17,7 +18,13 @@ public class DebuggerToolUITabContent : MonoBehaviour
             fields.Add(toggle);
             return;
         }
-        //else if()
+        else if(fieldType == typeof(double))
+        {
+            DebuggerToolUIFieldDouble doubleField = Instantiate(m_doubleField, m_fieldParent);
+            doubleField.Init(property, script, script.GetType().FullName + " " + property.Name);
+            fields.Add(doubleField);
+            return;
+        }
 
         Log.Warn<DebuggerLogger>("given field type is unknown : " + fieldType.Name);
     }
