@@ -1,19 +1,32 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using Game.AttackSystem.Attacks;
 using Game.Entities;
-using UnityEngine;
 
 namespace Game.Managers
 {
-    public class AttackManager : GameEntityMonoBehaviour
+    public class AttackManager
     {
-        [SerializeField] private bool isPlayer;
-        [SerializeField] private AttackSet attacks;
+        private bool _isPlayer;
+        private AttackSet _attacks;
+        private Entity _entityAttached;
+        
+        private CancellationTokenSource _cancellationTokenSource;
+        private bool _isAbleToAttack;
 
-        public void InitAttacking()
+        public void InitAttacking(bool isPlayer, AttackSet attackSet, Entity entityAttached)
         {
-            StartCoroutine(DelayedAttacks(attacks.BasicAttack));
+            _isPlayer = isPlayer;
+            _attacks = attackSet;
+            _entityAttached = entityAttached;
+            
+            StartAttacking();
+        }
+        
+        private void StartAttacking()
+        {
+            DelayedAttacks(_attacks.BasicAttack);
         }
 
         private Entity GetNearestTarget()
@@ -32,12 +45,27 @@ namespace Game.Managers
             }
             return nearestTarget;
         }
-
-        private IEnumerator DelayedAttacks(Attack attack)
+        
+        private async void DelayedAttacks(Attack attack)
         {
-            yield return new WaitForSeconds(attack.BaseCooldown);
+            _cancellationTokenSource = new CancellationTokenSource();
 
-            attack.RaiseAttack(GetNearestTarget());
+            try
+            {
+                await Task.Delay(attack.BaseCooldown * 1000, _cancellationTokenSource.Token);
+                _cancellationTokenSource.Dispose();
+                _cancellationTokenSource = null;
+
+                if (!_isPlayer || !_isAbleToAttack) return;
+                
+                attack.RaiseAttack(GetNearestTarget());
+                DelayedAttacks(attack);
+            }
+            catch
+            {
+                _cancellationTokenSource?.Dispose();
+                _cancellationTokenSource = null;
+            }
         }
     }
 }

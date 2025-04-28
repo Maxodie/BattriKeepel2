@@ -28,9 +28,9 @@ namespace Game.AttackSystem.Bullet
             damage = bulletData.Damage;
         }
 
-        private void OnBulletCollision(Transform transformCollision)
+        private void OnBulletCollision(Hit hitCollision)
         {
-            Entity collisionEntity = transformCollision.GetComponent<Entity>();
+            Entity collisionEntity = hitCollision.hitObject.GetComponent<Entity>();
 
             if ((owner.entityType == Entity.EntityType.Enemy || owner.entityType == Entity.EntityType.Boss) && (collisionEntity.entityType == Entity.EntityType.Enemy || collisionEntity.entityType == Entity.EntityType.Boss)) return;
             if (owner.entityType == Entity.EntityType.Player && collisionEntity.entityType == Entity.EntityType.Player) return;
