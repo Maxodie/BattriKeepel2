@@ -8,7 +8,6 @@ public class LevelManager : GameManager {
     Player m_player;
 
     [Header("Boss")]
-    [SerializeField] SO_BossGraphicsScriptableObject m_bossData;
     [SerializeField] Transform m_bossSpawnPoint;
     BossEntity m_boss;
 
@@ -22,7 +21,7 @@ public class LevelManager : GameManager {
         m_collisionManager.SetParameters(m_collisionManagerData);
 
         m_player = new Player(m_playerData, m_playerTransform);
-        m_boss = new BossEntity(m_bossData, m_bossSpawnPoint);
+        m_boss = new BossEntity(GameInstance.GetCurrentBossLevel().bossData, m_bossSpawnPoint);
     }
 
     protected override void Update()

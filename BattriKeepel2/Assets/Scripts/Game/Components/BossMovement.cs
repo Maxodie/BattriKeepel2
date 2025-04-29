@@ -7,19 +7,31 @@ public class BossMovement : Movement
 {
     int m_currentLocation = 0;
     BossGraphicsEntity m_bossGraphics;
-    float m_speed = 0;
+    SO_BossMovementData m_data;
 
-    public BossMovement(BossGraphicsEntity bossGraphics, float speed)
+    bool m_isMoving = false;
+    Vector2 m_targetPosition;
+    float m_positionThreashold = 0.2f;
+
+    float m_waitTimer = 0.0f;
+
+    public BossMovement(BossGraphicsEntity bossGraphics, SO_BossMovementData data)
     {
         m_bossGraphics = bossGraphics;
         m_currentLocation = 0;
-        m_speed = speed;
+        m_data = data;
     }
 
     public void Update()
     {
-        Vector2 nextLocation = m_bossGraphics.locationPoints[m_currentLocation].position;
-        Vector2 lerpPos = Vector2.Lerp(m_bossGraphics.transform.position, nextLocation, Time.deltaTime * m_speed);
+        if(!m_isMoving)
+        {
+            HandleWait();
+            return;
+        }
+
+        m_targetPosition = m_bossGraphics.locationPoints[m_currentLocation].position;
+        Vector2 lerpPos = Vector2.Lerp(m_bossGraphics.transform.position, m_targetPosition, Time.deltaTime * m_data.speed);
 
         HandleMovement(lerpPos);
     }
@@ -27,6 +39,19 @@ public class BossMovement : Movement
     public override void HandleMovement(Vector2 pos)
     {
         m_bossGraphics.SetPosition(pos);
+
+        m_isMoving = Vector2.Distance(m_bossGraphics.transform.position, m_targetPosition) > m_positionThreashold;
+    }
+
+    public void HandleWait()
+    {
+        m_waitTimer += Time.deltaTime;
+
+        if(m_waitTimer >= m_data.waitForNextPosDuration)
+        {
+            m_isMoving = true;
+            m_waitTimer = 0.0f;
+        }
     }
 
     void SetupNextLocationPoint()

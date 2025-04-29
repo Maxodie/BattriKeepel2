@@ -5,18 +5,18 @@ using Components;
 
 public class BossEntity : Entity
 {
-    SO_BossGraphicsScriptableObject m_data;
+    SO_BossScriptableObject m_data;
     BossGraphicsEntity m_bossGraphics;
 
     Hitbox m_hitBox;
     BossMovement m_movement;
 
-    public BossEntity(SO_BossGraphicsScriptableObject data, Transform spawnPoint)
+    public BossEntity(SO_BossScriptableObject data, Transform spawnPoint)
     {
         m_data = data;
 
         m_bossGraphics = GraphicsManager.Get().GenerateVisualInfos<BossGraphicsEntity>(data.bossGraphicsEntity, spawnPoint, this);
-        m_movement = new BossMovement(m_bossGraphics, m_data.speed);
+        m_movement = new BossMovement(m_bossGraphics, m_data.movementData);
 
         m_hitBox = m_data.hitbox;
         m_hitBox.Init(m_bossGraphics.transform);
