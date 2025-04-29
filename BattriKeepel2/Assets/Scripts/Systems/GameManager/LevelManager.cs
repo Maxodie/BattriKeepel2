@@ -28,6 +28,7 @@ public class LevelManager : GameManager {
     protected override void Update()
     {
         m_player.Update();
+        m_boss.Update();
         m_collisionManager.Update();
     }
 

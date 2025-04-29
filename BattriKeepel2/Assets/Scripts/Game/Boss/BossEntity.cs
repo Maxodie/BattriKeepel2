@@ -9,17 +9,24 @@ public class BossEntity : Entity
     BossGraphicsEntity m_bossGraphics;
 
     Hitbox m_hitBox;
+    BossMovement m_movement;
 
     public BossEntity(SO_BossGraphicsScriptableObject data, Transform spawnPoint)
     {
         m_data = data;
 
         m_bossGraphics = GraphicsManager.Get().GenerateVisualInfos<BossGraphicsEntity>(data.bossGraphicsEntity, spawnPoint, this);
+        m_movement = new BossMovement(m_bossGraphics, m_data.speed);
 
         m_hitBox = m_data.hitbox;
         m_hitBox.Init(m_bossGraphics.transform);
 
         UpdateVisualHealth();
+    }
+
+    public void Update()
+    {
+        m_movement.Update();
     }
 
     public override void TakeDamage(Bullet bullet)
