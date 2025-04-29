@@ -24,7 +24,7 @@ public class DebuggerTool : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
 
-        Instantiate(inGameLogger, transform);
+        Instantiate(inGameLogger, m_devToolNavigator.transform);
 
         GenerateDebuggerTab<DebuggertoolUIRTProfiler>();
         m_devToolNavigator.GenerateField<DebuggertoolUIRTProfiler>(m_rtProfiler, true);

@@ -7,11 +7,15 @@ public class InGameLogger : MonoBehaviour
 
     void Awake()
     {
-
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
+        Log.SetInGameLogger(this);
+#endif
     }
 
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
     public void SendLog(string text)
     {
         logText.text += text + "\n\n";
     }
+#endif
 }
