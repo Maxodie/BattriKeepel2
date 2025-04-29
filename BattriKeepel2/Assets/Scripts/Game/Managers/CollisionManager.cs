@@ -82,6 +82,9 @@ public class CollisionManager {
                         Hit hit = new Hit(FindContactPoint(c_hitbox, o_hitbox), o_hitbox.GetTransform());
                         c_hitbox.lastHitObject = hit;
                         m_queue.Enqueue(new Tuple<Hitbox, Hit>(c_hitbox, hit));
+                        Hit hit1 = new Hit(FindContactPoint(o_hitbox, c_hitbox), c_hitbox.GetTransform());
+                        o_hitbox.lastHitObject = hit1;
+                        m_queue.Enqueue(new Tuple<Hitbox, Hit>(o_hitbox, hit1));
                     }
                 }
             }

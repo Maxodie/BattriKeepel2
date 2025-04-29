@@ -52,16 +52,19 @@ namespace GameEntity
                 Vector2 hitBoxCenter = wall.m_hitBox.GetPosition();
 
                 Vector2 directionToCollision = (collisionPoint - playerPosition).normalized;
-                float depth = m_hitBox.GetDiameter();
-                depth -= Vector2.Distance(hitBoxCenter, collisionPoint);
-                Log.Info(directionToCollision);
-                Log.Info(depth);
-
+                float depth = 0;
+                if (wall.m_hitBox.GetHitboxType() == HitboxType.Circle) {
+                    depth = m_hitBox.GetDiameter();
+                    depth -= Vector2.Distance(hitBoxCenter, collisionPoint);
+                } else {
+                    depth = m_hitBox.GetDiameter();
+                    Vector2 maxPoint = m_hitBox.GetPosition() + directionToCollision * m_hitBox.GetDiameter() / 2;
+                    Log.Info(Vector2.Distance(collisionPoint, maxPoint)); // hitbox.getclosestpoint please omg it's all i need lmao
+                    depth -= Vector2.Distance(collisionPoint, maxPoint);
+                }
                 if (depth <= 0.001 && depth >= -0.001) {
                     depth = 0;
                 }
-
-                // do not check center for boxes, otherwise depth is crazy broken
 
                 AdjustVelocityToAvoidCollision(directionToCollision, depth / 2);
             }
