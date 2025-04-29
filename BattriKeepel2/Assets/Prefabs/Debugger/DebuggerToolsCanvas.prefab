@@ -383,6 +383,7 @@ GameObject:
   - component: {fileID: 604062786670251831}
   - component: {fileID: 2014776799938462025}
   - component: {fileID: 3960723892771249285}
+  - component: {fileID: -3386762038489636853}
   m_Layer: 5
   m_Name: DebuggerToolsCanvas
   m_TagString: Untagged
@@ -490,6 +491,21 @@ MonoBehaviour:
   m_navigationTabTransform: {fileID: 794667243099097265}
   m_tabContentTransform: {fileID: 642803158300471054}
   closeBtn: {fileID: 7869077899164392476}
+--- !u!114 &-3386762038489636853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4861056209878030545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73024757a353fe8478b67231eca5c829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConformX: 1
+  ConformY: 1
+  Logging: 0
 --- !u!1 &6951216696286111150
 GameObject:
   m_ObjectHideFlags: 0

@@ -286,6 +286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_devToolNavigatorPrefab: {fileID: 3960723892771249285, guid: 8b5238ebdec3ed44797db32cb21eb968, type: 3}
+  inGameLogger: {fileID: 4666531980559855061, guid: a65f9a286fa35fe49b9b17d216400773, type: 3}
 --- !u!4 &468175079
 Transform:
   m_ObjectHideFlags: 0

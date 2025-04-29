@@ -18,6 +18,7 @@ public class LevelManager : GameManager {
 #if UNITY_EDITOR
     [Header("Debug Data")]
     [SerializeField] SO_BossScriptableObject bossDebugData;
+    [SerializeField] SO_PlayerData playerDebugData;
 #endif
 
     protected override void Awake()
@@ -27,17 +28,37 @@ public class LevelManager : GameManager {
 
         m_player = new Player(m_playerData, m_playerTransform);
 
+        if(GameInstance.GetCurrentBossLevel())
+        {
+            m_boss = new BossEntity(GameInstance.GetCurrentBossLevel().bossData, m_bossSpawnPoint);
+        }
+        else
+        {
 #if UNITY_EDITOR
-        m_boss = new BossEntity(bossDebugData, m_bossSpawnPoint);
-#else
-        m_boss = new BossEntity(GameInstance.GetCurrentBossLevel().bossData, m_bossSpawnPoint);
+            m_boss = new BossEntity(bossDebugData, m_bossSpawnPoint);
+#elif DEVELOPMENT_BUILD
+            Log.Error<GameManagerLogger>("no SO_BossScriptableObject in GameInstance. debug data has been taken");
 #endif
+        }
+
+        if(GameInstance.GetCurrentPlayerData())
+        {
+            m_player = new Player(GameInstance.GetCurrentPlayerData(), m_playerTransform);
+        }
+        else
+        {
+#if UNITY_EDITOR
+            m_player = new Player(playerDebugData, m_playerTransform);
+#elif DEVELOPMENT_BUILD
+            Log.Error<GameManagerLogger>("no SO_BossScriptableObject in GameInstance. debug data has been taken");
+#endif
+        }
     }
 
     protected override void Update()
     {
         m_player.Update();
-        //m_boss.Update();
+        m_boss.Update();
         m_collisionManager.Update();
     }
 

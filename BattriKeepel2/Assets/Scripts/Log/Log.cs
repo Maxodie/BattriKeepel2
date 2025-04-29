@@ -48,6 +48,7 @@ public class DefaultLogger: Logger
 
 public static class Log
 {
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
     public static int s_cacaCount = 0;
     static StackTrace stackTrace = new StackTrace();
     static Dictionary<string, int> s_cacaCountDic = new();
@@ -61,6 +62,9 @@ public static class Log
     static string s_errorColor = "#e51f1f";
     static string s_loggerColor = "#7decf0";
 
+    static InGameLogger s_inGameLogger;
+#endif
+
 
     static Log()
     {
@@ -70,9 +74,14 @@ public static class Log
 #endif
     }
 
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
+    public static void SetInGameLogger(InGameLogger inGamelogger)
+    {
+        s_inGameLogger = inGamelogger;
+    }
+
     public static Logger CreateLogger<T>() where T: Logger, new()
     {
-#if DEVELOPMENT_BUILD || UNITY_EDITOR
         Logger logger = m_loggers.Find(delegate(Logger item){ return item is T; });
         if(logger == null)
         {
@@ -87,8 +96,8 @@ public static class Log
             Log.Error($"Logger of type : {typeof(T)} already exist");
             return null;
         }
-#endif
     }
+#endif
 
     public static void DestroyLogger<T>() where T: Logger
     {
@@ -222,8 +231,13 @@ public static class Log
                 }
             }
 
-            UnityEngine.Debug.unityLogger.Log(logType, $"<color={s_loggerColor}>[{logger.GetType().FullName}]</color> <{color}>{msg}</color>");
+            string finalLog = $"<color={s_loggerColor}>[{logger.GetType().FullName}]</color> <{color}>{msg}</color>";
+            UnityEngine.Debug.unityLogger.Log(logType, finalLog);
+            if(s_inGameLogger)
+            {
+                s_inGameLogger.SendLog(finalLog);
+            }
         }
-    }
 #endif
+    }
 }

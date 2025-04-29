@@ -10,6 +10,8 @@ public class DebuggerTool : MonoBehaviour
     List<System.Type> m_activeUITools = new List<System.Type>();
     bool m_isActive = true;
     ProfilerStats m_rtProfiler = new();
+
+    [SerializeField] InGameLogger inGameLogger;
 #endif
 
     void Awake()
@@ -21,6 +23,8 @@ public class DebuggerTool : MonoBehaviour
             m_devToolNavigator.Init(this);
             DontDestroyOnLoad(gameObject);
         }
+
+        Instantiate(inGameLogger, transform);
 
         GenerateDebuggerTab<DebuggertoolUIRTProfiler>();
         m_devToolNavigator.GenerateField<DebuggertoolUIRTProfiler>(m_rtProfiler, true);

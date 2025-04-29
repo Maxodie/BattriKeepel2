@@ -14,6 +14,8 @@ public class BossEntity : Entity
     public BossEntity(SO_BossScriptableObject data, Transform spawnPoint)
     {
         m_data = data;
+        MaxHealth = m_data.health;
+        Health = MaxHealth;
 
         m_bossGraphics = GraphicsManager.Get().GenerateVisualInfos<BossGraphicsEntity>(data.bossGraphicsEntity, spawnPoint, this);
         m_bossGraphics.ComputeLocations();

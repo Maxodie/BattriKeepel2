@@ -63,9 +63,9 @@ public class BossMovement : Movement
 
     void SetupNextLocationPoint()
     {
-        Log.Info<BossLogger>("boss is ready to move");
         m_isMoving = true;
         m_currentLocation = GetNextRandomLocationID();
+        Log.Info<BossLogger>("boss is ready to move to " + m_currentLocation);
     }
 
     int GetNextRandomLocationID()
