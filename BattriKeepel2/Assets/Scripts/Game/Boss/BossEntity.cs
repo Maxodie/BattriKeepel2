@@ -16,6 +16,8 @@ public class BossEntity : Entity
         m_data = data;
 
         m_bossGraphics = GraphicsManager.Get().GenerateVisualInfos<BossGraphicsEntity>(data.bossGraphicsEntity, spawnPoint, this);
+        m_bossGraphics.ComputeLocations();
+
         m_movement = new BossMovement(m_bossGraphics, m_data.movementData);
 
         m_hitBox = m_data.hitbox;

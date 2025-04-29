@@ -15,13 +15,23 @@ public class LevelManager : GameManager {
     [SerializeField] SO_CollisionManagerData m_collisionManagerData;
     CollisionManager m_collisionManager;
 
+#if UNITY_EDITOR
+    [Header("Debug Data")]
+    [SerializeField] SO_BossScriptableObject bossDebugData;
+#endif
+
     protected override void Awake()
     {
         m_collisionManager = CollisionManager.GetInstance();
         m_collisionManager.SetParameters(m_collisionManagerData);
 
         m_player = new Player(m_playerData, m_playerTransform);
-        //m_boss = new BossEntity(GameInstance.GetCurrentBossLevel().bossData, m_bossSpawnPoint);
+
+#if UNITY_EDITOR
+        m_boss = new BossEntity(bossDebugData, m_bossSpawnPoint);
+#else
+        m_boss = new BossEntity(GameInstance.GetCurrentBossLevel().bossData, m_bossSpawnPoint);
+#endif
     }
 
     protected override void Update()

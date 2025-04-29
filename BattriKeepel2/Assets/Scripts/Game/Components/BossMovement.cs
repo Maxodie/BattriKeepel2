@@ -1,5 +1,10 @@
 using UnityEngine;
 
+public class BossLogger : Logger
+{
+
+}
+
 namespace Components
 {
 
@@ -20,6 +25,8 @@ public class BossMovement : Movement
         m_bossGraphics = bossGraphics;
         m_currentLocation = 0;
         m_data = data;
+
+        SetupNextLocationPoint();
     }
 
     public void Update()
@@ -30,7 +37,7 @@ public class BossMovement : Movement
             return;
         }
 
-        m_targetPosition = m_bossGraphics.locationPoints[m_currentLocation].position;
+        m_targetPosition = m_bossGraphics.locationPoints[m_currentLocation];
         Vector2 lerpPos = Vector2.Lerp(m_bossGraphics.transform.position, m_targetPosition, Time.deltaTime * m_data.speed);
 
         HandleMovement(lerpPos);
@@ -49,13 +56,15 @@ public class BossMovement : Movement
 
         if(m_waitTimer >= m_data.waitForNextPosDuration)
         {
-            m_isMoving = true;
+            SetupNextLocationPoint();
             m_waitTimer = 0.0f;
         }
     }
 
     void SetupNextLocationPoint()
     {
+        Log.Info<BossLogger>("boss is ready to move");
+        m_isMoving = true;
         m_currentLocation = GetNextRandomLocationID();
     }
 
@@ -66,7 +75,7 @@ public class BossMovement : Movement
             int newLocationID = m_currentLocation;
             while(newLocationID == m_currentLocation)
             {
-                Random.Range(0, m_bossGraphics.locationPoints.Length);
+                newLocationID = Random.Range(0, m_bossGraphics.locationPoints.Length);
             }
             return newLocationID;
         }

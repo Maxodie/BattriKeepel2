@@ -7,9 +7,19 @@ public class BossGraphicsEntity : GameEntityGraphics
     [SerializeField] SpriteRenderer bossGraphics;
     [SerializeField] Image healthFill;
 
-    public Transform[] locationPoints;
+    [SerializeField] Transform[] transformPoints;
+    [HideInInspector] public Vector2[] locationPoints;
 
     BossMovement m_movement;
+
+    public void ComputeLocations()
+    {
+        locationPoints = new Vector2[transformPoints.Length];
+        for(int i = 0; i < transformPoints.Length; i++)
+        {
+            locationPoints[i] = transformPoints[i].position;
+        }
+    }
 
     public void SetVisual(Sprite visual)
     {
