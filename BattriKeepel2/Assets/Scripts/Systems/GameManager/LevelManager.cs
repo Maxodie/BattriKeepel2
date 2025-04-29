@@ -2,22 +2,32 @@ using GameEntity;
 using UnityEngine;
 
 public class LevelManager : GameManager {
-    [SerializeField] Player player;
-    [SerializeField] SO_PlayerData playerData;
-    [SerializeField] Transform playerTransform;
-    private CollisionManager m_collisionManager;
+    [Header("Player")]
+    [SerializeField] SO_PlayerData m_playerData;
+    [SerializeField] Transform m_playerTransform;
+    Player m_player;
+
+    [Header("Boss")]
+    [SerializeField] SO_BossGraphicsScriptableObject m_bossData;
+    [SerializeField] Transform m_bossSpawnPoint;
+    BossEntity m_boss;
+
+    [Header("Collisions")]
     [SerializeField] SO_CollisionManagerData m_collisionManagerData;
+    CollisionManager m_collisionManager;
 
     protected override void Awake()
     {
-        player = new Player(playerData, playerTransform);
         m_collisionManager = CollisionManager.GetInstance();
         m_collisionManager.SetParameters(m_collisionManagerData);
+
+        m_player = new Player(m_playerData, m_playerTransform);
+        m_boss = new BossEntity(m_bossData, m_bossSpawnPoint);
     }
 
     protected override void Update()
     {
-        player.Update();
+        m_player.Update();
         m_collisionManager.Update();
     }
 

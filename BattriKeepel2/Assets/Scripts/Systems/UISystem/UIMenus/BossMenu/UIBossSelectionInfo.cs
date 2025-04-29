@@ -8,12 +8,15 @@ public class UIBossSelectionInfo : UIMenuBase
     [SerializeField] Button bossStartButton;
     [SerializeField] TMP_Text bossText;
 
+    SO_BossSelectionInfos m_data;
+
     public void Init(SO_BossSelectionInfos data)
     {
-        bossMainVisual.sprite = data.bossMainVisual;
+        m_data = data;
+        bossMainVisual.sprite = m_data.bossMainVisual;
 
         bossStartButton.onClick.AddListener(OnStartBossBtnClick);
-        SetBossTesxtInfos(data);
+        SetBossTesxtInfos(m_data);
     }
 
     void SetBossTesxtInfos(SO_BossSelectionInfos data)
@@ -23,7 +26,7 @@ public class UIBossSelectionInfo : UIMenuBase
 
     void OnStartBossBtnClick()
     {
-        Log.Info("start boss");
+        LevelLoader.LoadLevel(m_data.levelData);
         //start anim
     }
 

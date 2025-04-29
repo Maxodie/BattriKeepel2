@@ -64,12 +64,15 @@ public static class Log
 
     static Log()
     {
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
         m_loggers = new();
         Log.CreateLogger<DefaultLogger>();
+#endif
     }
 
     public static Logger CreateLogger<T>() where T: Logger, new()
     {
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
         Logger logger = m_loggers.Find(delegate(Logger item){ return item is T; });
         if(logger == null)
         {
@@ -84,11 +87,12 @@ public static class Log
             Log.Error($"Logger of type : {typeof(T)} already exist");
             return null;
         }
-
+#endif
     }
 
     public static void DestroyLogger<T>() where T: Logger
     {
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
         Logger logger = m_loggers.Find(delegate(Logger item){ return item is T; });
         if(logger != null)
         {
@@ -99,10 +103,12 @@ public static class Log
         {
             Log.Error($"Could not find Logger of type : {typeof(T)}");
         }
+#endif
     }
 
     public static void DeactivateLogger<T>() where T: Logger, new()
     {
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
         Logger logger = m_loggers.Find(delegate(Logger item){ return item is T; });
 
         if(logger != null)
@@ -114,60 +120,82 @@ public static class Log
         {
             Log.Warn<T>($"Could not find logger of type : {typeof(T)}");
         }
+#endif
     }
 
     public static void Info(object msg=null)
     {
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
         LogToLogger<DefaultLogger>(LogType.Log, s_traceColor, msg);
+#endif
     }
 
     public static void Info<T>(object msg=null) where T: Logger, new()
     {
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
         LogToLogger<T>(LogType.Log, s_traceColor, msg);
+#endif
     }
 
     public static void Trace<T>(object msg=null) where T: Logger, new()
     {
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
         LogToLogger<T>(LogType.Log, s_traceColor, msg);
+#endif
     }
 
     public static void Trace(object msg=null)
     {
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
         LogToLogger<DefaultLogger>(LogType.Log, s_traceColor, msg);
+#endif
     }
 
     public static void Success<T>(object msg=null) where T: Logger, new()
     {
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
         LogToLogger<T>(LogType.Log, s_successColor, msg);
+#endif
     }
 
     public static void Success(object msg=null)
     {
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
         LogToLogger<DefaultLogger>(LogType.Log, s_successColor, msg);
+#endif
     }
 
     public static void Warn<T>(object msg=null) where T: Logger, new()
     {
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
         LogToLogger<T>(LogType.Warning, s_warnColor, msg);
+#endif
     }
 
     public static void Warn(object msg=null)
     {
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
         LogToLogger<DefaultLogger>(LogType.Warning, s_warnColor, msg);
+#endif
     }
 
     public static void Error<T>(object msg=null) where T: Logger, new()
     {
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
         LogToLogger<T>(LogType.Error, s_errorColor, msg);
+#endif
     }
 
     public static void Error(object msg=null)
     {
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
         LogToLogger<DefaultLogger>(LogType.Error, s_errorColor, msg);
+#endif
     }
 
     static void LogToLogger<T>(LogType logType, string color, object msg) where T: Logger, new()
     {
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
         Logger logger = m_loggers.Find(delegate(Logger item){ return item is T; });
 
         if(logger == null)
@@ -197,4 +225,5 @@ public static class Log
             UnityEngine.Debug.unityLogger.Log(logType, $"<color={s_loggerColor}>[{logger.GetType().FullName}]</color> <{color}>{msg}</color>");
         }
     }
+#endif
 }
