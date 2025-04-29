@@ -26,7 +26,7 @@ public class UIBossSelectionInfo : UIMenuBase
 
     void OnStartBossBtnClick()
     {
-        LevelLoader.LoadLevel(m_data.levelData);
+        LevelLoader.LoadBossLevel(m_data.levelData);
         //start anim
     }
 

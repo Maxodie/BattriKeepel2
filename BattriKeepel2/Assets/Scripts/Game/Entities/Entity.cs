@@ -25,6 +25,26 @@ namespace Game.Entities
 
         public abstract void TakeDamage(Bullet bullet);
 
+        public virtual void HealthCheck()
+        {
+            if(Health <= 0)
+            {
+                Health =  0;
+                Die();
+            }
+            else if(Health > MaxHealth)
+            {
+                Health = MaxHealth;
+            }
+        }
+
+        public abstract void Die();
+
+        protected float CalculateBaseDamages(Bullet bullet)
+        {
+            return bullet.data.Damage;
+        }
+
         public virtual float GetHealth()
         {
             return Health;

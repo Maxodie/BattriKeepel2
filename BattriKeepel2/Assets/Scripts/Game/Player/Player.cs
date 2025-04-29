@@ -2,6 +2,7 @@ using Components;
 using Game.Entities;
 using Inputs;
 using UnityEngine;
+using Game.AttackSystem.Bullet;
 
 namespace GameEntity
 {
@@ -42,6 +43,16 @@ namespace GameEntity
 
         public bool IsScreenPressed() {
             return m_movement.IsScreenPressed();
+        }
+
+        public override void TakeDamage(Bullet bullet)
+        {
+
+        }
+
+        public override void Die()
+        {
+
         }
 
         private void HandleCollisions(Hit other) {

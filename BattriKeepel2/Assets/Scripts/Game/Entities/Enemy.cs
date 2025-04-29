@@ -11,7 +11,12 @@ namespace Game.Entities
 
         public override void TakeDamage(Bullet bullet)
         {
-            
+
+        }
+
+        public override void Die()
+        {
+
         }
     }
 }

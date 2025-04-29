@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b509865c35ba7b46b9b896f091497f6, type: 3}
-  m_Name: BossGraphicsData
+  m_Name: BossGraphicsData2
   m_EditorClassIdentifier: 
   bossGraphicsEntity: {fileID: 2208424763771030420, guid: 13dc40b671c18fe4f8b3d729b89e36a6, type: 3}
+  movementData: {fileID: 11400000, guid: bb43f774e48adbe42bb4ecbd8387bb12, type: 2}
   hitbox:
     m_type: 0
     m_size: 1

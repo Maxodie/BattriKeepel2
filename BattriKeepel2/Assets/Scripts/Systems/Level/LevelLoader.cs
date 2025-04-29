@@ -2,11 +2,22 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
-
 public static class LevelLoader
 {
     public static void LoadLevel(SO_LevelData data)
     {
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
+        if(data.GetType() == typeof(SO_BossLevelData))
+        {
+            Log.Error("You are trying to load a boss level as a level data. It will work but i don't want you to do it. Use 'LevelBossData' instead");
+        }
+#endif
+        LoadLevelID(data);
+    }
+
+    public static void LoadBossLevel(SO_BossLevelData data)
+    {
+        GameInstance.SetCurrentBossLevel(data);
         LoadLevelID(data);
     }
 

@@ -11,21 +11,19 @@ namespace Game.AttackSystem.Bullet
         private BulletBehaviour bulletBehaviour;
 
         private Entity owner;
-        private float speed;
-        private float damage;
 
         private BulletGraphics bulletGraphics;
+        public readonly BulletData data;
 
-        private void InitBullet(BulletData bulletData, Transform spawnTransform)
+        public Bullet(BulletData bulletData, Transform spawnTransform)
         {
-            bulletGraphics = GraphicsManager.Get().GenerateVisualInfos<BulletGraphics>(bulletData.BulletGraphics, spawnTransform, this, false);
+            data = bulletData;
+            bulletGraphics = GraphicsManager.Get().GenerateVisualInfos<BulletGraphics>(data.BulletGraphics, spawnTransform, this, false);
 
             hitbox.Init(bulletGraphics.transform);
             hitbox.BindOnCollision(OnBulletCollision);
 
-            bulletBehaviour = bulletData.BulletBehaviour;
-            speed = bulletData.Speed;
-            damage = bulletData.Damage;
+            bulletBehaviour = data.BulletBehaviour;
         }
 
         private void OnBulletCollision(Hit hitCollision)
@@ -40,7 +38,7 @@ namespace Game.AttackSystem.Bullet
 
         public float GetSpeed()
         {
-            return speed;
+            return data.Speed;
         }
 
         public BulletGraphics GetBulletGraphics()
@@ -55,7 +53,7 @@ namespace Game.AttackSystem.Bullet
     }
 
     [Serializable]
-    public struct BulletData
+    public class BulletData
     {
         public Entity Owner;
         public BulletBehaviour BulletBehaviour;

@@ -304,7 +304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.63247645, g: 0.41651833, b: 0.754717, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -572,6 +572,10 @@ PrefabInstance:
 
         FARM'
       objectReference: {fileID: 0}
+    - target: {fileID: 4908355346727214578, guid: 02f407b024fe8cc47995162ac4e4d928, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5190813666993519709, guid: 02f407b024fe8cc47995162ac4e4d928, type: 3}
       propertyPath: m_Name
       value: ImportantIdleButton
@@ -685,6 +689,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 337010791635728395}
     m_Modifications:
+    - target: {fileID: 4908355346727214578, guid: 02f407b024fe8cc47995162ac4e4d928, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5190813666993519709, guid: 02f407b024fe8cc47995162ac4e4d928, type: 3}
       propertyPath: m_Name
       value: ImportantStartButton
