@@ -58,17 +58,11 @@ namespace GameEntity
             if (wall != null) {
                 Vector2 playerPosition = transform.position;
                 Vector2 collisionPoint = other.hitPosition;
-                Vector2 hitBoxCenter = wall.m_hitBox.GetPosition();
 
                 Vector2 directionToCollision = (collisionPoint - playerPosition).normalized;
-                float depth = 0;
-                if (wall.m_hitBox.GetHitboxType() == HitboxType.Circle) {
-                    depth = m_hitBox.GetDiameter();
-                    depth -= Vector2.Distance(hitBoxCenter, collisionPoint);
-                } else {
-                    Vector2 maxPoint = m_hitBox.GetPosition() + directionToCollision * m_hitBox.GetDiameter() / 2;
-                    depth = Vector2.Distance(collisionPoint, m_hitBox.GetClosestPoint(wall.m_hitBox));
-                }
+
+                float depth = Vector2.Distance(collisionPoint, m_hitBox.GetClosestPoint(wall.m_hitBox));
+
                 if (depth <= 0.001 && depth >= -0.001) {
                     depth = 0;
                 }
