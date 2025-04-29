@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+using System.Threading;
 using Components;
 using Game.AttackSystem.Bullet;
 using Game.Entities;
@@ -41,7 +43,37 @@ namespace GameEntity
         private void BindActions() {
             m_inputManager.BindPosition(m_movement.OnPosition);
             m_inputManager.BindPress(m_movement.OnPress);
+            m_inputManager.BindTap(TapReceived);
             m_hitBox.BindOnCollision(HandleCollisions);
+        }
+
+        bool tapState = false;
+        CancellationTokenSource cts = new CancellationTokenSource();
+
+        private void TapReceived()
+        {
+            if (!tapState)
+            {
+                cts = new CancellationTokenSource();
+                Task.Run(() => TapTimer(cts.Token), cts.Token);
+                tapState = true;
+                return;
+            }
+
+            cts.Cancel();
+            tapState = false;
+            Log.Success("doubleTap");
+        }
+
+        private async Task TapTimer(CancellationToken token)
+        {
+            await Task.Delay(500, token);
+            if (!token.IsCancellationRequested)
+            {
+                tapState = false;
+                Log.Success("singleTap");
+                // call event (for the parry)
+            }
         }
 
         public void Update() {
