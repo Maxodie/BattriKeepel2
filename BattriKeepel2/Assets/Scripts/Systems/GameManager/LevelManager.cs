@@ -21,13 +21,13 @@ public class LevelManager : GameManager {
         m_collisionManager.SetParameters(m_collisionManagerData);
 
         m_player = new Player(m_playerData, m_playerTransform);
-        m_boss = new BossEntity(GameInstance.GetCurrentBossLevel().bossData, m_bossSpawnPoint);
+        //m_boss = new BossEntity(GameInstance.GetCurrentBossLevel().bossData, m_bossSpawnPoint);
     }
 
     protected override void Update()
     {
         m_player.Update();
-        m_boss.Update();
+        //m_boss.Update();
         m_collisionManager.Update();
     }
 

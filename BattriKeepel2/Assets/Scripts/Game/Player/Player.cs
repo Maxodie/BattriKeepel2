@@ -1,8 +1,8 @@
 using Components;
+using Game.AttackSystem.Bullet;
 using Game.Entities;
 using Inputs;
 using UnityEngine;
-using Game.AttackSystem.Bullet;
 
 namespace GameEntity
 {
@@ -18,6 +18,14 @@ namespace GameEntity
         public Player(SO_PlayerData data, Transform spawnPoint) {
             Init(data, spawnPoint);
             BindActions();
+        }
+
+        public override void TakeDamage(Bullet bullet) {
+
+        }
+
+        public override void Die() {
+
         }
 
         private void Init(SO_PlayerData data, Transform spawnPoint) {
@@ -45,16 +53,6 @@ namespace GameEntity
             return m_movement.IsScreenPressed();
         }
 
-        public override void TakeDamage(Bullet bullet)
-        {
-
-        }
-
-        public override void Die()
-        {
-
-        }
-
         private void HandleCollisions(Hit other) {
             Wall wall = other.hitObject.gameObject.GetComponent<Wall>();
             if (wall != null) {
@@ -68,10 +66,8 @@ namespace GameEntity
                     depth = m_hitBox.GetDiameter();
                     depth -= Vector2.Distance(hitBoxCenter, collisionPoint);
                 } else {
-                    depth = m_hitBox.GetDiameter();
                     Vector2 maxPoint = m_hitBox.GetPosition() + directionToCollision * m_hitBox.GetDiameter() / 2;
-                    Log.Info(Vector2.Distance(collisionPoint, maxPoint)); // hitbox.getclosestpoint please omg it's all i need lmao
-                    depth -= Vector2.Distance(collisionPoint, maxPoint);
+                    depth = Vector2.Distance(collisionPoint, m_hitBox.GetClosestPoint(wall.m_hitBox));
                 }
                 if (depth <= 0.001 && depth >= -0.001) {
                     depth = 0;
