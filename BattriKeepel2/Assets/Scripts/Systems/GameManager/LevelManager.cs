@@ -23,6 +23,7 @@ public class LevelManager : GameManager {
 
     protected override void Awake()
     {
+        MobileEffect.SetOnFlashlight(true);
         m_collisionManager = CollisionManager.GetInstance();
         m_collisionManager.SetParameters(m_collisionManagerData);
 
@@ -37,7 +38,7 @@ public class LevelManager : GameManager {
 #if UNITY_EDITOR
             m_boss = new BossEntity(bossDebugData, m_bossSpawnPoint);
 #elif DEVELOPMENT_BUILD
-            Log.Error<GameManagerLogger>("no SO_BossScriptableObject in GameInstance. debug data has been taken");
+            /*Log.Error<GameManagerLogger>("no SO_BossScriptableObject in GameInstance. debug data has been taken");*/
 #endif
         }
 
@@ -50,7 +51,7 @@ public class LevelManager : GameManager {
 #if UNITY_EDITOR
             m_player = new Player(playerDebugData, m_playerTransform);
 #elif DEVELOPMENT_BUILD
-            Log.Error<GameManagerLogger>("no SO_BossScriptableObject in GameInstance. debug data has been taken");
+            /*Log.Error<GameManagerLogger>("no SO_BossScriptableObject in GameInstance. debug data has been taken");*/
 #endif
         }
     }
