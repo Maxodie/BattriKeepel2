@@ -24,7 +24,10 @@ public class DebuggerTool : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
 
-        Instantiate(inGameLogger, m_devToolNavigator.transform);
+        InGameLogger loggerVisual = Instantiate(inGameLogger, m_devToolNavigator.transform);
+        loggerVisual.SetActiveLog(true);
+        m_devToolNavigator.reopenBtn.onClick.AddListener(() => {loggerVisual.SetActiveLog(true);});
+        m_devToolNavigator.closeBtn.onClick.AddListener(() => {loggerVisual.SetActiveLog(false);});
 
         GenerateDebuggerTab<DebuggertoolUIRTProfiler>();
         m_devToolNavigator.GenerateField<DebuggertoolUIRTProfiler>(m_rtProfiler, true);

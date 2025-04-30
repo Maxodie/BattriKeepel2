@@ -18,6 +18,11 @@ public class InGameLogger : MonoBehaviour
     }
 
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
+    public void SetActiveLog(bool state)
+    {
+        gameObject.SetActive(state);
+    }
+
     public void SendLog(string text)
     {
 
