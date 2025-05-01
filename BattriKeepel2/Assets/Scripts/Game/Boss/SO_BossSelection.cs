@@ -8,7 +8,7 @@ public class SO_BossSelectionInfos : SO_UIData
     public string bossName;
     public string bossDesc;
     public Color bossTitleColor;
-    public SO_BossLevelData levelData;
+    public SO_GameLevelData levelData;
 
     public override UIDataResult Init(Transform spawnParentTr)
     {

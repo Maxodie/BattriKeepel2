@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "BossLevelData", menuName = "Level/BossLevelData")]
-public class SO_BossLevelData : SO_LevelData
+[CreateAssetMenu(fileName = "GameLevelData", menuName = "Level/GameLevelData")]
+public class SO_GameLevelData : SO_LevelData
 {
-    public SO_BossScriptableObject bossData;
+    public SO_LevelPhase[] levelPhases;
 }

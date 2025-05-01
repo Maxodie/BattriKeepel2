@@ -7,6 +7,8 @@ public class LevelManager : GameManager {
     [SerializeField] Transform m_playerTransform;
     Player m_player;
 
+    [SerializeField] SO_GameLevelData m_gameLevelData;
+
     [Header("Boss")]
     [SerializeField] Transform m_bossSpawnPoint;
     BossEntity m_boss;
@@ -30,7 +32,7 @@ public class LevelManager : GameManager {
 
         if(GameInstance.GetCurrentBossLevel())
         {
-            m_boss = new BossEntity(GameInstance.GetCurrentBossLevel().bossData, m_bossSpawnPoint);
+            //m_boss = new BossEntity(GameInstance.GetCurrentBossLevel().bossData, m_bossSpawnPoint);
         }
         else
         {
