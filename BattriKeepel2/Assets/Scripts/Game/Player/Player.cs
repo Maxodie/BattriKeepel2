@@ -59,19 +59,18 @@ namespace GameEntity
                 tapState = true;
                 return;
             }
-
+            Log.Success("double tap");
             cts.Cancel();
             tapState = false;
-            Log.Success("doubleTap");
         }
 
         private async Task TapTimer(CancellationToken token)
         {
             await Task.Delay(500, token);
+            Log.Success("single tap");
             if (!token.IsCancellationRequested)
             {
                 tapState = false;
-                Log.Success("singleTap");
                 // call event (for the parry)
             }
         }
