@@ -7,7 +7,7 @@ public static class LevelLoader
     public static void LoadLevel(SO_LevelData data)
     {
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
-        if(data.GetType() == typeof(SO_BossLevelData))
+        if(data.GetType() == typeof(SO_GameLevelData))
         {
             Log.Error("You are trying to load a boss level as a level data. It will work but i don't want you to do it. Use 'LevelBossData' instead");
         }
@@ -15,7 +15,7 @@ public static class LevelLoader
         LoadLevelID(data);
     }
 
-    public static void LoadBossLevel(SO_BossLevelData data)
+    public static void LoadBossLevel(SO_GameLevelData data)
     {
         GameInstance.SetCurrentBossLevel(data);
         LoadLevelID(data);

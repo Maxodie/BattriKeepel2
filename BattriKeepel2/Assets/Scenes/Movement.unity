@@ -378,8 +378,11 @@ MonoBehaviour:
   m_gameInstance: {fileID: 11400000, guid: 7c4faeb2fa10cb048b959a18b6eb6c34, type: 2}
   m_playerData: {fileID: 11400000, guid: 877d9e96e4e15eb4bbaee650a8f2faed, type: 2}
   m_playerTransform: {fileID: 578242356}
+  m_gameLevelData: {fileID: 11400000, guid: fea9beb9519599446a8d55f0dd81e8ac, type: 2}
   m_bossSpawnPoint: {fileID: 0}
   m_collisionManagerData: {fileID: 11400000, guid: c476a2e185e96b84c8090e44772339ef, type: 2}
+  bossDebugData: {fileID: 0}
+  playerDebugData: {fileID: 0}
 --- !u!1 &742989849
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,7 +784,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.02, y: 5.9, z: 0}
-  m_LocalScale: {x: 100, y: 2.039275, z: 1}
+  m_LocalScale: {x: 26.16, y: 2.039275, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -905,7 +908,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.02, y: -5.75, z: 0}
-  m_LocalScale: {x: 100, y: 1.7570999, z: 1}
+  m_LocalScale: {x: 23.1, y: 1.7570999, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

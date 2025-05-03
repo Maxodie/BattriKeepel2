@@ -1,14 +1,14 @@
 #if UNITY_EDITOR
 using UnityEditor;
 
-[CustomEditor(typeof(SO_BossLevelData))]
+[CustomEditor(typeof(SO_GameLevelData))]
 public class SO_BossLevelDataEditor : Editor
 {
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
 
-        SO_BossLevelData script = (SO_BossLevelData)target;
+        SO_GameLevelData script = (SO_GameLevelData)target;
         SceneAsset oldScene = AssetDatabase.LoadAssetAtPath<SceneAsset>(script.path);
 
         SceneAsset newScene = EditorGUILayout.ObjectField("Scene Asset : ", oldScene, typeof(SceneAsset), false) as SceneAsset;
