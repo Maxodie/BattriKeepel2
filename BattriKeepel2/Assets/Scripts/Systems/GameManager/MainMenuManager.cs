@@ -13,6 +13,7 @@ public class MainMenuManager : GameManager
     protected override void OnUIManagerCreated()
     {
         UIDataResult mainMenu = UIManager.GenerateUIData(m_uiMainMenu, m_mainMenuCanvasTr);
+        MobileEffect.SetupPermissions();
         MobileEffect.VibrationEffect(MobileEffectVibration.BIG);
     }
 }

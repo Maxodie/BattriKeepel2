@@ -1,5 +1,6 @@
 using GameEntity;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelManager : GameManager {
     [Header("Player")]
@@ -23,7 +24,6 @@ public class LevelManager : GameManager {
 
     protected override void Awake()
     {
-        MobileEffect.SetOnFlashlight(true);
         m_collisionManager = CollisionManager.GetInstance();
         m_collisionManager.SetParameters(m_collisionManagerData);
 

@@ -1,6 +1,8 @@
 using UnityEngine;
+
+#if UNITY_ANDROID
 using UnityEngine.Android;
-using System.Collections;
+#endif
 
 public class MobileEffectLogger : Logger
 {
@@ -19,38 +21,27 @@ public static class MobileEffect
 #if UNITY_ANDROID && !UNITY_EDITOR
     static AndroidJavaClass m_unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
     static AndroidJavaObject m_currentActivity = m_unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+
     static AndroidJavaObject m_vibrator = m_currentActivity.Call<AndroidJavaObject>("getSystemService", "vibrator");
 
-    static AndroidJavaClass m_cameraClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-    static AndroidJavaObject m_camera = m_cameraClass.GetStatic<AndroidJavaObject>("currentActivity");
-    static AndroidJavaObject m_cameraService = m_camera.Call<AndroidJavaObject>("getSystemService", "camera");
-    static AndroidJavaObject m_cameraList = m_camera.Call<AndroidJavaObject>("getSystemService", "camera");
+    static AndroidJavaObject m_cameraService = m_currentActivity.Call<AndroidJavaObject>("getSystemService", "camera");
+    static string[] m_cameraIDList = m_cameraService.Call<string[]>("getCameraIdList");
 
 #else
-    static AndroidJavaClass m_unityPlayer;
-    static AndroidJavaObject m_currentActivity;
     static AndroidJavaObject m_vibrator;
 
-    static AndroidJavaClass m_cameraClass;
-    static AndroidJavaObject m_camera;
+    static string[] m_cameraIDList;
     static AndroidJavaObject m_cameraService;
 #endif
 
-    static bool m_hasPersmission = false;
-    public static WebCamDevice[] devices = WebCamTexture.devices;
+    static Awaitable m_flashWaitForEnd;
 
-    static void SetupPermissions()
+    public static void SetupPermissions()
     {
-        string[] perms = {Permission.Camera};
-        Permission.RequestUserPermissions(perms);
-    }
-
-    static void CheckPermissions()
-    {
-        if(!m_hasPersmission)
+        if(IsAndroid())
         {
-            SetupPermissions();
-            m_hasPersmission = true;
+            string[] perms = {Permission.Camera};
+            Permission.RequestUserPermissions(perms);
         }
     }
 
@@ -82,20 +73,36 @@ public static class MobileEffect
         if(IsAndroid())
         {
             m_vibrator.Call("cancel");
+            Log.Info<MobileEffectLogger>("cancel vibration");
         }
-        Log.Info<MobileEffectLogger>("cancel vibration ");
     }
 
-    public static void SetOnFlashlight(bool state)
+    public static void SetOnFlashlight(bool state, float durationS)
     {
-        CheckPermissions();
-
         if(IsAndroid())
         {
-                Log.Info<MobileEffectLogger>("active flashlight + " + devices.Length);
-                m_cameraService.Call("setTorchMode", 0, state ? true : false);
-            if(devices.Length != 0)
+            if(m_cameraIDList.Length != 0)
             {
+                m_cameraService.Call("setTorchMode", (m_cameraIDList.Length - 1).ToString(), state ? true : false);
+
+                if(m_flashWaitForEnd != null && !m_flashWaitForEnd.IsCompleted)
+                {
+                    m_flashWaitForEnd.Cancel();
+                }
+
+                m_flashWaitForEnd = WaitForFlashToEnd(durationS);
+            }
+        }
+    }
+
+    static async Awaitable WaitForFlashToEnd(float durationS)
+    {
+        await Awaitable.WaitForSecondsAsync(durationS);
+        if(IsAndroid())
+        {
+            if(m_cameraIDList.Length != 0)
+            {
+                m_cameraService.Call("setTorchMode", "0", false);
             }
         }
     }
