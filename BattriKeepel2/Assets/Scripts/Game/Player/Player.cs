@@ -5,6 +5,7 @@ using Game.AttackSystem.Bullet;
 using Game.Entities;
 using Inputs;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace GameEntity
 {
@@ -14,8 +15,13 @@ namespace GameEntity
         public Hitbox m_hitBox;
         private Transform transform;
         private PlayerGraphics m_playerGraphics;
+        private PlayerAttack m_attack;
 
         private Vector2 m_currentVel = new Vector2();
+
+        private UnityEvent m_singleTapEvent = new UnityEvent();
+        private UnityEvent m_doubleTapEvent = new UnityEvent();
+        private UnityEvent m_shakeEvent = new UnityEvent();
 
         public Player(SO_PlayerData data, Transform spawnPoint) {
             Init(data, spawnPoint);
@@ -38,6 +44,7 @@ namespace GameEntity
             transform = m_playerGraphics.transform;
             m_hitBox.Init(transform);
             m_movement.m_transform = transform;
+            m_attack = new PlayerAttack(data.attackData);
         }
 
         private void BindActions() {
@@ -45,11 +52,24 @@ namespace GameEntity
             m_inputManager.BindPress(m_movement.OnPress);
             m_inputManager.BindTap(TapReceived);
             m_hitBox.BindOnCollision(HandleCollisions);
+            BindDoubleTap(m_attack.SpecialAttack);
+            BindShake(m_attack.UltimateAttack);
+        }
+
+        private void BindSingleTap(UnityAction action) {
+            m_singleTapEvent.AddListener(action);
+        }
+
+        private void BindDoubleTap(UnityAction action) {
+            m_doubleTapEvent.AddListener(action);
+        }
+
+        private void BindShake(UnityAction action) {
+            m_shakeEvent.AddListener(action);
         }
 
         bool tapState = false;
         CancellationTokenSource cts = new CancellationTokenSource();
-
         private void TapReceived()
         {
             if (!tapState)
