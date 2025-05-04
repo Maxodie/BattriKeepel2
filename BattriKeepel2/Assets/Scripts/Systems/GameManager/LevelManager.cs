@@ -1,5 +1,6 @@
 using GameEntity;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelManager : GameManager {
     [Header("Player")]
@@ -7,7 +8,7 @@ public class LevelManager : GameManager {
     [SerializeField] Transform m_playerTransform;
     Player m_player;
 
-    [SerializeField] SO_GameLevelData m_gameLevelData;
+    /*[SerializeField] SO_GameLevelData m_gameLevelData;*/
 
     [Header("Collisions")]
     [SerializeField] SO_CollisionManagerData m_collisionManagerData;
@@ -25,13 +26,31 @@ public class LevelManager : GameManager {
 
         m_player = new Player(m_playerData, m_playerTransform);
 
-        if(GameInstance.GetCurrentPlayerData())
-        {
-            m_player = new Player(GameInstance.GetCurrentPlayerData(), m_playerTransform);
-        }
-        else
-        {
-        }
+        /*if(GameInstance.GetCurrentBossLevel())*/
+        /*{*/
+            /*m_boss = new BossEntity(GameInstance.GetCurrentBossLevel().bossData, m_bossSpawnPoint);*/
+        /*}*/
+        /*else*/
+        /*{*/
+#if UNITY_EDITOR
+            /*m_boss = new BossEntity(bossDebugData, m_bossSpawnPoint);*/
+#elif DEVELOPMENT_BUILD
+            /*Log.Error<GameManagerLogger>("no SO_BossScriptableObject in GameInstance. debug data has been taken");*/
+#endif
+        /*}*/
+
+        /*if(GameInstance.GetCurrentPlayerData())*/
+        /*{*/
+            /*m_player = new Player(GameInstance.GetCurrentPlayerData(), m_playerTransform);*/
+        /*}*/
+        /*else*/
+        /*{*/
+#if UNITY_EDITOR
+            /*m_player = new Player(playerDebugData, m_playerTransform);*/
+#elif DEVELOPMENT_BUILD
+            /*Log.Error<GameManagerLogger>("no SO_BossScriptableObject in GameInstance. debug data has been taken");*/
+#endif
+        /*}*/
     }
 
     protected override void Update()
