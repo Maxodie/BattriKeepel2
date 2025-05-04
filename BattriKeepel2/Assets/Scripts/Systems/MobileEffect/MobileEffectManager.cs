@@ -42,6 +42,7 @@ public static class MobileEffect
         {
             string[] perms = {Permission.Camera};
             Permission.RequestUserPermissions(perms);
+            Log.Info<MobileEffectLogger>("mobile effect permissions requested");
         }
     }
 
