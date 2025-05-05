@@ -5,6 +5,7 @@ public class SO_DialogData : ScriptableObject
 {
     public SO_NotificationProfile notificationProfile;
     public DialogSentence[] dialogSentences;
+    public float durationInTime;
 }
 
 [System.Serializable]
