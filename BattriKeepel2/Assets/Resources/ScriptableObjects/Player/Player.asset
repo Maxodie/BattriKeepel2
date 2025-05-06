@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5218a656c0b37d4e893f507e95ee2f6, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
-  playerGraphics: {fileID: 5993750878380200919, guid: 25469902a7057d2499f4d254badf93be, type: 3}
+  playerGraphics: {fileID: 5300341677794867543, guid: 25469902a7057d2499f4d254badf93be, type: 3}
   hitBox:
     m_type: 0
     m_size: 1
     m_dimensions: {x: 0, y: 0}
     isWall: 0
     m_offSet: {x: 0, y: 0}
-    lastHitObject: {fileID: 0}

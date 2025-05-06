@@ -35,7 +35,7 @@ namespace GameEntity
             m_hitBox = data.hitBox;
             m_playerGraphics = GraphicsManager.Get().GenerateVisualInfos<PlayerGraphics>(data.playerGraphics, spawnPoint, this);
             m_inputManager = m_playerGraphics.inputManager;
-            transform = m_playerGraphics.transform;
+            transform = m_playerGraphics.m_playerTransform;
             m_hitBox.Init(transform);
             m_movement.m_transform = transform;
         }

@@ -16,4 +16,6 @@ MonoBehaviour:
   dialogSentences:
   - title: boss 1
     content: "haha pr\xE9pare toi au combat"
+  - title: boss 1
+    content: "haha pr\xE9pare toi au combat"
   durationInTime: 1
