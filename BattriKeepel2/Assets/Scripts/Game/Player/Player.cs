@@ -11,14 +11,16 @@ namespace GameEntity
     public class Player : Entity {
         private InputManager m_inputManager;
         private PlayerMovement m_movement;
+        private CameraEffect m_cameraEffect;
         public Hitbox m_hitBox;
         private Transform transform;
         private PlayerGraphics m_playerGraphics;
+        private Transform m_cameraTransform;
 
         private Vector2 m_currentVel = new Vector2();
 
-        public Player(SO_PlayerData data, Transform spawnPoint) {
-            Init(data, spawnPoint);
+        public Player(SO_PlayerData data, Transform spawnPoint, Transform cameraTransform) {
+            Init(data, spawnPoint, cameraTransform);
             BindActions();
         }
 
@@ -30,13 +32,18 @@ namespace GameEntity
 
         }
 
-        private void Init(SO_PlayerData data, Transform spawnPoint) {
-            m_movement = new PlayerMovement();
-            m_hitBox = data.hitBox;
+        private void Init(SO_PlayerData data, Transform spawnPoint, Transform cameraTransform) {
             m_playerGraphics = GraphicsManager.Get().GenerateVisualInfos<PlayerGraphics>(data.playerGraphics, spawnPoint, this);
             m_inputManager = m_playerGraphics.inputManager;
             transform = m_playerGraphics.m_playerTransform;
+
+            m_cameraTransform = cameraTransform;
+            m_cameraEffect = new CameraEffect(m_cameraTransform, data.shakeAmount, data.shakeSpeed);
+
+            m_hitBox = data.hitBox;
             m_hitBox.Init(transform);
+
+            m_movement = new PlayerMovement();
             m_movement.m_transform = transform;
         }
 

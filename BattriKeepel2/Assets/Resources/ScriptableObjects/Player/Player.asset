@@ -19,3 +19,5 @@ MonoBehaviour:
     m_dimensions: {x: 0, y: 0}
     isWall: 0
     m_offSet: {x: 0, y: 0}
+  shakeAmount: 10
+  shakeSpeed: 0.1

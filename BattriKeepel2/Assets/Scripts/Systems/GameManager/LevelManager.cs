@@ -1,12 +1,12 @@
 using GameEntity;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class LevelManager : GameManager {
     [Header("Player")]
     [SerializeField] SO_PlayerData m_playerData;
     [SerializeField] Transform m_playerTransform;
     Player m_player;
+    [SerializeField] Transform m_cameraTr;
 
     /*[SerializeField] SO_GameLevelData m_gameLevelData;*/
 
@@ -24,7 +24,7 @@ public class LevelManager : GameManager {
         m_collisionManager = CollisionManager.GetInstance();
         m_collisionManager.SetParameters(m_collisionManagerData);
 
-        m_player = new Player(m_playerData, m_playerTransform);
+        m_player = new Player(m_playerData, m_playerTransform, m_cameraTr);
 
         /*if(GameInstance.GetCurrentBossLevel())*/
         /*{*/
