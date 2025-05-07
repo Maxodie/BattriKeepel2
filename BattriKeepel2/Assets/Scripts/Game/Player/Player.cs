@@ -44,7 +44,7 @@ namespace GameEntity
             transform = m_playerGraphics.transform;
             m_hitBox.Init(transform);
             m_movement.m_transform = transform;
-            m_attack = new PlayerAttack(data.attackData);
+            /*m_attack = new PlayerAttack(data.attackData);*/
         }
 
         private void BindActions() {
@@ -52,8 +52,8 @@ namespace GameEntity
             m_inputManager.BindPress(m_movement.OnPress);
             m_inputManager.BindTap(TapReceived);
             m_hitBox.BindOnCollision(HandleCollisions);
-            BindDoubleTap(m_attack.SpecialAttack);
-            BindShake(m_attack.UltimateAttack);
+            /*BindDoubleTap(m_attack.SpecialAttack);*/
+            /*BindShake(m_attack.UltimateAttack);*/
         }
 
         private void BindSingleTap(UnityAction action) {
