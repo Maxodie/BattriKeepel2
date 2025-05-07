@@ -9,7 +9,7 @@ namespace Game.AttackSystem.Attacks
         [Serializable]
         public class BaseAttack
         {
-            public UnityEvent<Entity> baseAttackEvent;
+            public UnityEvent baseAttackEvent;
         }
     }
 }

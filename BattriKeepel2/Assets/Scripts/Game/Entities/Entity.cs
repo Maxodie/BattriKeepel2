@@ -6,8 +6,8 @@ namespace Game.Entities
 {
     public abstract class Entity : IGameEntity
     {
-        private AttackSet attackSet;
-        private BulletData bulletData;
+        protected AttackSet attacks;
+        protected BulletData bulletData;
         private EntityGraphics entityGraphics;
         private AttackManager attackManager;
 
@@ -17,7 +17,7 @@ namespace Game.Entities
         protected float MaxHealth;
         protected float Health;
 
-        protected virtual void Init()
+        protected virtual void Init(AttackSet attackSet)
         {
             attackManager = new AttackManager();
             attackManager.InitAttacking(entityType == EntityType.Player, attackSet, this);

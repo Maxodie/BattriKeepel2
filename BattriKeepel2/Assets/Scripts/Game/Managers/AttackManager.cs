@@ -13,7 +13,7 @@ namespace Game.Managers
         private Entity _entityAttached;
         
         private CancellationTokenSource _cancellationTokenSource;
-        private bool _isAbleToAttack;
+        private bool _isAbleToAttack = true;
 
         public void InitAttacking(bool isPlayer, AttackSet attackSet, Entity entityAttached)
         {
@@ -28,23 +28,6 @@ namespace Game.Managers
         {
             DelayedAttacks(_attacks.BasicAttack);
         }
-
-        private Entity GetNearestTarget()
-        {
-            Entity nearestTarget = null;
-            float minDistance = float.MaxValue;
-
-            List<Entity> enemies = EnemyManager.Instance.currentEnemies;
-            foreach (Entity enemy in enemies)
-            {
-//              float distance = Vector2.Distance(transform.position, enemy.GetEntityGraphics().transform.position); // ça existe pas ta merde là jose nique bien tes morts
-                //if (distance > minDistance) continue;
-
-                nearestTarget = enemy;
-                //minDistance = distance;
-            }
-            return nearestTarget;
-        }
         
         private async void DelayedAttacks(Attack attack)
         {
@@ -58,7 +41,7 @@ namespace Game.Managers
 
                 if (!_isPlayer || !_isAbleToAttack) return;
                 
-                attack.RaiseAttack(GetNearestTarget());
+                attack.RaiseAttack();
                 DelayedAttacks(attack);
             }
             catch

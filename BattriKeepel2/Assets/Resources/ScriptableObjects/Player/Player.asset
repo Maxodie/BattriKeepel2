@@ -19,5 +19,11 @@ MonoBehaviour:
     m_dimensions: {x: 0, y: 0}
     isWall: 0
     m_offSet: {x: 0, y: 0}
+  attackSet: {fileID: 11400000, guid: 0ec9aeefe934c994290bd6b39ee23a09, type: 2}
+  bulletData:
+    BulletBehaviour: {fileID: 11400000, guid: a628ed537fc2f2244b1a34d7a1b14eca, type: 2}
+    BulletGraphics: {fileID: 0}
+    Speed: 5
+    Damage: 0
   shakeAmount: 10
   shakeSpeed: 0.1

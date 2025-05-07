@@ -20,9 +20,9 @@ namespace Game.AttackSystem.Attacks
         [Header("Effects")] 
         public AttackEvents.BaseAttack BaseAttack;
 
-        public void RaiseAttack(Entity target)
+        public void RaiseAttack()
         {
-            BaseAttack.baseAttackEvent?.Invoke(target);
+            BaseAttack.baseAttackEvent?.Invoke();
         }
     }
 }

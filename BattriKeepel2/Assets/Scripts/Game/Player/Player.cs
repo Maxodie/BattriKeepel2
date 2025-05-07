@@ -4,6 +4,7 @@ using Components;
 using Game.AttackSystem.Bullet;
 using Game.Entities;
 using Inputs;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace GameEntity
@@ -19,7 +20,10 @@ namespace GameEntity
 
         private Vector2 m_currentVel = new Vector2();
 
-        public Player(SO_PlayerData data, Transform spawnPoint, Transform cameraTransform) {
+        public Player(SO_PlayerData data, Transform spawnPoint, Transform cameraTransform)
+        {
+            entityType = EntityType.Player;
+            
             Init(data, spawnPoint, cameraTransform);
             BindActions();
         }
@@ -37,6 +41,10 @@ namespace GameEntity
             m_inputManager = m_playerGraphics.inputManager;
             transform = m_playerGraphics.m_playerTransform;
 
+            attacks = data.attackSet;
+            bulletData = data.bulletData;
+            base.Init(attacks);
+            
             m_cameraTransform = cameraTransform;
             m_cameraEffect = new CameraEffect(m_cameraTransform, data.shakeAmount, data.shakeSpeed);
 
@@ -67,6 +75,7 @@ namespace GameEntity
                 return;
             }
             Log.Success("double tap");
+            attacks.UltimateAttack.RaiseAttack();
             cts.Cancel();
             tapState = false;
         }
@@ -75,6 +84,7 @@ namespace GameEntity
         {
             await Task.Delay(500, token);
             Log.Success("single tap");
+            attacks.AbilityAttack.RaiseAttack();
             if (!token.IsCancellationRequested)
             {
                 tapState = false;
