@@ -57,7 +57,6 @@ namespace GameEntity
             m_inputManager.BindPress(m_movement.OnPress);
             m_inputManager.BindTap(TapReceived);
             m_hitBox.BindOnCollision(HandleCollisions);
-            
             BindDoubleTap(attacks.AbilityAttack.RaiseAttack);
             BindShake(attacks.UltimateAttack.RaiseAttack);
         }

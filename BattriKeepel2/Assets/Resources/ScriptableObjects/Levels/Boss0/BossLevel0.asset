@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 410c2fa40659b0c47bf0681263f4306c, type: 3}
-  m_Name: BossLevel1
+  m_Name: BossLevel0
   m_EditorClassIdentifier: 
-  levelImage: {fileID: 0}
-  path: 
+  levelImage: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  path: Assets/Scenes/BossScenes/BossScene0.unity
   levelPhases: []
-  levelArtData: {fileID: 0}
+  levelArtData: {fileID: 11400000, guid: 90fa18f874c1d2c4d95ed31f8d53c9fc, type: 2}

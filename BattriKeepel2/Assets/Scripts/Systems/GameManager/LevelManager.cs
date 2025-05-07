@@ -17,6 +17,7 @@ public class LevelManager : GameManager {
 #if UNITY_EDITOR
     [Header("Debug Data")]
     [SerializeField] SO_PlayerData playerDebugData;
+    [SerializeField] SO_GameLevelData debugLevelData;
 #endif
 
     protected override void Awake()
@@ -26,9 +27,30 @@ public class LevelManager : GameManager {
 
         m_player = new Player(m_playerData, m_playerTransform);
 
+        if(!GameInstance.GetCurrentBossLevel())
+#if UNITY_EDITOR
+        {
+            GameInstance.SetCurrentBossLevel(debugLevelData);
+            Log.Warn<GameManagerLogger>("Game Level Data could not be found, selecting the debug data by default");
+        }
+#else
+        {
+            Log.Error<GameManagerLogger>("Game Level Data could not be found");
+        }
+#endif
+
+        if(GameInstance.GetCurrentBossLevel().levelArtData)
+        {
+            GraphicsManager.Get().GenerateVisualInfos<LevelArtGraphicsEntity>(GameInstance.GetCurrentBossLevel().levelArtData.gameArt, transform, null);
+        }
+        else
+        {
+            Log.Error<GameManagerLogger>("Game Visual could not be found");
+        }
+
         /*if(GameInstance.GetCurrentBossLevel())*/
         /*{*/
-            /*m_boss = new BossEntity(GameInstance.GetCurrentBossLevel().bossData, m_bossSpawnPoint);*/
+        /*    m_boss = new BossEntity(GameInstance.GetCurrentBossLevel().levelArtData, m_bossSpawnPoint);*/
         /*}*/
         /*else*/
         /*{*/
