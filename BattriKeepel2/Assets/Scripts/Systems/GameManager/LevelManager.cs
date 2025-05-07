@@ -24,7 +24,7 @@ public class LevelManager : GameManager {
         m_collisionManager = CollisionManager.GetInstance();
         m_collisionManager.SetParameters(m_collisionManagerData);
 
-        m_player = new Player(m_playerData, m_playerTransform, m_cameraTr);
+        m_player = new Player(m_playerData, m_playerTransform);
 
         /*if(GameInstance.GetCurrentBossLevel())*/
         /*{*/

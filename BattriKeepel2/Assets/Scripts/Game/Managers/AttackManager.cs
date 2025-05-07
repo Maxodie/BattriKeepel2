@@ -1,8 +1,6 @@
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using Game.AttackSystem.Attacks;
 using Game.Entities;
+using UnityEngine;
 
 namespace Game.Managers
 {
@@ -11,8 +9,9 @@ namespace Game.Managers
         private bool _isPlayer;
         private AttackSet _attacks;
         private Entity _entityAttached;
+
+        private Awaitable currentAttack;
         
-        private CancellationTokenSource _cancellationTokenSource;
         private bool _isAbleToAttack = true;
 
         public void InitAttacking(bool isPlayer, AttackSet attackSet, Entity entityAttached)
@@ -26,29 +25,25 @@ namespace Game.Managers
         
         private void StartAttacking()
         {
-            DelayedAttacks(_attacks.BasicAttack);
+            currentAttack = DelayedAttacks(_attacks.BasicAttack);
+        }
+
+        private void CancelAttack()
+        {
+            if (currentAttack != null && !currentAttack.IsCompleted) {
+                currentAttack.Cancel();
+            }
         }
         
-        private async void DelayedAttacks(Attack attack)
+        private async Awaitable DelayedAttacks(Attack attack)
         {
-            _cancellationTokenSource = new CancellationTokenSource();
-
-            try
-            {
-                await Task.Delay(attack.BaseCooldown * 1000, _cancellationTokenSource.Token);
-                _cancellationTokenSource.Dispose();
-                _cancellationTokenSource = null;
-
-                if (!_isPlayer || !_isAbleToAttack) return;
-                
+            if (_isPlayer && _isAbleToAttack) {
                 attack.RaiseAttack();
-                DelayedAttacks(attack);
             }
-            catch
-            {
-                _cancellationTokenSource?.Dispose();
-                _cancellationTokenSource = null;
-            }
+            
+            await Awaitable.WaitForSecondsAsync(attack.BaseCooldown);
+            
+            currentAttack = DelayedAttacks(attack);
         }
     }
 }

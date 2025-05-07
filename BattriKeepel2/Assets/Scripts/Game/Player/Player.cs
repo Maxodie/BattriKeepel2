@@ -15,7 +15,6 @@ namespace GameEntity
         public Hitbox m_hitBox;
         private Transform transform;
         private PlayerGraphics m_playerGraphics;
-        private PlayerAttack m_attack;
 
         private Vector2 m_currentVel = new Vector2();
 
@@ -23,7 +22,10 @@ namespace GameEntity
         private UnityEvent m_doubleTapEvent = new UnityEvent();
         private UnityEvent m_shakeEvent = new UnityEvent();
 
-        public Player(SO_PlayerData data, Transform spawnPoint) {
+        public Player(SO_PlayerData data, Transform spawnPoint)
+        {
+            entityType = EntityType.Player;
+            
             Init(data, spawnPoint);
             BindActions();
         }
@@ -44,7 +46,10 @@ namespace GameEntity
             transform = m_playerGraphics.transform;
             m_hitBox.Init(transform);
             m_movement.m_transform = transform;
-            m_attack = new PlayerAttack(data.attackData);
+
+            attacks = data.attackSet;
+            bulletData = data.bulletData;
+            base.Init(attacks);
         }
 
         private void BindActions() {
@@ -52,8 +57,9 @@ namespace GameEntity
             m_inputManager.BindPress(m_movement.OnPress);
             m_inputManager.BindTap(TapReceived);
             m_hitBox.BindOnCollision(HandleCollisions);
-            BindDoubleTap(m_attack.SpecialAttack);
-            BindShake(m_attack.UltimateAttack);
+            
+            BindDoubleTap(attacks.AbilityAttack.RaiseAttack);
+            BindShake(attacks.UltimateAttack.RaiseAttack);
         }
 
         private void BindSingleTap(UnityAction action) {
@@ -80,6 +86,7 @@ namespace GameEntity
                 return;
             }
             Log.Success("double tap");
+            m_doubleTapEvent?.Invoke();
             cts.Cancel();
             tapState = false;
         }
@@ -91,7 +98,7 @@ namespace GameEntity
             if (!token.IsCancellationRequested)
             {
                 tapState = false;
-                // call event (for the parry)
+                m_singleTapEvent?.Invoke();
             }
         }
 

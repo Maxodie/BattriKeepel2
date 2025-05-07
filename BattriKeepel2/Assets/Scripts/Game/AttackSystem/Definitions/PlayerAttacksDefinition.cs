@@ -1,4 +1,3 @@
-using Game.Entities;
 using UnityEngine;
 
 namespace Game.AttackSystem.Definitions
@@ -28,12 +27,12 @@ namespace Game.AttackSystem.Definitions
 
         public void PlayerDistanceAbility()
         {
-            //TODO : Fill method
+            Debug.Log("distance ability");
         }
 
         public void PlayerDistanceUltimate()
         {
-            //TODO : Fill method
+            Debug.Log("distance ultimate");
         }
 
         public void PlayerSpecialAttack()
