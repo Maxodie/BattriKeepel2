@@ -11,13 +11,13 @@ namespace Game.AttackSystem.Attacks
         public string Slug;
         [TextArea] public string Description;
         public bool needTarget;
-        
+
         [Header("Stats")]
         public int BaseDamage;
         public int BaseCooldown;
         public int BaseSpeed;
 
-        [Header("Effects")] 
+        [Header("Effects")]
         public AttackEvents.BaseAttack BaseAttack;
 
         public void RaiseAttack()
