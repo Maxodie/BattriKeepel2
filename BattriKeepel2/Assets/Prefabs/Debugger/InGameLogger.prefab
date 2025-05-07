@@ -89,7 +89,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55fa045b520961a4b9d2ae580fceced3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  logText: {fileID: 3517140182159305760}
+  m_logText: {fileID: 3517140182159305760}
+  m_maxCharCount: 700
 --- !u!1 &6391554582832892527
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,7 +156,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: test de log
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: feffd35bb2e26494fbe2a38bef134482, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: feffd35bb2e26494fbe2a38bef134482, type: 2}

@@ -5,5 +5,8 @@ using Components;
 public class SO_PlayerData : ScriptableObject {
     public PlayerGraphics playerGraphics;
     public Hitbox hitBox;
-    public SO_CharacterAttackData attackData;
+
+    [Header("Camera Effects")]
+    public float shakeAmount;
+    public float shakeSpeed;
 }

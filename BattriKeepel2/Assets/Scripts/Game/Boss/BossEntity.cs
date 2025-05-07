@@ -11,6 +11,8 @@ public class BossEntity : Entity
     Hitbox m_hitBox;
     BossMovement m_movement;
 
+    DialogComponent m_dialogComponent;
+
     public BossEntity(SO_BossScriptableObject data, Transform spawnPoint)
     {
         m_data = data;
@@ -24,6 +26,12 @@ public class BossEntity : Entity
 
         m_hitBox = m_data.hitbox;
         m_hitBox.Init(m_bossGraphics.transform);
+
+        if(data.dialogData)
+        {
+            m_dialogComponent = new DialogComponent();
+            m_dialogComponent.StartDialog(data.dialogData);
+        }
 
         UpdateVisualHealth();
     }

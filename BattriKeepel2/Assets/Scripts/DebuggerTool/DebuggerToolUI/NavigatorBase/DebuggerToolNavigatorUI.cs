@@ -18,14 +18,20 @@ public class DebuggerToolNavigatorUI : MonoBehaviour
     [Header("UI Parents")]
     [SerializeField] Transform m_navigationTabTransform;
     [SerializeField] Transform m_tabContentTransform;
+    public Transform m_navigatorMain;
 
     [Header("Var")]
-    [SerializeField] Button closeBtn;
+    public Button closeBtn;
+    public Button reopenBtn;
 
     public void Init(DebuggerTool debuggerTool)
     {
         m_debuggerTool = debuggerTool;
+
         closeBtn.onClick.AddListener(CloseDebugger);
+        reopenBtn.onClick.AddListener(OpenDebugger);
+        reopenBtn.gameObject.SetActive(false);
+        closeBtn.gameObject.SetActive(true);
     }
 
     public void AddDebuggerTab<UI>() where UI: DebuggerToolUIBase, new()
@@ -90,11 +96,20 @@ public class DebuggerToolNavigatorUI : MonoBehaviour
     public void CloseDebugger()
     {
         m_debuggerTool.SetActiveDebugger(false);
+        reopenBtn.gameObject.SetActive(true);
+        closeBtn.gameObject.SetActive(false);
+    }
+
+    public void OpenDebugger()
+    {
+        m_debuggerTool.SetActiveDebugger(true);
+        reopenBtn.gameObject.SetActive(false);
+        closeBtn.gameObject.SetActive(true);
     }
 
     public void SetActiveDebugger(bool state)
     {
-        gameObject.SetActive(state);
+        m_navigatorMain.gameObject.SetActive(state);
     }
 }
 #endif
