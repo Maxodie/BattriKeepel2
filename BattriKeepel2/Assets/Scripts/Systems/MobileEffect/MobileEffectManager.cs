@@ -1,10 +1,6 @@
 using UnityEngine;
 using UnityEngine.Android;
 
-#if UNITY_ANDROID
-using UnityEngine.Android;
-#endif
-
 public class MobileEffectLogger : Logger
 {
 

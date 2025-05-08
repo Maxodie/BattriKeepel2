@@ -3,21 +3,21 @@ using UnityEngine;
 
 public class LevelManager : GameManager {
     [Header("Player")]
-    [SerializeField] SO_PlayerData m_playerData;
     [SerializeField] Transform m_playerTransform;
-    Player m_player;
     [SerializeField] Transform m_cameraTr;
-
-    /*[SerializeField] SO_GameLevelData m_gameLevelData;*/
 
     [Header("Collisions")]
     [SerializeField] SO_CollisionManagerData m_collisionManagerData;
     CollisionManager m_collisionManager;
 
+    Player m_player;
+    SO_GameLevelData m_currentLevelData;
+    LevelPhaseContext m_phaseContext;
+
 #if UNITY_EDITOR
     [Header("Debug Data")]
-    [SerializeField] SO_PlayerData playerDebugData;
-    [SerializeField] SO_GameLevelData debugLevelData;
+    [SerializeField] SO_PlayerData m_playerDebugData;
+    [SerializeField] SO_GameLevelData m_debugLevelData;
 #endif
 
     protected override void Awake()
@@ -25,13 +25,27 @@ public class LevelManager : GameManager {
         m_collisionManager = CollisionManager.GetInstance();
         m_collisionManager.SetParameters(m_collisionManagerData);
 
-        m_player = new Player(m_playerData, m_playerTransform);
+        // Player data setup
+        if(GameInstance.GetCurrentPlayerData())
+        {
+            m_player = new Player(GameInstance.GetCurrentPlayerData(), m_playerTransform);
+        }
+        else
+        {
+#if UNITY_EDITOR
+            m_player = new Player(m_playerDebugData, m_playerTransform);
+            Log.Warn<GameManagerLogger>("Player Data could not be found, debug data selected by default");
+#else
+            Log.Error<GameManagerLogger>("Player Data could not be found");
+#endif
+        }
 
-        if(!GameInstance.GetCurrentBossLevel())
+        // Level data setup
+        if(!GameInstance.GetCurrentLevelData())
 #if UNITY_EDITOR
         {
-            GameInstance.SetCurrentBossLevel(debugLevelData);
-            Log.Warn<GameManagerLogger>("Game Level Data could not be found, selecting the debug data by default");
+            GameInstance.SetCurrentBossLevel(m_debugLevelData);
+            Log.Warn<GameManagerLogger>("Game Level Data could not be found, debug data selected by default");
         }
 #else
         {
@@ -39,49 +53,37 @@ public class LevelManager : GameManager {
         }
 #endif
 
-        if(GameInstance.GetCurrentBossLevel().levelArtData)
+        m_currentLevelData = GameInstance.GetCurrentLevelData();
+
+        if(m_currentLevelData.levelArtData)
         {
-            GraphicsManager.Get().GenerateVisualInfos<LevelArtGraphicsEntity>(GameInstance.GetCurrentBossLevel().levelArtData.gameArt, transform, null);
+            GraphicsManager.Get().GenerateVisualInfos<LevelArtGraphicsEntity>(m_currentLevelData.levelArtData.gameArt, transform, null);
         }
         else
         {
             Log.Error<GameManagerLogger>("Game Visual could not be found");
         }
 
-        /*if(GameInstance.GetCurrentBossLevel())*/
-        /*{*/
-        /*    m_boss = new BossEntity(GameInstance.GetCurrentBossLevel().levelArtData, m_bossSpawnPoint);*/
-        /*}*/
-        /*else*/
-        /*{*/
-#if UNITY_EDITOR
-            /*m_boss = new BossEntity(bossDebugData, m_bossSpawnPoint);*/
-#elif DEVELOPMENT_BUILD
-            /*Log.Error<GameManagerLogger>("no SO_BossScriptableObject in GameInstance. debug data has been taken");*/
-#endif
-        /*}*/
-
-        /*if(GameInstance.GetCurrentPlayerData())*/
-        /*{*/
-            /*m_player = new Player(GameInstance.GetCurrentPlayerData(), m_playerTransform);*/
-        /*}*/
-        /*else*/
-        /*{*/
-#if UNITY_EDITOR
-            /*m_player = new Player(playerDebugData, m_playerTransform);*/
-#elif DEVELOPMENT_BUILD
-            /*Log.Error<GameManagerLogger>("no SO_BossScriptableObject in GameInstance. debug data has been taken");*/
-#endif
-        /*}*/
+        // Setup phase context
+        m_phaseContext = new LevelPhaseContext();
+        m_phaseContext.StartContext(m_currentLevelData);
+        m_phaseContext.BindOnPhaseEndEvent(OnGamePhaseContextEnd);
     }
 
     protected override void Update()
     {
+        m_phaseContext.Update();
+
         m_player.Update();
         m_collisionManager.Update();
     }
 
     protected override void OnUIManagerCreated() {
 
+    }
+
+    void OnGamePhaseContextEnd()
+    {
+        Log.Info<GameManagerLogger>("Level Manager detect the end of the game phases context");
     }
 }
