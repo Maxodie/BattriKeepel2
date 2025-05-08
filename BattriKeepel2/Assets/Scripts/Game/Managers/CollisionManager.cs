@@ -85,6 +85,11 @@ public class CollisionManager {
                         Hit hit1 = new Hit(FindContactPoint(o_hitbox, c_hitbox), c_hitbox.GetTransform());
                         o_hitbox.lastHitObject = hit1;
                         m_queue.Enqueue(new Tuple<Hitbox, Hit>(o_hitbox, hit1));
+                    } else {
+                        if (o_hitbox.hardCollsion) {
+                            Vector2 newPosition = c_hitbox.GetPosition() + c_hitbox.wishVelocity;
+
+                        }
                     }
                 }
             }

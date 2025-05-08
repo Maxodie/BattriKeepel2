@@ -83,8 +83,17 @@ namespace GameEntity
         }
 
         public void Update() {
-            m_movement.HandleMovement(m_currentVel);
-            m_currentVel = m_movement.vel;
+            //m_movement.HandleMovement(m_currentVel);
+            //m_currentVel = m_movement.vel;
+        }
+
+        public void WishMovement() {
+            m_hitBox.wishVelocity = m_movement.WishMovement();
+            Log.Info(m_hitBox.wishVelocity);
+        }
+
+        public void ApplyMovement() {
+            m_movement.ApplyMovement(m_hitBox.outputVelocity);
         }
 
         public bool IsScreenPressed() {

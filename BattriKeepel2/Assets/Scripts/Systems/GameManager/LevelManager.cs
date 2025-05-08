@@ -55,8 +55,9 @@ public class LevelManager : GameManager {
 
     protected override void Update()
     {
-        m_player.Update();
+        m_player.WishMovement();
         m_collisionManager.Update();
+        m_player.ApplyMovement();
     }
 
     protected override void OnUIManagerCreated() {

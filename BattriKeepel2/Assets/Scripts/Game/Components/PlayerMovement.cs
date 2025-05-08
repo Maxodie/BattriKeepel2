@@ -21,19 +21,21 @@ namespace Components {
             m_isPressed = state;
         }
 
-        public Vector2 targetPosition = new Vector2();
-
-        public override void HandleMovement(Vector2 velo) {
+        public override Vector2 WishMovement() {
             if (m_isPressed == UnityEngine.InputSystem.TouchPhase.Began
                     || m_isPressed == UnityEngine.InputSystem.TouchPhase.Ended
                     || m_isPressed == UnityEngine.InputSystem.TouchPhase.None) {
-                return;
+                return Vector2.zero;
             }
 
             vel = newPos - dirtyPos;
             dirtyPos = newPos;
 
-            m_transform.position += new Vector3(velo.x, velo.y, m_transform.position.z);
+            return new Vector3(vel.x, vel.y, m_transform.position.z);
+        }
+
+        public override void ApplyMovement(Vector2 velocity) {
+            m_transform.position += new Vector3(velocity.x, velocity.y, m_transform.position.z);
         }
 
         public bool IsScreenPressed() {

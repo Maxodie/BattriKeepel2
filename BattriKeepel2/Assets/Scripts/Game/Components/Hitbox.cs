@@ -10,6 +10,7 @@ namespace Components {
         private Transform m_transform;
         public HitboxType m_type;
 
+        public bool hardCollsion = false;
         [SerializeField] private float m_size;
         [SerializeField] private Vector2 m_dimensions;
         [SerializeField] public bool isWall;
@@ -18,6 +19,9 @@ namespace Components {
         private Vector2 m_position;
 
         [HideInInspector] public Hit lastHitObject;
+
+        [HideInInspector] public Vector2 wishVelocity;
+        [HideInInspector] public Vector2 outputVelocity;
 
         public void Init(Transform transformHitbox) {
             CollisionManager.GetInstance().AddElement(this);
