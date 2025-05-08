@@ -1,6 +1,6 @@
 public class GameInstanceDynamicSO : DynamicScriptableObject
 {
-    public SO_GameLevelData currentBossLevelData;
+    public SO_GameLevelData currentLevelData;
     public SO_PlayerData currentPlayerData;
 }
 
@@ -16,7 +16,7 @@ public static class GameInstance
 
     public static void SetCurrentBossLevel(SO_GameLevelData bossLeveldata)
     {
-        m_instanceData.currentBossLevelData = bossLeveldata;
+        m_instanceData.currentLevelData = bossLeveldata;
     }
 
     public static void SetCurrentPlayerLevel(SO_PlayerData bossData)
@@ -24,9 +24,9 @@ public static class GameInstance
         m_instanceData.currentPlayerData = bossData;
     }
 
-    public static SO_GameLevelData GetCurrentBossLevel()
+    public static SO_GameLevelData GetCurrentLevelData()
     {
-        return m_instanceData.currentBossLevelData;
+        return m_instanceData.currentLevelData;
     }
 
     public static SO_PlayerData GetCurrentPlayerData()

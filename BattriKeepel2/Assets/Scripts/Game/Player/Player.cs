@@ -5,22 +5,28 @@ using Game.AttackSystem.Bullet;
 using Game.Entities;
 using Inputs;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace GameEntity
 {
     public class Player : Entity {
         private InputManager m_inputManager;
         private PlayerMovement m_movement;
-        private CameraEffect m_cameraEffect;
         public Hitbox m_hitBox;
         private Transform transform;
         private PlayerGraphics m_playerGraphics;
-        private Transform m_cameraTransform;
 
         private Vector2 m_currentVel = new Vector2();
 
-        public Player(SO_PlayerData data, Transform spawnPoint, Transform cameraTransform) {
-            Init(data, spawnPoint, cameraTransform);
+        private UnityEvent m_singleTapEvent = new UnityEvent();
+        private UnityEvent m_doubleTapEvent = new UnityEvent();
+        private UnityEvent m_shakeEvent = new UnityEvent();
+
+        public Player(SO_PlayerData data, Transform spawnPoint)
+        {
+            entityType = EntityType.Player;
+            
+            Init(data, spawnPoint);
             BindActions();
         }
 
@@ -32,19 +38,18 @@ namespace GameEntity
 
         }
 
-        private void Init(SO_PlayerData data, Transform spawnPoint, Transform cameraTransform) {
+        private void Init(SO_PlayerData data, Transform spawnPoint) {
+            m_movement = new PlayerMovement();
+            m_hitBox = data.hitBox;
             m_playerGraphics = GraphicsManager.Get().GenerateVisualInfos<PlayerGraphics>(data.playerGraphics, spawnPoint, this);
             m_inputManager = m_playerGraphics.inputManager;
-            transform = m_playerGraphics.m_playerTransform;
-
-            m_cameraTransform = cameraTransform;
-            m_cameraEffect = new CameraEffect(m_cameraTransform, data.shakeAmount, data.shakeSpeed);
-
-            m_hitBox = data.hitBox;
+            transform = m_playerGraphics.transform;
             m_hitBox.Init(transform);
-
-            m_movement = new PlayerMovement();
             m_movement.m_transform = transform;
+
+            attacks = data.attackSet;
+            bulletData = data.bulletData;
+            base.Init(attacks);
         }
 
         private void BindActions() {
@@ -52,11 +57,24 @@ namespace GameEntity
             m_inputManager.BindPress(m_movement.OnPress);
             m_inputManager.BindTap(TapReceived);
             m_hitBox.BindOnCollision(HandleCollisions);
+            BindDoubleTap(attacks.AbilityAttack.RaiseAttack);
+            BindShake(attacks.UltimateAttack.RaiseAttack);
+        }
+
+        private void BindSingleTap(UnityAction action) {
+            m_singleTapEvent.AddListener(action);
+        }
+
+        private void BindDoubleTap(UnityAction action) {
+            m_doubleTapEvent.AddListener(action);
+        }
+
+        private void BindShake(UnityAction action) {
+            m_shakeEvent.AddListener(action);
         }
 
         bool tapState = false;
         CancellationTokenSource cts = new CancellationTokenSource();
-
         private void TapReceived()
         {
             if (!tapState)
@@ -67,6 +85,7 @@ namespace GameEntity
                 return;
             }
             Log.Success("double tap");
+            m_doubleTapEvent?.Invoke();
             cts.Cancel();
             tapState = false;
         }
@@ -78,7 +97,7 @@ namespace GameEntity
             if (!token.IsCancellationRequested)
             {
                 tapState = false;
-                // call event (for the parry)
+                m_singleTapEvent?.Invoke();
             }
         }
 

@@ -164,11 +164,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_gameInstance: {fileID: 11400000, guid: 7c4faeb2fa10cb048b959a18b6eb6c34, type: 2}
-  m_playerData: {fileID: 11400000, guid: 877d9e96e4e15eb4bbaee650a8f2faed, type: 2}
   m_playerTransform: {fileID: 1168611914}
   m_cameraTr: {fileID: 929189442}
   m_collisionManagerData: {fileID: 11400000, guid: c476a2e185e96b84c8090e44772339ef, type: 2}
-  playerDebugData: {fileID: 11400000, guid: 877d9e96e4e15eb4bbaee650a8f2faed, type: 2}
+  m_playerDebugData: {fileID: 11400000, guid: 877d9e96e4e15eb4bbaee650a8f2faed, type: 2}
+  m_debugLevelData: {fileID: 11400000, guid: c14ba43e65cb7964da8f661945185d7f, type: 2}
 --- !u!1 &630201530
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,7 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RenderShadows: 1
+  m_RenderShadows: 0
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
@@ -290,7 +290,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
