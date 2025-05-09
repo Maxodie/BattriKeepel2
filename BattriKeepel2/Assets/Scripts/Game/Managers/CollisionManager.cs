@@ -88,7 +88,8 @@ public class CollisionManager {
                     } else {
                         if (o_hitbox.hardCollsion) {
                             Vector2 newPosition = c_hitbox.GetPosition() + c_hitbox.wishVelocity;
-
+                            // make a new hitbox and if it is in the hard collision then get the math correct and apply it to the original hitbox's outputVelocity
+                            // mock hitbox would be of great use
                         }
                     }
                 }

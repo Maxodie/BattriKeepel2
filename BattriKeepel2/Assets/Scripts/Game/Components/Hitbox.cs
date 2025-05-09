@@ -6,17 +6,16 @@ namespace Components {
     [System.Serializable]
     public class Hitbox
     {
-        private UnityEvent<Hit> m_onCollision = new UnityEvent<Hit>();
-        private Transform m_transform;
+        protected UnityEvent<Hit> m_onCollision = new UnityEvent<Hit>();
+        protected Transform m_transform;
         public HitboxType m_type;
 
         public bool hardCollsion = false;
-        [SerializeField] private float m_size;
-        [SerializeField] private Vector2 m_dimensions;
-        [SerializeField] public bool isWall;
+        [SerializeField] protected float m_size;
+        [SerializeField] protected Vector2 m_dimensions;
 
-        [SerializeField] private Vector2 m_offSet = new Vector2();
-        private Vector2 m_position;
+        [SerializeField] protected Vector2 m_offSet = new Vector2();
+        protected Vector2 m_position;
 
         [HideInInspector] public Hit lastHitObject;
 
@@ -85,11 +84,11 @@ namespace Components {
             }
         }
 
-        public Vector2 GetPosition() {
+        public virtual Vector2 GetPosition() {
             return new Vector2(m_transform.position.x, m_transform.position.y) + m_offSet;
         }
 
-        public float GetDiameter() {
+        public virtual float GetDiameter() {
             return m_size * m_transform.localScale.x;
         }
 
@@ -97,7 +96,7 @@ namespace Components {
             return m_type;
         }
 
-        public Vector2 GetDimensions() {
+        public virtual Vector2 GetDimensions() {
             return m_dimensions * m_transform.localScale;
         }
 
