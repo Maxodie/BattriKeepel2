@@ -24,6 +24,7 @@ namespace Game.AttackSystem.Definitions
         public void PlayerDistanceAttack(Player player)
         {
             Debug.Log("distance attack");
+            player.CreateBullet();
         }
 
         public void PlayerDistanceAbility(Player player)

@@ -96,6 +96,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7114396966338184173}
+  - component: {fileID: 4496678624898742819}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -119,3 +120,19 @@ Transform:
   - {fileID: 7519846926998409643}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4496678624898742819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4685775627118121372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c5dec8c28a686446b772f2e047e55c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: -489597695721118877, guid: 02432767618706c40b1ad53b27a6e9f0, type: 3}
+  bulletSpriteRenderer: {fileID: 6244401551590643218}
+  bulletMat: {fileID: 0}
+  bulletTransform: {fileID: 7519846926998409643}

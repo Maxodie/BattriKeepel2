@@ -13,9 +13,9 @@ namespace Game.AttackSystem.Attacks
         public bool needTarget;
 
         [Header("Stats")]
-        public int BaseDamage;
-        public int BaseCooldown;
-        public int BaseSpeed;
+        public float BaseDamage;
+        public float BaseCooldown;
+        public float BaseSpeed;
 
         [Header("Effects")]
         public AttackEvents.BasePlayerAttack BasePlayerAttack;

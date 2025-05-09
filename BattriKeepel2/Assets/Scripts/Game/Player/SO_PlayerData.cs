@@ -9,8 +9,9 @@ public class SO_PlayerData : ScriptableObject {
     public Hitbox hitBox;
     
     public AttackSet attackSet;
-    
-    [Header("Distance Player Infos")]
+
+    [Header("Distance Player Infos")] 
+    public Hitbox bulletHitBox;
     public BulletBehaviour bulletBehaviour;
     public BulletGraphics bulletGraphics;
 

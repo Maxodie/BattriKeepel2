@@ -36,7 +36,10 @@ namespace GameEntity
         private void Init(Transform spawnPoint) {
             m_movement = new PlayerMovement();
             m_hitBox = playerData.hitBox;
+            
             m_playerGraphics = GraphicsManager.Get().GenerateVisualInfos<PlayerGraphics>(playerData.playerGraphics, spawnPoint, this);
+            m_playerGraphics.SetPlayer(this);
+            
             m_inputManager = m_playerGraphics.inputManager;
             transform = m_playerGraphics.transform;
             m_hitBox.Init(transform);
@@ -105,6 +108,29 @@ namespace GameEntity
         }
 
         private void HandleCollisions(Hit other) {
+            if (other.hitObject.gameObject.GetComponent<Wall>()) {
+                HandleWallCollisions(other);
+            }
+            else if (other.hitObject.gameObject.GetComponent<BulletGraphics>() != null) {
+                HandleBulletsCollisions(other);
+            }
+            else {
+                return;
+            }
+        }
+
+        private void HandleBulletsCollisions(Hit other)
+        {
+            Bullet bullet = other.hitObject.gameObject.GetComponent<Bullet>();
+
+            if (bullet.GetOwner() is Player) return;
+            Debug.Log("test");
+            
+            TakeDamage(bullet);
+        }
+
+        private void HandleWallCollisions(Hit other)
+        {
             Wall wall = other.hitObject.gameObject.GetComponent<Wall>();
             if (wall != null) {
                 Vector2 playerPosition = transform.position;
@@ -128,14 +154,17 @@ namespace GameEntity
 
         public override void CreateBullet()
         {
-            BulletData bulletData = new BulletData();
-        
-            bulletData.Owner = this;
-            bulletData.BulletBehaviour = playerData.bulletBehaviour;
-            bulletData.Speed = playerData.attackSet.BasicAttack.BaseSpeed;
-            bulletData.Damage = playerData.attackSet.BasicAttack.BaseDamage;
+            BulletData bullet = new BulletData
+            {
+                Owner = this,
+                BulletBehaviour = playerData.bulletBehaviour,
+                BulletGraphics = playerData.bulletGraphics,
+                Speed = playerData.attackSet.BasicAttack.BaseSpeed,
+                Damage = playerData.attackSet.BasicAttack.BaseDamage,
+                BulletHitbox = playerData.bulletHitBox
+            };
 
-            Bullet newBullet = new Bullet(bulletData, transform);
+            Bullet newBullet = new Bullet(bullet, m_playerGraphics.transform);
         }
 
         public override void TakeDamage(Bullet bullet) {

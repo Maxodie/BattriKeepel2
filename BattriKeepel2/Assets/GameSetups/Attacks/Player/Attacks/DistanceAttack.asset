@@ -18,7 +18,7 @@ MonoBehaviour:
   needTarget: 0
   BaseDamage: 5
   BaseCooldown: 2
-  BaseSpeed: 4
+  BaseSpeed: 0.1
   BasePlayerAttack:
     basePlayerAttackEvent:
       m_PersistentCalls:
