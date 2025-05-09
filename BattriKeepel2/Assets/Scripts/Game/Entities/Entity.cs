@@ -49,5 +49,10 @@ namespace Game.Entities
         {
             return Health;
         }
+
+        public virtual void CreateBullet()
+        {
+            
+        }
     }
 }

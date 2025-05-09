@@ -9,7 +9,10 @@ public class SO_PlayerData : ScriptableObject {
     public Hitbox hitBox;
     
     public AttackSet attackSet;
-    public BulletData bulletData;
+    
+    [Header("Distance Player Infos")]
+    public BulletBehaviour bulletBehaviour;
+    public BulletGraphics bulletGraphics;
 
     [Header("Camera Effects")]
     public float shakeAmount;

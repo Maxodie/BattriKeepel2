@@ -1,5 +1,5 @@
 using System;
-using Game.Entities;
+using GameEntity;
 using UnityEngine.Events;
 
 namespace Game.AttackSystem.Attacks
@@ -7,6 +7,11 @@ namespace Game.AttackSystem.Attacks
     public struct AttackEvents
     {
         [Serializable]
+        public class BasePlayerAttack
+        {
+            public UnityEvent<Player> basePlayerAttackEvent;
+        }
+        
         public class BaseAttack
         {
             public UnityEvent baseAttackEvent;

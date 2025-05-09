@@ -16,39 +16,33 @@ namespace GameEntity
         private Transform transform;
         private PlayerGraphics m_playerGraphics;
 
+        private SO_PlayerData playerData;
+
         private Vector2 m_currentVel = new Vector2();
 
-        private UnityEvent m_singleTapEvent = new UnityEvent();
-        private UnityEvent m_doubleTapEvent = new UnityEvent();
-        private UnityEvent m_shakeEvent = new UnityEvent();
+        private UnityEvent<Player> m_singleTapEvent = new();
+        private UnityEvent<Player> m_doubleTapEvent = new();
+        private UnityEvent<Player> m_shakeEvent = new();
 
         public Player(SO_PlayerData data, Transform spawnPoint)
         {
             entityType = EntityType.Player;
+            playerData = data;
             
-            Init(data, spawnPoint);
+            Init(spawnPoint);
             BindActions();
         }
 
-        public override void TakeDamage(Bullet bullet) {
-
-        }
-
-        public override void Die() {
-
-        }
-
-        private void Init(SO_PlayerData data, Transform spawnPoint) {
+        private void Init(Transform spawnPoint) {
             m_movement = new PlayerMovement();
-            m_hitBox = data.hitBox;
-            m_playerGraphics = GraphicsManager.Get().GenerateVisualInfos<PlayerGraphics>(data.playerGraphics, spawnPoint, this);
+            m_hitBox = playerData.hitBox;
+            m_playerGraphics = GraphicsManager.Get().GenerateVisualInfos<PlayerGraphics>(playerData.playerGraphics, spawnPoint, this);
             m_inputManager = m_playerGraphics.inputManager;
             transform = m_playerGraphics.transform;
             m_hitBox.Init(transform);
             m_movement.m_transform = transform;
 
-            attacks = data.attackSet;
-            bulletData = data.bulletData;
+            attacks = playerData.attackSet;
             base.Init(attacks);
         }
 
@@ -61,15 +55,15 @@ namespace GameEntity
             BindShake(attacks.UltimateAttack.RaiseAttack);
         }
 
-        private void BindSingleTap(UnityAction action) {
+        private void BindSingleTap(UnityAction<Player> action) {
             m_singleTapEvent.AddListener(action);
         }
 
-        private void BindDoubleTap(UnityAction action) {
+        private void BindDoubleTap(UnityAction<Player> action) {
             m_doubleTapEvent.AddListener(action);
         }
 
-        private void BindShake(UnityAction action) {
+        private void BindShake(UnityAction<Player> action) {
             m_shakeEvent.AddListener(action);
         }
 
@@ -85,7 +79,7 @@ namespace GameEntity
                 return;
             }
             Log.Success("double tap");
-            m_doubleTapEvent?.Invoke();
+            m_doubleTapEvent?.Invoke(this);
             cts.Cancel();
             tapState = false;
         }
@@ -97,7 +91,7 @@ namespace GameEntity
             if (!token.IsCancellationRequested)
             {
                 tapState = false;
-                m_singleTapEvent?.Invoke();
+                m_singleTapEvent?.Invoke(this);
             }
         }
 
@@ -130,6 +124,26 @@ namespace GameEntity
 
         private void AdjustVelocityToAvoidCollision(Vector2 directionToAvoid, float depth) {
             m_currentVel -= directionToAvoid * depth;
+        }
+
+        public override void CreateBullet()
+        {
+            BulletData bulletData = new BulletData();
+        
+            bulletData.Owner = this;
+            bulletData.BulletBehaviour = playerData.bulletBehaviour;
+            bulletData.Speed = playerData.attackSet.BasicAttack.BaseSpeed;
+            bulletData.Damage = playerData.attackSet.BasicAttack.BaseDamage;
+
+            Bullet newBullet = new Bullet(bulletData, transform);
+        }
+
+        public override void TakeDamage(Bullet bullet) {
+
+        }
+
+        public override void Die() {
+
         }
     }
 }

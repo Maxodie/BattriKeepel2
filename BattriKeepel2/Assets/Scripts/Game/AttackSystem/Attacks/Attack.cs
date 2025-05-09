@@ -1,4 +1,4 @@
-using Game.Entities;
+using GameEntity;
 using UnityEngine;
 
 namespace Game.AttackSystem.Attacks
@@ -18,11 +18,11 @@ namespace Game.AttackSystem.Attacks
         public int BaseSpeed;
 
         [Header("Effects")]
-        public AttackEvents.BaseAttack BaseAttack;
+        public AttackEvents.BasePlayerAttack BasePlayerAttack;
 
-        public void RaiseAttack()
+        public void RaiseAttack(Player player)
         {
-            BaseAttack.baseAttackEvent?.Invoke();
+            BasePlayerAttack.basePlayerAttackEvent?.Invoke(player);
         }
     }
 }

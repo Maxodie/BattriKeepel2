@@ -1,5 +1,6 @@
 using Game.AttackSystem.Attacks;
 using Game.Entities;
+using GameEntity;
 using UnityEngine;
 
 namespace Game.Managers
@@ -38,7 +39,7 @@ namespace Game.Managers
         private async Awaitable DelayedAttacks(Attack attack)
         {
             if (_isPlayer && _isAbleToAttack) {
-                attack.RaiseAttack();
+                attack.RaiseAttack((Player)_entityAttached);
             }
             
             await Awaitable.WaitForSecondsAsync(attack.BaseCooldown);
