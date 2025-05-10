@@ -25,7 +25,7 @@ namespace GameEntity
         public Player(SO_PlayerData data, Transform spawnPoint)
         {
             entityType = EntityType.Player;
-            
+
             Init(data, spawnPoint);
             BindActions();
         }
@@ -99,11 +99,6 @@ namespace GameEntity
                 tapState = false;
                 m_singleTapEvent?.Invoke();
             }
-        }
-
-        public void Update() {
-            //m_movement.HandleMovement(m_currentVel);
-            //m_currentVel = m_movement.vel;
         }
 
         public void WishMovement() {

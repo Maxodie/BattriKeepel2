@@ -63,22 +63,8 @@ public class CollisionManager {
 
                 for (int j = i + 1; j < hitboxes.Count; j++) {
                     Hitbox o_hitbox = hitboxes[j];
-                    bool hasCollided = false;
 
-                    if (c_hitbox.m_type == HitboxType.Circle && o_hitbox.m_type == HitboxType.Circle) {
-                        hasCollided = IsCircleCollision(c_hitbox, o_hitbox);
-                    }
-                    else if (c_hitbox.m_type == HitboxType.RectangularParallelepiped && o_hitbox.m_type == HitboxType.RectangularParallelepiped) {
-                        hasCollided = IsRectangleCollision(c_hitbox, o_hitbox);
-                    }
-                    else if (c_hitbox.m_type == HitboxType.Circle && o_hitbox.m_type == HitboxType.RectangularParallelepiped) {
-                        hasCollided = IsCircleRectangleCollision(c_hitbox, o_hitbox);
-                    }
-                    else if (c_hitbox.m_type == HitboxType.RectangularParallelepiped && o_hitbox.m_type == HitboxType.Circle) {
-                        hasCollided = IsCircleRectangleCollision(o_hitbox, c_hitbox);
-                    }
-
-                    if (hasCollided) {
+                    if (GetCollisions(c_hitbox, o_hitbox)) {
                         Hit hit = new Hit(FindContactPoint(c_hitbox, o_hitbox), o_hitbox.GetTransform());
                         c_hitbox.lastHitObject = hit;
                         m_queue.Enqueue(new Tuple<Hitbox, Hit>(c_hitbox, hit));
@@ -88,6 +74,11 @@ public class CollisionManager {
                     } else {
                         if (o_hitbox.hardCollsion) {
                             Vector2 newPosition = c_hitbox.GetPosition() + c_hitbox.wishVelocity;
+                            MockBox mockBox = new (c_hitbox, newPosition);
+
+                            if (GetCollisions(mockBox, o_hitbox)) {
+
+                            }
                             // make a new hitbox and if it is in the hard collision then get the math correct and apply it to the original hitbox's outputVelocity
                             // mock hitbox would be of great use
                         }
@@ -96,6 +87,24 @@ public class CollisionManager {
             }
         }
         CallCollisionEvents();
+    }
+
+    private bool GetCollisions(Hitbox c_hitbox, Hitbox o_hitbox) {
+        bool hasCollided = false;
+
+        if (c_hitbox.m_type == HitboxType.Circle && o_hitbox.m_type == HitboxType.Circle) {
+            hasCollided = IsCircleCollision(c_hitbox, o_hitbox);
+        }
+        else if (c_hitbox.m_type == HitboxType.RectangularParallelepiped && o_hitbox.m_type == HitboxType.RectangularParallelepiped) {
+            hasCollided = IsRectangleCollision(c_hitbox, o_hitbox);
+        }
+        else if (c_hitbox.m_type == HitboxType.Circle && o_hitbox.m_type == HitboxType.RectangularParallelepiped) {
+            hasCollided = IsCircleRectangleCollision(c_hitbox, o_hitbox);
+        }
+        else if (c_hitbox.m_type == HitboxType.RectangularParallelepiped && o_hitbox.m_type == HitboxType.Circle) {
+            hasCollided = IsCircleRectangleCollision(o_hitbox, c_hitbox);
+        }
+        return hasCollided;
     }
 
     private Vector2 FindContactPoint(Hitbox a, Hitbox b) {

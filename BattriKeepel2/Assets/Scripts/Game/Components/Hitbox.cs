@@ -96,7 +96,7 @@ namespace Components {
             return m_type;
         }
 
-        public virtual Vector2 GetDimensions() {
+        public Vector2 GetDimensions() {
             return m_dimensions * m_transform.localScale;
         }
 
