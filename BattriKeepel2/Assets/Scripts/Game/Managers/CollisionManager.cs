@@ -70,7 +70,7 @@ public class CollisionManager {
 
                     if (GetCollisions(c_hitbox, o_hitbox)) {
                         if (o_hitbox.hardCollsion) {
-                            HandleHardCollisions(c_hitbox, o_hitbox);
+                            c_hitbox.outputVelocity -= HandleHardCollisions(c_hitbox, o_hitbox);
                             continue;
                         }
                         Hit hit = new Hit(FindContactPoint(c_hitbox, o_hitbox), o_hitbox.GetTransform());
@@ -81,13 +81,15 @@ public class CollisionManager {
                         m_queue.Enqueue(new Tuple<Hitbox, Hit>(o_hitbox, hit1));
                     } else {
                         if (o_hitbox.hardCollsion) {
-                            Log.Info("other is hard");
                             Vector2 newPosition = c_hitbox.GetPosition() + c_hitbox.wishVelocity;
-                            MockBox mockBox = new (c_hitbox, newPosition);
+                            MockBox mockBox = new(c_hitbox, newPosition);
 
-                            if (GetCollisions(mockBox, o_hitbox)) {
-                                Log.Info("future cols");
-                                HandleHardCollisions(mockBox, o_hitbox);
+                            bool futureCollision = GetCollisions(mockBox, o_hitbox);
+                            bool stillTouchingAndPushing = GetCollisions(c_hitbox, o_hitbox) &&
+                                Vector2.Dot(c_hitbox.wishVelocity, (c_hitbox.GetPosition() - c_hitbox.GetClosestPoint(o_hitbox)).normalized) < 0;
+
+                            if (futureCollision || stillTouchingAndPushing) {
+                                c_hitbox.outputVelocity -= HandleHardCollisions(mockBox, o_hitbox);
                             }
                         }
                     }
@@ -97,20 +99,17 @@ public class CollisionManager {
         CallCollisionEvents();
     }
 
-    private void HandleHardCollisions(Hitbox c_hitbox, Hitbox o_hitbox) {
-        Vector2 hitboxPosition = c_hitbox.GetPosition();
+    private Vector2 HandleHardCollisions(Hitbox mockBox, Hitbox o_hitbox) {
+        Vector2 wishVelocity = mockBox.outputVelocity;
+        Vector2 contactNormal = (mockBox.GetPosition() - mockBox.GetClosestPoint(o_hitbox)).normalized;
+        float intoNormal = Vector2.Dot(wishVelocity, contactNormal);
 
-        Vector2 collisionPoint = FindContactPoint(c_hitbox, o_hitbox);
-
-        Vector2 directionToCollision = (collisionPoint - hitboxPosition);
-
-        float depth = Vector2.Distance(collisionPoint, c_hitbox.GetClosestPoint(o_hitbox));
-
-        if (depth <= 0.001 && depth >= -0.001) {
-            depth = 0;
+        if (intoNormal < 0) {
+            Vector2 cancel = contactNormal * intoNormal;
+            return cancel;
         }
 
-        c_hitbox.outputVelocity -= directionToCollision.normalized * c_hitbox.wishVelocity;
+        return Vector2.zero;
     }
 
     private bool GetCollisions(Hitbox c_hitbox, Hitbox o_hitbox) {

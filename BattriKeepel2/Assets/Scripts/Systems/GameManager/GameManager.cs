@@ -21,5 +21,9 @@ public abstract class GameManager : GameEntityMonoBehaviour
     {
     }
 
+    protected virtual void FixedUpdate() {
+
+    }
+
     protected abstract void OnUIManagerCreated();
 }

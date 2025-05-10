@@ -79,6 +79,10 @@ public class LevelManager : GameManager {
         m_player.ApplyMovement();
     }
 
+    protected override void FixedUpdate() {
+
+    }
+
     protected override void OnUIManagerCreated() {
 
     }

@@ -126,9 +126,9 @@ namespace Components
             m_onCollision.AddListener(action);
         }
 
-        public Transform GetTransform()
+        public ref Transform GetTransform()
         {
-            return m_transform;
+            return ref m_transform;
         }
     }
 

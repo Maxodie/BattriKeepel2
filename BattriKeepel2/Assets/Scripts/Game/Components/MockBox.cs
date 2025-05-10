@@ -8,6 +8,8 @@ namespace Components {
             m_size = obj.GetDiameter();
             m_dimensions = obj.GetDimensions();
             m_transform = obj.GetTransform();
+            wishVelocity = obj.wishVelocity;
+            outputVelocity = obj.outputVelocity;
         }
 
         public override Vector2 GetPosition() {
