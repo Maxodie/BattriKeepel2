@@ -56,7 +56,7 @@ namespace GameEntity
             m_inputManager.BindPosition(m_movement.OnPosition);
             m_inputManager.BindPress(m_movement.OnPress);
             m_inputManager.BindTap(TapReceived);
-            m_hitBox.BindOnCollision(HandleCollisions);
+            //m_hitBox.BindOnCollision(HandleCollisions);
             BindDoubleTap(attacks.AbilityAttack.RaiseAttack);
             BindShake(attacks.UltimateAttack.RaiseAttack);
         }
@@ -103,37 +103,38 @@ namespace GameEntity
 
         public void WishMovement() {
             m_hitBox.wishVelocity = m_movement.WishMovement();
-            Log.Info(m_hitBox.wishVelocity);
+            m_hitBox.outputVelocity = m_hitBox.wishVelocity;
         }
 
         public void ApplyMovement() {
             m_movement.ApplyMovement(m_hitBox.outputVelocity);
+            m_hitBox.outputVelocity = Vector2.zero;
         }
 
         public bool IsScreenPressed() {
             return m_movement.IsScreenPressed();
         }
 
-        private void HandleCollisions(Hit other) {
-            Wall wall = other.hitObject.gameObject.GetComponent<Wall>();
-            if (wall != null) {
-                Vector2 playerPosition = transform.position;
-                Vector2 collisionPoint = other.hitPosition;
+        //private void HandleCollisions(Hit other) {
+        //    Wall wall = other.hitObject.gameObject.GetComponent<Wall>();
+        //    if (wall != null) {
+        //        Vector2 playerPosition = transform.position;
+        //        Vector2 collisionPoint = other.hitPosition;
 
-                Vector2 directionToCollision = (collisionPoint - playerPosition).normalized;
+        //        Vector2 directionToCollision = (collisionPoint - playerPosition).normalized;
 
-                float depth = Vector2.Distance(collisionPoint, m_hitBox.GetClosestPoint(wall.m_hitBox));
+        //        float depth = Vector2.Distance(collisionPoint, m_hitBox.GetClosestPoint(wall.m_hitBox));
 
-                if (depth <= 0.001 && depth >= -0.001) {
-                    depth = 0;
-                }
+        //        if (depth <= 0.001 && depth >= -0.001) {
+        //            depth = 0;
+        //        }
 
-                AdjustVelocityToAvoidCollision(directionToCollision, depth / 2);
-            }
-        }
+        //        AdjustVelocityToAvoidCollision(directionToCollision, depth / 2);
+        //    }
+        //}
 
-        private void AdjustVelocityToAvoidCollision(Vector2 directionToAvoid, float depth) {
-            m_currentVel -= directionToAvoid * depth;
-        }
+        //private void AdjustVelocityToAvoidCollision(Vector2 directionToAvoid, float depth) {
+        //    m_currentVel -= directionToAvoid * depth;
+        //}
     }
 }

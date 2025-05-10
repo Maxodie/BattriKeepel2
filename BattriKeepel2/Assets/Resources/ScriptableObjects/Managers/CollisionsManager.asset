@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ec5294e8ff91a14881d15df0da063d4, type: 3}
   m_Name: CollisionsManager
   m_EditorClassIdentifier: 
-  cellSize: 10
+  cellSize: 5

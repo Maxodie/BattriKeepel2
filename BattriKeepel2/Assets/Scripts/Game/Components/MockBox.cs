@@ -11,7 +11,6 @@ namespace Components {
         }
 
         public override Vector2 GetPosition() {
-            Log.Success("Got Position");
             return m_position;
         }
     }

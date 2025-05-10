@@ -2,15 +2,16 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Components {
+namespace Components
+{
     [System.Serializable]
     public class Hitbox
     {
         protected UnityEvent<Hit> m_onCollision = new UnityEvent<Hit>();
         protected Transform m_transform;
+        [SerializeField] public bool hardCollsion = false;
         public HitboxType m_type;
 
-        public bool hardCollsion = false;
         [SerializeField] protected float m_size;
         [SerializeField] protected Vector2 m_dimensions;
 
@@ -22,17 +23,23 @@ namespace Components {
         [HideInInspector] public Vector2 wishVelocity;
         [HideInInspector] public Vector2 outputVelocity;
 
-        public void Init(Transform transformHitbox) {
+        public void Init(Transform transformHitbox)
+        {
             CollisionManager.GetInstance().AddElement(this);
             m_transform = transformHitbox;
         }
 
-        public Vector2 GetClosestPoint(Hitbox other) {
-            if (GetHitboxType() == HitboxType.Circle) {
-                if (other.GetHitboxType() == HitboxType.Circle) {
+        public Vector2 GetClosestPoint(Hitbox other)
+        {
+            if (GetHitboxType() == HitboxType.Circle)
+            {
+                if (other.GetHitboxType() == HitboxType.Circle)
+                {
                     Vector2 direction = (GetPosition() - other.GetPosition()).normalized;
                     return other.GetPosition() + direction * other.GetDiameter() / 2;
-                } else {
+                }
+                else
+                {
                     Vector2 circlePosition = GetPosition();
                     float circleRadius = GetDiameter() / 2;
 
@@ -47,8 +54,11 @@ namespace Components {
 
                     return new Vector2(closestX, closestY);
                 }
-            } else {
-                if (other.GetHitboxType() == HitboxType.Circle) {
+            }
+            else
+            {
+                if (other.GetHitboxType() == HitboxType.Circle)
+                {
                     Vector2 circlePosition = other.GetPosition();
                     float circleRadius = other.GetDiameter() / 2;
 
@@ -67,7 +77,9 @@ namespace Components {
 
                     return circlePosition + dir * circleRadius;
 
-                } else {
+                }
+                else
+                {
                     Vector2 aPosition = GetPosition();
                     Vector2 aMinBound = new Vector2(aPosition.x - (GetDimensions().x / 2), aPosition.y - (GetDimensions().y / 2));
                     Vector2 aMaxBound = new Vector2(aPosition.x + (GetDimensions().x / 2), aPosition.y + (GetDimensions().y / 2));
@@ -84,36 +96,44 @@ namespace Components {
             }
         }
 
-        public virtual Vector2 GetPosition() {
+        public virtual Vector2 GetPosition()
+        {
             return new Vector2(m_transform.position.x, m_transform.position.y) + m_offSet;
         }
 
-        public virtual float GetDiameter() {
+        public virtual float GetDiameter()
+        {
             return m_size * m_transform.localScale.x;
         }
 
-        public HitboxType GetHitboxType() {
+        public HitboxType GetHitboxType()
+        {
             return m_type;
         }
 
-        public Vector2 GetDimensions() {
+        public Vector2 GetDimensions()
+        {
             return m_dimensions * m_transform.localScale;
         }
 
-        public void OnCollisionBehavior(Hit hit) {
+        public void OnCollisionBehavior(Hit hit)
+        {
             m_onCollision.Invoke(hit);
         }
 
-        public void BindOnCollision(UnityAction<Hit> action) {
+        public void BindOnCollision(UnityAction<Hit> action)
+        {
             m_onCollision.AddListener(action);
         }
 
-        public Transform GetTransform() {
+        public Transform GetTransform()
+        {
             return m_transform;
         }
     }
 
-    public enum HitboxType {
+    public enum HitboxType
+    {
         Circle,
         RectangularParallelepiped
     }

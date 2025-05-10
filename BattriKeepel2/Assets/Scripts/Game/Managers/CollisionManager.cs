@@ -64,7 +64,15 @@ public class CollisionManager {
                 for (int j = i + 1; j < hitboxes.Count; j++) {
                     Hitbox o_hitbox = hitboxes[j];
 
+                    if (c_hitbox.hardCollsion && o_hitbox.hardCollsion) {
+                        continue;
+                    }
+
                     if (GetCollisions(c_hitbox, o_hitbox)) {
+                        if (o_hitbox.hardCollsion) {
+                            HandleHardCollisions(c_hitbox, o_hitbox);
+                            continue;
+                        }
                         Hit hit = new Hit(FindContactPoint(c_hitbox, o_hitbox), o_hitbox.GetTransform());
                         c_hitbox.lastHitObject = hit;
                         m_queue.Enqueue(new Tuple<Hitbox, Hit>(c_hitbox, hit));
@@ -73,20 +81,36 @@ public class CollisionManager {
                         m_queue.Enqueue(new Tuple<Hitbox, Hit>(o_hitbox, hit1));
                     } else {
                         if (o_hitbox.hardCollsion) {
+                            Log.Info("other is hard");
                             Vector2 newPosition = c_hitbox.GetPosition() + c_hitbox.wishVelocity;
                             MockBox mockBox = new (c_hitbox, newPosition);
 
                             if (GetCollisions(mockBox, o_hitbox)) {
-
+                                Log.Info("future cols");
+                                HandleHardCollisions(mockBox, o_hitbox);
                             }
-                            // make a new hitbox and if it is in the hard collision then get the math correct and apply it to the original hitbox's outputVelocity
-                            // mock hitbox would be of great use
                         }
                     }
                 }
             }
         }
         CallCollisionEvents();
+    }
+
+    private void HandleHardCollisions(Hitbox c_hitbox, Hitbox o_hitbox) {
+        Vector2 hitboxPosition = c_hitbox.GetPosition();
+
+        Vector2 collisionPoint = FindContactPoint(c_hitbox, o_hitbox);
+
+        Vector2 directionToCollision = (collisionPoint - hitboxPosition);
+
+        float depth = Vector2.Distance(collisionPoint, c_hitbox.GetClosestPoint(o_hitbox));
+
+        if (depth <= 0.001 && depth >= -0.001) {
+            depth = 0;
+        }
+
+        c_hitbox.outputVelocity -= directionToCollision.normalized * c_hitbox.wishVelocity;
     }
 
     private bool GetCollisions(Hitbox c_hitbox, Hitbox o_hitbox) {

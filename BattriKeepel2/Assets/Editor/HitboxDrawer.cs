@@ -9,23 +9,26 @@ public class HitboxDrawer : PropertyDrawer
     {
         EditorGUI.BeginProperty(position, label, property);
 
+        SerializedProperty hardProperty = property.FindPropertyRelative("hardCollsion");
+        EditorGUI.PropertyField(new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight), hardProperty);
+
         SerializedProperty modeProperty = property.FindPropertyRelative("m_type");
-        EditorGUI.PropertyField(new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight), modeProperty);
+        EditorGUI.PropertyField(new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight), modeProperty);
 
         SerializedProperty offSetProperty = property.FindPropertyRelative("m_offSet");
-        EditorGUI.PropertyField(new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight), offSetProperty);
+        EditorGUI.PropertyField(new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight * 2, position.width, EditorGUIUtility.singleLineHeight), offSetProperty);
 
         HitboxType mode = (HitboxType)modeProperty.enumValueIndex;
 
         if (mode == HitboxType.Circle)
         {
             SerializedProperty sizeProperty = property.FindPropertyRelative("m_size");
-            EditorGUI.PropertyField(new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight * 2, position.width, EditorGUIUtility.singleLineHeight), sizeProperty);
+            EditorGUI.PropertyField(new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight * 3, position.width, EditorGUIUtility.singleLineHeight), sizeProperty);
         }
         else if (mode == HitboxType.RectangularParallelepiped)
         {
             SerializedProperty dimensionsField = property.FindPropertyRelative("m_dimensions");
-            EditorGUI.PropertyField(new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight * 2, position.width, EditorGUIUtility.singleLineHeight), dimensionsField);
+            EditorGUI.PropertyField(new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight * 3, position.width, EditorGUIUtility.singleLineHeight), dimensionsField);
         }
 
         EditorGUI.EndProperty();
@@ -42,7 +45,7 @@ public class HitboxDrawer : PropertyDrawer
             height += EditorGUIUtility.singleLineHeight;
         }
 
-        return height + EditorGUIUtility.singleLineHeight;
+        return height + EditorGUIUtility.singleLineHeight * 2;
     }
 }
 
