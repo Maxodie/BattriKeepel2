@@ -12,13 +12,13 @@ public class BossEntity : Entity
 
     DialogComponent m_dialogComponent;
 
-    public BossEntity(SO_BossScriptableObject data, Transform spawnPoint)
+    public BossEntity(SO_BossScriptableObject data)
     {
         m_data = data;
         MaxHealth = m_data.health;
         Health = MaxHealth;
 
-        m_bossGraphics = GraphicsManager.Get().GenerateVisualInfos<BossGraphicsEntity>(data.bossGraphicsEntity, spawnPoint, this);
+        m_bossGraphics = GraphicsManager.Get().GenerateVisualInfos<BossGraphicsEntity>(data.bossGraphicsEntity, new Vector2(0, 2), Quaternion.identity, this);
         m_bossGraphics.ComputeLocations();
 
         m_movement = new BossMovement(m_bossGraphics, m_data.movementData);
