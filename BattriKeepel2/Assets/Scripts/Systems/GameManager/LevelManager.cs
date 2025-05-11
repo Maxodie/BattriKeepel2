@@ -6,10 +6,6 @@ public class LevelManager : GameManager {
     [SerializeField] Transform m_playerTransform;
     [SerializeField] Transform m_cameraTr;
 
-    [Header("Collisions")]
-    [SerializeField] SO_CollisionManagerData m_collisionManagerData;
-    CollisionManager m_collisionManager;
-
     [Header("UI")]
     [SerializeField] Transform m_canvasSpawnLocation;
 
@@ -18,7 +14,7 @@ public class LevelManager : GameManager {
     SO_GameLevelData m_currentLevelData;
     LevelPhaseContext m_phaseContext;
 
-#if UNITY_EDITOR
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
     [Header("Debug Data")]
     [SerializeField] SO_PlayerData m_playerDebugData;
     [SerializeField] SO_GameLevelData m_debugLevelData;
@@ -26,9 +22,6 @@ public class LevelManager : GameManager {
 
     protected override void Awake()
     {
-        m_collisionManager = CollisionManager.GetInstance();
-        m_collisionManager.SetParameters(m_collisionManagerData);
-
         // Player data setup
         if(GameInstance.GetCurrentPlayerData())
         {
@@ -85,8 +78,6 @@ public class LevelManager : GameManager {
         {
             m_player.Update();
         }
-
-        m_collisionManager.Update();
     }
 
     protected override void OnUIManagerCreated() {
