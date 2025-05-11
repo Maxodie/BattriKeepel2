@@ -8,7 +8,6 @@ public class BossEntity : Entity
     SO_BossScriptableObject m_data;
     BossGraphicsEntity m_bossGraphics;
 
-    Hitbox m_hitBox;
     BossMovement m_movement;
 
     DialogComponent m_dialogComponent;
@@ -23,9 +22,6 @@ public class BossEntity : Entity
         m_bossGraphics.ComputeLocations();
 
         m_movement = new BossMovement(m_bossGraphics, m_data.movementData);
-
-        m_hitBox = m_data.hitbox;
-        m_hitBox.Init(m_bossGraphics.transform);
 
         if(data.dialogData)
         {

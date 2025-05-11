@@ -7,6 +7,7 @@ public class PlayerGraphics : GameEntityGraphics {
     [SerializeField] Material m_playerMat;
     public Transform m_playerTransform;
     public InputManager inputManager;
+    public Rigidbody2D rb;
 
     public void Init()
     {

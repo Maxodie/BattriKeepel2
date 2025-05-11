@@ -12,13 +12,11 @@ namespace GameEntity
     public class Player : Entity {
         private InputManager m_inputManager;
         private PlayerMovement m_movement;
-        public Hitbox m_hitBox;
         private Transform transform;
         private PlayerGraphics m_playerGraphics;
+        private Rigidbody2D m_rb;
 
         private SO_PlayerData playerData;
-
-        private Vector2 m_currentVel = new Vector2();
 
         private UnityEvent<Player> m_singleTapEvent = new();
         private UnityEvent<Player> m_doubleTapEvent = new();
@@ -28,19 +26,18 @@ namespace GameEntity
         {
             entityType = EntityType.Player;
             playerData = data;
-            
+
             Init(spawnPoint);
             BindActions();
         }
 
         private void Init(Transform spawnPoint) {
             m_movement = new PlayerMovement();
-            m_hitBox = playerData.hitBox;
             m_playerGraphics = GraphicsManager.Get().GenerateVisualInfos<PlayerGraphics>(playerData.playerGraphics, spawnPoint, this);
+            m_rb = m_playerGraphics.rb;
             m_inputManager = m_playerGraphics.inputManager;
             transform = m_playerGraphics.transform;
-            m_hitBox.Init(transform);
-            m_movement.m_transform = transform;
+            m_movement.rb = m_rb;
 
             attacks = playerData.attackSet;
             base.Init(attacks);
@@ -50,7 +47,6 @@ namespace GameEntity
             m_inputManager.BindPosition(m_movement.OnPosition);
             m_inputManager.BindPress(m_movement.OnPress);
             m_inputManager.BindTap(TapReceived);
-            m_hitBox.BindOnCollision(HandleCollisions);
             BindDoubleTap(attacks.AbilityAttack.RaiseAttack);
             BindShake(attacks.UltimateAttack.RaiseAttack);
         }
@@ -96,40 +92,17 @@ namespace GameEntity
         }
 
         public void Update() {
-            m_movement.HandleMovement(m_currentVel);
-            m_currentVel = m_movement.vel;
+            m_movement.HandleMovement();
         }
 
         public bool IsScreenPressed() {
             return m_movement.IsScreenPressed();
         }
 
-        private void HandleCollisions(Hit other) {
-            Wall wall = other.hitObject.gameObject.GetComponent<Wall>();
-            if (wall != null) {
-                Vector2 playerPosition = transform.position;
-                Vector2 collisionPoint = other.hitPosition;
-
-                Vector2 directionToCollision = (collisionPoint - playerPosition).normalized;
-
-                float depth = Vector2.Distance(collisionPoint, m_hitBox.GetClosestPoint(wall.m_hitBox));
-
-                if (depth <= 0.001 && depth >= -0.001) {
-                    depth = 0;
-                }
-
-                AdjustVelocityToAvoidCollision(directionToCollision, depth / 2);
-            }
-        }
-
-        private void AdjustVelocityToAvoidCollision(Vector2 directionToAvoid, float depth) {
-            m_currentVel -= directionToAvoid * depth;
-        }
-
         public override void CreateBullet()
         {
             BulletData bulletData = new BulletData();
-        
+
             bulletData.Owner = this;
             bulletData.BulletBehaviour = playerData.bulletBehaviour;
             bulletData.Speed = playerData.attackSet.BasicAttack.BaseSpeed;

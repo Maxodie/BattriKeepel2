@@ -1,5 +1,4 @@
 using System;
-using Components;
 using Game.Entities;
 using UnityEngine;
 
@@ -7,7 +6,6 @@ namespace Game.AttackSystem.Bullet
 {
     public class Bullet : IGameEntity
     {
-        private Hitbox hitbox;
         private BulletBehaviour bulletBehaviour;
 
         private Entity owner;
@@ -20,21 +18,18 @@ namespace Game.AttackSystem.Bullet
             data = bulletData;
             bulletGraphics = GraphicsManager.Get().GenerateVisualInfos<BulletGraphics>(data.BulletGraphics, spawnTransform, this, false);
 
-            hitbox.Init(bulletGraphics.transform);
-            hitbox.BindOnCollision(OnBulletCollision);
-
             bulletBehaviour = data.BulletBehaviour;
         }
 
-        private void OnBulletCollision(Hit hitCollision)
-        {
-            Entity collisionEntity = hitCollision.hitObject.GetComponent<Entity>();
-
-            if ((owner.entityType == Entity.EntityType.Enemy || owner.entityType == Entity.EntityType.Boss) && (collisionEntity.entityType == Entity.EntityType.Enemy || collisionEntity.entityType == Entity.EntityType.Boss)) return;
-            if (owner.entityType == Entity.EntityType.Player && collisionEntity.entityType == Entity.EntityType.Player) return;
-
-            collisionEntity.TakeDamage(this);
-        }
+        /*private void OnBulletCollision(Hit hitCollision)*/
+        /*{*/
+        /*    Entity collisionEntity = hitCollision.hitObject.GetComponent<Entity>();*/
+        /**/
+        /*    if ((owner.entityType == Entity.EntityType.Enemy || owner.entityType == Entity.EntityType.Boss) && (collisionEntity.entityType == Entity.EntityType.Enemy || collisionEntity.entityType == Entity.EntityType.Boss)) return;*/
+        /*    if (owner.entityType == Entity.EntityType.Player && collisionEntity.entityType == Entity.EntityType.Player) return;*/
+        /**/
+        /*    collisionEntity.TakeDamage(this);*/
+        /*}*/
 
         public float GetSpeed()
         {

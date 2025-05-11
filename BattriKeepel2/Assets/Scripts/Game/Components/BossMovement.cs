@@ -85,15 +85,9 @@ public class BossMovement : Movement
         }
     }
 
-        public override Vector2 WishMovement()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public override void ApplyMovement(Vector2 velocity)
+        public override void HandleMovement()
         {
             throw new System.NotImplementedException();
         }
     }
-
 }

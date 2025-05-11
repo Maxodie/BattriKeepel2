@@ -6,15 +6,11 @@ public class LevelManager : GameManager {
     [SerializeField] Transform m_playerTransform;
     [SerializeField] Transform m_cameraTr;
 
-    [Header("Collisions")]
-    [SerializeField] SO_CollisionManagerData m_collisionManagerData;
-    CollisionManager m_collisionManager;
-
     Player m_player;
     SO_GameLevelData m_currentLevelData;
     LevelPhaseContext m_phaseContext;
 
-#if UNITY_EDITOR
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
     [Header("Debug Data")]
     [SerializeField] SO_PlayerData m_playerDebugData;
     [SerializeField] SO_GameLevelData m_debugLevelData;
@@ -22,9 +18,6 @@ public class LevelManager : GameManager {
 
     protected override void Awake()
     {
-        m_collisionManager = CollisionManager.GetInstance();
-        m_collisionManager.SetParameters(m_collisionManagerData);
-
         // Player data setup
         if(GameInstance.GetCurrentPlayerData())
         {
@@ -32,7 +25,7 @@ public class LevelManager : GameManager {
         }
         else
         {
-#if UNITY_EDITOR
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
             m_player = new Player(m_playerDebugData, m_playerTransform);
             Log.Warn<GameManagerLogger>("Player Data could not be found, debug data selected by default");
 #else
@@ -42,7 +35,7 @@ public class LevelManager : GameManager {
 
         // Level data setup
         if(!GameInstance.GetCurrentLevelData())
-#if UNITY_EDITOR
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
         {
             GameInstance.SetCurrentBossLevel(m_debugLevelData);
             Log.Warn<GameManagerLogger>("Game Level Data could not be found, debug data selected by default");
@@ -73,10 +66,7 @@ public class LevelManager : GameManager {
     protected override void Update()
     {
         m_phaseContext.Update();
-
-        m_player.WishMovement();
-        m_collisionManager.Update();
-        m_player.ApplyMovement();
+        m_player.Update();
     }
 
     protected override void FixedUpdate() {
