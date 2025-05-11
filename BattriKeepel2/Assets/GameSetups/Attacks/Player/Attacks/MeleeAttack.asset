@@ -15,11 +15,12 @@ MonoBehaviour:
   DisplayName: Melee Attack
   Slug: meleeattack
   Description: Basic Melee Attack
+  needTarget: 0
   BaseDamage: 5
   BaseCooldown: 2
   BaseSpeed: 4
-  BaseAttack:
-    baseAttackEvent:
+  BasePlayerAttack:
+    basePlayerAttackEvent:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 11400000, guid: 319e82957f1807c4ba8ae1c88a99bed7, type: 2}

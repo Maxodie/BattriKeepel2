@@ -1,3 +1,4 @@
+using GameEntity;
 using UnityEngine;
 
 namespace Game.AttackSystem.Definitions
@@ -5,47 +6,47 @@ namespace Game.AttackSystem.Definitions
     [CreateAssetMenu(fileName = "PlayerAttacksDefinition", menuName = "AttackSystem/Definitions/PlayerAttacksDefinition")]
     public class PlayerAttacksDefinition : AttackDefinitions
     {
-        public void PlayerMeleeAttack()
+        public void PlayerMeleeAttack(Player player)
         {
             //TODO : Fill method
         }
 
-        public void PlayerMeleeAbility()
+        public void PlayerMeleeAbility(Player player)
         {
             //TODO : Fill method
         }
 
-        public void PlayerMeleeUltimate()
+        public void PlayerMeleeUltimate(Player player)
         {
             //TODO : Fill method
         }
 
-        public void PlayerDistanceAttack()
+        public void PlayerDistanceAttack(Player player)
         {
             Debug.Log("distance attack");
         }
 
-        public void PlayerDistanceAbility()
+        public void PlayerDistanceAbility(Player player)
         {
             Debug.Log("distance ability");
         }
 
-        public void PlayerDistanceUltimate()
+        public void PlayerDistanceUltimate(Player player)
         {
             Debug.Log("distance ultimate");
         }
 
-        public void PlayerSpecialAttack()
+        public void PlayerSpecialAttack(Player player)
         {
             //TODO : Fill method
         }
 
-        public void PlayerSpecialAbility()
+        public void PlayerSpecialAbility(Player player)
         {
             //TODO : Fill method
         }
 
-        public void PlayerSpecialUltimate()
+        public void PlayerSpecialUltimate(Player player)
         {
             //TODO : Fill method
         }
