@@ -1,31 +1,28 @@
 fileFormatVersion: 2
-guid: fcdd50a8b2f0c4d49b62f6c95eb1621f
+guid: f01367a40217735438e7a3489c579fdc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6654219556789994702
-    second: Segmentedcircle_0
+      213: 5187414583747183167
+    second: avarageLifebar_0
   - first:
-      213: 1700862448053412884
-    second: Segmentedcircle_1
+      213: 5991175152361744720
+    second: avarageLifebar_1
   - first:
-      213: 8120845192417942692
-    second: Segmentedcircle_2
+      213: -2027259206795904971
+    second: avarageLifebar_2
   - first:
-      213: 2091673696445213553
-    second: Segmentedcircle_3
+      213: 4319828523526613263
+    second: avarageLifebar_3
   - first:
-      213: -571335323128529886
-    second: Segmentedcircle_4
+      213: 7890110689119424945
+    second: avarageLifebar_4
   - first:
-      213: -7157567143238322462
-    second: Segmentedcircle_5
+      213: -7225997497458669069
+    second: avarageLifebar_5
   - first:
-      213: -3157098922200558296
-    second: Segmentedcircle_6
-  - first:
-      213: -5371588552099664705
-    second: Segmentedcircle_7
+      213: -252684881324198858
+    second: avarageLifebar_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -93,10 +90,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 512
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -134,13 +131,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Segmentedcircle_0
+      name: avarageLifebar_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 262
-        width: 84
-        height: 152
+        x: 18
+        y: 40
+        width: 200
+        height: 216
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -149,20 +146,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 23b3314919677a3a0800000000000000
-      internalID: -6654219556789994702
+      spriteID: f328eee64166df740800000000000000
+      internalID: 5187414583747183167
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Segmentedcircle_1
+      name: avarageLifebar_1
       rect:
         serializedVersion: 2
-        x: 86
-        y: 409
-        width: 151
-        height: 85
+        x: 227
+        y: 89
+        width: 122
+        height: 154
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +168,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 414660c826daa9710800000000000000
-      internalID: 1700862448053412884
+      spriteID: 0592ba7fe0ee42350800000000000000
+      internalID: 5991175152361744720
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Segmentedcircle_2
+      name: avarageLifebar_2
       rect:
         serializedVersion: 2
-        x: 254
-        y: 409
-        width: 160
-        height: 85
+        x: 362
+        y: 40
+        width: 42
+        height: 216
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,20 +190,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4ac920a2da903b070800000000000000
-      internalID: 8120845192417942692
+      spriteID: 5383a470e7abdd3e0800000000000000
+      internalID: -2027259206795904971
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Segmentedcircle_3
+      name: avarageLifebar_3
       rect:
         serializedVersion: 2
-        x: 409
-        y: 263
-        width: 85
-        height: 151
+        x: 448
+        y: 122
+        width: 168
+        height: 117
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,20 +212,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 17b25ae052e170d10800000000000000
-      internalID: 2091673696445213553
+      spriteID: f09676b972d13fb30800000000000000
+      internalID: 4319828523526613263
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Segmentedcircle_4
+      name: avarageLifebar_4
       rect:
         serializedVersion: 2
-        x: 6
-        y: 86
-        width: 85
-        height: 151
+        x: 724
+        y: 96
+        width: 113
+        height: 146
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,20 +234,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 22c7a49fc853218f0800000000000000
-      internalID: -571335323128529886
+      spriteID: 1b1d97f3edd4f7d60800000000000000
+      internalID: 7890110689119424945
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Segmentedcircle_5
+      name: avarageLifebar_5
       rect:
         serializedVersion: 2
-        x: 86
-        y: 7
-        width: 150
-        height: 84
+        x: 849
+        y: 40
+        width: 74
+        height: 216
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -259,20 +256,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2e6b54b0b963bac90800000000000000
-      internalID: -7157567143238322462
+      spriteID: 3f94d10af8918bb90800000000000000
+      internalID: -7225997497458669069
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Segmentedcircle_6
+      name: avarageLifebar_6
       rect:
         serializedVersion: 2
-        x: 263
-        y: 7
-        width: 151
-        height: 84
+        x: 431
+        y: 67
+        width: 202
+        height: 39
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -281,30 +278,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 825977dd14bbf24d0800000000000000
-      internalID: -3157098922200558296
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Segmentedcircle_7
-      rect:
-        serializedVersion: 2
-        x: 409
-        y: 86
-        width: 85
-        height: 151
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fbc6b88fba84475b0800000000000000
-      internalID: -5371588552099664705
+      spriteID: 6343f8070784e7cf0800000000000000
+      internalID: -252684881324198858
       vertices: []
       indices: 
       edges: []
@@ -323,14 +298,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Segmentedcircle_0: -6654219556789994702
-      Segmentedcircle_1: 1700862448053412884
-      Segmentedcircle_2: 8120845192417942692
-      Segmentedcircle_3: 2091673696445213553
-      Segmentedcircle_4: -571335323128529886
-      Segmentedcircle_5: -7157567143238322462
-      Segmentedcircle_6: -3157098922200558296
-      Segmentedcircle_7: -5371588552099664705
+      avarageLifebar_0: 5187414583747183167
+      avarageLifebar_1: 5991175152361744720
+      avarageLifebar_2: -2027259206795904971
+      avarageLifebar_3: 4319828523526613263
+      avarageLifebar_4: 7890110689119424945
+      avarageLifebar_5: -7225997497458669069
+      avarageLifebar_6: -252684881324198858
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

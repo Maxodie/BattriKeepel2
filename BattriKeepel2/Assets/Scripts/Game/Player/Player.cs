@@ -28,7 +28,7 @@ namespace GameEntity
         {
             entityType = EntityType.Player;
             playerData = data;
-            
+
             Init(spawnPoint);
             BindActions();
         }
@@ -129,7 +129,7 @@ namespace GameEntity
         public override void CreateBullet()
         {
             BulletData bulletData = new BulletData();
-        
+
             bulletData.Owner = this;
             bulletData.BulletBehaviour = playerData.bulletBehaviour;
             bulletData.Speed = playerData.attackSet.BasicAttack.BaseSpeed;

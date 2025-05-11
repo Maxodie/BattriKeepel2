@@ -5,9 +5,14 @@ using Game.AttackSystem.Bullet;
 
 [CreateAssetMenu(menuName = "Entities/Player", fileName = "Player")]
 public class SO_PlayerData : ScriptableObject {
+    [Header("Default")]
+    public string playerName;
+    public Sprite playerVisual;
+
+    [Header("Logic")]
     public PlayerGraphics playerGraphics;
     public Hitbox hitBox;
-    
+
     public AttackSet attackSet;
     
     [Header("Distance Player Infos")]
