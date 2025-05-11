@@ -15,3 +15,4 @@ MonoBehaviour:
   phaseDisplayName: CLOUDY
   phaseDisplayVisual: {fileID: 21300000, guid: 8f8607c9d4919e9429633fc63e135778, type: 3}
   phaseTypeName: BossPhase
+  bossData: {fileID: 11400000, guid: 5a88251081bdce94f91aa0335596aa80, type: 2}

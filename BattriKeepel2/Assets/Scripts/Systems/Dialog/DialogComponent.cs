@@ -20,6 +20,15 @@ public class DialogComponent
     {
         NotificationControl.SendNotification(data.notificationProfile, data.dialogSentences[m_currentSentence].title, data.dialogSentences[m_currentSentence].content);
         await Awaitable.WaitForSecondsAsync(data.durationInTime);
-        m_currentSentenceWait = StartNextSentence(data);
+
+        m_currentSentence++;
+        if(data.dialogSentences.Length > m_currentSentence)
+        {
+            m_currentSentenceWait = StartNextSentence(data);
+        }
+        else
+        {
+            m_currentSentenceWait = null;
+        }
     }
 }

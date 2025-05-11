@@ -18,7 +18,7 @@ public class LevelManager : GameManager {
     SO_GameLevelData m_currentLevelData;
     LevelPhaseContext m_phaseContext;
 
-#if UNITY_EDITOR
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
     [Header("Debug Data")]
     [SerializeField] SO_PlayerData m_playerDebugData;
     [SerializeField] SO_GameLevelData m_debugLevelData;

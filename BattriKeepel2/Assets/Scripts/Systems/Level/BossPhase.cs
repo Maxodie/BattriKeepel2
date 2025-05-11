@@ -3,8 +3,8 @@ public class BossPhase : LevelPhase
     BossEntity m_boss;
     public override void OnStart()
     {
-        /*SO_BossScriptableObject bossData = ((SO_BossScriptableObject)m_levelPhase).bossData;*/
-        /*m_boss = new BossEntity(bossData, bossData);*/
+        SO_BossScriptableObject bossData = ((SO_BossPhase)m_levelPhase).bossData;
+        m_boss = new BossEntity(bossData);
     }
 
     public override void OnEnd()
