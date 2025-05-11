@@ -36,7 +36,7 @@ public class LevelManager : GameManager {
         }
         else
         {
-#if UNITY_EDITOR
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
             m_playerData = m_playerDebugData;
             Log.Warn<GameManagerLogger>("Player Data could not be found, debug data selected by default");
 #else
@@ -48,7 +48,7 @@ public class LevelManager : GameManager {
 
         // Level data setup
         if(!GameInstance.GetCurrentLevelData())
-#if UNITY_EDITOR
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
         {
             GameInstance.SetCurrentBossLevel(m_debugLevelData);
             Log.Warn<GameManagerLogger>("Game Level Data could not be found, debug data selected by default");
