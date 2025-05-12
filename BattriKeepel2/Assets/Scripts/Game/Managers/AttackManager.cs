@@ -1,44 +1,50 @@
-using System.Collections;
-using System.Collections.Generic;
 using Game.AttackSystem.Attacks;
+using Game.Entities;
+using GameEntity;
 using UnityEngine;
 
 namespace Game.Managers
 {
-    public class AttackManager : MonoBehaviour
+    public class AttackManager
     {
-        [SerializeField] private bool isPlayer;
-        [SerializeField] private AttackSet attacks;
+        private bool _isPlayer;
+        private AttackSet _attacks;
+        private Entity _entityAttached;
 
-        public void InitAttacking()
+        private Awaitable currentAttack;
+        
+        private bool _isAbleToAttack = true;
+
+        public void InitAttacking(bool isPlayer, AttackSet attackSet, Entity entityAttached)
         {
-            if (!isPlayer) return; //Temporary : To remove when we'll code the enemies attacks
-
-            StartCoroutine(DelayedAttacks(attacks.BasicAttack));
+            _isPlayer = isPlayer;
+            _attacks = attackSet;
+            _entityAttached = entityAttached;
+            
+            StartAttacking();
+        }
+        
+        private void StartAttacking()
+        {
+            currentAttack = DelayedAttacks(_attacks.BasicAttack);
         }
 
-        private Collider GetNearestTarget()
+        private void CancelAttack()
         {
-            Collider nearestTarget = null;
-            float minDistance = float.MaxValue;
-            
-            List<Collider> enemies = EnemyManager.Instance.currentEnemies;
-            foreach (Collider enemy in enemies)
-            {
-                float distance = Vector2.Distance(transform.position, enemy.transform.position);
-                if (distance > minDistance) continue;
-
-                nearestTarget = enemy;
-                minDistance = distance;
+            if (currentAttack != null && !currentAttack.IsCompleted) {
+                currentAttack.Cancel();
             }
-            return nearestTarget;
         }
-
-        private IEnumerator DelayedAttacks(Attack attack)
+        
+        private async Awaitable DelayedAttacks(Attack attack)
         {
-            yield return new WaitForSeconds(attack.BaseCooldown);
+            if (_isPlayer && _isAbleToAttack) {
+                attack.RaiseAttack((Player)_entityAttached);
+            }
             
-            attack.RaiseAttack(GetNearestTarget());
+            await Awaitable.WaitForSecondsAsync(attack.BaseCooldown);
+            
+            currentAttack = DelayedAttacks(attack);
         }
     }
 }

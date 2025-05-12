@@ -135,6 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navigationTabButton: {fileID: 6489926505812846856}
+  textTitle: {fileID: 1656728437068844091}
 --- !u!1 &4396893623499945475
 GameObject:
   m_ObjectHideFlags: 0

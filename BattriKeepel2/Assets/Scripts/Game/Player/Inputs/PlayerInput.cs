@@ -44,6 +44,24 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Shake"",
+                    ""type"": ""Value"",
+                    ""id"": ""c834a2a4-eb79-4ddb-80d7-eb5a56f7a447"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Tap"",
+                    ""type"": ""Button"",
+                    ""id"": ""1069c4c9-51af-4ddc-89ad-1bc8a8433297"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -68,6 +86,28 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Position"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b3e30f67-f310-401e-a73a-dc12281ce5a0"",
+                    ""path"": ""<Accelerometer>/acceleration"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shake"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3baf6959-355a-4b09-9f15-5bb53b8e4e9c"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -78,6 +118,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Press = m_Player.FindAction("Press", throwIfNotFound: true);
         m_Player_Position = m_Player.FindAction("Position", throwIfNotFound: true);
+        m_Player_Shake = m_Player.FindAction("Shake", throwIfNotFound: true);
+        m_Player_Tap = m_Player.FindAction("Tap", throwIfNotFound: true);
     }
 
     ~@PlayerInput()
@@ -146,12 +188,16 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Press;
     private readonly InputAction m_Player_Position;
+    private readonly InputAction m_Player_Shake;
+    private readonly InputAction m_Player_Tap;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
         public PlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Press => m_Wrapper.m_Player_Press;
         public InputAction @Position => m_Wrapper.m_Player_Position;
+        public InputAction @Shake => m_Wrapper.m_Player_Shake;
+        public InputAction @Tap => m_Wrapper.m_Player_Tap;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -167,6 +213,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Position.started += instance.OnPosition;
             @Position.performed += instance.OnPosition;
             @Position.canceled += instance.OnPosition;
+            @Shake.started += instance.OnShake;
+            @Shake.performed += instance.OnShake;
+            @Shake.canceled += instance.OnShake;
+            @Tap.started += instance.OnTap;
+            @Tap.performed += instance.OnTap;
+            @Tap.canceled += instance.OnTap;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -177,6 +229,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Position.started -= instance.OnPosition;
             @Position.performed -= instance.OnPosition;
             @Position.canceled -= instance.OnPosition;
+            @Shake.started -= instance.OnShake;
+            @Shake.performed -= instance.OnShake;
+            @Shake.canceled -= instance.OnShake;
+            @Tap.started -= instance.OnTap;
+            @Tap.performed -= instance.OnTap;
+            @Tap.canceled -= instance.OnTap;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -198,5 +256,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     {
         void OnPress(InputAction.CallbackContext context);
         void OnPosition(InputAction.CallbackContext context);
+        void OnShake(InputAction.CallbackContext context);
+        void OnTap(InputAction.CallbackContext context);
     }
 }

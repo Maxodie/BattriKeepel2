@@ -1,3 +1,4 @@
+using GameEntity;
 using UnityEngine;
 
 namespace Game.AttackSystem.Attacks
@@ -9,18 +10,19 @@ namespace Game.AttackSystem.Attacks
         public string DisplayName;
         public string Slug;
         [TextArea] public string Description;
-        
+        public bool needTarget;
+
         [Header("Stats")]
         public int BaseDamage;
         public int BaseCooldown;
         public int BaseSpeed;
 
-        [Header("Effects")] 
-        public AttackEvents.BaseAttack BaseAttack;
+        [Header("Effects")]
+        public AttackEvents.BasePlayerAttack BasePlayerAttack;
 
-        public void RaiseAttack(Collider target) //Replace Collider with Entity
+        public void RaiseAttack(Player player)
         {
-            BaseAttack.baseAttackEvent?.Invoke(target);
+            BasePlayerAttack.basePlayerAttackEvent?.Invoke(player);
         }
     }
 }

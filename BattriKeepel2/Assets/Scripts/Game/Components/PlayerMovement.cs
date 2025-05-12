@@ -1,19 +1,19 @@
 using UnityEngine;
 
 namespace Components {
-    [System.Serializable]
-    public class Movement {
-
-        [HideInInspector] public Transform m_transform;
-        Vector2 m_newPos = new Vector2();
-        Vector2 m_offSet = new Vector2();
-        UnityEngine.InputSystem.TouchPhase m_isPressed;
+    public class PlayerMovement : Movement {
+        public Rigidbody2D rb;
+        private Vector2 newPos = new Vector2();
+        private Vector2 dirtyPos = Vector2.zero;
+        public Vector2 vel;
+        private UnityEngine.InputSystem.TouchPhase m_isPressed;
 
         public void OnPosition(Vector2 position) {
-            m_newPos = Camera.main.ScreenToWorldPoint(position);
+            newPos = Camera.main.ScreenToWorldPoint(position);
 
-            if (m_isPressed != UnityEngine.InputSystem.TouchPhase.Moved) {
-                m_offSet = m_newPos - new Vector2(m_transform.position.x, m_transform.position.y);
+            if (m_isPressed == UnityEngine.InputSystem.TouchPhase.Began) {
+                dirtyPos = newPos;
+                vel = Vector2.zero;
             }
         }
 
@@ -21,17 +21,17 @@ namespace Components {
             m_isPressed = state;
         }
 
-        private void HandleMovement() {
+        public override void HandleMovement() {
             if (m_isPressed == UnityEngine.InputSystem.TouchPhase.Began
                     || m_isPressed == UnityEngine.InputSystem.TouchPhase.Ended
                     || m_isPressed == UnityEngine.InputSystem.TouchPhase.None) {
-                return;
+                rb.linearVelocity = Vector2.zero;
             }
-            m_transform.position = new Vector3(m_newPos.x - m_offSet.x, m_newPos.y - m_offSet.y, 0);
-        }
 
-        public void Update() {
-            HandleMovement();
+            vel = (newPos - dirtyPos) / Time.deltaTime;
+            dirtyPos = newPos;
+
+            rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, vel, .7f);
         }
 
         public bool IsScreenPressed() {
@@ -42,3 +42,4 @@ namespace Components {
         }
     }
 }
+

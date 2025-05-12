@@ -1,10 +1,14 @@
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class DebuggerToolNavigatorUI : MonoBehaviour
 {
+    DebuggerTool m_debuggerTool;
+
     List<GameObject> m_tabContents = new();
-    List<DebuggerToolUIBase> m_tabDebuggersUI = new();
+    [HideInInspector] public List<DebuggerToolUIBase> m_tabDebuggersUI = new();
     List<GameObject> m_navigationTab = new();
 
     [Header("UI Prefabs")]
@@ -14,6 +18,21 @@ public class DebuggerToolNavigatorUI : MonoBehaviour
     [Header("UI Parents")]
     [SerializeField] Transform m_navigationTabTransform;
     [SerializeField] Transform m_tabContentTransform;
+    public Transform m_navigatorMain;
+
+    [Header("Var")]
+    public Button closeBtn;
+    public Button reopenBtn;
+
+    public void Init(DebuggerTool debuggerTool)
+    {
+        m_debuggerTool = debuggerTool;
+
+        closeBtn.onClick.AddListener(CloseDebugger);
+        reopenBtn.onClick.AddListener(OpenDebugger);
+        reopenBtn.gameObject.SetActive(false);
+        closeBtn.gameObject.SetActive(true);
+    }
 
     public void AddDebuggerTab<UI>() where UI: DebuggerToolUIBase, new()
     {
@@ -29,6 +48,7 @@ public class DebuggerToolNavigatorUI : MonoBehaviour
 
         GenerateTabContent<UI>();
 
+        newNavigationTab.SetNavigatorTabTitle(typeof(UI).ToString());
         newNavigationTab.AddNavigationTabBtnListener(
             delegate()
             {
@@ -46,6 +66,11 @@ public class DebuggerToolNavigatorUI : MonoBehaviour
             tab.SetActive(false);
         }
 
+        foreach(DebuggerToolUIBase ui in m_tabDebuggersUI)
+        {
+            ui.Update();
+        }
+
         m_tabContents[tabContentID].SetActive(true);
     }
 
@@ -56,7 +81,7 @@ public class DebuggerToolNavigatorUI : MonoBehaviour
         m_tabContents.Add(uiBase.Init(m_tabContentPrefab, m_tabContentTransform));
     }
 
-    public void GenerateField<UI>(object script) where UI: DebuggerToolUIBase, new()
+    public void GenerateField<UI>(object script, bool readOnly = false) where UI: DebuggerToolUIBase, new()
     {
         DebuggerToolUIBase uiBase = m_tabDebuggersUI.Find(delegate(DebuggerToolUIBase item){ return item is UI; });
         if(uiBase == null)
@@ -65,7 +90,26 @@ public class DebuggerToolNavigatorUI : MonoBehaviour
             return;
         }
 
-        uiBase.GenerateFields(script);
+        uiBase.GenerateFields(script, readOnly);
     }
 
+    public void CloseDebugger()
+    {
+        m_debuggerTool.SetActiveDebugger(false);
+        reopenBtn.gameObject.SetActive(true);
+        closeBtn.gameObject.SetActive(false);
+    }
+
+    public void OpenDebugger()
+    {
+        m_debuggerTool.SetActiveDebugger(true);
+        reopenBtn.gameObject.SetActive(false);
+        closeBtn.gameObject.SetActive(true);
+    }
+
+    public void SetActiveDebugger(bool state)
+    {
+        m_navigatorMain.gameObject.SetActive(state);
+    }
 }
+#endif

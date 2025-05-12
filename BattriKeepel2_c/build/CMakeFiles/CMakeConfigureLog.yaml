@@ -1,0 +1,342 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Windows - 10.0.26100 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: C:/LLVM_clang/clang+llvm-19.1.5-x86_64/bin/clang.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.exe"
+      
+      The C compiler identification is Clang, found in:
+        E:/UnityProject/BattriKeepel2/BattriKeepel2_c/build/CMakeFiles/3.31.0-rc2/CompilerIdC/a.exe
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:1288 (message)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:250 (CMAKE_DETERMINE_MSVC_SHOWINCLUDES_PREFIX)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Detecting C compiler /showIncludes prefix:
+        
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:1288 (message)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:250 (CMAKE_DETERMINE_MSVC_SHOWINCLUDES_PREFIX)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Detecting C compiler /showIncludes prefix:
+        
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: C:/LLVM_clang/clang+llvm-19.1.5-x86_64/bin/clang++.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.exe"
+      
+      The CXX compiler identification is Clang, found in:
+        E:/UnityProject/BattriKeepel2/BattriKeepel2_c/build/CMakeFiles/3.31.0-rc2/CompilerIdCXX/a.exe
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:1288 (message)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:250 (CMAKE_DETERMINE_MSVC_SHOWINCLUDES_PREFIX)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Detecting CXX compiler /showIncludes prefix:
+        
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:1288 (message)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:250 (CMAKE_DETERMINE_MSVC_SHOWINCLUDES_PREFIX)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Detecting CXX compiler /showIncludes prefix:
+        
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:74 (try_compile)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "E:/UnityProject/BattriKeepel2/BattriKeepel2_c/build/CMakeFiles/CMakeScratch/TryCompile-9a0d7t"
+      binary: "E:/UnityProject/BattriKeepel2/BattriKeepel2_c/build/CMakeFiles/CMakeScratch/TryCompile-9a0d7t"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "C:/LLVM_clang/clang+llvm-19.1.5-x86_64/bin/clang-scan-deps.exe"
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'E:/UnityProject/BattriKeepel2/BattriKeepel2_c/build/CMakeFiles/CMakeScratch/TryCompile-9a0d7t'
+        
+        Run Build Command(s): C:/cmake-3.31.0-rc2-windows-x86_64/bin/cmake.exe -E env VERBOSE=1 C:/MinGW/bin/mingw32-make.exe -f Makefile cmTC_96405/fast
+        C:/MinGW/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_96405.dir\\build.make CMakeFiles/cmTC_96405.dir/build
+        mingw32-make[1]: Entering directory 'E:/UnityProject/BattriKeepel2/BattriKeepel2_c/build/CMakeFiles/CMakeScratch/TryCompile-9a0d7t'
+        Building C object CMakeFiles/cmTC_96405.dir/CMakeCCompilerABI.c.obj
+        C:\\LLVM_clang\\clang+llvm-19.1.5-x86_64\\bin\\clang.exe   -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_96405.dir/CMakeCCompilerABI.c.obj -MF CMakeFiles\\cmTC_96405.dir\\CMakeCCompilerABI.c.obj.d -o CMakeFiles\\cmTC_96405.dir\\CMakeCCompilerABI.c.obj -c C:\\cmake-3.31.0-rc2-windows-x86_64\\share\\cmake-3.31\\Modules\\CMakeCCompilerABI.c
+        Linking C executable cmTC_96405.exe
+        C:\\cmake-3.31.0-rc2-windows-x86_64\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_96405.dir\\link.txt --verbose=1
+        C:\\LLVM_clang\\clang+llvm-19.1.5-x86_64\\bin\\clang.exe -nostartfiles -nostdlib -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd  -v -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_96405.dir\\objects1.rsp -o cmTC_96405.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_96405.lib -Xlinker /pdb:E:\\UnityProject\\BattriKeepel2\\BattriKeepel2_c\\build\\CMakeFiles\\CMakeScratch\\TryCompile-9a0d7t\\cmTC_96405.pdb -Xlinker /version:0.0 
+        clang version 19.1.5
+        Target: x86_64-pc-windows-msvc
+        Thread model: posix
+        InstalledDir: C:\\LLVM_clang\\clang+llvm-19.1.5-x86_64\\bin
+         "C:\\\\LLVM_clang\\\\clang+llvm-19.1.5-x86_64\\\\bin\\\\lld-link" -out:cmTC_96405.exe "-libpath:C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\VC\\\\Tools\\\\MSVC\\\\14.42.34433\\\\lib\\\\x64" "-libpath:C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\VC\\\\Tools\\\\MSVC\\\\14.42.34433\\\\atlmfc\\\\lib\\\\x64" "-libpath:C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\Lib\\\\10.0.22621.0\\\\ucrt\\\\x64" "-libpath:C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\Lib\\\\10.0.22621.0\\\\um\\\\x64" "-libpath:C:\\\\LLVM_clang\\\\clang+llvm-19.1.5-x86_64\\\\lib\\\\clang\\\\19\\\\lib\\\\windows" -nologo -debug /subsystem:console CMakeFiles/cmTC_96405.dir/CMakeCCompilerABI.c.obj /MANIFEST:EMBED /implib:cmTC_96405.lib "/pdb:E:\\\\UnityProject\\\\BattriKeepel2\\\\BattriKeepel2_c\\\\build\\\\CMakeFiles\\\\CMakeScratch\\\\TryCompile-9a0d7t\\\\cmTC_96405.pdb" /version:0.0
+        mingw32-make[1]: Leaving directory 'E:/UnityProject/BattriKeepel2/BattriKeepel2_c/build/CMakeFiles/CMakeScratch/TryCompile-9a0d7t'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:218 (message)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'C': C:/LLVM_clang/clang+llvm-19.1.5-x86_64/bin/lld-link
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:255 (cmake_determine_linker_id)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the C compiler's linker: "C:/LLVM_clang/clang+llvm-19.1.5-x86_64/bin/lld-link" "-v"
+      lld-link: warning: ignoring unknown argument '-v'
+      lld-link: error: no input files
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:255 (cmake_determine_linker_id)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the C compiler's linker: "C:/LLVM_clang/clang+llvm-19.1.5-x86_64/bin/lld-link" "-V"
+      lld-link: warning: ignoring unknown argument '-V'
+      lld-link: error: no input files
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:255 (cmake_determine_linker_id)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the C compiler's linker: "C:/LLVM_clang/clang+llvm-19.1.5-x86_64/bin/lld-link" "--version"
+      LLD 19.1.5
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:74 (try_compile)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "E:/UnityProject/BattriKeepel2/BattriKeepel2_c/build/CMakeFiles/CMakeScratch/TryCompile-0c2ssu"
+      binary: "E:/UnityProject/BattriKeepel2/BattriKeepel2_c/build/CMakeFiles/CMakeScratch/TryCompile-0c2ssu"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "C:/LLVM_clang/clang+llvm-19.1.5-x86_64/bin/clang-scan-deps.exe"
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'E:/UnityProject/BattriKeepel2/BattriKeepel2_c/build/CMakeFiles/CMakeScratch/TryCompile-0c2ssu'
+        
+        Run Build Command(s): C:/cmake-3.31.0-rc2-windows-x86_64/bin/cmake.exe -E env VERBOSE=1 C:/MinGW/bin/mingw32-make.exe -f Makefile cmTC_b8b38/fast
+        C:/MinGW/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_b8b38.dir\\build.make CMakeFiles/cmTC_b8b38.dir/build
+        mingw32-make[1]: Entering directory 'E:/UnityProject/BattriKeepel2/BattriKeepel2_c/build/CMakeFiles/CMakeScratch/TryCompile-0c2ssu'
+        Building CXX object CMakeFiles/cmTC_b8b38.dir/CMakeCXXCompilerABI.cpp.obj
+        C:\\LLVM_clang\\clang+llvm-19.1.5-x86_64\\bin\\clang++.exe   -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_b8b38.dir/CMakeCXXCompilerABI.cpp.obj -MF CMakeFiles\\cmTC_b8b38.dir\\CMakeCXXCompilerABI.cpp.obj.d -o CMakeFiles\\cmTC_b8b38.dir\\CMakeCXXCompilerABI.cpp.obj -c C:\\cmake-3.31.0-rc2-windows-x86_64\\share\\cmake-3.31\\Modules\\CMakeCXXCompilerABI.cpp
+        Linking CXX executable cmTC_b8b38.exe
+        C:\\cmake-3.31.0-rc2-windows-x86_64\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_b8b38.dir\\link.txt --verbose=1
+        C:\\LLVM_clang\\clang+llvm-19.1.5-x86_64\\bin\\clang++.exe -nostartfiles -nostdlib -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd  -v -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_b8b38.dir\\objects1.rsp -o cmTC_b8b38.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_b8b38.lib -Xlinker /pdb:E:\\UnityProject\\BattriKeepel2\\BattriKeepel2_c\\build\\CMakeFiles\\CMakeScratch\\TryCompile-0c2ssu\\cmTC_b8b38.pdb -Xlinker /version:0.0 
+        clang version 19.1.5
+        Target: x86_64-pc-windows-msvc
+        Thread model: posix
+        InstalledDir: C:\\LLVM_clang\\clang+llvm-19.1.5-x86_64\\bin
+         "C:\\\\LLVM_clang\\\\clang+llvm-19.1.5-x86_64\\\\bin\\\\lld-link" -out:cmTC_b8b38.exe "-libpath:C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\VC\\\\Tools\\\\MSVC\\\\14.42.34433\\\\lib\\\\x64" "-libpath:C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\VC\\\\Tools\\\\MSVC\\\\14.42.34433\\\\atlmfc\\\\lib\\\\x64" "-libpath:C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\Lib\\\\10.0.22621.0\\\\ucrt\\\\x64" "-libpath:C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\Lib\\\\10.0.22621.0\\\\um\\\\x64" "-libpath:C:\\\\LLVM_clang\\\\clang+llvm-19.1.5-x86_64\\\\lib\\\\clang\\\\19\\\\lib\\\\windows" -nologo -debug /subsystem:console CMakeFiles/cmTC_b8b38.dir/CMakeCXXCompilerABI.cpp.obj /MANIFEST:EMBED /implib:cmTC_b8b38.lib "/pdb:E:\\\\UnityProject\\\\BattriKeepel2\\\\BattriKeepel2_c\\\\build\\\\CMakeFiles\\\\CMakeScratch\\\\TryCompile-0c2ssu\\\\cmTC_b8b38.pdb" /version:0.0
+        mingw32-make[1]: Leaving directory 'E:/UnityProject/BattriKeepel2/BattriKeepel2_c/build/CMakeFiles/CMakeScratch/TryCompile-0c2ssu'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:218 (message)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'CXX': C:/LLVM_clang/clang+llvm-19.1.5-x86_64/bin/lld-link
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:255 (cmake_determine_linker_id)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the CXX compiler's linker: "C:/LLVM_clang/clang+llvm-19.1.5-x86_64/bin/lld-link" "-v"
+      lld-link: warning: ignoring unknown argument '-v'
+      lld-link: error: no input files
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:255 (cmake_determine_linker_id)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the CXX compiler's linker: "C:/LLVM_clang/clang+llvm-19.1.5-x86_64/bin/lld-link" "-V"
+      lld-link: warning: ignoring unknown argument '-V'
+      lld-link: error: no input files
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:255 (cmake_determine_linker_id)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the CXX compiler's linker: "C:/LLVM_clang/clang+llvm-19.1.5-x86_64/bin/lld-link" "--version"
+      LLD 19.1.5
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/Internal/FeatureTesting.cmake:34 (try_compile)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/Internal/FeatureTesting.cmake:87 (_record_compiler_features)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/Compiler/CMakeCommonCompilerMacros.cmake:124 (_record_compiler_features_cxx)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCompilerSupport.cmake:70 (cmake_record_cxx_compile_features)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake:83 (CMAKE_DETERMINE_COMPILER_SUPPORT)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting CXX compile features"
+    directories:
+      source: "E:/UnityProject/BattriKeepel2/BattriKeepel2_c/build/CMakeFiles/CMakeScratch/TryCompile-78is1p"
+      binary: "E:/UnityProject/BattriKeepel2/BattriKeepel2_c/build/CMakeFiles/CMakeScratch/TryCompile-78is1p"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "C:/LLVM_clang/clang+llvm-19.1.5-x86_64/bin/clang-scan-deps.exe"
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_CXX_FEATURE_TEST"
+      cached: true
+      stdout: |
+        Change Dir: 'E:/UnityProject/BattriKeepel2/BattriKeepel2_c/build/CMakeFiles/CMakeScratch/TryCompile-78is1p'
+        
+        Run Build Command(s): C:/cmake-3.31.0-rc2-windows-x86_64/bin/cmake.exe -E env VERBOSE=1 C:/MinGW/bin/mingw32-make.exe -f Makefile cmTC_1f2ca/fast
+        C:/MinGW/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_1f2ca.dir\\build.make CMakeFiles/cmTC_1f2ca.dir/build
+        mingw32-make[1]: Entering directory 'E:/UnityProject/BattriKeepel2/BattriKeepel2_c/build/CMakeFiles/CMakeScratch/TryCompile-78is1p'
+        Building CXX object CMakeFiles/cmTC_1f2ca.dir/feature_tests.cxx.obj
+        C:\\LLVM_clang\\clang+llvm-19.1.5-x86_64\\bin\\clang++.exe   -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd   -std=c++14 -MD -MT CMakeFiles/cmTC_1f2ca.dir/feature_tests.cxx.obj -MF CMakeFiles\\cmTC_1f2ca.dir\\feature_tests.cxx.obj.d -o CMakeFiles\\cmTC_1f2ca.dir\\feature_tests.cxx.obj -c E:\\UnityProject\\BattriKeepel2\\BattriKeepel2_c\\build\\CMakeFiles\\CMakeScratch\\TryCompile-78is1p\\feature_tests.cxx
+        Linking CXX executable cmTC_1f2ca.exe
+        C:\\cmake-3.31.0-rc2-windows-x86_64\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_1f2ca.dir\\link.txt --verbose=1
+        C:\\LLVM_clang\\clang+llvm-19.1.5-x86_64\\bin\\clang++.exe -nostartfiles -nostdlib -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_1f2ca.dir\\objects1.rsp -o cmTC_1f2ca.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_1f2ca.lib -Xlinker /pdb:E:\\UnityProject\\BattriKeepel2\\BattriKeepel2_c\\build\\CMakeFiles\\CMakeScratch\\TryCompile-78is1p\\cmTC_1f2ca.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_1f2ca.dir\\linkLibs.rsp
+        mingw32-make[1]: Leaving directory 'E:/UnityProject/BattriKeepel2/BattriKeepel2_c/build/CMakeFiles/CMakeScratch/TryCompile-78is1p'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/Internal/FeatureTesting.cmake:34 (try_compile)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/Internal/FeatureTesting.cmake:87 (_record_compiler_features)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/Compiler/CMakeCommonCompilerMacros.cmake:132 (_record_compiler_features_cxx)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeDetermineCompilerSupport.cmake:70 (cmake_record_cxx_compile_features)"
+      - "C:/cmake-3.31.0-rc2-windows-x86_64/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake:83 (CMAKE_DETERMINE_COMPILER_SUPPORT)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting CXX compile features"
+    directories:
+      source: "E:/UnityProject/BattriKeepel2/BattriKeepel2_c/build/CMakeFiles/CMakeScratch/TryCompile-56ukr2"
+      binary: "E:/UnityProject/BattriKeepel2/BattriKeepel2_c/build/CMakeFiles/CMakeScratch/TryCompile-56ukr2"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "C:/LLVM_clang/clang+llvm-19.1.5-x86_64/bin/clang-scan-deps.exe"
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-O0 -g -Xclang -gcodeview"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_CXX_FEATURE_TEST"
+      cached: true
+      stdout: |
+        Change Dir: 'E:/UnityProject/BattriKeepel2/BattriKeepel2_c/build/CMakeFiles/CMakeScratch/TryCompile-56ukr2'
+        
+        Run Build Command(s): C:/cmake-3.31.0-rc2-windows-x86_64/bin/cmake.exe -E env VERBOSE=1 C:/MinGW/bin/mingw32-make.exe -f Makefile cmTC_4bb94/fast
+        C:/MinGW/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_4bb94.dir\\build.make CMakeFiles/cmTC_4bb94.dir/build
+        mingw32-make[1]: Entering directory 'E:/UnityProject/BattriKeepel2/BattriKeepel2_c/build/CMakeFiles/CMakeScratch/TryCompile-56ukr2'
+        Building CXX object CMakeFiles/cmTC_4bb94.dir/feature_tests.cxx.obj
+        C:\\LLVM_clang\\clang+llvm-19.1.5-x86_64\\bin\\clang++.exe   -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd   -std=c++14 -MD -MT CMakeFiles/cmTC_4bb94.dir/feature_tests.cxx.obj -MF CMakeFiles\\cmTC_4bb94.dir\\feature_tests.cxx.obj.d -o CMakeFiles\\cmTC_4bb94.dir\\feature_tests.cxx.obj -c E:\\UnityProject\\BattriKeepel2\\BattriKeepel2_c\\build\\CMakeFiles\\CMakeScratch\\TryCompile-56ukr2\\feature_tests.cxx
+        Linking CXX executable cmTC_4bb94.exe
+        C:\\cmake-3.31.0-rc2-windows-x86_64\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_4bb94.dir\\link.txt --verbose=1
+        C:\\LLVM_clang\\clang+llvm-19.1.5-x86_64\\bin\\clang++.exe -nostartfiles -nostdlib -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link @CMakeFiles\\cmTC_4bb94.dir\\objects1.rsp -o cmTC_4bb94.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_4bb94.lib -Xlinker /pdb:E:\\UnityProject\\BattriKeepel2\\BattriKeepel2_c\\build\\CMakeFiles\\CMakeScratch\\TryCompile-56ukr2\\cmTC_4bb94.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_4bb94.dir\\linkLibs.rsp
+        mingw32-make[1]: Leaving directory 'E:/UnityProject/BattriKeepel2/BattriKeepel2_c/build/CMakeFiles/CMakeScratch/TryCompile-56ukr2'
+        
+      exitCode: 0
+...

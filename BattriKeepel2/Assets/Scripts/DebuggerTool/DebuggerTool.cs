@@ -3,39 +3,68 @@ using System.Collections.Generic;
 
 public class DebuggerTool : MonoBehaviour
 {
+
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
     DebuggerToolNavigatorUI m_devToolNavigator;
     [SerializeField] DebuggerToolNavigatorUI m_devToolNavigatorPrefab;
-    List<DebuggerToolBase> m_activeTools = new List<DebuggerToolBase>();
     List<System.Type> m_activeUITools = new List<System.Type>();
-    bool isActive = true;
+    bool m_isActive = true;
+    ProfilerStats m_rtProfiler = new();
+
+    [SerializeField] InGameLogger inGameLogger;
+#endif
 
     void Awake()
     {
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
         if(!m_devToolNavigator)
         {
             m_devToolNavigator = Instantiate(m_devToolNavigatorPrefab, transform);
+            m_devToolNavigator.Init(this);
             DontDestroyOnLoad(gameObject);
-
-            CreateActiveTool<RTProfiler>();
         }
 
-        GenerateDebuggerTab<DebuggertoolUILogger>();
+        InGameLogger loggerVisual = Instantiate(inGameLogger, m_devToolNavigator.transform);
+        loggerVisual.SetActiveLog(true);
+        m_devToolNavigator.reopenBtn.onClick.AddListener(() => {loggerVisual.SetActiveLog(true);});
+        m_devToolNavigator.closeBtn.onClick.AddListener(() => {loggerVisual.SetActiveLog(false);});
+
+        GenerateDebuggerTab<DebuggertoolUIRTProfiler>();
+        m_devToolNavigator.GenerateField<DebuggertoolUIRTProfiler>(m_rtProfiler, true);
+
+        GraphicsManager.Get().OnVisualCreatedCallback.AddListener(UpdateTabs);
+        Log.m_onLoggerCreated.AddListener(UpdateTabs);
+
+#else
+
+        Destroy(gameObject);
+        return;
+#endif
+    }
+
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
+    void UpdateTabs(object infos)
+    {
+        if(infos != null)
+        {
+            Logger infoLogger = infos as Logger;
+            if(infoLogger != null)
+            {
+                foreach(Logger logger in Log.m_loggers)
+                {
+                    GenerateDebuggerTab<DebuggertoolUILogger>();
+                    m_devToolNavigator.GenerateField<DebuggertoolUILogger>(logger);
+                }
+            }
+        }
     }
 
     void Update()
     {
-        if(!isActive) return;
-
-        UpdateTabs(); //system d'entity et utpdate ça quand y'a un nouvel entity
-    }
-
-    void UpdateTabs()
-    {
-        foreach(Logger logger in Log.m_loggers)
+        foreach(DebuggerToolUIBase tool in m_devToolNavigator.m_tabDebuggersUI)
         {
-            m_devToolNavigator.GenerateField<DebuggertoolUILogger>(logger);
+            tool.Update();
         }
-
     }
 
     void GenerateDebuggerTab<T>() where T: DebuggerToolUIBase, new()
@@ -47,42 +76,10 @@ public class DebuggerTool : MonoBehaviour
         }
     }
 
-    void CreateActiveTool<T>() where T: DebuggerToolBase, new()
+    public void SetActiveDebugger(bool state)
     {
-        DebuggerToolBase tool = m_activeTools.Find(delegate(DebuggerToolBase tool){ return tool is T; });
-        if(tool == null)
-        {
-            m_activeTools.Add(new T());
-            Log.Success<DebuggerLogger>($"Debugger tool of type : {typeof(T)} has been added");
-        }
-        else
-        {
-            Log.Warn<DebuggerLogger>($"Active debugger tool of type : {typeof(T)} already exist");
-        }
+        m_devToolNavigator.SetActiveDebugger(state);
+        m_isActive = state;
     }
-
-    void DestroyActiveTool<T>() where T: DebuggerToolBase
-    {
-        DebuggerToolBase tool = m_activeTools.Find(delegate(DebuggerToolBase tool){ return tool is T; });
-        if(tool != null)
-        {
-            m_activeTools.Remove(tool);
-            Log.Success<DebuggerLogger>($"Debugger tool of type : {typeof(T)} has been removed");
-        }
-        else
-        {
-            Log.Warn<DebuggerLogger>($"Could not find active debugger tool of type : {typeof(T)}");
-        }
-    }
-
-    public void UpdateTools()
-    {
-        foreach (DebuggerToolBase tool in m_activeTools)
-        {
-            if(tool.IsToolActive)
-            {
-                tool.Update();
-            }
-        }
-    }
+#endif
 }

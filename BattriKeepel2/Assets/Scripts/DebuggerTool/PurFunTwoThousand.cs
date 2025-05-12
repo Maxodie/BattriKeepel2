@@ -1,4 +1,5 @@
-public class PurFunTwoThousand : DebuggerToolBase
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
+public class PurFunTwoThousand : DebuggerToolUIBase
 {
     public void CrashHardware()
     {
@@ -6,10 +7,8 @@ public class PurFunTwoThousand : DebuggerToolBase
         {
             bool activeBomb = true;
             Log.Trace("RUSH B, bomb planted");
-#if UNITY_EDITOR
             Log.Success("Computer successfully crashed");
             activeBomb = false;
-#endif
             if(!activeBomb) return;
 
             try
@@ -36,10 +35,8 @@ public class PurFunTwoThousand : DebuggerToolBase
     {
         bool activeBomb = true;
         Log.Trace("We've got a traitor!");
-#if UNITY_EDITOR
         Log.Success("Game successfully crashed");
         activeBomb = false;
-#endif
         if(!activeBomb) return;
 
         unsafe
@@ -51,7 +48,7 @@ public class PurFunTwoThousand : DebuggerToolBase
         }
     }
 
-    public override void Create()
+    public override void OnCreate()
     {
 
     }
@@ -66,3 +63,4 @@ public class PurFunTwoThousand : DebuggerToolBase
 
     }
 }
+#endif

@@ -1,3 +1,4 @@
+using GameEntity;
 using UnityEngine;
 
 namespace Game.AttackSystem.Definitions
@@ -5,47 +6,47 @@ namespace Game.AttackSystem.Definitions
     [CreateAssetMenu(fileName = "PlayerAttacksDefinition", menuName = "AttackSystem/Definitions/PlayerAttacksDefinition")]
     public class PlayerAttacksDefinition : AttackDefinitions
     {
-        public void PlayerMeleeAttack(Collider enemy)
+        public void PlayerMeleeAttack(Player player)
         {
             //TODO : Fill method
         }
 
-        public void PlayerMeleeAbility(Collider enemy)
+        public void PlayerMeleeAbility(Player player)
         {
             //TODO : Fill method
         }
 
-        public void PlayerMeleeUltimate(Collider enemy)
+        public void PlayerMeleeUltimate(Player player)
         {
             //TODO : Fill method
         }
 
-        public void PlayerDistanceAttack(Collider enemy)
+        public void PlayerDistanceAttack(Player player)
+        {
+            Debug.Log("distance attack");
+        }
+
+        public void PlayerDistanceAbility(Player player)
+        {
+            Debug.Log("distance ability");
+        }
+
+        public void PlayerDistanceUltimate(Player player)
+        {
+            Debug.Log("distance ultimate");
+        }
+
+        public void PlayerSpecialAttack(Player player)
         {
             //TODO : Fill method
         }
 
-        public void PlayerDistanceAbility(Collider enemy)
+        public void PlayerSpecialAbility(Player player)
         {
             //TODO : Fill method
         }
 
-        public void PlayerDistanceUltimate(Collider enemy)
-        {
-            //TODO : Fill method
-        }
-
-        public void PlayerSpecialAttack(Collider enemy)
-        {
-            //TODO : Fill method
-        }
-
-        public void PlayerSpecialAbility(Collider enemy)
-        {
-            //TODO : Fill method
-        }
-
-        public void PlayerSpecialUltimate(Collider enemy)
+        public void PlayerSpecialUltimate(Player player)
         {
             //TODO : Fill method
         }
