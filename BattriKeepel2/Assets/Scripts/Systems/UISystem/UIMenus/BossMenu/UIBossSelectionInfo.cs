@@ -19,6 +19,12 @@ public class UIBossSelectionInfo : UIMenuBase
         SetBossTesxtInfos(m_data);
     }
 
+    public void LinkBossSelectionMenu(UIBossMenu menu)
+    {
+        menu.InvokeSelectionEnded();
+    }
+
+
     void SetBossTesxtInfos(SO_BossSelectionInfos data)
     {
         bossText.text = $"<b><color=#{ColorUtility.ToHtmlStringRGB(data.bossTitleColor)}>{data.bossName}</b>\n\n{data.bossDesc}";

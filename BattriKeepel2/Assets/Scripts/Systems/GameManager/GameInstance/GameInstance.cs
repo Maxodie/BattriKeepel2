@@ -19,9 +19,9 @@ public static class GameInstance
         m_instanceData.currentLevelData = bossLeveldata;
     }
 
-    public static void SetCurrentPlayerLevel(SO_PlayerData bossData)
+    public static void SetCurrentPlayerData(SO_PlayerData playerData)
     {
-        m_instanceData.currentPlayerData = bossData;
+        m_instanceData.currentPlayerData = playerData;
     }
 
     public static SO_GameLevelData GetCurrentLevelData()
