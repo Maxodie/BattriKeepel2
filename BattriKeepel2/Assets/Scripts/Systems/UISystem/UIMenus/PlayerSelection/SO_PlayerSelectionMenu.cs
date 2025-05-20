@@ -4,15 +4,15 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "PlayerSelectionMenu", menuName = "UIManager/PlayerSelectionMenu")]
 public class SO_UIPlayerSelectionMenu : SO_UIData
 {
-    public UIPlayerSelectionInfo[] playerSelectionInfos;
-    public SO_PlayerData playerData;
+    public SO_PlayerData[] playerDatas;
+    public UIPlayerSelectionInfo playerSelectionInfos;
     public Button playerSelectionNavigation;
     public UIPlayerSelectionMenu menuBasePrefab;
 
     public override UIDataResult Init(Transform spawnParentTr)
     {
-        UIPlayerSelectionMenu bossMenu = Object.Instantiate(menuBasePrefab, spawnParentTr);
-        bossMenu.Init(this);
-        return new(bossMenu.gameObject, bossMenu);
+        UIPlayerSelectionMenu playerMenu = Object.Instantiate(menuBasePrefab, spawnParentTr);
+        playerMenu.Init(this);
+        return new(playerMenu.gameObject, playerMenu);
     }
 }

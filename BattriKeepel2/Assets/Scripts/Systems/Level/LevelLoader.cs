@@ -2,6 +2,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
+public class LevelLoaderLogger : Logger
+{
+
+}
+
 public static class LevelLoader
 {
     public static void LoadLevel(SO_LevelData data)
@@ -15,10 +20,15 @@ public static class LevelLoader
         LoadLevelID(data);
     }
 
-    public static void LoadBossLevel(SO_GameLevelData data)
+    public static void LoadSelectedGameLevel()
     {
-        GameInstance.SetCurrentBossLevel(data);
-        LoadLevelID(data);
+        if(!GameInstance.GetCurrentLevelData())
+        {
+            Log.Error<LevelLoaderLogger>("trying to load null level, please set gameInstance level data");
+            return;
+        }
+
+        LoadLevelID(GameInstance.GetCurrentLevelData());
     }
 
     static void LoadLevelID(SO_LevelData data)

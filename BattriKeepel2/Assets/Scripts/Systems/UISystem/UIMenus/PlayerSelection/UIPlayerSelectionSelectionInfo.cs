@@ -9,6 +9,7 @@ public class UIPlayerSelectionInfo : UIMenuBase
     [SerializeField] TMP_Text m_nameText;
 
     SO_PlayerData m_data;
+    UIPlayerSelectionMenu m_menu;
 
     public void Init(SO_PlayerData data)
     {
@@ -19,6 +20,11 @@ public class UIPlayerSelectionInfo : UIMenuBase
         SetBossTesxtInfos(m_data);
     }
 
+    public void LinkPlayerSelectionMenu(UIPlayerSelectionMenu menu)
+    {
+        m_menu = menu;
+    }
+
     void SetBossTesxtInfos(SO_PlayerData data)
     {
         m_nameText.text = $"<b><color=#{ColorUtility.ToHtmlStringRGB(data.nameColor)}>{data.playerName}</b>\n\n{data.playerDesc}";
@@ -27,6 +33,7 @@ public class UIPlayerSelectionInfo : UIMenuBase
     void OnStartBossBtnClick()
     {
         GameInstance.SetCurrentPlayerData(m_data);
+        m_menu.OnPlayerSelectionEnd();
         //start anim
     }
 

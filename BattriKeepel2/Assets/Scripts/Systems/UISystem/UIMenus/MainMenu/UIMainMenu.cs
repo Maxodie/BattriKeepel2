@@ -6,16 +6,19 @@ public class UIMainMenu : UIMenuBase
     [SerializeField] Button m_startBtn;
     [SerializeField] Button m_idleBtn;
 
-    UIDataResult m_playerSelectionMenu;
+    UIPlayerSelectionMenu m_playerSelectionMenu;
 
     public void Init(SO_UIMainMenu data)
     {
         UIDataResult bossMenu = UIManager.GenerateUIData(data.bossMenu, transform);
-        m_playerSelectionMenu = UIManager.GenerateUIData(data.playerSelectionMenu, transform);
 
         UIBossMenu uiBossMenu = (UIBossMenu)bossMenu.Menu;
+        uiBossMenu.BindMainMenu(this);
         uiBossMenu.BindOnBossSelectionEnded(OnBossSelectionEnded);
 
+        m_playerSelectionMenu = (UIPlayerSelectionMenu)UIManager.GenerateUIData(data.playerSelectionMenu, transform).Menu;
+        m_playerSelectionMenu.BindMainMenu(this);
+        m_playerSelectionMenu.BindOnPlayerSelectionEnded(OnPlayerSelectionEnded);
 
         m_idleBtn.onClick.AddListener(() => LevelLoader.LoadLevel(data.idleSceneData));
         m_startBtn.onClick.AddListener(() => { bossMenu.Menu.ToggleMenu(); });
@@ -23,6 +26,11 @@ public class UIMainMenu : UIMenuBase
 
     public void OnBossSelectionEnded()
     {
-        ((UIMainMenu)m_playerSelectionMenu.Menu).SetActive(true);
+        m_playerSelectionMenu.SetActive(true);
+    }
+
+    public void OnPlayerSelectionEnded()
+    {
+        LevelLoader.LoadSelectedGameLevel();
     }
 }

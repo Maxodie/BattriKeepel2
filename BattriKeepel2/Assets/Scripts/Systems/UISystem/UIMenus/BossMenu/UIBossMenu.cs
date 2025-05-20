@@ -31,7 +31,7 @@ public class UIBossMenu : UIMenuBase
     {
         for(int i=0; i < navigationsPanels.Length; i++)
         {
-            navigationsPanels[i].LinkBossSelectionMenu(this);
+            navigationsPanels[i].LinkBossMenu(this);
         }
     }
 

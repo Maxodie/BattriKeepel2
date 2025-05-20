@@ -9,6 +9,7 @@ public class UIBossSelectionInfo : UIMenuBase
     [SerializeField] TMP_Text bossText;
 
     SO_BossSelectionInfos m_data;
+    UIBossMenu m_menu;
 
     public void Init(SO_BossSelectionInfos data)
     {
@@ -19,11 +20,10 @@ public class UIBossSelectionInfo : UIMenuBase
         SetBossTesxtInfos(m_data);
     }
 
-    public void LinkBossSelectionMenu(UIBossMenu menu)
+    public void LinkBossMenu(UIBossMenu menu)
     {
-        menu.InvokeSelectionEnded();
+        m_menu = menu;
     }
-
 
     void SetBossTesxtInfos(SO_BossSelectionInfos data)
     {
@@ -32,7 +32,8 @@ public class UIBossSelectionInfo : UIMenuBase
 
     void OnStartBossBtnClick()
     {
-        LevelLoader.LoadBossLevel(m_data.levelData);
+        GameInstance.SetCurrentBossLevel(m_data.levelData);
+        m_menu.InvokeSelectionEnded();
         //start anim
     }
 
