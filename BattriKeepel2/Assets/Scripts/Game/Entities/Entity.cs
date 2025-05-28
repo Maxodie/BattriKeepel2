@@ -6,7 +6,6 @@ namespace Game.Entities
 {
     public abstract class Entity : IGameEntity
     {
-        protected AttackSet attacks;
         protected BulletData bulletData;
         private EntityGraphics entityGraphics;
         private AttackManager attackManager;
@@ -52,7 +51,7 @@ namespace Game.Entities
 
         public virtual void CreateBullet()
         {
-            
+
         }
     }
 }

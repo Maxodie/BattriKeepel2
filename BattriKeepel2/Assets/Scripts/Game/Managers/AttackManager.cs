@@ -12,7 +12,7 @@ namespace Game.Managers
         private Entity _entityAttached;
 
         private Awaitable currentAttack;
-        
+
         private bool _isAbleToAttack = true;
 
         public void InitAttacking(bool isPlayer, AttackSet attackSet, Entity entityAttached)
@@ -20,10 +20,10 @@ namespace Game.Managers
             _isPlayer = isPlayer;
             _attacks = attackSet;
             _entityAttached = entityAttached;
-            
+
             StartAttacking();
         }
-        
+
         private void StartAttacking()
         {
             currentAttack = DelayedAttacks(_attacks.BasicAttack);
@@ -35,15 +35,15 @@ namespace Game.Managers
                 currentAttack.Cancel();
             }
         }
-        
+
         private async Awaitable DelayedAttacks(Attack attack)
         {
             if (_isPlayer && _isAbleToAttack) {
-                attack.RaiseAttack((Player)_entityAttached);
+                attack.RaiseAttack(_entityAttached);
             }
-            
+
             await Awaitable.WaitForSecondsAsync(attack.BaseCooldown);
-            
+
             currentAttack = DelayedAttacks(attack);
         }
     }
