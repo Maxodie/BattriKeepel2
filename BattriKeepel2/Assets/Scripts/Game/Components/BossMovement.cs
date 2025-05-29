@@ -16,7 +16,7 @@ public class BossMovement : Movement
 
     bool m_isMoving = false;
     Vector2 m_targetPosition;
-    float m_positionThreashold = 0.2f;
+//    float m_positionThreashold = 0.2f;
 
     float m_waitTimer = 0.0f;
 

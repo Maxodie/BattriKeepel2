@@ -1,16 +1,14 @@
 using UnityEngine;
 using Game.Entities;
 using Game.AttackSystem.Bullet;
-using Components;
 
 public class BossEntity : Entity
 {
     SO_BossScriptableObject m_data;
     BossGraphicsEntity m_bossGraphics;
 
-    BossMovement m_movement;
-
     DialogComponent m_dialogComponent;
+    BossAttack[] m_attacks;
 
     public BossEntity(SO_BossScriptableObject data)
     {
@@ -21,20 +19,27 @@ public class BossEntity : Entity
         m_bossGraphics = GraphicsManager.Get().GenerateVisualInfos<BossGraphicsEntity>(data.bossGraphicsEntity, new Vector2(0, 2), Quaternion.identity, this);
         m_bossGraphics.ComputeLocations();
 
-        m_movement = new BossMovement(m_bossGraphics, m_data.movementData);
-
         if(data.dialogData)
         {
             m_dialogComponent = new DialogComponent();
             m_dialogComponent.StartDialog(data.dialogData);
         }
 
+        InitAttacks();
+        HandleAttacks();
+
         UpdateVisualHealth();
     }
 
-    public void Update()
-    {
-        m_movement.Update();
+    private void InitAttacks() {
+        m_attacks = new BossAttack[m_data.attackData.Length];
+    }
+
+    private async Awaitable HandleAttacks() {
+        for (int i = 0; i < m_attacks.Length; i++) {
+            m_attacks[i] = new(m_data.attackData[i], m_bossGraphics.transform.position);
+            await Awaitable.WaitForSecondsAsync(m_data.attackData[i].intervalBeforeNextAttack);
+        }
     }
 
     public override void TakeDamage(Bullet bullet)
@@ -52,6 +57,6 @@ public class BossEntity : Entity
 
     public override void Die()
     {
-
+        HandleAttacks().Cancel();
     }
 }
