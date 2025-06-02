@@ -1,12 +1,11 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "PlayerSelectionMenu", menuName = "UIManager/PlayerSelectionMenu")]
 public class SO_UIPlayerSelectionMenu : SO_UIData
 {
     public SO_PlayerData[] playerDatas;
     public UIPlayerSelectionInfo playerSelectionInfos;
-    public Button playerSelectionNavigation;
+    public UIButton playerSelectionNavigation;
     public UIPlayerSelectionMenu menuBasePrefab;
 
     public override UIDataResult Init(Transform spawnParentTr)

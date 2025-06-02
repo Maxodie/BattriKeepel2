@@ -20,7 +20,9 @@ public class UIBossMenu : UIMenuBase
             UIDataResult result = UIManager.GenerateUIData(data.bossSelectionInfos[i], m_bossSelectionInfoContent);
             navigationsPanels[i] = (UIBossSelectionInfo)result.Menu;
 
-            Object.Instantiate(data.bossSelectionNavigation, m_bossSelectionNavigationContent).onClick.AddListener(() => { ChangeNavigationMenu(iCopy); });
+            UIButton buttonGo = Object.Instantiate(data.bossSelectionNavigation, m_bossSelectionNavigationContent);
+            buttonGo.Button.onClick.AddListener(() => { ChangeNavigationMenu(iCopy); });
+            buttonGo.Title = data.bossSelectionInfos[i].bossName;
         }
 
         ChangeNavigationMenu(0);

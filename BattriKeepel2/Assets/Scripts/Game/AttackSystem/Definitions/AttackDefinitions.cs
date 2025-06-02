@@ -5,13 +5,6 @@ namespace Game.AttackSystem.Definitions
 {
     public class AttackDefinitions : ScriptableObject
     {
-        // boss attack
-        public void BossAttack(Entity boss)
-        {
-            (BossEntity)boss
-        }
-
-
         // player attack
 
         public void PlayerMeleeAttack(Entity player)

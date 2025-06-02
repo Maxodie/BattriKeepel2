@@ -8,7 +8,7 @@ namespace Game.Entities
     {
         protected BulletData bulletData;
         private EntityGraphics entityGraphics;
-        private AttackManager attackManager;
+        public AttackManager attackManager;
 
         public enum EntityType {Player, Enemy, Boss}
         public EntityType entityType;

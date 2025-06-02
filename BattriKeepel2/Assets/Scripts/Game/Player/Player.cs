@@ -39,16 +39,15 @@ namespace GameEntity
             transform = m_playerGraphics.transform;
             m_movement.rb = m_rb;
 
-            attacks = playerData.attackSet;
-            base.Init(attacks);
+            base.Init(playerData.attackSet);
         }
 
         private void BindActions() {
             m_inputManager.BindPosition(m_movement.OnPosition);
             m_inputManager.BindPress(m_movement.OnPress);
             m_inputManager.BindTap(TapReceived);
-            BindDoubleTap(attacks.AbilityAttack.RaiseAttack);
-            BindShake(attacks.UltimateAttack.RaiseAttack);
+            BindDoubleTap(attackManager.attacks.AbilityAttack.RaiseAttack);
+            BindShake(attackManager.attacks.UltimateAttack.RaiseAttack);
         }
 
         private void BindSingleTap(UnityAction<Player> action) {

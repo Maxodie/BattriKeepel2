@@ -1,11 +1,10 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "BossMenu", menuName = "UIManager/BossMenu")]
 public class SO_UIBossMenu : SO_UIData
 {
-    public SO_UIData[] bossSelectionInfos;
-    public Button bossSelectionNavigation;
+    public SO_BossSelectionInfos[] bossSelectionInfos;
+    public UIButton bossSelectionNavigation;
     public UIBossMenu menuBasePrefab;
 
     public override UIDataResult Init(Transform spawnParentTr)
