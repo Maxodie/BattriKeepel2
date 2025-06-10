@@ -20,6 +20,8 @@ namespace Game.AttackSystem.Bullet
             bulletGraphics.Bullet = this;
 
             bulletBehaviour = data.BulletBehaviour;
+
+            AutoDestroy();
         }
 
         /*private void OnBulletCollision(Hit hitCollision)*/
@@ -31,6 +33,12 @@ namespace Game.AttackSystem.Bullet
         /**/
         /*    collisionEntity.TakeDamage(this);*/
         /*}*/
+
+        private async Awaitable AutoDestroy()
+        {
+            await Awaitable.WaitForSecondsAsync(2);
+            bulletGraphics.AutoDestroy();
+        }
 
         public float GetSpeed()
         {

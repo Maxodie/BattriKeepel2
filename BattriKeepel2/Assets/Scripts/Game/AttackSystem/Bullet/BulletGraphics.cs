@@ -6,7 +6,6 @@ namespace Game.AttackSystem.Bullet
     {
         [SerializeField] Sprite sprite;
         [SerializeField] SpriteRenderer bulletSpriteRenderer;
-        public Transform bulletTransform;
         
         public Bullet Bullet;
         
@@ -15,6 +14,11 @@ namespace Game.AttackSystem.Bullet
             if (Bullet.GetBulletBehaviour().NeedConstantUpdate) {
                 Bullet.GetBulletBehaviour().RaiseBullet(Bullet);
             }
+        }
+
+        public void AutoDestroy()
+        {
+            Destroy(this);
         }
     }
 }

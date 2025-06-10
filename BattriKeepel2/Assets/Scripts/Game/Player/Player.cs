@@ -41,7 +41,7 @@ namespace GameEntity
             transform = m_playerGraphics.transform;
             m_movement.rb = m_rb;
 
-            base.Init(playerData.attackSet);
+            base.Init(playerData.attackSet, m_playerGraphics);
 
             soundInstance = AudioManager.CreateSoundInstance(false, false);
         }
@@ -119,7 +119,7 @@ namespace GameEntity
 
         public async Awaitable LaunchAbility()
         {
-            attackManager.CanAttack(false);
+            attackManager.CancelAttack();
             
             await Awaitable.WaitForSecondsAsync(playerData.attackSet.AbilityAttack.BaseCooldown);
             
@@ -133,8 +133,7 @@ namespace GameEntity
 
             Bullet newBullet = new Bullet(bulletData, m_playerGraphics.transform);
             
-            attackManager.CanAttack(true);
-            attackManager.CancelAttack();
+            attackManager.StartAttacking();
         }
         
         public override void TakeDamage(Bullet bullet) {
