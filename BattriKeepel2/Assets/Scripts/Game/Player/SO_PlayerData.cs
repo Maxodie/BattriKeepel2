@@ -25,4 +25,9 @@ public class SO_PlayerData : ScriptableObject {
     [Header("Camera Effects")]
     public float shakeAmount;
     public float shakeSpeed;
+
+    [Header("Sound")]
+    public AudioClip singleTapAttackSound;
+    public AudioClip doubleTapAttackSound;
+    public AudioClip shakeAttackSound;
 }

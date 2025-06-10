@@ -12,6 +12,7 @@ namespace Game.AttackSystem.Attacks
         public string Slug;
         [TextArea] public string Description;
         public bool needTarget;
+        public AudioClip attackSound;
 
         [Header("Stats")]
         public float BaseDamage;

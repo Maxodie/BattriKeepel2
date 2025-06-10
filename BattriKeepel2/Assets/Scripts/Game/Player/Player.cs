@@ -22,6 +22,8 @@ namespace GameEntity
         private UnityEvent<Player> m_doubleTapEvent = new();
         private UnityEvent<Player> m_shakeEvent = new();
 
+        private SoundInstance soundInstance;
+
         public Player(SO_PlayerData data, Transform spawnPoint)
         {
             entityType = EntityType.Player;
@@ -40,6 +42,8 @@ namespace GameEntity
             m_movement.rb = m_rb;
 
             base.Init(playerData.attackSet);
+
+            soundInstance = AudioManager.CreateSoundInstance(false, false);
         }
 
         private void BindActions() {
@@ -75,6 +79,7 @@ namespace GameEntity
             }
             Log.Success("double tap");
             m_doubleTapEvent?.Invoke(this);
+            soundInstance.PlaySound(playerData.doubleTapAttackSound);
             cts.Cancel();
             tapState = false;
         }
@@ -87,6 +92,7 @@ namespace GameEntity
             {
                 tapState = false;
                 m_singleTapEvent?.Invoke(this);
+                soundInstance.PlaySound(playerData.singleTapAttackSound);
             }
         }
 
@@ -132,11 +138,15 @@ namespace GameEntity
         }
         
         public override void TakeDamage(Bullet bullet) {
-
+            MobileEffect.VibrationEffect(MobileEffectVibration.SMALL);
         }
 
-        public override void Die() {
+        public override void Die()
+        {
+            MobileEffect.VibrationEffect(MobileEffectVibration.BIG);
+            MobileEffect.SetOnFlashlight(true, 0.5f);
 
+            AudioManager.DestroySoundInstance(soundInstance);
         }
     }
 }
