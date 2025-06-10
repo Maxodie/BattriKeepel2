@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Threading;
 using Components;
@@ -110,15 +109,15 @@ namespace GameEntity
 
         public override void CreateBullet()
         {
-            BulletData bulletData = new BulletData();
+            //BulletData bulletData = new BulletData();
 
-            bulletData.Owner = this;
-            bulletData.BulletBehaviour = playerData.bulletBehaviour;
-            bulletData.Speed = playerData.attackSet.BasicAttack.BaseSpeed;
-            bulletData.Damage = playerData.attackSet.BasicAttack.BaseDamage;
-            bulletData.BulletGraphics = playerData.bulletGraphics;
+            //bulletData.Owner = this;
+            //bulletData.BulletBehaviour = playerData.bulletBehaviour;
+            //bulletData.Speed = playerData.attackSet.BasicAttack.BaseSpeed;
+            //bulletData.Damage = playerData.attackSet.BasicAttack.BaseDamage;
+            //bulletData.BulletGraphics = playerData.bulletGraphics;
 
-            Bullet newBullet = new Bullet(bulletData, m_playerGraphics.transform);
+            //Bullet newBullet = new Bullet(bulletData, m_playerGraphics.transform);
         }
 
         public async Awaitable LaunchAbility()
@@ -126,21 +125,21 @@ namespace GameEntity
             if (!isAbilityReady) return;
 
             m_playerGraphics.StartCoroutine(ReloadAbility());
-            
+
             attackManager.CancelAttack();
-            
+
             await Awaitable.WaitForSecondsAsync(playerData.attackSet.AbilityAttack.BaseCooldown);
-            
-            BulletData bulletData = new BulletData();
 
-            bulletData.Owner = this;
-            bulletData.BulletBehaviour = playerData.bulletBehaviour;
-            bulletData.Speed = playerData.attackSet.AbilityAttack.BaseSpeed;
-            bulletData.Damage = playerData.attackSet.AbilityAttack.BaseDamage;
-            bulletData.BulletGraphics = playerData.bulletGraphics;
+            //BulletData bulletData = new BulletData();
 
-            Bullet newBullet = new Bullet(bulletData, m_playerGraphics.transform);
-            
+            //bulletData.Owner = this;
+            //bulletData.BulletBehaviour = playerData.bulletBehaviour;
+            //bulletData.Speed = playerData.attackSet.AbilityAttack.BaseSpeed;
+            //bulletData.Damage = playerData.attackSet.AbilityAttack.BaseDamage;
+            //bulletData.BulletGraphics = playerData.bulletGraphics;
+
+            //Bullet newBullet = new Bullet(bulletData, m_playerGraphics.transform);
+
             attackManager.StartAttacking();
         }
 
@@ -150,7 +149,7 @@ namespace GameEntity
             yield return new WaitForSeconds(playerData.attackSet.AbilityAttack.BaseReloadTime);
             isAbilityReady = true;
         }
-        
+
         public override void TakeDamage(Bullet bullet) {
             MobileEffect.VibrationEffect(MobileEffectVibration.SMALL);
         }

@@ -426,6 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e39a975d8d98f384ebd19ea2af886384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_backgroundAudio: {fileID: 0}
   m_gameInstance: {fileID: 11400000, guid: 7c4faeb2fa10cb048b959a18b6eb6c34, type: 2}
   m_playerTransform: {fileID: 1588288693}
   m_cameraTr: {fileID: 0}
@@ -476,8 +477,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fee54ae89c900e349b1dfe4a6e88e8d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_amount: 0
+  m_amountPerWave: 40
   m_rotationSpeed: 3
+  m_bulletGraphics: {fileID: 4496678624898742819, guid: 88d373d2542134949add22c7d3b407da, type: 3}
+  rotation: 2
 --- !u!4 &2056607332
 Transform:
   m_ObjectHideFlags: 0
@@ -487,7 +490,7 @@ Transform:
   m_GameObject: {fileID: 2056607330}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.86207604, y: 1.3327385, z: -4.4980445}
+  m_LocalPosition: {x: -2.79, y: 4.98, z: -4.4980445}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
