@@ -16,7 +16,7 @@ public class BossMovement : Movement
 
     bool m_isMoving = false;
     Vector2 m_targetPosition;
-    float m_positionThreashold = 0.2f;
+//    float m_positionThreashold = 0.2f;
 
     float m_waitTimer = 0.0f;
 
@@ -40,15 +40,15 @@ public class BossMovement : Movement
         m_targetPosition = m_bossGraphics.locationPoints[m_currentLocation];
         Vector2 lerpPos = Vector2.Lerp(m_bossGraphics.transform.position, m_targetPosition, Time.deltaTime * m_data.speed);
 
-        HandleMovement(lerpPos);
+        //HandleMovement(lerpPos);
     }
 
-    public override void HandleMovement(Vector2 pos)
-    {
-        m_bossGraphics.SetPosition(pos);
+    //public override void HandleMovement(Vector2 pos)
+    //{
+    //    m_bossGraphics.SetPosition(pos);
 
-        m_isMoving = Vector2.Distance(m_bossGraphics.transform.position, m_targetPosition) > m_positionThreashold;
-    }
+    //    m_isMoving = Vector2.Distance(m_bossGraphics.transform.position, m_targetPosition) > m_positionThreashold;
+    //}
 
     public void HandleWait()
     {
@@ -84,6 +84,10 @@ public class BossMovement : Movement
             return 0;
         }
     }
-}
 
+        public override void HandleMovement()
+        {
+            throw new System.NotImplementedException();
+        }
+    }
 }

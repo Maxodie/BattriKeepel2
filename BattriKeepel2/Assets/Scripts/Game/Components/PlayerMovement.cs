@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Components {
     public class PlayerMovement : Movement {
-        public Transform m_transform;
+        public Rigidbody2D rb;
         private Vector2 newPos = new Vector2();
         private Vector2 dirtyPos = Vector2.zero;
         public Vector2 vel;
@@ -21,19 +21,17 @@ namespace Components {
             m_isPressed = state;
         }
 
-        public Vector2 targetPosition = new Vector2();
-
-        public override void HandleMovement(Vector2 velo) {
+        public override void HandleMovement() {
             if (m_isPressed == UnityEngine.InputSystem.TouchPhase.Began
                     || m_isPressed == UnityEngine.InputSystem.TouchPhase.Ended
                     || m_isPressed == UnityEngine.InputSystem.TouchPhase.None) {
-                return;
+                rb.linearVelocity = Vector2.zero;
             }
 
-            vel = newPos - dirtyPos;
+            vel = (newPos - dirtyPos) / Time.deltaTime;
             dirtyPos = newPos;
 
-            m_transform.position += new Vector3(velo.x, velo.y, m_transform.position.z);
+            rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, vel, .7f);
         }
 
         public bool IsScreenPressed() {

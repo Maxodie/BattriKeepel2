@@ -17,6 +17,22 @@ public class GraphicsManager
         return s_instance;
     }
 
+    public TGraphicsScript GenerateVisualInfos<TGraphicsScript>(GameEntityGraphics graphicsPrefab,
+            Vector2 position, Quaternion rotation, IGameEntity owner, bool isChild = true,
+            bool dontDestroyOnLoad = false) where TGraphicsScript : GameEntityGraphics
+    {
+        TGraphicsScript result = UnityEngine.Object.Instantiate<TGraphicsScript>((TGraphicsScript)graphicsPrefab, position, rotation);
+
+        VisualInfosSpawnSetup(result, owner, isChild, dontDestroyOnLoad);
+
+        if(OnVisualCreatedCallback != null)
+        {
+            OnVisualCreatedCallback.Invoke(result);
+        }
+
+        return result;
+    }
+
     public TGraphicsScript GenerateVisualInfos<TGraphicsScript>(GameEntityGraphics graphicsPrefab, Transform transform, IGameEntity owner, bool isChild = true, bool dontDestroyOnLoad = false) where TGraphicsScript : GameEntityGraphics
     {
         TGraphicsScript result = UnityEngine.Object.Instantiate<TGraphicsScript>((TGraphicsScript)graphicsPrefab, transform, true);

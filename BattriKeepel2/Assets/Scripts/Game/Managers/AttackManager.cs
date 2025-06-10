@@ -1,6 +1,5 @@
 using Game.AttackSystem.Attacks;
 using Game.Entities;
-using GameEntity;
 using UnityEngine;
 
 namespace Game.Managers
@@ -8,25 +7,25 @@ namespace Game.Managers
     public class AttackManager
     {
         private bool _isPlayer;
-        private AttackSet _attacks;
+        public AttackSet attacks;
         private Entity _entityAttached;
 
         private Awaitable currentAttack;
-        
+
         private bool _isAbleToAttack = true;
 
         public void InitAttacking(bool isPlayer, AttackSet attackSet, Entity entityAttached)
         {
             _isPlayer = isPlayer;
-            _attacks = attackSet;
+            attacks = attackSet;
             _entityAttached = entityAttached;
-            
+
             StartAttacking();
         }
-        
+
         private void StartAttacking()
         {
-            currentAttack = DelayedAttacks(_attacks.BasicAttack);
+            currentAttack = DelayedAttacks(attacks.BasicAttack);
         }
 
         private void CancelAttack()
@@ -35,15 +34,15 @@ namespace Game.Managers
                 currentAttack.Cancel();
             }
         }
-        
+
         private async Awaitable DelayedAttacks(Attack attack)
         {
             if (_isPlayer && _isAbleToAttack) {
-                attack.RaiseAttack((Player)_entityAttached);
+                attack.RaiseAttack(_entityAttached);
             }
-            
+
             await Awaitable.WaitForSecondsAsync(attack.BaseCooldown);
-            
+
             currentAttack = DelayedAttacks(attack);
         }
     }

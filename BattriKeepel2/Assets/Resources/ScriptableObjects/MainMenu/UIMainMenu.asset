@@ -16,3 +16,4 @@ MonoBehaviour:
   idleSceneData: {fileID: 11400000, guid: 339f9d930aaf33c4c836eac14ec163b8, type: 2}
   startSceneData: {fileID: 11400000, guid: 70d025a7f90b8df458bf8ce46d3c7e99, type: 2}
   bossMenu: {fileID: 11400000, guid: 520c5a37abb1928449a385412b5661a0, type: 2}
+  playerSelectionMenu: {fileID: 11400000, guid: 9f001b546f6dc754ca2143ebf795157e, type: 2}

@@ -1,5 +1,5 @@
-using GameEntity;
 using UnityEngine;
+using Game.Entities;
 
 namespace Game.AttackSystem.Attacks
 {
@@ -20,9 +20,9 @@ namespace Game.AttackSystem.Attacks
         [Header("Effects")]
         public AttackEvents.BasePlayerAttack BasePlayerAttack;
 
-        public void RaiseAttack(Player player)
+        public void RaiseAttack(Entity entity)
         {
-            BasePlayerAttack.basePlayerAttackEvent?.Invoke(player);
+            BasePlayerAttack.basePlayerAttackEvent?.Invoke(entity);
         }
     }
 }

@@ -1,27 +1,18 @@
-using UnityEngine;
-
 public class BossPhase : LevelPhase
 {
-    Awaitable m_someWait;
+    BossEntity m_boss;
     public override void OnStart()
     {
-        Log.Info<LevelPhaseLogger>("Start Boss Phase");
-        m_someWait = WaitEnd();
+        SO_BossScriptableObject bossData = ((SO_BossPhase)m_levelPhase).bossData;
+        m_boss = new BossEntity(bossData);
     }
 
     public override void OnEnd()
     {
-        Log.Info<LevelPhaseLogger>("End Boss Phase");
     }
 
     public override void Update()
     {
 
-    }
-
-    async Awaitable WaitEnd()
-    {
-        await Awaitable.WaitForSecondsAsync(5.0f);
-        EndPhase();
     }
 }

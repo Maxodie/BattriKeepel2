@@ -7,6 +7,7 @@ public class SO_UIMainMenu : SO_UIData
     public SO_LevelData idleSceneData;
     public SO_LevelData startSceneData;
     public SO_UIBossMenu bossMenu;
+    public SO_UIPlayerSelectionMenu playerSelectionMenu;
 
     public override UIDataResult Init(Transform spawnParentTr)
     {

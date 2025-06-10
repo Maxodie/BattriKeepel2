@@ -1,5 +1,4 @@
 using System;
-using Components;
 using Game.Entities;
 using UnityEngine;
 
@@ -7,7 +6,6 @@ namespace Game.AttackSystem.Bullet
 {
     public class Bullet : IGameEntity
     {
-        private Hitbox hitbox;
         private BulletBehaviour bulletBehaviour;
 
         private Entity owner;
@@ -19,39 +17,23 @@ namespace Game.AttackSystem.Bullet
         {
             data = bulletData;
             bulletGraphics = GraphicsManager.Get().GenerateVisualInfos<BulletGraphics>(data.BulletGraphics, spawnTransform, this, false);
-            bulletGraphics.transform.position = spawnTransform.position;
-            bulletGraphics.Bullet = this;
-
-            bulletBehaviour = data.BulletBehaviour;
-
-            owner = bulletData.Owner;
-
-            hitbox = bulletData.BulletHitbox;
-            hitbox.Init(bulletGraphics.bulletTransform);
-            hitbox.BindOnCollision(OnBulletCollision);
 
             bulletBehaviour = data.BulletBehaviour;
         }
 
-        private void OnBulletCollision(Hit hitCollision)
-        {
-            if (hitCollision.hitObject.GetComponent<PlayerGraphics>())
-            {
-                PlayerGraphics player = hitCollision.hitObject.GetComponent<PlayerGraphics>();
-                if (owner.entityType == Entity.EntityType.Player && player.GetPlayer().entityType == Entity.EntityType.Player) return;
-                
-                player.GetPlayer().TakeDamage(this);
-            }
-        }
+        /*private void OnBulletCollision(Hit hitCollision)*/
+        /*{*/
+        /*    Entity collisionEntity = hitCollision.hitObject.GetComponent<Entity>();*/
+        /**/
+        /*    if ((owner.entityType == Entity.EntityType.Enemy || owner.entityType == Entity.EntityType.Boss) && (collisionEntity.entityType == Entity.EntityType.Enemy || collisionEntity.entityType == Entity.EntityType.Boss)) return;*/
+        /*    if (owner.entityType == Entity.EntityType.Player && collisionEntity.entityType == Entity.EntityType.Player) return;*/
+        /**/
+        /*    collisionEntity.TakeDamage(this);*/
+        /*}*/
 
         public float GetSpeed()
         {
             return data.Speed;
-        }
-
-        public Entity GetOwner()
-        {
-            return owner;
         }
 
         public BulletGraphics GetBulletGraphics()
@@ -69,7 +51,6 @@ namespace Game.AttackSystem.Bullet
     public class BulletData
     {
         public Entity Owner;
-        public Hitbox BulletHitbox;
         public BulletBehaviour BulletBehaviour;
         public BulletGraphics BulletGraphics;
         public float Speed;
