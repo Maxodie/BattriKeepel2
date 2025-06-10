@@ -100,14 +100,14 @@ namespace GameEntity
 
         public override void CreateBullet()
         {
-            BulletData bulletData = new BulletData();
+            //BulletData bulletData = new BulletData();
 
-            bulletData.Owner = this;
-            bulletData.BulletBehaviour = playerData.bulletBehaviour;
-            bulletData.Speed = playerData.attackSet.BasicAttack.BaseSpeed;
-            bulletData.Damage = playerData.attackSet.BasicAttack.BaseDamage;
+            //bulletData.Owner = this;
+            //bulletData.BulletBehaviour = playerData.bulletBehaviour;
+            //bulletData.Speed = playerData.attackSet.BasicAttack.BaseSpeed;
+            //bulletData.Damage = playerData.attackSet.BasicAttack.BaseDamage;
 
-            Bullet newBullet = new Bullet(bulletData, transform);
+            //Bullet newBullet = new Bullet(bulletData, transform);
         }
 
         public override void TakeDamage(Bullet bullet) {

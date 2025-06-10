@@ -1,59 +1,24 @@
-using System;
-using Game.Entities;
 using UnityEngine;
 
 namespace Game.AttackSystem.Bullet
 {
     public class Bullet : IGameEntity
     {
-        private BulletBehaviour bulletBehaviour;
-
-        private Entity owner;
-
         private BulletGraphics bulletGraphics;
-        public readonly BulletData data;
+        private Vector2 m_direction;
+        public SO_BulletData data;
 
-        public Bullet(BulletData bulletData, Transform spawnTransform)
+        public Bullet(SO_BulletData data, Vector3 position, Vector2 direction)
         {
-            data = bulletData;
-            bulletGraphics = GraphicsManager.Get().GenerateVisualInfos<BulletGraphics>(data.BulletGraphics, spawnTransform, this, false);
-
-            bulletBehaviour = data.BulletBehaviour;
+            m_direction = direction;
+            bulletGraphics = data.bulletGraphics;
+            bulletGraphics = GraphicsManager.Get()
+                .GenerateVisualInfos<BulletGraphics>(bulletGraphics, position, Quaternion.identity, this, false);
         }
 
-        /*private void OnBulletCollision(Hit hitCollision)*/
-        /*{*/
-        /*    Entity collisionEntity = hitCollision.hitObject.GetComponent<Entity>();*/
-        /**/
-        /*    if ((owner.entityType == Entity.EntityType.Enemy || owner.entityType == Entity.EntityType.Boss) && (collisionEntity.entityType == Entity.EntityType.Enemy || collisionEntity.entityType == Entity.EntityType.Boss)) return;*/
-        /*    if (owner.entityType == Entity.EntityType.Player && collisionEntity.entityType == Entity.EntityType.Player) return;*/
-        /**/
-        /*    collisionEntity.TakeDamage(this);*/
-        /*}*/
-
-        public float GetSpeed()
-        {
-            return data.Speed;
+        public void Update() {
+            Vector2 m_vel = m_direction * data.speed * Time.deltaTime;
+            bulletGraphics.transform.position += new Vector3(m_vel.x, m_vel.y, 0);
         }
-
-        public BulletGraphics GetBulletGraphics()
-        {
-            return bulletGraphics;
-        }
-
-        public BulletBehaviour GetBulletBehaviour()
-        {
-            return bulletBehaviour;
-        }
-    }
-
-    [Serializable]
-    public class BulletData
-    {
-        public Entity Owner;
-        public BulletBehaviour BulletBehaviour;
-        public BulletGraphics BulletGraphics;
-        public float Speed;
-        public float Damage;
     }
 }
