@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Threading;
 using Components;
@@ -23,6 +25,8 @@ namespace GameEntity
         private UnityEvent<Player> m_shakeEvent = new();
 
         private SoundInstance soundInstance;
+
+        private bool isAbilityReady = true;
 
         public Player(SO_PlayerData data, Transform spawnPoint)
         {
@@ -119,6 +123,10 @@ namespace GameEntity
 
         public async Awaitable LaunchAbility()
         {
+            if (!isAbilityReady) return;
+
+            m_playerGraphics.StartCoroutine(ReloadAbility());
+            
             attackManager.CancelAttack();
             
             await Awaitable.WaitForSecondsAsync(playerData.attackSet.AbilityAttack.BaseCooldown);
@@ -134,6 +142,13 @@ namespace GameEntity
             Bullet newBullet = new Bullet(bulletData, m_playerGraphics.transform);
             
             attackManager.StartAttacking();
+        }
+
+        private IEnumerator ReloadAbility()
+        {
+            isAbilityReady = false;
+            yield return new WaitForSeconds(playerData.attackSet.AbilityAttack.BaseReloadTime);
+            isAbilityReady = true;
         }
         
         public override void TakeDamage(Bullet bullet) {

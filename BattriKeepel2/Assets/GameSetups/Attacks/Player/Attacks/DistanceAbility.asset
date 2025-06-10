@@ -20,6 +20,7 @@ MonoBehaviour:
   BaseDamage: 25
   BaseCooldown: 2
   BaseSpeed: 0.2
+  BaseReloadTime: 10
   BasePlayerAttack:
     basePlayerAttackEvent:
       m_PersistentCalls:
