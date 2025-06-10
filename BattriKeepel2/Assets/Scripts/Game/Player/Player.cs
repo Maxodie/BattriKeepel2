@@ -106,10 +106,31 @@ namespace GameEntity
             bulletData.BulletBehaviour = playerData.bulletBehaviour;
             bulletData.Speed = playerData.attackSet.BasicAttack.BaseSpeed;
             bulletData.Damage = playerData.attackSet.BasicAttack.BaseDamage;
+            bulletData.BulletGraphics = playerData.bulletGraphics;
 
-            Bullet newBullet = new Bullet(bulletData, transform);
+            Bullet newBullet = new Bullet(bulletData, m_playerGraphics.transform);
         }
 
+        public async Awaitable LaunchAbility()
+        {
+            attackManager.CanAttack(false);
+            
+            await Awaitable.WaitForSecondsAsync(playerData.attackSet.AbilityAttack.BaseCooldown);
+            
+            BulletData bulletData = new BulletData();
+
+            bulletData.Owner = this;
+            bulletData.BulletBehaviour = playerData.bulletBehaviour;
+            bulletData.Speed = playerData.attackSet.AbilityAttack.BaseSpeed;
+            bulletData.Damage = playerData.attackSet.AbilityAttack.BaseDamage;
+            bulletData.BulletGraphics = playerData.bulletGraphics;
+
+            Bullet newBullet = new Bullet(bulletData, m_playerGraphics.transform);
+            
+            attackManager.CanAttack(true);
+            attackManager.CancelAttack();
+        }
+        
         public override void TakeDamage(Bullet bullet) {
 
         }

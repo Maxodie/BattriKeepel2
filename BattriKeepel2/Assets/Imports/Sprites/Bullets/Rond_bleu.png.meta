@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Rond_bleu_0: -489597695721118877
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

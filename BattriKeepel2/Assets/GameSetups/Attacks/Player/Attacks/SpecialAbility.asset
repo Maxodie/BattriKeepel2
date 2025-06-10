@@ -16,9 +16,9 @@ MonoBehaviour:
   Slug: specialability
   Description: Basic Special Ability
   needTarget: 0
-  BaseDamage: 5
-  BaseCooldown: 2
-  BaseSpeed: 4
+  BaseDamage: 25
+  BaseCooldown: 10
+  BaseSpeed: 0.1
   BasePlayerAttack:
     basePlayerAttackEvent:
       m_PersistentCalls:
@@ -26,7 +26,7 @@ MonoBehaviour:
         - m_Target: {fileID: 11400000, guid: 319e82957f1807c4ba8ae1c88a99bed7, type: 2}
           m_TargetAssemblyTypeName: Game.AttackSystem.Definitions.PlayerAttacksDefinition,
             Assembly-CSharp
-          m_MethodName: PlayerSpecialAbility
+          m_MethodName: PlayerDistanceAbility
           m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

@@ -17,6 +17,7 @@ namespace Game.AttackSystem.Bullet
         {
             data = bulletData;
             bulletGraphics = GraphicsManager.Get().GenerateVisualInfos<BulletGraphics>(data.BulletGraphics, spawnTransform, this, false);
+            bulletGraphics.Bullet = this;
 
             bulletBehaviour = data.BulletBehaviour;
         }
