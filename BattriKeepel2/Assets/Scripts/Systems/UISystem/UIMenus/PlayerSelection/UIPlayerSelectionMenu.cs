@@ -21,7 +21,9 @@ public class UIPlayerSelectionMenu : UIMenuBase
             result.Init(data.playerDatas[i]);
             navigationsPanels[i] = result;
 
-            Object.Instantiate(data.playerSelectionNavigation, m_playerSelectionNavigationContent).onClick.AddListener(() => { ChangeNavigationMenu(iCopy); });
+            UIButton buttonGo = Object.Instantiate(data.playerSelectionNavigation, m_playerSelectionNavigationContent);
+            buttonGo.Button.onClick.AddListener(() => { ChangeNavigationMenu(iCopy); });
+            buttonGo.Title = data.playerDatas[i].playerName;
         }
 
         ChangeNavigationMenu(0);

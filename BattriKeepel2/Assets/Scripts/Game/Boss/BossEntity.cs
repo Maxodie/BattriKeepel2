@@ -10,6 +10,8 @@ public class BossEntity : Entity
     DialogComponent m_dialogComponent;
     BossAttack[] m_attacks;
 
+    SoundInstance soundInstance;
+
     public BossEntity(SO_BossScriptableObject data)
     {
         m_data = data;
@@ -24,6 +26,8 @@ public class BossEntity : Entity
             m_dialogComponent = new DialogComponent();
             m_dialogComponent.StartDialog(data.dialogData);
         }
+
+        soundInstance = AudioManager.CreateSoundInstance(false, false);
 
         InitAttacks();
         HandleAttacks();
@@ -44,7 +48,7 @@ public class BossEntity : Entity
 
     public override void TakeDamage(Bullet bullet)
     {
-        Health -=  CalculateBaseDamages(bullet);
+        Health -= CalculateBaseDamages(bullet);
         HealthCheck();
 
         UpdateVisualHealth();

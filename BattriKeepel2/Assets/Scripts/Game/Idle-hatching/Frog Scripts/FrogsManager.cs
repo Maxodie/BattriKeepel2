@@ -1,9 +1,6 @@
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
-using Unity.Android.Gradle.Manifest;
 using UnityEngine;
-using caca = System.Nullable;
 
 [System.Serializable]
 public class FrogsManager : MonoBehaviour
@@ -33,7 +30,7 @@ public class FrogsManager : MonoBehaviour
         frogList.Add(frog);
     }
 
-    public void GiveEXPToFrog() //Méthode test du système d'EXP, à commenter à un moment
+    public void GiveEXPToFrog() //Mï¿½thode test du systï¿½me d'EXP, ï¿½ commenter ï¿½ un moment
     {
         Frog frog = frogList[0];
         frog.AddExpAmount(EN_FrogLevels.RUN, 60);

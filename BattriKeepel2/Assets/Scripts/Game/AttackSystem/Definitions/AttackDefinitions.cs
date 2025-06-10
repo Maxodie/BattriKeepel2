@@ -7,21 +7,6 @@ namespace Game.AttackSystem.Definitions
     {
         // player attack
 
-        public void PlayerMeleeAttack(Entity player)
-        {
-            //TODO : Fill method
-        }
-
-        public void PlayerMeleeAbility(Entity player)
-        {
-            //TODO : Fill method
-        }
-
-        public void PlayerMeleeUltimate(Entity player)
-        {
-            //TODO : Fill method
-        }
-
         public void PlayerDistanceAttack(Entity player)
         {
             Debug.Log("distance attack");
@@ -35,21 +20,6 @@ namespace Game.AttackSystem.Definitions
         public void PlayerDistanceUltimate(Entity player)
         {
             Debug.Log("distance ultimate");
-        }
-
-        public void PlayerSpecialAttack(Entity player)
-        {
-            //TODO : Fill method
-        }
-
-        public void PlayerSpecialAbility(Entity player)
-        {
-            //TODO : Fill method
-        }
-
-        public void PlayerSpecialUltimate(Entity player)
-        {
-            //TODO : Fill method
         }
     }
 }

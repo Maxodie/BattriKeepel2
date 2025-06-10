@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Threading;
 using Components;
@@ -22,6 +24,10 @@ namespace GameEntity
         private UnityEvent<Player> m_doubleTapEvent = new();
         private UnityEvent<Player> m_shakeEvent = new();
 
+        private SoundInstance soundInstance;
+
+        private bool isAbilityReady = true;
+
         public Player(SO_PlayerData data, Transform spawnPoint)
         {
             entityType = EntityType.Player;
@@ -39,7 +45,9 @@ namespace GameEntity
             transform = m_playerGraphics.transform;
             m_movement.rb = m_rb;
 
-            base.Init(playerData.attackSet);
+            base.Init(playerData.attackSet, m_playerGraphics);
+
+            soundInstance = AudioManager.CreateSoundInstance(false, false);
         }
 
         private void BindActions() {
@@ -75,6 +83,7 @@ namespace GameEntity
             }
             Log.Success("double tap");
             m_doubleTapEvent?.Invoke(this);
+            soundInstance.PlaySound(playerData.doubleTapAttackSound);
             cts.Cancel();
             tapState = false;
         }
@@ -87,6 +96,7 @@ namespace GameEntity
             {
                 tapState = false;
                 m_singleTapEvent?.Invoke(this);
+                soundInstance.PlaySound(playerData.singleTapAttackSound);
             }
         }
 
@@ -100,22 +110,57 @@ namespace GameEntity
 
         public override void CreateBullet()
         {
-            //BulletData bulletData = new BulletData();
+            BulletData bulletData = new BulletData();
 
-            //bulletData.Owner = this;
-            //bulletData.BulletBehaviour = playerData.bulletBehaviour;
-            //bulletData.Speed = playerData.attackSet.BasicAttack.BaseSpeed;
-            //bulletData.Damage = playerData.attackSet.BasicAttack.BaseDamage;
+            bulletData.Owner = this;
+            bulletData.BulletBehaviour = playerData.bulletBehaviour;
+            bulletData.Speed = playerData.attackSet.BasicAttack.BaseSpeed;
+            bulletData.Damage = playerData.attackSet.BasicAttack.BaseDamage;
+            bulletData.BulletGraphics = playerData.bulletGraphics;
 
-            //Bullet newBullet = new Bullet(bulletData, transform);
+            Bullet newBullet = new Bullet(bulletData, m_playerGraphics.transform);
         }
 
+        public async Awaitable LaunchAbility()
+        {
+            if (!isAbilityReady) return;
+
+            m_playerGraphics.StartCoroutine(ReloadAbility());
+            
+            attackManager.CancelAttack();
+            
+            await Awaitable.WaitForSecondsAsync(playerData.attackSet.AbilityAttack.BaseCooldown);
+            
+            BulletData bulletData = new BulletData();
+
+            bulletData.Owner = this;
+            bulletData.BulletBehaviour = playerData.bulletBehaviour;
+            bulletData.Speed = playerData.attackSet.AbilityAttack.BaseSpeed;
+            bulletData.Damage = playerData.attackSet.AbilityAttack.BaseDamage;
+            bulletData.BulletGraphics = playerData.bulletGraphics;
+
+            Bullet newBullet = new Bullet(bulletData, m_playerGraphics.transform);
+            
+            attackManager.StartAttacking();
+        }
+
+        private IEnumerator ReloadAbility()
+        {
+            isAbilityReady = false;
+            yield return new WaitForSeconds(playerData.attackSet.AbilityAttack.BaseReloadTime);
+            isAbilityReady = true;
+        }
+        
         public override void TakeDamage(Bullet bullet) {
-
+            MobileEffect.VibrationEffect(MobileEffectVibration.SMALL);
         }
 
-        public override void Die() {
+        public override void Die()
+        {
+            MobileEffect.VibrationEffect(MobileEffectVibration.BIG);
+            MobileEffect.SetOnFlashlight(true, 0.5f);
 
+            AudioManager.DestroySoundInstance(soundInstance);
         }
     }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using Game.Entities;
+using GameEntity;
 
 namespace Game.AttackSystem.Attacks
 {
@@ -11,18 +12,20 @@ namespace Game.AttackSystem.Attacks
         public string Slug;
         [TextArea] public string Description;
         public bool needTarget;
+        public AudioClip attackSound;
 
         [Header("Stats")]
-        public int BaseDamage;
-        public int BaseCooldown;
-        public int BaseSpeed;
+        public float BaseDamage;
+        public float BaseCooldown;
+        public float BaseSpeed;
+        public float BaseReloadTime;
 
         [Header("Effects")]
         public AttackEvents.BasePlayerAttack BasePlayerAttack;
 
-        public void RaiseAttack(Entity entity)
+        public void RaiseAttack(Player player)
         {
-            BasePlayerAttack.basePlayerAttackEvent?.Invoke(entity);
+            BasePlayerAttack.basePlayerAttackEvent?.Invoke(player);
         }
     }
 }

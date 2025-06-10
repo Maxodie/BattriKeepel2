@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 6893410450753339766}
   - component: {fileID: 3660058026792862689}
   - component: {fileID: 5933684658892336580}
+  - component: {fileID: 8795387205019758084}
   m_Layer: 5
   m_Name: SingleSelectgionBossButton
   m_TagString: Untagged
@@ -257,3 +258,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8795387205019758084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7997522590803051474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7e054fdc0035d9408be014f83d45c2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: {fileID: 5287877459963583034}
+  Button: {fileID: 5933684658892336580}

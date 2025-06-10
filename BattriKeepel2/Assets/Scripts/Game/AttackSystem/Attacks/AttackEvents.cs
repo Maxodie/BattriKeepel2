@@ -1,6 +1,6 @@
 using System;
 using UnityEngine.Events;
-using Game.Entities;
+using GameEntity;
 
 namespace Game.AttackSystem.Attacks
 {
@@ -9,7 +9,7 @@ namespace Game.AttackSystem.Attacks
         [Serializable]
         public class BasePlayerAttack
         {
-            public UnityEvent<Entity> basePlayerAttackEvent;
+            public UnityEvent<Player> basePlayerAttackEvent;
         }
     }
 }
