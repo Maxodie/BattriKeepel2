@@ -13,6 +13,7 @@ public class AudioManager
 
     public static void DestroySoundInstance(SoundInstance instance)
     {
+        instance.Destroy();
         sources.Remove(instance);
     }
 }
@@ -22,9 +23,15 @@ public class SoundInstance
     AudioSource source;
     public SoundInstance(bool playOnAwake, bool loop)
     {
-        source = Object.Instantiate(new AudioSource());
+        GameObject go = new GameObject();
+        source = go.AddComponent<AudioSource>();
         source.playOnAwake = playOnAwake;
         source.loop = loop;
+    }
+
+    public void Destroy()
+    {
+        Object.Destroy(source.gameObject);
     }
 
     public void PlaySound(AudioClip clip)

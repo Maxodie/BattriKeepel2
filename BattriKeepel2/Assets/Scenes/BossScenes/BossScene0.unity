@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e39a975d8d98f384ebd19ea2af886384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_backgroundAudio: {fileID: 0}
+  m_backgroundAudio: {fileID: 8300000, guid: c9f7f8bdae9e9d3419bbb29e1f2a8238, type: 3}
   m_gameInstance: {fileID: 11400000, guid: 7c4faeb2fa10cb048b959a18b6eb6c34, type: 2}
   m_playerTransform: {fileID: 1168611914}
   m_cameraTr: {fileID: 929189442}
