@@ -18,7 +18,7 @@ namespace Game.AttackSystem.Bullet
 
         public void AutoDestroy()
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 }

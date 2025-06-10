@@ -64,5 +64,6 @@ namespace Game.AttackSystem.Bullet
         public BulletGraphics BulletGraphics;
         public float Speed;
         public float Damage;
+        public float ReloadTime;
     }
 }

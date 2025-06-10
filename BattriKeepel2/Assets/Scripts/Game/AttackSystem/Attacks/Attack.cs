@@ -18,6 +18,7 @@ namespace Game.AttackSystem.Attacks
         public float BaseDamage;
         public float BaseCooldown;
         public float BaseSpeed;
+        public float BaseReloadTime;
 
         [Header("Effects")]
         public AttackEvents.BasePlayerAttack BasePlayerAttack;
