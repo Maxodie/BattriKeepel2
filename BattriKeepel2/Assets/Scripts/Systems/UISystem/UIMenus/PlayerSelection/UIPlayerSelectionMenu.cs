@@ -11,8 +11,14 @@ public class UIPlayerSelectionMenu : UIMenuBase
 
     UnityEvent m_onPlayerSelectionEnded = new();
 
+    SO_UIPlayerSelectionMenu m_data;
+    SoundInstance m_soundInstance;
+
     public void Init(SO_UIPlayerSelectionMenu data)
     {
+        m_data = data;
+        m_soundInstance = AudioManager.CreateSoundInstance(false, false);
+
         navigationsPanels = new UIPlayerSelectionInfo[data.playerDatas.Length];
         for(int i=0; i < data.playerDatas.Length; i++)
         {
@@ -22,11 +28,11 @@ public class UIPlayerSelectionMenu : UIMenuBase
             navigationsPanels[i] = result;
 
             UIButton buttonGo = Object.Instantiate(data.playerSelectionNavigation, m_playerSelectionNavigationContent);
-            buttonGo.Button.onClick.AddListener(() => { ChangeNavigationMenu(iCopy); });
+            buttonGo.Button.onClick.AddListener(() => { ChangeNavigationMenu(iCopy, true); });
             buttonGo.Title = data.playerDatas[i].playerName;
         }
 
-        ChangeNavigationMenu(0);
+        ChangeNavigationMenu(0, false);
         SetActive(false);
     }
 
@@ -45,11 +51,17 @@ public class UIPlayerSelectionMenu : UIMenuBase
 
     public void OnPlayerSelectionEnd()
     {
+        m_soundInstance.PlaySound(m_data.selectSound);
         m_onPlayerSelectionEnded.Invoke();
     }
 
-    void ChangeNavigationMenu(int id)
+    void ChangeNavigationMenu(int id, bool playSound)
     {
+        if(playSound)
+        {
+            m_soundInstance.PlaySound(m_data.selectSound);
+        }
+
         if(id == currentMenuID)
         {
             return;
@@ -60,5 +72,10 @@ public class UIPlayerSelectionMenu : UIMenuBase
             navigationsPanels[i].SetActive(i == id);
         }
         Log.Success<MainMenuLogger>("Boss selection menu id : " + id);
+    }
+
+    void OnDestroy()
+    {
+        AudioManager.DestroySoundInstance(m_soundInstance);
     }
 }

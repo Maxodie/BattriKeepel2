@@ -7,6 +7,7 @@ public class SO_UIPlayerSelectionMenu : SO_UIData
     public UIPlayerSelectionInfo playerSelectionInfos;
     public UIButton playerSelectionNavigation;
     public UIPlayerSelectionMenu menuBasePrefab;
+    public AudioClip selectSound;
 
     public override UIDataResult Init(Transform spawnParentTr)
     {

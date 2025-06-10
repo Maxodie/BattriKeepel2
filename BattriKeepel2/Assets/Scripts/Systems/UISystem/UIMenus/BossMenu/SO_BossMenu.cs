@@ -6,6 +6,7 @@ public class SO_UIBossMenu : SO_UIData
     public SO_BossSelectionInfos[] bossSelectionInfos;
     public UIButton bossSelectionNavigation;
     public UIBossMenu menuBasePrefab;
+    public AudioClip selectSound;
 
     public override UIDataResult Init(Transform spawnParentTr)
     {

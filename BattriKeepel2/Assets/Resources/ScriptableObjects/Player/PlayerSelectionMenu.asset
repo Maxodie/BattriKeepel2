@@ -17,3 +17,4 @@ MonoBehaviour:
   playerSelectionInfos: {fileID: 1363360486372500869, guid: 3b9e2119f60b337408afdbb5f637707e, type: 3}
   playerSelectionNavigation: {fileID: 2993699308033249860, guid: 323fe6ac90b24c04e81f5df373ce97e3, type: 3}
   menuBasePrefab: {fileID: 2121227817613799427, guid: ed21226fa0963e44a8c30faccf594993, type: 3}
+  selectSound: {fileID: 8300000, guid: 8c2baee04d5305d47a8d24cb50232daf, type: 3}

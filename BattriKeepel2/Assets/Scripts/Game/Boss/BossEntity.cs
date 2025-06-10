@@ -48,6 +48,7 @@ public class BossEntity : Entity
 
     public override void TakeDamage(Bullet bullet)
     {
+        soundInstance.PlaySound(m_data.damageSound);
         Health -= CalculateBaseDamages(bullet);
         HealthCheck();
 
@@ -62,5 +63,6 @@ public class BossEntity : Entity
     public override void Die()
     {
         HandleAttacks().Cancel();
+        AudioManager.DestroySoundInstance(soundInstance);
     }
 }

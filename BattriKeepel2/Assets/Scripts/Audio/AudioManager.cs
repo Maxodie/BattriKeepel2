@@ -1,20 +1,16 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class AudioManager
 {
-    static List<SoundInstance> sources = new();
     public static SoundInstance CreateSoundInstance(bool playOnAwake, bool loop)
     {
         SoundInstance instance = new SoundInstance(playOnAwake, loop);
-        sources.Add(instance);
         return instance;
     }
 
     public static void DestroySoundInstance(SoundInstance instance)
     {
         instance.Destroy();
-        sources.Remove(instance);
     }
 }
 
@@ -31,7 +27,10 @@ public class SoundInstance
 
     public void Destroy()
     {
-        Object.Destroy(source.gameObject);
+        if(source && source.gameObject)
+        {
+            Object.Destroy(source.gameObject);
+        }
     }
 
     public void PlaySound(AudioClip clip)

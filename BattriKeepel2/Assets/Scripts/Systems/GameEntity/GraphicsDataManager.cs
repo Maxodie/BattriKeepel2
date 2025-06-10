@@ -1,6 +1,14 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+public enum SpawnDir
+{
+    Nord,
+    WEST,
+    Est,
+    SUD
+}
+
 public class GraphicsManager
 {
     static GraphicsManager s_instance;
@@ -22,6 +30,23 @@ public class GraphicsManager
             bool dontDestroyOnLoad = false) where TGraphicsScript : GameEntityGraphics
     {
         TGraphicsScript result = UnityEngine.Object.Instantiate<TGraphicsScript>((TGraphicsScript)graphicsPrefab, position, rotation);
+
+        VisualInfosSpawnSetup(result, owner, isChild, dontDestroyOnLoad);
+
+        if(OnVisualCreatedCallback != null)
+        {
+            OnVisualCreatedCallback.Invoke(result);
+        }
+
+        return result;
+    }
+
+    public TGraphicsScript GenerateVisualInfos<TGraphicsScript>(GameEntityGraphics graphicsPrefab,
+            SpawnDir spawnDir, IGameEntity owner, bool isChild = true,
+            bool dontDestroyOnLoad = false) where TGraphicsScript : GameEntityGraphics
+    {
+        TGraphicsScript result = UnityEngine.Object.Instantiate<TGraphicsScript>((TGraphicsScript)graphicsPrefab, Vector3.zero, Quaternion.identity, rotation);
+        /*Camera camera = Camera.bo*/
 
         VisualInfosSpawnSetup(result, owner, isChild, dontDestroyOnLoad);
 

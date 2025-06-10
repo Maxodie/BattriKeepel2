@@ -11,9 +11,13 @@ public class UIBossMenu : UIMenuBase
     UIBossSelectionInfo[] navigationsPanels;
     int currentMenuID = -1;
 
+    SO_UIBossMenu m_data;
+    SoundInstance soundInstance;
+
     public void Init(SO_UIBossMenu data)
     {
-        navigationsPanels = new UIBossSelectionInfo[data.bossSelectionInfos.Length];
+        soundInstance = AudioManager.CreateSoundInstance(false, false);
+        m_data = data; navigationsPanels = new UIBossSelectionInfo[data.bossSelectionInfos.Length];
         for(int i=0; i < data.bossSelectionInfos.Length; i++)
         {
             int iCopy = i;
@@ -21,11 +25,11 @@ public class UIBossMenu : UIMenuBase
             navigationsPanels[i] = (UIBossSelectionInfo)result.Menu;
 
             UIButton buttonGo = Object.Instantiate(data.bossSelectionNavigation, m_bossSelectionNavigationContent);
-            buttonGo.Button.onClick.AddListener(() => { ChangeNavigationMenu(iCopy); });
+            buttonGo.Button.onClick.AddListener(() => { ChangeNavigationMenu(iCopy, true); });
             buttonGo.Title = data.bossSelectionInfos[i].bossName;
         }
 
-        ChangeNavigationMenu(0);
+        ChangeNavigationMenu(0, false);
         SetActive(false);
     }
 
@@ -39,6 +43,7 @@ public class UIBossMenu : UIMenuBase
 
     public void InvokeSelectionEnded()
     {
+        soundInstance.PlaySound(m_data.selectSound);
         m_onBossSelectionEnded.Invoke();
     }
 
@@ -47,8 +52,13 @@ public class UIBossMenu : UIMenuBase
         m_onBossSelectionEnded.AddListener(action);
     }
 
-    void ChangeNavigationMenu(int id)
+    void ChangeNavigationMenu(int id, bool playSound)
     {
+        if(playSound)
+        {
+            soundInstance.PlaySound(m_data.selectSound);
+        }
+
         if(id == currentMenuID)
         {
             return;
@@ -59,5 +69,10 @@ public class UIBossMenu : UIMenuBase
             navigationsPanels[i].SetActive(i == id);
         }
         Log.Success<MainMenuLogger>("Boss selection menu id : " + id);
+    }
+
+    void OnDestroy()
+    {
+        AudioManager.DestroySoundInstance(soundInstance);
     }
 }
