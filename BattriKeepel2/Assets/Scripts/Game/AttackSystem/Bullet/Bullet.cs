@@ -17,8 +17,11 @@ namespace Game.AttackSystem.Bullet
         {
             data = bulletData;
             bulletGraphics = GraphicsManager.Get().GenerateVisualInfos<BulletGraphics>(data.BulletGraphics, spawnTransform, this, false);
+            bulletGraphics.Bullet = this;
 
             bulletBehaviour = data.BulletBehaviour;
+
+            AutoDestroy();
         }
 
         /*private void OnBulletCollision(Hit hitCollision)*/
@@ -30,6 +33,12 @@ namespace Game.AttackSystem.Bullet
         /**/
         /*    collisionEntity.TakeDamage(this);*/
         /*}*/
+
+        private async Awaitable AutoDestroy()
+        {
+            await Awaitable.WaitForSecondsAsync(2);
+            bulletGraphics.AutoDestroy();
+        }
 
         public float GetSpeed()
         {
@@ -55,5 +64,6 @@ namespace Game.AttackSystem.Bullet
         public BulletGraphics BulletGraphics;
         public float Speed;
         public float Damage;
+        public float ReloadTime;
     }
 }

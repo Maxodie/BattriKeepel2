@@ -1,6 +1,6 @@
 using System;
-using GameEntity;
 using UnityEngine.Events;
+using GameEntity;
 
 namespace Game.AttackSystem.Attacks
 {
@@ -10,11 +10,6 @@ namespace Game.AttackSystem.Attacks
         public class BasePlayerAttack
         {
             public UnityEvent<Player> basePlayerAttackEvent;
-        }
-        
-        public class BaseAttack
-        {
-            public UnityEvent baseAttackEvent;
         }
     }
 }

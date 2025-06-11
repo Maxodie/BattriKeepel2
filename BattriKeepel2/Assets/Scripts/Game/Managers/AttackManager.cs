@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using Game.AttackSystem.Attacks;
 using Game.Entities;
 using GameEntity;
@@ -8,43 +10,53 @@ namespace Game.Managers
     public class AttackManager
     {
         private bool _isPlayer;
-        private AttackSet _attacks;
+        public AttackSet attacks;
         private Entity _entityAttached;
 
+        private MonoBehaviour coroutineLauncher;
+        private Coroutine currentAttackCoroutine;
+
         private Awaitable currentAttack;
-        
+
         private bool _isAbleToAttack = true;
 
-        public void InitAttacking(bool isPlayer, AttackSet attackSet, Entity entityAttached)
+        public void InitAttacking(bool isPlayer, AttackSet attackSet, Entity entityAttached, MonoBehaviour mono)
         {
             _isPlayer = isPlayer;
-            _attacks = attackSet;
-            _entityAttached = entityAttached;
             
+            attacks = attackSet;
+            _entityAttached = entityAttached;
+            coroutineLauncher = mono;
+
             StartAttacking();
         }
-        
-        private void StartAttacking()
+
+        public void StartAttacking()
         {
-            currentAttack = DelayedAttacks(_attacks.BasicAttack);
+            currentAttackCoroutine = coroutineLauncher.StartCoroutine(DelayedAttacks(attacks.BasicAttack));
         }
 
-        private void CancelAttack()
+        public void CancelAttack()
         {
-            if (currentAttack != null && !currentAttack.IsCompleted) {
-                currentAttack.Cancel();
+            if (currentAttackCoroutine != null) {
+                coroutineLauncher.StopCoroutine(currentAttackCoroutine);
             }
         }
-        
-        private async Awaitable DelayedAttacks(Attack attack)
+
+        private IEnumerator DelayedAttacks(Attack attack)
         {
+            yield return new WaitForSeconds(attack.BaseCooldown);
+            
             if (_isPlayer && _isAbleToAttack) {
                 attack.RaiseAttack((Player)_entityAttached);
             }
             
-            await Awaitable.WaitForSecondsAsync(attack.BaseCooldown);
-            
-            currentAttack = DelayedAttacks(attack);
+            currentAttackCoroutine = coroutineLauncher.StartCoroutine(DelayedAttacks(attacks.BasicAttack));
+        }
+
+        public void CanAttack(bool isAbleToAttack)
+        {
+            _isAbleToAttack = isAbleToAttack;
         }
     }
 }

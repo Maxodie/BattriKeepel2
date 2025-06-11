@@ -20,12 +20,12 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.7783019, g: 0.8522013, b: 1, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 3
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SubtractiveShadowColor: {r: 0.740566, g: 0.81399065, b: 1, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -163,10 +163,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e39a975d8d98f384ebd19ea2af886384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_backgroundAudio: {fileID: 8300000, guid: c9f7f8bdae9e9d3419bbb29e1f2a8238, type: 3}
   m_gameInstance: {fileID: 11400000, guid: 7c4faeb2fa10cb048b959a18b6eb6c34, type: 2}
   m_playerTransform: {fileID: 1168611914}
   m_cameraTr: {fileID: 929189442}
-  m_collisionManagerData: {fileID: 11400000, guid: c476a2e185e96b84c8090e44772339ef, type: 2}
   m_canvasSpawnLocation: {fileID: 1068685748}
   m_playerDebugData: {fileID: 11400000, guid: 877d9e96e4e15eb4bbaee650a8f2faed, type: 2}
   m_debugLevelData: {fileID: 11400000, guid: c14ba43e65cb7964da8f661945185d7f, type: 2}
@@ -329,8 +329,8 @@ Camera:
   m_GameObject: {fileID: 929189438}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.6084906, g: 0.7607442, b: 1, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

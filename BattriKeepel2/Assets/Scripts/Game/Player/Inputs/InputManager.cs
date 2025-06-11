@@ -60,7 +60,10 @@ namespace Inputs {
 
         void OnShake(InputAction.CallbackContext context) {
             Vector3 shake = context.ReadValue<Vector3>();
-            m_onShake.Invoke(shake);
+            if(shake.magnitude >= 13)
+            {
+                m_onShake.Invoke(shake);
+            }
         }
 
         void OnTap(InputAction.CallbackContext context) {

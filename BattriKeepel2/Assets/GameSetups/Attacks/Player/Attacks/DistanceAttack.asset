@@ -17,8 +17,8 @@ MonoBehaviour:
   Description: Basic Distance Attack
   needTarget: 0
   BaseDamage: 5
-  BaseCooldown: 2
-  BaseSpeed: 4
+  BaseCooldown: 0.5
+  BaseSpeed: 0.1
   BasePlayerAttack:
     basePlayerAttackEvent:
       m_PersistentCalls:

@@ -1,18 +1,24 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Game.AttackSystem.Bullet
 {
     public class BulletGraphics : GameEntityGraphics
     {
-        [SerializeField] private Image sprite;
-        [SerializeField] private Bullet bullet;
+        [SerializeField] Sprite sprite;
+        [SerializeField] SpriteRenderer bulletSpriteRenderer;
+        
+        public Bullet Bullet;
         
         private void FixedUpdate()
         {
-            if (bullet.GetBulletBehaviour().NeedConstantUpdate) {
-                bullet.GetBulletBehaviour().RaiseBullet(bullet);
+            if (Bullet.GetBulletBehaviour().NeedConstantUpdate) {
+                Bullet.GetBulletBehaviour().RaiseBullet(Bullet);
             }
+        }
+
+        public void AutoDestroy()
+        {
+            Destroy(gameObject);
         }
     }
 }
