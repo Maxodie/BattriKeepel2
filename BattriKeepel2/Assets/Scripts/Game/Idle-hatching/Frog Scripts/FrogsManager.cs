@@ -26,11 +26,26 @@ public class FrogsManager : MonoBehaviour
     {
         EN_FrogRarity rarity = ProcessFrogRarity();
         frogName = frogNameInputField.text.ToString();
-        Frog frog = Instantiate(frogPrefab);
-        frog.Init(frogName, EN_FrogColors.RED, rarity, inputManager, QueryRarityLevel(rarity));
+        Frog frog = new Frog(frogName, EN_FrogColors.RED, rarity, inputManager, QueryRarityLevel(rarity));
         Log.Success("WOW, FROG GENERATED ! :)");
-        
+
         frogList.Add(frog);
+    }
+
+    public void Update()
+    {
+        foreach(Frog frog in frogList)
+        {
+            frog.Update();
+        }
+
+        foreach(Frog frog in frogList)
+        {
+            if(frog.HandleMovement())
+            {
+                break;
+            }
+        }
     }
 
     public void GiveEXPToFrog() //M�thode test du syst�me d'EXP, � commenter � un moment

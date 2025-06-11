@@ -20,11 +20,16 @@ public class FrogBehavior
     private float m_rotationTimer;
     private float m_leapTimer;
 
-    public void InitFrogBehavior(MonoBehaviour mono)
+    public bool m_isRunning = true;
+
+    public void InitFrogBehavior(FrogGraphics graphicsBehaviour, float leapCooldown)
     {
-        m_MonoBehaviour = mono;
+        m_MonoBehaviour = graphicsBehaviour;
+        m_transform = graphicsBehaviour.transform;
+        m_leapPosition = graphicsBehaviour.leapPosition;
+        m_leapCooldown = leapCooldown;
         StartBehavior();
-        
+
     }
 
     private void StartBehavior()
@@ -35,11 +40,16 @@ public class FrogBehavior
 
     public void UpdateBehavior()
     {
+        if(!m_isRunning)
+        {
+            return;
+        }
+
         if (m_isRotating)
         {
             ExecuteRotation();
         }
-        else if (m_isMoving) 
+        else if (m_isMoving)
         {
             ExecuteLeap();
         }

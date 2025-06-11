@@ -1,29 +1,32 @@
 using Inputs;
-using System.Net.NetworkInformation;
-using System.Threading;
 using UnityEngine;
 
-public class Frog : MonoBehaviour
+public class Frog : IGameEntity
 {
     public string m_frogName;
     public EN_FrogColors m_Color;
     public EN_FrogRarity m_Rarity;
 
-    [SerializeField] private FrogGraphics m_Graphics;
-    [SerializeField] private FrogBehavior m_Behavior;
-    [SerializeField] private FrogLevelling m_Levelling;
-    [SerializeField] private FrogInteraction m_Interaction;
-    [SerializeField] private InputManager m_InputManager;
+    private FrogGraphics m_Graphics;
+    private FrogBehavior m_Behavior;
+    private FrogLevelling m_Levelling;
+    private FrogInteraction m_Interaction;
+    private InputManager m_InputManager;
 
-    public void Init(string name, EN_FrogColors color, EN_FrogRarity rarity, InputManager inputManager, SO_FrogLevelData frogLevelData)
+    public Frog(string name, EN_FrogColors color, EN_FrogRarity rarity, InputManager inputManager, SO_FrogLevelData frogLevelData)
     {
         m_frogName = name;
         m_Color = color;
         m_Rarity = rarity;
         m_InputManager = inputManager;
 
+        m_Behavior = new FrogBehavior();
+
+        m_Graphics = GraphicsManager.Get().GenerateVisualInfos<FrogGraphics>(frogLevelData.graphics, new Vector2(), Quaternion.identity, this, false);
         m_Graphics.InitFrogGraphics(this);
-        m_Behavior.InitFrogBehavior(this);
+        m_Behavior.InitFrogBehavior(m_Graphics, frogLevelData.leapCooldown);
+        m_Levelling = new FrogLevelling();
+        m_Interaction = new FrogInteraction(m_Graphics.rb, m_Behavior);
         m_Levelling.InitFrogLevelling(this, frogLevelData);
 
         BindActions();
@@ -38,7 +41,11 @@ public class Frog : MonoBehaviour
     public void Update()
     {
         m_Behavior.UpdateBehavior();
-        m_Interaction.HandleMovement();
+    }
+
+    public bool HandleMovement()
+    {
+        return m_Interaction.HandleMovement();
     }
 
     public void AddExpAmount(EN_FrogLevels type, int amount)
