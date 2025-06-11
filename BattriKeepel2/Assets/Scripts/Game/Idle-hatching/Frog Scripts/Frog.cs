@@ -15,17 +15,18 @@ public class Frog : MonoBehaviour
     [SerializeField] private FrogInteraction m_Interaction;
     [SerializeField] private InputManager m_InputManager;
 
-    public void Init(string name, EN_FrogColors color, EN_FrogRarity rarity, SO_FrogLevelData frogLevelData)
+    public void Init(string name, EN_FrogColors color, EN_FrogRarity rarity, InputManager inputManager, SO_FrogLevelData frogLevelData)
     {
         m_frogName = name;
         m_Color = color;
         m_Rarity = rarity;
+        m_InputManager = inputManager;
 
         m_Graphics.InitFrogGraphics(this);
         m_Behavior.InitFrogBehavior(this);
         m_Levelling.InitFrogLevelling(this, frogLevelData);
 
-        m_InputManager = new InputManager();
+        BindActions();
     }
 
     private void BindActions()

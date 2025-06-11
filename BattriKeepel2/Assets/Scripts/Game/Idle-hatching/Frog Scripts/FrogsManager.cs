@@ -1,3 +1,4 @@
+using Inputs;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -21,13 +22,15 @@ public class FrogsManager : MonoBehaviour
 
     [SerializeField] private Frog frogPrefab;
 
+    [SerializeField] private InputManager inputManager;
+
     private string frogName;
     public void CreateNewFrog()
     {
         EN_FrogRarity rarity = ProcessFrogRarity();
         frogName = frogNameInputField.text.ToString();
         Frog frog = Instantiate(frogPrefab);
-        frog.Init(frogName, EN_FrogColors.RED, rarity, QueryRarityLevel(rarity));
+        frog.Init(frogName, EN_FrogColors.RED, rarity, inputManager, QueryRarityLevel(rarity));
         Log.Success("WOW, FROG GENERATED ! :)");
         
         frogList.Add(frog);
