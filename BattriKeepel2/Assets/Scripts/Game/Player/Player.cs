@@ -56,6 +56,7 @@ namespace GameEntity
             m_inputManager.BindPosition(m_movement.OnPosition);
             m_inputManager.BindPress(m_movement.OnPress);
             m_inputManager.BindTap(TapReceived);
+            m_inputManager.BindShake(OnShakeReceived);
             BindDoubleTap(attackManager.attacks.AbilityAttack.RaiseAttack);
             BindShake(attackManager.attacks.UltimateAttack.RaiseAttack);
         }
@@ -70,6 +71,11 @@ namespace GameEntity
 
         private void BindShake(UnityAction<Player> action) {
             m_shakeEvent.AddListener(action);
+        }
+
+        private void OnShakeReceived(Vector3 shake)
+        {
+
         }
 
         bool tapState = false;
@@ -129,11 +135,11 @@ namespace GameEntity
 
             isCapacityCurrent = true; //IsCapacityCurrent permet de voir si l'ability ou l'ultimate est en cours pour empecher de pouvoir lancer les 2 en meme temps
             m_playerGraphics.StartCoroutine(ReloadAbility());
-            
+
             attackManager.CancelAttack();
-            
+
             await Awaitable.WaitForSecondsAsync(playerData.attackSet.AbilityAttack.BaseCooldown);
-            
+
             BulletData bulletData = new BulletData();
 
             bulletData.Owner = this;
@@ -162,6 +168,7 @@ namespace GameEntity
             
             isCapacityCurrent = false;
             attackManager.CancelAttack();
+
             attackManager.StartAttacking();
         }
 
@@ -178,7 +185,7 @@ namespace GameEntity
             yield return new WaitForSeconds(playerData.attackSet.UltimateAttack.BaseReloadTime);
             isUltimateReady = true;
         }
-        
+
         public override void TakeDamage(Bullet bullet) {
             MobileEffect.VibrationEffect(MobileEffectVibration.SMALL);
         }

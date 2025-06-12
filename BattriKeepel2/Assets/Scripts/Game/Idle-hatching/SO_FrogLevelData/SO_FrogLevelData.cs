@@ -3,6 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "FrogLevelData", menuName = "Scriptable Objects/SO_FrogLevelData")]
 public class SO_FrogLevelData : ScriptableObject
 {
+    public FrogGraphics graphics;
+    public float leapCooldown;
+
     public int m_minimumRunLevel;
     public int m_maximumRunLevel;
 

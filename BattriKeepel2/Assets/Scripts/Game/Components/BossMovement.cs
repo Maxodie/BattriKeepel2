@@ -8,7 +8,7 @@ public class BossLogger : Logger
 namespace Components
 {
 
-public class BossMovement : Movement
+public class BossMovement
 {
     int m_currentLocation = 0;
     BossGraphicsEntity m_bossGraphics;
@@ -85,7 +85,7 @@ public class BossMovement : Movement
         }
     }
 
-        public override void HandleMovement()
+        public void HandleMovement()
         {
             throw new System.NotImplementedException();
         }

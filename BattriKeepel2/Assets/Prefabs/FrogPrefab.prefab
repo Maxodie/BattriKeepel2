@@ -96,8 +96,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2226174775014889760}
-  - component: {fileID: 71105878463350057}
   - component: {fileID: 5317878216445783924}
+  - component: {fileID: 7627567162043801710}
   m_Layer: 0
   m_Name: FrogPrefab
   m_TagString: Untagged
@@ -122,39 +122,6 @@ Transform:
   - {fileID: 2113486009594606292}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &71105878463350057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2310092430552217590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff0dd777dbc600149a0bb8f8cc1e31b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_frogName: 
-  m_Color: 0
-  m_Rarity: 0
-  m_Graphics:
-    emptyFrogSprite: {fileID: 7154956688608553163}
-  m_Behavior:
-    m_transform: {fileID: 2226174775014889760}
-    m_leapPosition: {fileID: 2113486009594606292}
-    m_leapCooldown: 3
-  m_Levelling:
-    m_RunLevel: 0
-    m_RunLevelEXP: 0
-    m_FlyLevel: 0
-    m_FlyLevelEXP: 0
-    m_SwimLevel: 0
-    m_SwimLevelEXP: 0
-    SO_MaxExpPoints: {fileID: 11400000, guid: 2d2b0a2b2bad8f84a8d0692465c0f1f3, type: 2}
-  m_Interaction:
-    rb: {fileID: 5317878216445783924}
-    vel: {x: 0, y: 0}
-  m_InputManager: {fileID: 0}
 --- !u!50 &5317878216445783924
 Rigidbody2D:
   serializedVersion: 5
@@ -168,9 +135,9 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 1.84
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -182,6 +149,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &7627567162043801710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2310092430552217590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aff4772e5eba2324cacf1870937c4f38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emptyFrogSprite: {fileID: 7154956688608553163}
+  leapPosition: {fileID: 2113486009594606292}
+  rb: {fileID: 5317878216445783924}
 --- !u!1 &4201879641084953300
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +189,7 @@ Transform:
   m_GameObject: {fileID: 4201879641084953300}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalPosition: {x: 0, y: 0.99, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
