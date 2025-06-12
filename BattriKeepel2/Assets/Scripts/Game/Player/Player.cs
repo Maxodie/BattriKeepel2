@@ -27,6 +27,8 @@ namespace GameEntity
         private SoundInstance soundInstance;
 
         private bool isAbilityReady = true;
+        private bool isUltimateReady = true;
+        private bool isCapacityCurrent = true;
 
         public Player(SO_PlayerData data, Transform spawnPoint)
         {
@@ -123,8 +125,9 @@ namespace GameEntity
 
         public async Awaitable LaunchAbility()
         {
-            if (!isAbilityReady) return;
+            if (!isAbilityReady || isCapacityCurrent) return;
 
+            isCapacityCurrent = true; //IsCapacityCurrent permet de voir si l'ability ou l'ultimate est en cours pour empecher de pouvoir lancer les 2 en meme temps
             m_playerGraphics.StartCoroutine(ReloadAbility());
             
             attackManager.CancelAttack();
@@ -141,6 +144,24 @@ namespace GameEntity
 
             Bullet newBullet = new Bullet(bulletData, m_playerGraphics.transform);
             
+            isCapacityCurrent = false;
+            attackManager.StartAttacking();
+        }
+        
+        public async Awaitable LaunchUltimate()
+        {
+            if (!isUltimateReady || isCapacityCurrent) return;
+
+            isCapacityCurrent = true; //IsCapacityCurrent permet de voir si l'ability ou l'ultimate est en cours pour empecher de pouvoir lancer les 2 en meme temps
+            m_playerGraphics.StartCoroutine(ReloadUltimate());
+            
+            attackManager.CancelAttack();
+            attackManager.StartUltimate();
+            
+            await Awaitable.WaitForSecondsAsync(playerData.attackSet.UltimateAttack.BaseDuration);
+            
+            isCapacityCurrent = false;
+            attackManager.CancelAttack();
             attackManager.StartAttacking();
         }
 
@@ -149,6 +170,13 @@ namespace GameEntity
             isAbilityReady = false;
             yield return new WaitForSeconds(playerData.attackSet.AbilityAttack.BaseReloadTime);
             isAbilityReady = true;
+        }
+        
+        private IEnumerator ReloadUltimate()
+        {
+            isUltimateReady = false;
+            yield return new WaitForSeconds(playerData.attackSet.UltimateAttack.BaseReloadTime);
+            isUltimateReady = true;
         }
         
         public override void TakeDamage(Bullet bullet) {

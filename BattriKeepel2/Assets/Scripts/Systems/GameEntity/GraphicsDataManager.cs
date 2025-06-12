@@ -45,7 +45,7 @@ public class GraphicsManager
             SpawnDir spawnDir, IGameEntity owner, bool isChild = true,
             bool dontDestroyOnLoad = false) where TGraphicsScript : GameEntityGraphics
     {
-        TGraphicsScript result = UnityEngine.Object.Instantiate<TGraphicsScript>((TGraphicsScript)graphicsPrefab, Vector3.zero, Quaternion.identity, rotation);
+        TGraphicsScript result = UnityEngine.Object.Instantiate<TGraphicsScript>((TGraphicsScript)graphicsPrefab, Vector3.zero, Quaternion.identity /*, rotation*/);
         /*Camera camera = Camera.bo*/
 
         VisualInfosSpawnSetup(result, owner, isChild, dontDestroyOnLoad);
