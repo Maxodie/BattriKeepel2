@@ -1,5 +1,4 @@
 using UnityEngine;
-using Game.Entities;
 using GameEntity;
 
 namespace Game.AttackSystem.Attacks

@@ -1,11 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Threading;
 using Components;
 using Game.AttackSystem.Bullet;
 using Game.Entities;
 using Inputs;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -28,7 +28,7 @@ namespace GameEntity
 
         private bool isAbilityReady = true;
         private bool isUltimateReady = true;
-        private bool isCapacityCurrent = true;
+        private bool isCapacityCurrent;
 
         public Player(SO_PlayerData data, Transform spawnPoint)
         {
@@ -46,6 +46,8 @@ namespace GameEntity
             m_inputManager = m_playerGraphics.inputManager;
             transform = m_playerGraphics.transform;
             m_movement.rb = m_rb;
+            
+            m_playerGraphics.SetPlayer(this);
 
             base.Init(playerData.attackSet, m_playerGraphics);
 
@@ -75,7 +77,7 @@ namespace GameEntity
 
         private void OnShakeReceived(Vector3 shake)
         {
-
+            m_shakeEvent?.Invoke(this);
         }
 
         bool tapState = false;

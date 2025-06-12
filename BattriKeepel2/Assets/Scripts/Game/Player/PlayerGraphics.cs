@@ -1,6 +1,8 @@
+using System;
 using GameEntity;
 using UnityEngine;
 using Inputs;
+using UnityEngine.InputSystem;
 
 public class PlayerGraphics : GameEntityGraphics {
     [SerializeField] Sprite m_playerSprite;
@@ -16,6 +18,14 @@ public class PlayerGraphics : GameEntityGraphics {
     {
         m_playerSpriteRenderer.sprite = m_playerSprite;
         m_playerSpriteRenderer.material = m_playerMat;
+    }
+
+    private void Update()
+    {
+        if (Keyboard.current[Key.A].wasPressedThisFrame)
+        {
+            player.LaunchUltimate();
+        }
     }
 
     public Player GetPlayer()

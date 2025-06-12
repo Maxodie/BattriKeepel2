@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using Game.AttackSystem.Attacks;
 using Game.Entities;
 using GameEntity;
@@ -53,7 +52,7 @@ namespace Game.Managers
             yield return new WaitForSeconds(attack.BaseCooldown);
             
             if (_isPlayer && _isAbleToAttack) {
-                attack.RaiseAttack((Player)_entityAttached);
+                attacks.BasicAttack.RaiseAttack((Player)_entityAttached);
             }
             
             currentAttackCoroutine = coroutineLauncher.StartCoroutine(DelayedAttacks(attack));
