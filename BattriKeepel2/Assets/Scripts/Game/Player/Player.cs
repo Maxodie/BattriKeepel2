@@ -54,6 +54,7 @@ namespace GameEntity
             m_inputManager.BindPosition(m_movement.OnPosition);
             m_inputManager.BindPress(m_movement.OnPress);
             m_inputManager.BindTap(TapReceived);
+            m_inputManager.BindShake(OnShakeReceived);
             BindDoubleTap(attackManager.attacks.AbilityAttack.RaiseAttack);
             BindShake(attackManager.attacks.UltimateAttack.RaiseAttack);
         }
@@ -68,6 +69,11 @@ namespace GameEntity
 
         private void BindShake(UnityAction<Player> action) {
             m_shakeEvent.AddListener(action);
+        }
+
+        private void OnShakeReceived(Vector3 shake)
+        {
+
         }
 
         bool tapState = false;
@@ -126,11 +132,11 @@ namespace GameEntity
             if (!isAbilityReady) return;
 
             m_playerGraphics.StartCoroutine(ReloadAbility());
-            
+
             attackManager.CancelAttack();
-            
+
             await Awaitable.WaitForSecondsAsync(playerData.attackSet.AbilityAttack.BaseCooldown);
-            
+
             BulletData bulletData = new BulletData();
 
             bulletData.Owner = this;
@@ -140,7 +146,7 @@ namespace GameEntity
             bulletData.BulletGraphics = playerData.bulletGraphics;
 
             Bullet newBullet = new Bullet(bulletData, m_playerGraphics.transform);
-            
+
             attackManager.StartAttacking();
         }
 
@@ -150,7 +156,7 @@ namespace GameEntity
             yield return new WaitForSeconds(playerData.attackSet.AbilityAttack.BaseReloadTime);
             isAbilityReady = true;
         }
-        
+
         public override void TakeDamage(Bullet bullet) {
             MobileEffect.VibrationEffect(MobileEffectVibration.SMALL);
         }
