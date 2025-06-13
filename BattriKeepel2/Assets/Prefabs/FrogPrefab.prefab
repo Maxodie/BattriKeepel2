@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2226174775014889760}
@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: aaaa77396656d64409b2d5a009c9ec77, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -76,12 +76,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 725739616681998129, guid: 7b2b9aa8f9d9d2c4999bcad94ee82f8d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 5, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -164,6 +164,13 @@ MonoBehaviour:
   emptyFrogSprite: {fileID: 7154956688608553163}
   leapPosition: {fileID: 2113486009594606292}
   rb: {fileID: 5317878216445783924}
+  m_spriteRenderer: {fileID: 7154956688608553163}
+  m_redSprite: {fileID: 7854623808886618951, guid: 851baee04873717439428d6633f417d2, type: 3}
+  m_blueSprite: {fileID: 725739616681998129, guid: 7b2b9aa8f9d9d2c4999bcad94ee82f8d, type: 3}
+  m_greenSprite: {fileID: 5284277239766167159, guid: 21e58bbec6225634a81e8e7c98707ee6, type: 3}
+  m_redMat: {fileID: 2100000, guid: 77cddb2ce217b6a44b7ca8ffc6ff6277, type: 2}
+  m_greenMat: {fileID: 2100000, guid: e6c6cfab64d53284a88d3f4f0cc64016, type: 2}
+  m_blueMat: {fileID: 2100000, guid: fad1976c743f3d4428dcd66a2c3c6509, type: 2}
 --- !u!1 &4201879641084953300
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 91c4c8c0b9540e44c8d18175830e401a
+guid: 851baee04873717439428d6633f417d2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6368016711817672683
-    second: NewCaptureNormalMap_0
+      213: 7854623808886618951
+    second: FrogRed_0
   - first:
-      213: 3046879745881436341
-    second: NewCaptureNormalMap_1
+      213: 6441431033519816590
+    second: FrogRed_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,7 +40,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 2
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -116,7 +116,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NewCaptureNormalMap_0
+      name: FrogRed_0
       rect:
         serializedVersion: 2
         x: 252
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: be7b4afc57dbf5850800000000000000
-      internalID: 6368016711817672683
+      spriteID: 74b33051dba310d60800000000000000
+      internalID: 7854623808886618951
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NewCaptureNormalMap_1
+      name: FrogRed_1
       rect:
         serializedVersion: 2
         x: 1332
@@ -153,8 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5b0789e5cf0b84a20800000000000000
-      internalID: 3046879745881436341
+      spriteID: e8f3026956f846950800000000000000
+      internalID: 6441431033519816590
       vertices: []
       indices: 
       edges: []
@@ -172,9 +172,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      NewCaptureNormalMap_0: 6368016711817672683
-      NewCaptureNormalMap_1: 3046879745881436341
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
