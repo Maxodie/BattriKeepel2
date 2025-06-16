@@ -5,7 +5,7 @@ public enum SpawnDir
 {
     North,
     West,
-    Est,
+    East,
     South
 }
 
