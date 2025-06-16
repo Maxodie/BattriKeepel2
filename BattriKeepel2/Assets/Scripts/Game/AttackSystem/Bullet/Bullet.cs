@@ -8,7 +8,7 @@ public class Bullet : IGameEntity
     private Vector3 position;
     private bool m_isDead = false;
 
-    public Bullet(SO_BulletData data, Vector3 position, Transform spawnTransform, bool child)
+    public Bullet(SO_BulletData data, Vector3 position, Transform spawnTransform, bool child, Vector3 up)
     {
         this.data = data;
         this.position = position;
@@ -16,11 +16,12 @@ public class Bullet : IGameEntity
         bulletGraphics = GraphicsManager.Get()
             .GenerateVisualInfos<BulletGraphics>(bulletGraphics, spawnTransform, this, child);
         bulletGraphics.transform.position = this.position;
-        bulletGraphics.transform.LookAt(spawnTransform);
+
+        bulletGraphics.transform.rotation = Quaternion.LookRotation(Vector3.forward, up);
     }
 
     public void Update() {
-        Vector2 m_vel = -bulletGraphics.transform.forward * data.speed * Time.deltaTime;
+        Vector2 m_vel = bulletGraphics.transform.up * data.speed * Time.deltaTime;
         bulletGraphics.transform.position += new Vector3(m_vel.x, m_vel.y, 0);
         CheckForDeath();
         Log.Info();

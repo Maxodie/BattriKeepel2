@@ -10,7 +10,6 @@ public class BossEntity : Entity
     BossAttack[] m_attacks;
 
     SoundInstance soundInstance;
-
     public BossEntity(SO_BossScriptableObject data)
     {
         m_data = data;
@@ -32,6 +31,10 @@ public class BossEntity : Entity
         HandleAttacks();
 
         UpdateVisualHealth();
+    }
+
+    public void Update()
+    {
     }
 
     private void InitAttacks() {

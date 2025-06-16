@@ -117,7 +117,7 @@ namespace GameEntity
 
         public override void CreateBullet()
         {
-            m_bullets.Add(new Bullet(playerData.bulletGraphics.data, transform.position + Vector3.up * .2f, m_playerGraphics.transform, false));
+            m_bullets.Add(new Bullet(playerData.bulletGraphics.data, transform.position + Vector3.up * .2f, m_playerGraphics.transform, false, Vector3.up));
         }
 
         public async Awaitable LaunchAbility()
@@ -130,7 +130,7 @@ namespace GameEntity
 
             await Awaitable.WaitForSecondsAsync(playerData.attackSet.AbilityAttack.BaseCooldown);
 
-            m_bullets.Add(new Bullet(playerData.bulletGraphics.data, transform.position + Vector3.up * .2f, m_playerGraphics.transform, false));
+            m_bullets.Add(new Bullet(playerData.bulletGraphics.data, transform.position + Vector3.up * .2f, m_playerGraphics.transform, false, Vector3.up));
             attackManager.StartAttacking();
         }
 

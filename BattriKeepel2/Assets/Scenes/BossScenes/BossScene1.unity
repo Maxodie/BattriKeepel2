@@ -431,8 +431,9 @@ MonoBehaviour:
   m_playerTransform: {fileID: 1588288693}
   m_cameraTr: {fileID: 0}
   m_canvasSpawnLocation: {fileID: 0}
-  m_playerDebugData: {fileID: 0}
-  m_debugLevelData: {fileID: 0}
+  m_endgameData: {fileID: 0}
+  m_playerDebugData: {fileID: 11400000, guid: 877d9e96e4e15eb4bbaee650a8f2faed, type: 2}
+  m_debugLevelData: {fileID: 11400000, guid: c14ba43e65cb7964da8f661945185d7f, type: 2}
 --- !u!4 &1602574354
 Transform:
   m_ObjectHideFlags: 0
@@ -480,7 +481,7 @@ MonoBehaviour:
   m_amountPerWave: 40
   m_rotationSpeed: 3
   m_bulletGraphics: {fileID: 4496678624898742819, guid: 88d373d2542134949add22c7d3b407da, type: 3}
-  rotation: 2
+  rotation: -1
 --- !u!4 &2056607332
 Transform:
   m_ObjectHideFlags: 0

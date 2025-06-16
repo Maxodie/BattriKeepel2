@@ -13,6 +13,6 @@ public class BossPhase : LevelPhase
 
     public override void Update()
     {
-
+        m_boss.Update();
     }
 }
