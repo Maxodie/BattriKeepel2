@@ -13,12 +13,7 @@ MonoBehaviour:
   m_Name: BossData1
   m_EditorClassIdentifier: 
   bossGraphicsEntity: {fileID: 2208424763771030420, guid: 13dc40b671c18fe4f8b3d729b89e36a6, type: 3}
-  movementData: {fileID: 11400000, guid: e22eabe376ad1ae4c8cb59b76b733bbd, type: 2}
+  attackData: []
   dialogData: {fileID: 11400000, guid: 673db666672661a4799d9afd27915ca6, type: 2}
-  hitbox:
-    m_type: 0
-    m_size: 1
-    m_dimensions: {x: 0, y: 0}
-    isWall: 0
-    m_offSet: {x: 0, y: 0}
+  damageSound: {fileID: 8300000, guid: 8c2baee04d5305d47a8d24cb50232daf, type: 3}
   health: 10

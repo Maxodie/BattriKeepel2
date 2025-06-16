@@ -10,10 +10,12 @@ public class BulletGraphics : GameEntityGraphics
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        Log.Info("tge");
         EntityGraphics entityGraphics = col.gameObject.GetComponent<EntityGraphics>();
         if(entityGraphics && entityGraphics.GetOwner() == m_damageableEntity)
         {
             entityGraphics.TakeDamage(data.damage);
+            Destroy(gameObject);
         }
     }
 }
