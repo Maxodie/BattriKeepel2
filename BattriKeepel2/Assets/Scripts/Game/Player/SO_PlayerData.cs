@@ -1,6 +1,5 @@
 using UnityEngine;
 using Game.AttackSystem.Attacks;
-using Game.AttackSystem.Bullet;
 
 [CreateAssetMenu(menuName = "Entities/Player", fileName = "Player")]
 public class SO_PlayerData : ScriptableObject {

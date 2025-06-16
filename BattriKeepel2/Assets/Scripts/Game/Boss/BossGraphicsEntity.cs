@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Components;
+using Game.Entities;
 
-public class BossGraphicsEntity : GameEntityGraphics
+public class BossGraphicsEntity : EntityGraphics
 {
     [SerializeField] SpriteRenderer bossGraphics;
     [SerializeField] Image healthFill;

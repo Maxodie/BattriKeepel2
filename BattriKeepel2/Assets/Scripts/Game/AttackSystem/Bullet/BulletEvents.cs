@@ -1,8 +1,6 @@
 using System;
 using UnityEngine.Events;
 
-namespace Game.AttackSystem.Bullet
-{
     public struct BulletEvents
     {
         [Serializable]
@@ -11,4 +9,3 @@ namespace Game.AttackSystem.Bullet
             public UnityEvent<Bullet> baseBulletEvent;
         }
     }
-}

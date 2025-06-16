@@ -1,5 +1,4 @@
 using Game.AttackSystem.Attacks;
-using Game.AttackSystem.Bullet;
 using Game.Managers;
 using UnityEngine;
 
@@ -22,7 +21,7 @@ namespace Game.Entities
             attackManager.InitAttacking(entityType == EntityType.Player, attackSet, this, monoBehaviour);
         }
 
-        public abstract void TakeDamage(Bullet bullet);
+        public abstract void TakeDamage(float bullet);
 
         public virtual void HealthCheck()
         {
@@ -38,11 +37,6 @@ namespace Game.Entities
         }
 
         public abstract void Die();
-
-        protected float CalculateBaseDamages(Bullet bullet)
-        {
-            return bullet.data.damage;
-        }
 
         public virtual float GetHealth()
         {

@@ -1,4 +1,3 @@
-using Game.AttackSystem.Bullet;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "bullet", menuName = "bullet")]

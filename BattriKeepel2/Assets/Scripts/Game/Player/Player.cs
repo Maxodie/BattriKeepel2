@@ -2,7 +2,6 @@ using System.Collections;
 using System.Threading.Tasks;
 using System.Threading;
 using Components;
-using Game.AttackSystem.Bullet;
 using Game.Entities;
 using Inputs;
 using UnityEngine;
@@ -142,7 +141,7 @@ namespace GameEntity
             isAbilityReady = true;
         }
 
-        public override void TakeDamage(Bullet bullet) {
+        public override void TakeDamage(float bullet) {
             MobileEffect.VibrationEffect(MobileEffectVibration.SMALL);
         }
 

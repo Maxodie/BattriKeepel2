@@ -1,6 +1,5 @@
 using UnityEngine;
 using Game.Entities;
-using Game.AttackSystem.Bullet;
 
 public class BossEntity : Entity
 {
@@ -46,10 +45,10 @@ public class BossEntity : Entity
         }
     }
 
-    public override void TakeDamage(Bullet bullet)
+    public override void TakeDamage(float amount)
     {
         soundInstance.PlaySound(m_data.damageSound);
-        Health -= CalculateBaseDamages(bullet);
+        Health -= amount;
         HealthCheck();
 
         UpdateVisualHealth();

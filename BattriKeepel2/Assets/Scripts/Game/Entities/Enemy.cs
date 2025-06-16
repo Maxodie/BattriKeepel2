@@ -1,5 +1,4 @@
 using Game.AttackSystem.Attacks;
-using Game.AttackSystem.Bullet;
 using UnityEngine;
 
 namespace Game.Entities
@@ -11,7 +10,7 @@ namespace Game.Entities
             base.Init(null, monoBehaviour);
         }
 
-        public override void TakeDamage(Bullet bullet)
+        public override void TakeDamage(float bullet)
         {
 
         }

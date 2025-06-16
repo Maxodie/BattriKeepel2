@@ -168,6 +168,7 @@ MonoBehaviour:
   m_playerTransform: {fileID: 1168611914}
   m_cameraTr: {fileID: 929189442}
   m_canvasSpawnLocation: {fileID: 1068685748}
+  m_endgameData: {fileID: 0}
   m_playerDebugData: {fileID: 11400000, guid: 877d9e96e4e15eb4bbaee650a8f2faed, type: 2}
   m_debugLevelData: {fileID: 11400000, guid: c14ba43e65cb7964da8f661945185d7f, type: 2}
 --- !u!1 &630201530

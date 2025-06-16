@@ -8,6 +8,7 @@ public class LevelManager : GameManager {
 
     [Header("UI")]
     [SerializeField] Transform m_canvasSpawnLocation;
+    [SerializeField] SO_EndGameUIData m_endgameData;
 
     Player m_player;
     SO_PlayerData m_playerData;
@@ -97,5 +98,7 @@ public class LevelManager : GameManager {
     void OnGamePhaseContextEnd()
     {
         Log.Info<GameManagerLogger>("Level Manager detect the end of the game phases context");
+        UIDataResult result = UIManager.GenerateUIData(m_endgameData, m_canvasSpawnLocation);
+        ((EndGameUI)result.Menu).SetWinState(m_player.GetHealth() <= 0);
     }
 }

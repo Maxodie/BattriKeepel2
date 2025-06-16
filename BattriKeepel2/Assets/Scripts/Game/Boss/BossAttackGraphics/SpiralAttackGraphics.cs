@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using Game.AttackSystem.Bullet;
 using UnityEngine;
 
-public class SpiralAttackGraphics : BossAttackGraphics {
+public class SpiralAttack : IGameEntity {
     [SerializeField] int m_amountPerWave;
     [SerializeField] float m_rotationSpeed;
     [SerializeField] BulletGraphics m_bulletGraphics;
@@ -10,8 +9,8 @@ public class SpiralAttackGraphics : BossAttackGraphics {
     Transform m_parent;
     List<Bullet> m_bullets = new List<Bullet>();
 
-    protected override void Start() {
-        m_parent = this.transform;
+    public void Init(Transform transform) {
+        m_parent = transform;
         float angle = GetAngle();
         Vector2 direction = Vector2.down;
         Vector2 position;
@@ -29,12 +28,12 @@ public class SpiralAttackGraphics : BossAttackGraphics {
         return 360 / m_amountPerWave;
     }
 
-    protected override void Update() {
-        m_parent.RotateAround(this.transform.position, Vector3.forward * (int)rotation, m_rotationSpeed * 10 * Time.deltaTime);
+    public void Update() {
+        m_parent.RotateAround(m_parent.position, Vector3.forward * (int)rotation, m_rotationSpeed * 10 * Time.deltaTime);
         for (int i = 0; i < m_bullets.Count; i++) {
             m_bullets[i].Update();
             if (m_bullets[i].IsDead()) {
-                Destroy(this.gameObject);
+                Object.Destroy(m_parent.gameObject);
             }
         }
     }

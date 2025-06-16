@@ -18,6 +18,11 @@ public class PlayerGraphics : GameEntityGraphics {
         m_playerSpriteRenderer.material = m_playerMat;
     }
 
+    public void TakeDamage(float bullet)
+    {
+        ((Player)GetOwner()).TakeDamage(bullet);
+    }
+
     public Player GetPlayer()
     {
         return player;

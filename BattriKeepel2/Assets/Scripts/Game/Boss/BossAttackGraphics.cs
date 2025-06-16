@@ -1,7 +1,6 @@
-using Game.AttackSystem.Bullet;
 using UnityEngine;
 
-public class BossAttackGraphics : GameEntityGraphics {
+public class BossAttackParent : IGameEntity {
     [SerializeField] Bullet m_bullet;
     protected virtual void Start() {
 

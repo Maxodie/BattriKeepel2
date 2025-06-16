@@ -74,7 +74,7 @@ public class GraphicsManager
             case SpawnDir.West:
                 return new Vector3(min.x, 0.0f);
 
-            case SpawnDir.Est:
+            case SpawnDir.East:
                 return new Vector3(max.x, 0.0f);
 
             case SpawnDir.South:

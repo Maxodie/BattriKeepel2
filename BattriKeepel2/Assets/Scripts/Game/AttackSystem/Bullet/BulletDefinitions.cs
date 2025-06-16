@@ -1,7 +1,5 @@
 using UnityEngine;
 
-namespace Game.AttackSystem.Bullet
-{
     [CreateAssetMenu(fileName = "BulletDefinitions", menuName = "AttackSystem/Bullet/BulletDefinitions")]
     public class BulletDefinitions : ScriptableObject
     {
@@ -10,4 +8,3 @@ namespace Game.AttackSystem.Bullet
             //bullet.GetBulletGraphics().transform.position += new Vector3(0, bullet.GetSpeed(), 0);
         }
     }
-}
