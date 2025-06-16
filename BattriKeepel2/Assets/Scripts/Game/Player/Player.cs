@@ -103,11 +103,15 @@ namespace GameEntity
         public void Update() {
             m_movement.HandleMovement();
             for (int i = 0; i < m_bullets.Count; i++) {
-                m_bullets[i].Update();
                 if (m_bullets[i].IsDead()) {
                     m_bullets.RemoveAt(i);
                     i--;
                 }
+            }
+
+            foreach(Bullet bullet in m_bullets)
+            {
+                bullet.Update();
             }
         }
 
@@ -117,7 +121,7 @@ namespace GameEntity
 
         public override void CreateBullet()
         {
-            m_bullets.Add(new Bullet(playerData.bulletGraphics.data, transform.position + Vector3.up * .2f, m_playerGraphics.transform, false, Vector3.up));
+            m_bullets.Add(new Bullet(playerData.bulletGraphics.data, transform.position + Vector3.up * .2f, m_playerGraphics.transform, false, Vector3.up, typeof(BossEntity)));
         }
 
         public async Awaitable LaunchAbility()
@@ -130,7 +134,7 @@ namespace GameEntity
 
             await Awaitable.WaitForSecondsAsync(playerData.attackSet.AbilityAttack.BaseCooldown);
 
-            m_bullets.Add(new Bullet(playerData.bulletGraphics.data, transform.position + Vector3.up * .2f, m_playerGraphics.transform, false, Vector3.up));
+            m_bullets.Add(new Bullet(playerData.bulletGraphics.data, transform.position + Vector3.up * .2f, m_playerGraphics.transform, false, Vector3.up, typeof(BossEntity)));
             attackManager.StartAttacking();
         }
 
