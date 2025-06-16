@@ -1,69 +1,46 @@
-using System;
-using Game.Entities;
 using UnityEngine;
 
 namespace Game.AttackSystem.Bullet
 {
     public class Bullet : IGameEntity
     {
-        private BulletBehaviour bulletBehaviour;
-
-        private Entity owner;
-
         private BulletGraphics bulletGraphics;
-        public readonly BulletData data;
+        private Vector2 m_direction;
+        public SO_BulletData data;
+        private Vector3 position;
+        private bool m_isDead = false;
 
-        public Bullet(BulletData bulletData, Transform spawnTransform)
+        public Bullet(SO_BulletData data, Vector3 position, Transform spawnTransform, bool child)
         {
-            data = bulletData;
-            bulletGraphics = GraphicsManager.Get().GenerateVisualInfos<BulletGraphics>(data.BulletGraphics, spawnTransform, this, false);
-            bulletGraphics.Bullet = this;
-
-            bulletBehaviour = data.BulletBehaviour;
-
-            AutoDestroy();
+            this.data = data;
+            this.position = position;
+            bulletGraphics = data.bulletGraphics;
+            bulletGraphics = GraphicsManager.Get()
+                .GenerateVisualInfos<BulletGraphics>(bulletGraphics, spawnTransform, this, child);
+            bulletGraphics.transform.position = this.position;
+            bulletGraphics.transform.LookAt(spawnTransform);
         }
 
-        /*private void OnBulletCollision(Hit hitCollision)*/
-        /*{*/
-        /*    Entity collisionEntity = hitCollision.hitObject.GetComponent<Entity>();*/
-        /**/
-        /*    if ((owner.entityType == Entity.EntityType.Enemy || owner.entityType == Entity.EntityType.Boss) && (collisionEntity.entityType == Entity.EntityType.Enemy || collisionEntity.entityType == Entity.EntityType.Boss)) return;*/
-        /*    if (owner.entityType == Entity.EntityType.Player && collisionEntity.entityType == Entity.EntityType.Player) return;*/
-        /**/
-        /*    collisionEntity.TakeDamage(this);*/
-        /*}*/
-
-        private async Awaitable AutoDestroy()
-        {
-            await Awaitable.WaitForSecondsAsync(2);
-            bulletGraphics.AutoDestroy();
+        public void Update() {
+            Vector2 m_vel = -bulletGraphics.transform.forward * data.speed * Time.deltaTime;
+            bulletGraphics.transform.position += new Vector3(m_vel.x, m_vel.y, 0);
+            CheckForDeath();
+            Log.Info();
         }
 
-        public float GetSpeed()
-        {
-            return data.Speed;
+        public bool IsDead() {
+            return m_isDead;
         }
 
-        public BulletGraphics GetBulletGraphics()
-        {
-            return bulletGraphics;
+        private void CheckForDeath() {
+            if (Vector2.Distance(bulletGraphics.transform.position, position) > Camera.main.scaledPixelHeight * .03f) {
+                MonoBehaviour.Destroy(bulletGraphics.gameObject);
+                m_isDead = true;
+            }
         }
 
-        public BulletBehaviour GetBulletBehaviour()
-        {
-            return bulletBehaviour;
+        public BulletGraphics GetGraphics() {
+            return this.bulletGraphics;
         }
-    }
-
-    [Serializable]
-    public class BulletData
-    {
-        public Entity Owner;
-        public BulletBehaviour BulletBehaviour;
-        public BulletGraphics BulletGraphics;
-        public float Speed;
-        public float Damage;
-        public float ReloadTime;
     }
 }

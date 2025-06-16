@@ -19,7 +19,6 @@ public class SO_PlayerData : ScriptableObject {
     public AttackSet attackSet;
 
     [Header("Distance Player Infos")]
-    public BulletBehaviour bulletBehaviour;
     public BulletGraphics bulletGraphics;
 
     [Header("Camera Effects")]

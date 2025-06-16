@@ -7,7 +7,7 @@ namespace Game.Entities
 {
     public abstract class Entity : IGameEntity
     {
-        protected BulletData bulletData;
+        protected SO_BulletData bulletData;
         public AttackManager attackManager;
 
         public enum EntityType {Player, Enemy, Boss}
@@ -41,7 +41,7 @@ namespace Game.Entities
 
         protected float CalculateBaseDamages(Bullet bullet)
         {
-            return bullet.data.Damage;
+            return bullet.data.damage;
         }
 
         public virtual float GetHealth()

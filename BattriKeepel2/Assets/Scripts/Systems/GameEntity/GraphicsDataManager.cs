@@ -137,6 +137,7 @@ public class GraphicsManager
         if(!isChild)
         {
             graphicsInfos.transform.SetParent(null);
+            graphicsInfos.transform.localScale = new Vector3(1, 1, 1);
         }
 
         if(dontDestroyOnLoad)
@@ -152,6 +153,7 @@ public class GraphicsManager
         if(!isChild)
         {
             graphicsInfos.transform.SetParent(null);
+            graphicsInfos.transform.localScale = new Vector3(1, 1, 1);
         }
 
         if(dontDestroyOnLoad)
