@@ -23,6 +23,7 @@ public class LevelManager : GameManager {
 
     protected override void Awake()
     {
+        base.Awake();
         // Player data setup
         if(GameInstance.GetCurrentPlayerData())
         {
@@ -78,6 +79,10 @@ public class LevelManager : GameManager {
         if(m_phaseContext.IsContextPhaseActive())
         {
             m_player.Update();
+            if(m_player.IsDead())
+            {
+                m_phaseContext.EndPhase();
+            }
         }
     }
 

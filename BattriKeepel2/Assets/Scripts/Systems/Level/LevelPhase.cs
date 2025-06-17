@@ -60,6 +60,12 @@ public class LevelPhaseContext
         SetupCurrentPhase();
     }
 
+    public void StopContext()
+    {
+        m_isContextPhaseActive = false;
+        m_onPhaseContextEnd.Invoke();
+    }
+
     public LevelPhase GetCurrentLevelPhase()
     {
         return m_currentPhase;
@@ -94,7 +100,6 @@ public class LevelPhaseContext
 
         if(m_currentPhaseID + 1 >= m_currentPhases.Length)
         {
-            Log.Info<LevelPhaseLogger>("phase context has ended");
             m_onPhaseContextEnd.Invoke();
             return;
         }

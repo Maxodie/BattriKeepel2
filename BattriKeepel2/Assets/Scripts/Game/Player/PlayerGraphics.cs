@@ -2,7 +2,7 @@ using GameEntity;
 using UnityEngine;
 using Inputs;
 
-public class PlayerGraphics : GameEntityGraphics {
+public class PlayerGraphics : EntityGraphics {
     [SerializeField] Sprite m_playerSprite;
     [SerializeField] SpriteRenderer m_playerSpriteRenderer;
     [SerializeField] Material m_playerMat;
@@ -16,11 +16,6 @@ public class PlayerGraphics : GameEntityGraphics {
     {
         m_playerSpriteRenderer.sprite = m_playerSprite;
         m_playerSpriteRenderer.material = m_playerMat;
-    }
-
-    public void TakeDamage(float bullet)
-    {
-        ((Player)GetOwner()).TakeDamage(bullet);
     }
 
     public Player GetPlayer()

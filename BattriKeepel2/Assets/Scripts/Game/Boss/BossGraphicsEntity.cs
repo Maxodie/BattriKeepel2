@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Components;
-using Game.Entities;
 
 public class BossGraphicsEntity : EntityGraphics
 {

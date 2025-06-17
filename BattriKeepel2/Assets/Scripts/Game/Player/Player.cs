@@ -27,9 +27,12 @@ namespace GameEntity
         private List<Bullet> m_bullets = new();
 
         private bool isAbilityReady = true;
+        bool m_isDead = false;
 
         public Player(SO_PlayerData data, Transform spawnPoint)
         {
+            MaxHealth = data.maxHealth;
+            Health = MaxHealth;
             entityType = EntityType.Player;
             playerData = data;
 
@@ -106,12 +109,14 @@ namespace GameEntity
                 if (m_bullets[i].IsDead()) {
                     m_bullets.RemoveAt(i);
                     i--;
+                    continue;
                 }
+
+                m_bullets[i].Update();
             }
 
             foreach(Bullet bullet in m_bullets)
             {
-                bullet.Update();
             }
         }
 
@@ -121,7 +126,10 @@ namespace GameEntity
 
         public override void CreateBullet()
         {
-            m_bullets.Add(new Bullet(playerData.bulletGraphics.data, transform.position + Vector3.up * .2f, m_playerGraphics.transform, false, Vector3.up, typeof(BossEntity)));
+            if(!IsDead())
+            {
+                m_bullets.Add(new Bullet(playerData.bulletGraphics.data, transform.position + Vector3.up * .2f, m_playerGraphics.transform, false, Vector3.up, typeof(BossEntity)));
+            }
         }
 
         public async Awaitable LaunchAbility()
@@ -145,12 +153,30 @@ namespace GameEntity
             isAbilityReady = true;
         }
 
-        public override void TakeDamage(float bullet) {
+        public override void TakeDamage(float amount) {
             MobileEffect.VibrationEffect(MobileEffectVibration.SMALL);
+
+            Health -= amount;
+            if(Health <= 0)
+            {
+                m_isDead = true;
+                Die();
+            }
+            else if(Health > MaxHealth)
+            {
+                Health = MaxHealth;
+            }
+        }
+
+        public bool IsDead()
+        {
+            return m_isDead;
         }
 
         public override void Die()
         {
+            m_isDead = true;
+
             MobileEffect.VibrationEffect(MobileEffectVibration.BIG);
             MobileEffect.SetOnFlashlight(true, 0.5f);
 

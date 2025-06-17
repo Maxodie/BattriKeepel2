@@ -7,6 +7,7 @@ public class SO_PlayerData : ScriptableObject {
     public string playerName;
     public string playerDesc;
     public Sprite playerVisual;
+    public int maxHealth;
 
     [Header("Selection Menu")]
     public Animation selectionAnim;

@@ -32,10 +32,15 @@ public class SpiralAttack : BossAttackParent {
     public void Update() {
         m_parent.RotateAround(m_parent.position, Vector3.forward * (int)rotation, m_rotationSpeed * 10 * Time.deltaTime);
         for (int i = 0; i < m_bullets.Count; i++) {
-            m_bullets[i].Update();
+
             if (m_bullets[i].IsDead()) {
                 Object.Destroy(m_parent.gameObject);
+                m_bullets.RemoveAt(i);
+                i--;
+                continue;
             }
+
+            m_bullets[i].Update();
         }
     }
 }

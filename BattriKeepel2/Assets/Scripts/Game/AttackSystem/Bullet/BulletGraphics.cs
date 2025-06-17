@@ -16,7 +16,6 @@ public class BulletGraphics : GameEntityGraphics
     void OnTriggerEnter2D(Collider2D col)
     {
         EntityGraphics entityGraphics = col.gameObject.GetComponent<EntityGraphics>();
-        if(entityGraphics)
         if(entityGraphics && entityGraphics.GetOwner().GetType() == m_damageableType)
         {
             entityGraphics.TakeDamage(data.damage);
