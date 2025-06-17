@@ -10,6 +10,8 @@ public class BossEntity : Entity
     BossAttack[] m_attacks;
 
     SoundInstance soundInstance;
+    bool m_isDead = false;
+
     public BossEntity(SO_BossScriptableObject data)
     {
         m_data = data;
@@ -48,8 +50,17 @@ public class BossEntity : Entity
         }
     }
 
+    public bool IsDead()
+    {
+        return m_isDead;
+    }
+
     public override void TakeDamage(float amount)
     {
+        if(IsDead())
+        {
+            return;
+        }
         soundInstance.PlaySound(m_data.damageSound);
         Health -= amount;
         HealthCheck();
@@ -64,6 +75,8 @@ public class BossEntity : Entity
 
     public override void Die()
     {
+        m_isDead = true;
+
         HandleAttacks().Cancel();
         AudioManager.DestroySoundInstance(soundInstance);
     }

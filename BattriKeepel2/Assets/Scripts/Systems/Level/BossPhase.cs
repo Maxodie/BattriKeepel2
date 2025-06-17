@@ -14,5 +14,9 @@ public class BossPhase : LevelPhase
     public override void Update()
     {
         m_boss.Update();
+        if(m_boss.IsDead())
+        {
+            EndPhase();
+        }
     }
 }

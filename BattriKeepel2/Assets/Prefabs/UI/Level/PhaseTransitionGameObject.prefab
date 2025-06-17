@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -1755}
-  m_SizeDelta: {x: -200, y: -700}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5397935501341947184
 MonoBehaviour:
@@ -52,9 +52,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_visual: {fileID: 2773081865897080816}
   m_phaseName: {fileID: 8858143955111097950}
-  m_phaseVisual: {fileID: 0}
-  m_playerName: {fileID: 0}
-  m_playerVisual: {fileID: 0}
+  m_phaseVisual: {fileID: 6466856272723472660}
+  m_playerName: {fileID: 331660934043448227}
+  m_playerVisual: {fileID: 5936059925486073468}
 --- !u!95 &6381921036704139402
 Animator:
   serializedVersion: 7
