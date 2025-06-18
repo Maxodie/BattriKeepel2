@@ -27,7 +27,7 @@ namespace GameEntity
         private List<Bullet> m_bullets = new();
 
         private bool isAbilityReady = true;
-        bool m_isDead = false;
+        bool m_isActive = true;
 
         private bool isUltimateReady = true;
         private bool isCapacityCurrent;
@@ -38,6 +38,7 @@ namespace GameEntity
             Health = MaxHealth;
             entityType = EntityType.Player;
             playerData = data;
+            m_isActive = true;
 
             Init(spawnPoint);
             BindActions();
@@ -137,7 +138,7 @@ namespace GameEntity
 
         public override void CreateBullet()
         {
-            if(!IsDead())
+            if(m_isActive)
             {
                 if (isCapacityCurrent)
                 {
@@ -202,7 +203,7 @@ namespace GameEntity
             Health -= amount;
             if(Health <= 0)
             {
-                m_isDead = true;
+                m_isActive = false;
                 Die();
             }
             else if(Health > MaxHealth)
@@ -213,17 +214,28 @@ namespace GameEntity
 
         public bool IsDead()
         {
-            return m_isDead;
+            return Health <= 0;
         }
 
         public override void Die()
         {
-            m_isDead = true;
+            m_isActive = false;
 
             MobileEffect.VibrationEffect(MobileEffectVibration.BIG);
             MobileEffect.SetOnFlashlight(true, 0.5f);
 
+            Destroy();
+        }
+
+        public void SetActive(bool state)
+        {
+            m_isActive = state;
+        }
+
+        public void Destroy()
+        {
             AudioManager.DestroySoundInstance(soundInstance);
+            Object.Destroy(m_playerGraphics.gameObject);
         }
     }
 }

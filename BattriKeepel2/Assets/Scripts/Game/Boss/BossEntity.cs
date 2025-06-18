@@ -78,6 +78,12 @@ public class BossEntity : Entity
         m_isDead = true;
 
         HandleAttacks().Cancel();
+        Destroy();
+    }
+
+    public void Destroy()
+    {
         AudioManager.DestroySoundInstance(soundInstance);
+        Object.Destroy(m_bossGraphics);
     }
 }

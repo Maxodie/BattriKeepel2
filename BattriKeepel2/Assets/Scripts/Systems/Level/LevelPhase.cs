@@ -34,7 +34,7 @@ public class LevelPhaseContext
     LevelPhase m_currentPhase;
     int m_currentPhaseID = 0;
 
-    UnityEvent m_onPhaseContextEnd = new();
+    UnityEvent<bool> m_onPhaseContextEnd = new();
     UnityEvent m_onPhaseTransition = new();
 
     float m_phaseTransitionDelay = 0.0f;
@@ -60,10 +60,10 @@ public class LevelPhaseContext
         SetupCurrentPhase();
     }
 
-    public void StopContext()
+    public void StopContext(bool isWin)
     {
         m_isContextPhaseActive = false;
-        m_onPhaseContextEnd.Invoke();
+        m_onPhaseContextEnd.Invoke(isWin);
     }
 
     public LevelPhase GetCurrentLevelPhase()
@@ -76,7 +76,7 @@ public class LevelPhaseContext
         return m_isContextPhaseActive;
     }
 
-    public void BindOnPhaseEndEvent(UnityAction fun)
+    public void BindOnPhaseEndEvent(UnityAction<bool> fun)
     {
         m_onPhaseContextEnd.AddListener(fun);
     }
@@ -100,7 +100,7 @@ public class LevelPhaseContext
 
         if(m_currentPhaseID + 1 >= m_currentPhases.Length)
         {
-            m_onPhaseContextEnd.Invoke();
+            m_onPhaseContextEnd.Invoke(true);
             return;
         }
 
