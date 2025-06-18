@@ -17,7 +17,8 @@ public class Bullet : IGameEntity
         this.position = position;
         bulletGraphics = data.bulletGraphics;
         bulletGraphics = GraphicsManager.Get()
-            .GenerateVisualInfos<BulletGraphics>(bulletGraphics, spawnTransform, this, child);
+            .GenerateVisualInfos<BulletGraphics>
+            (bulletGraphics, spawnTransform, this, child);
         bulletGraphics.transform.position = this.position;
         bulletGraphics.Setup(damageable, data);
 

@@ -171,6 +171,54 @@ MonoBehaviour:
   m_endgameData: {fileID: 11400000, guid: b497d0ccfc97845408b67ab6760bf96e, type: 2}
   m_playerDebugData: {fileID: 11400000, guid: 877d9e96e4e15eb4bbaee650a8f2faed, type: 2}
   m_debugLevelData: {fileID: 11400000, guid: c14ba43e65cb7964da8f661945185d7f, type: 2}
+--- !u!1 &326806433
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 326806435}
+  - component: {fileID: 326806434}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &326806434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326806433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da2c2d512292ce4b86a927657ea7acd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_timeToAppear: 1
+  m_timeLasting: 0.2
+  m_direction: 0
+  m_laserGraphics: {fileID: 5753076297623261859, guid: a2a7143d458660f45a1814376be157b6, type: 3}
+--- !u!4 &326806435
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326806433}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.8847048, y: -0.06969683, z: -0.24611706}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &630201530
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,3 +624,4 @@ SceneRoots:
   - {fileID: 630201533}
   - {fileID: 929189442}
   - {fileID: 1068685748}
+  - {fileID: 326806435}
