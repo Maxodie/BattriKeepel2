@@ -19,8 +19,9 @@ MonoBehaviour:
   attackSound: {fileID: 0}
   BaseDamage: 5
   BaseCooldown: 0.5
-  BaseSpeed: 0.3
+  BaseSpeed: 3
   BaseReloadTime: 0
+  BaseDuration: 0
   BasePlayerAttack:
     basePlayerAttackEvent:
       m_PersistentCalls:

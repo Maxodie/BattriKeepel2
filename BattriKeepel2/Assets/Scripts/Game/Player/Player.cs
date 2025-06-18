@@ -4,7 +4,6 @@ using System.Threading;
 using Components;
 using Game.Entities;
 using Inputs;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections.Generic;
@@ -140,7 +139,7 @@ namespace GameEntity
         {
             if(!IsDead())
             {
-                m_bullets.Add(new Bullet(playerData.bulletGraphics.data, transform.position + Vector3.up * .2f, m_playerGraphics.transform, false, Vector3.up, typeof(BossEntity)));
+                m_bullets.Add(new Bullet(playerData.bulletGraphics.data, transform.position + Vector3.up * .2f, m_playerGraphics.transform, false, Vector3.up, typeof(BossEntity), playerData.attackSet.BasicAttack));
             }
         }
 
@@ -155,17 +154,7 @@ namespace GameEntity
 
             await Awaitable.WaitForSecondsAsync(playerData.attackSet.AbilityAttack.BaseCooldown);
 
-            m_bullets.Add(new Bullet(playerData.bulletGraphics.data, transform.position + Vector3.up * .2f, m_playerGraphics.transform, false, Vector3.up, typeof(BossEntity)));
-
-            BulletData bulletData = new BulletData();
-
-            bulletData.Owner = this;
-            bulletData.BulletBehaviour = playerData.bulletBehaviour;
-            bulletData.Speed = playerData.attackSet.AbilityAttack.BaseSpeed;
-            bulletData.Damage = playerData.attackSet.AbilityAttack.BaseDamage;
-            bulletData.BulletGraphics = playerData.bulletGraphics;
-
-            Bullet newBullet = new Bullet(bulletData, m_playerGraphics.transform);
+            m_bullets.Add(new Bullet(playerData.bulletGraphics.data, transform.position + Vector3.up * .2f, m_playerGraphics.transform, false, Vector3.up, typeof(BossEntity), playerData.attackSet.AbilityAttack));
             
             isCapacityCurrent = false;
             attackManager.StartAttacking();
@@ -203,7 +192,7 @@ namespace GameEntity
             isUltimateReady = true;
         }
 
-        public override void TakeDamage(Bullet bullet) {
+        public override void TakeDamage(float amount) {
             MobileEffect.VibrationEffect(MobileEffectVibration.SMALL);
 
             Health -= amount;

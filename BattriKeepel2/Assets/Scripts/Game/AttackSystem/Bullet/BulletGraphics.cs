@@ -7,6 +7,7 @@ public class BulletGraphics : GameEntityGraphics
     [SerializeField] public SO_BulletData data;
 
     System.Type m_damageableType;
+    public float Damage;
 
     public void Setup(System.Type damageable)
     {
@@ -18,7 +19,7 @@ public class BulletGraphics : GameEntityGraphics
         EntityGraphics entityGraphics = col.gameObject.GetComponent<EntityGraphics>();
         if(entityGraphics && entityGraphics.GetOwner().GetType() == m_damageableType)
         {
-            entityGraphics.TakeDamage(data.damage);
+            entityGraphics.TakeDamage(Damage);
             ((Bullet)GetOwner()).Kill();
         }
     }
