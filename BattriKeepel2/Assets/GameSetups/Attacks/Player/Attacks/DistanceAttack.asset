@@ -16,9 +16,11 @@ MonoBehaviour:
   Slug: distanceattack
   Description: Basic Distance Attack
   needTarget: 0
+  attackSound: {fileID: 0}
   BaseDamage: 5
   BaseCooldown: 0.5
-  BaseSpeed: 0.1
+  BaseSpeed: 0.3
+  BaseReloadTime: 0
   BasePlayerAttack:
     basePlayerAttackEvent:
       m_PersistentCalls:
