@@ -1078,6 +1078,7 @@ MonoBehaviour:
   epicFrogLevelData: {fileID: 11400000, guid: 6ecb54b9dbd4148439697404941df4e3, type: 2}
   keepelFrogLevelData: {fileID: 11400000, guid: 1fdada03c8fed2145871ffcb3326a678, type: 2}
   frogPrefab: {fileID: 71105878463350057, guid: afa34ac570d71ef4da9089ee2aa03298, type: 3}
+  inputManager: {fileID: 1716896902}
 --- !u!4 &1685498209
 Transform:
   m_ObjectHideFlags: 0
@@ -1226,6 +1227,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1716467872}
   m_CullTransparentMesh: 1
+--- !u!1 &1716896901
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1716896903}
+  - component: {fileID: 1716896902}
+  m_Layer: 0
+  m_Name: InputManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1716896902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716896901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc68ce0c39c8dbf4eb934c933f5f5f18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1716896903
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716896901}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -14.95678, y: 9.847953, z: -0.34827137}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1753503080
 GameObject:
   m_ObjectHideFlags: 0
@@ -1686,3 +1731,4 @@ SceneRoots:
   - {fileID: 697604070}
   - {fileID: 1685498209}
   - {fileID: 825568233}
+  - {fileID: 1716896903}

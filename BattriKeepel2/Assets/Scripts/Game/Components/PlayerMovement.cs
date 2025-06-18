@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace Components {
-    public class PlayerMovement : Movement {
+    public class PlayerMovement {
         public Rigidbody2D rb;
         private Vector2 newPos = new Vector2();
         private Vector2 dirtyPos = Vector2.zero;
@@ -21,7 +21,7 @@ namespace Components {
             m_isPressed = state;
         }
 
-        public override void HandleMovement() {
+        public void HandleMovement() {
             if (m_isPressed == UnityEngine.InputSystem.TouchPhase.Began
                     || m_isPressed == UnityEngine.InputSystem.TouchPhase.Ended
                     || m_isPressed == UnityEngine.InputSystem.TouchPhase.None) {

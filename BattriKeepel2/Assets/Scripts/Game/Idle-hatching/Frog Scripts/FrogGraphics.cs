@@ -1,11 +1,13 @@
 using UnityEngine;
 
 [System.Serializable]
-public class FrogGraphics
+public class FrogGraphics : GameEntityGraphics
 {
     private Frog frogData;
 
     [SerializeField] private SpriteRenderer emptyFrogSprite;
+    public Transform leapPosition;
+    public Rigidbody2D rb;
 
     public void InitFrogGraphics(Frog f)
     {
