@@ -139,7 +139,11 @@ namespace GameEntity
         {
             if(!IsDead())
             {
-                m_bullets.Add(new Bullet(playerData.bulletGraphics.data, transform.position + Vector3.up * .2f, m_playerGraphics.transform, false, Vector3.up, typeof(BossEntity), playerData.attackSet.BasicAttack));
+                if (isCapacityCurrent)
+                {
+                    Debug.Log(playerData.ultimateBulletData.damage);
+                }
+                m_bullets.Add(new Bullet(isCapacityCurrent ? playerData.ultimateBulletData : playerData.attackBulletData, transform.position + Vector3.up * .2f, m_playerGraphics.transform, false, Vector3.up, typeof(BossEntity)));
             }
         }
 
@@ -154,7 +158,7 @@ namespace GameEntity
 
             await Awaitable.WaitForSecondsAsync(playerData.attackSet.AbilityAttack.BaseCooldown);
 
-            m_bullets.Add(new Bullet(playerData.bulletGraphics.data, transform.position + Vector3.up * .2f, m_playerGraphics.transform, false, Vector3.up, typeof(BossEntity), playerData.attackSet.AbilityAttack));
+            m_bullets.Add(new Bullet(playerData.abilityBulletData, transform.position + Vector3.up * .2f, m_playerGraphics.transform, false, Vector3.up, typeof(BossEntity)));
             
             isCapacityCurrent = false;
             attackManager.StartAttacking();

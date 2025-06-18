@@ -9,12 +9,9 @@ public class Bullet : IGameEntity
     private Vector3 position;
     private bool m_isDead = false;
 
-    private float _damage;
-    private float _speed;
-
     float maxDistance;
 
-    public Bullet(SO_BulletData data, Vector3 position, Transform spawnTransform, bool child, Vector3 up, System.Type damageable, Attack attack)
+    public Bullet(SO_BulletData data, Vector3 position, Transform spawnTransform, bool child, Vector3 up, System.Type damageable)
     {
         this.data = data;
         this.position = position;
@@ -22,20 +19,15 @@ public class Bullet : IGameEntity
         bulletGraphics = GraphicsManager.Get()
             .GenerateVisualInfos<BulletGraphics>(bulletGraphics, spawnTransform, this, child);
         bulletGraphics.transform.position = this.position;
-        bulletGraphics.Setup(damageable);
+        bulletGraphics.Setup(damageable, data);
 
         bulletGraphics.transform.rotation = Quaternion.LookRotation(Vector3.forward, up);
-
-        _damage = attack != null ? attack.BaseDamage : 1;
-        _speed = attack != null ? attack.BaseSpeed : 1;
-
-        bulletGraphics.Damage = _damage;
 
         maxDistance = GraphicsManager.Get().BoundsMax(Camera.main).magnitude * 2;
     }
 
     public void Update() {
-        Vector2 m_vel = bulletGraphics.transform.up * _speed * Time.deltaTime;
+        Vector2 m_vel = bulletGraphics.transform.up * data.speed * Time.deltaTime;
         bulletGraphics.transform.position += new Vector3(m_vel.x, m_vel.y, 0);
         CheckForDeath();
     }
@@ -55,11 +47,6 @@ public class Bullet : IGameEntity
             MonoBehaviour.Destroy(bulletGraphics.gameObject);
             Kill();
         }
-    }
-
-    public float GetDamage()
-    {
-        return _damage;
     }
 
     public BulletGraphics GetGraphics() {

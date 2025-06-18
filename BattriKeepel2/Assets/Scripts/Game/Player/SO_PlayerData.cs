@@ -18,8 +18,10 @@ public class SO_PlayerData : ScriptableObject {
 
     public AttackSet attackSet;
 
-    [Header("Distance Player Infos")]
-    public BulletGraphics bulletGraphics;
+    [Header("Bullet Datas")] 
+    public SO_BulletData attackBulletData;
+    public SO_BulletData abilityBulletData;
+    public SO_BulletData ultimateBulletData;
 
     [Header("Camera Effects")]
     public float shakeAmount;

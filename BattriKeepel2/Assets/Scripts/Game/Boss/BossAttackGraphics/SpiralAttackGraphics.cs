@@ -20,7 +20,7 @@ public class SpiralAttack : BossAttackParent {
         for (int i = 0; i < m_amountPerWave; i++)
         {
             position = (Vector2)m_parent.position + direction;
-            m_bullets.Add(new Bullet(m_bulletGraphics.data, position, m_parent, true, Vector3.down, typeof(GameEntity.Player), null));
+            m_bullets.Add(new Bullet(m_bulletGraphics.data, position, m_parent, true, Vector3.down, typeof(GameEntity.Player)));
             m_parent.eulerAngles += new Vector3(0, 0, angle);
         }
     }
