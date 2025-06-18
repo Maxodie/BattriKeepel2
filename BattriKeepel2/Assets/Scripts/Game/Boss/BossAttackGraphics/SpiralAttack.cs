@@ -4,7 +4,7 @@ using UnityEngine;
 public class SpiralAttack : BossAttackParent {
     [SerializeField] int m_amountPerWave;
     [SerializeField] float m_rotationSpeed;
-    [SerializeField] BulletGraphics m_bulletGraphics;
+    [SerializeField] SO_BulletData m_bulletData;
     [SerializeField] Rotation rotation;
     Transform m_parent;
     List<Bullet> m_bullets = new List<Bullet>();
@@ -20,7 +20,7 @@ public class SpiralAttack : BossAttackParent {
         for (int i = 0; i < m_amountPerWave; i++)
         {
             position = (Vector2)m_parent.position + direction;
-            m_bullets.Add(new Bullet(m_bulletGraphics.data, position, m_parent, true, Vector3.down, typeof(GameEntity.Player)));
+            m_bullets.Add(new Bullet(m_bulletData, position, m_parent, true, Vector3.down, typeof(GameEntity.Player)));
             m_parent.eulerAngles += new Vector3(0, 0, angle);
         }
     }
