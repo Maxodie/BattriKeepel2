@@ -6,11 +6,12 @@ public class BossEntity : Entity
     SO_BossScriptableObject m_data;
     BossGraphicsEntity m_bossGraphics;
 
-    DialogComponent m_dialogComponent;
     BossAttack[] m_attacks;
 
     SoundInstance soundInstance;
     bool m_isDead = false;
+
+    BossNuisance m_nuisance;
 
     public BossEntity(SO_BossScriptableObject data)
     {
@@ -18,14 +19,10 @@ public class BossEntity : Entity
         MaxHealth = m_data.health;
         Health = MaxHealth;
 
+        m_nuisance = new(data);
+
         m_bossGraphics = GraphicsManager.Get().GenerateVisualInfos<BossGraphicsEntity>(data.bossGraphicsEntity, new Vector2(0, 2), Quaternion.identity, this);
         m_bossGraphics.ComputeLocations();
-
-        if(data.dialogData)
-        {
-            m_dialogComponent = new DialogComponent();
-            m_dialogComponent.StartDialog(data.dialogData);
-        }
 
         soundInstance = AudioManager.CreateSoundInstance(false, false);
 
@@ -66,6 +63,8 @@ public class BossEntity : Entity
         HealthCheck();
 
         UpdateVisualHealth();
+
+        m_nuisance.OnTakeDammage();
     }
 
     void UpdateVisualHealth()
@@ -78,6 +77,7 @@ public class BossEntity : Entity
         m_isDead = true;
 
         HandleAttacks().Cancel();
+        m_nuisance.OnBossSetActive(false);
         Destroy();
     }
 

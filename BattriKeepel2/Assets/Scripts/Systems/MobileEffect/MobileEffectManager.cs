@@ -83,6 +83,11 @@ public static class MobileEffect
             {
                 m_cameraService.Call("setTorchMode", (m_cameraIDList.Length - 1).ToString(), state ? true : false);
 
+                if(!state)
+                {
+                    return;
+                }
+
                 if(m_flashWaitForEnd != null && !m_flashWaitForEnd.IsCompleted)
                 {
                     m_flashWaitForEnd.Cancel();
