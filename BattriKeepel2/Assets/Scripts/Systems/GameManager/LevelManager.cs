@@ -13,7 +13,9 @@ public class LevelManager : GameManager {
     Player m_player;
     SO_PlayerData m_playerData;
     SO_GameLevelData m_currentLevelData;
+
     LevelPhaseContext m_phaseContext;
+    UIGameTransition m_transition;
 
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
     [Header("Debug Data")]
@@ -70,6 +72,11 @@ public class LevelManager : GameManager {
         m_phaseContext.StartContext(m_currentLevelData, this);
         m_phaseContext.BindOnPhaseEndEvent(OnGamePhaseContextEnd);
         m_phaseContext.BindOnPhaseTransitionEvent(OnGamePhaseEnd);
+
+        UIDataResult result = UIManager.GenerateUIData(m_currentLevelData.transitionPrefab, m_canvasSpawnLocation);
+        m_transition = (UIGameTransition)result.Menu;
+        m_transition.ActiveTransition(false);
+        m_transition.BindOnTransitionEnd(OnGamePhaseTransitionEnd);
     }
 
     protected override void Update()
@@ -81,7 +88,7 @@ public class LevelManager : GameManager {
             m_player.Update();
             if(m_player.IsDead())
             {
-                m_phaseContext.EndPhase();
+                m_phaseContext.StopContext(false);
             }
         }
     }
@@ -92,18 +99,27 @@ public class LevelManager : GameManager {
 
     void OnGamePhaseEnd()
     {
-        UIDataResult result = UIManager.GenerateUIData(m_currentLevelData.transitionPrefab, m_canvasSpawnLocation);
-        UIGameTransition transition = (UIGameTransition)result.Menu;
-        if(transition)
+        m_player.SetActive(false);
+
+        if(m_transition)
         {
-            transition.SetTransition(m_phaseContext.GetCurrentLevelPhase().m_levelPhase, m_playerData);
+            m_transition.SetTransition(m_phaseContext.GetCurrentLevelPhase().m_levelPhase, m_playerData);
+            m_transition.ActiveTransition(true);
         }
     }
 
-    void OnGamePhaseContextEnd()
+    void OnGamePhaseTransitionEnd()
+    {
+        m_player.SetActive(true);
+        m_transition.ActiveTransition(false);
+    }
+
+    void OnGamePhaseContextEnd(bool isWin)
     {
         Log.Info<GameManagerLogger>("Level Manager detect the end of the game phases context");
         UIDataResult result = UIManager.GenerateUIData(m_endgameData, m_canvasSpawnLocation);
-        ((EndGameUI)result.Menu).SetWinState(m_player.GetHealth() <= 0);
+        ((EndGameUI)result.Menu).SetWinState(isWin);
+        m_player.SetActive(false);
+        m_player.Destroy();
     }
 }

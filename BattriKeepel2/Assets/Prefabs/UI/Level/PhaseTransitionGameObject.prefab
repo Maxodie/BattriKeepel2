@@ -55,6 +55,7 @@ MonoBehaviour:
   m_phaseVisual: {fileID: 6466856272723472660}
   m_playerName: {fileID: 331660934043448227}
   m_playerVisual: {fileID: 5936059925486073468}
+  m_animator: {fileID: 6381921036704139402}
 --- !u!95 &6381921036704139402
 Animator:
   serializedVersion: 7
@@ -338,6 +339,7 @@ MonoBehaviour:
   m_phaseVisual: {fileID: 0}
   m_playerName: {fileID: 0}
   m_playerVisual: {fileID: 0}
+  m_animator: {fileID: 0}
 --- !u!1 &5006379188936314087
 GameObject:
   m_ObjectHideFlags: 0

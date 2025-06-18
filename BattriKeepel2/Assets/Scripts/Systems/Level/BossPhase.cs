@@ -9,6 +9,7 @@ public class BossPhase : LevelPhase
 
     public override void OnEnd()
     {
+        m_boss.Destroy();
     }
 
     public override void Update()

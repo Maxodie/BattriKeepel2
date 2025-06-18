@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class UIGameTransition : UIMenuBase
@@ -10,8 +11,22 @@ public class UIGameTransition : UIMenuBase
     [SerializeField] TMP_Text m_playerName;
     [SerializeField] Image m_playerVisual;
 
+    UnityEvent m_onTransitionEnd = new();
+    [SerializeField] Animator m_animator;
+
     public void Init(SO_UIData uiData)
     {
+    }
+
+    public void ActiveTransition(bool state)
+    {
+        SetActive(state);
+        m_animator.SetBool("transition", state);
+    }
+
+    public void BindOnTransitionEnd(UnityAction action)
+    {
+        m_onTransitionEnd.AddListener(action);
     }
 
     public void SetTransition(SO_LevelPhase phaseData, SO_PlayerData playerData)
@@ -25,6 +40,6 @@ public class UIGameTransition : UIMenuBase
 
     public void OnTransitionEndEvent()
     {
-        Destroy(gameObject);
+        m_onTransitionEnd.Invoke();
     }
 }
