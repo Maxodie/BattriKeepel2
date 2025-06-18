@@ -1,3 +1,4 @@
+using Inputs;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -18,16 +19,33 @@ public class FrogsManager : MonoBehaviour
 
     [SerializeField] private Frog frogPrefab;
 
+    [SerializeField] private InputManager inputManager;
+
     private string frogName;
     public void CreateNewFrog()
     {
         EN_FrogRarity rarity = ProcessFrogRarity();
         frogName = frogNameInputField.text.ToString();
-        Frog frog = Instantiate(frogPrefab);
-        frog.Init(frogName, EN_FrogColors.RED, rarity, QueryRarityLevel(rarity));
+        Frog frog = new Frog(frogName, EN_FrogColors.RED, rarity, inputManager, QueryRarityLevel(rarity));
         Log.Success("WOW, FROG GENERATED ! :)");
-        
+
         frogList.Add(frog);
+    }
+
+    public void Update()
+    {
+        foreach(Frog frog in frogList)
+        {
+            frog.Update();
+        }
+
+        foreach(Frog frog in frogList)
+        {
+            if(frog.HandleMovement())
+            {
+                break;
+            }
+        }
     }
 
     public void GiveEXPToFrog() //M�thode test du syst�me d'EXP, � commenter � un moment

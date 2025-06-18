@@ -29,6 +29,9 @@ namespace GameEntity
         private bool isAbilityReady = true;
         bool m_isActive = true;
 
+        private bool isUltimateReady = true;
+        private bool isCapacityCurrent;
+
         public Player(SO_PlayerData data, Transform spawnPoint)
         {
             MaxHealth = data.maxHealth;
@@ -48,6 +51,8 @@ namespace GameEntity
             m_inputManager = m_playerGraphics.inputManager;
             transform = m_playerGraphics.transform;
             m_movement.rb = m_rb;
+            
+            m_playerGraphics.SetPlayer(this);
 
             base.Init(playerData.attackSet, m_playerGraphics);
 
@@ -58,6 +63,7 @@ namespace GameEntity
             m_inputManager.BindPosition(m_movement.OnPosition);
             m_inputManager.BindPress(m_movement.OnPress);
             m_inputManager.BindTap(TapReceived);
+            m_inputManager.BindShake(OnShakeReceived);
             BindDoubleTap(attackManager.attacks.AbilityAttack.RaiseAttack);
             BindShake(attackManager.attacks.UltimateAttack.RaiseAttack);
         }
@@ -72,6 +78,11 @@ namespace GameEntity
 
         private void BindShake(UnityAction<Player> action) {
             m_shakeEvent.AddListener(action);
+        }
+
+        private void OnShakeReceived(Vector3 shake)
+        {
+            m_shakeEvent?.Invoke(this);
         }
 
         bool tapState = false;
@@ -129,21 +140,42 @@ namespace GameEntity
         {
             if(m_isActive)
             {
-                m_bullets.Add(new Bullet(playerData.bulletGraphics.data, transform.position + Vector3.up * .2f, m_playerGraphics.transform, false, Vector3.up, typeof(BossEntity)));
+                m_bullets.Add(new Bullet(playerData.bulletGraphics.data, transform.position + Vector3.up * .2f, m_playerGraphics.transform, false, Vector3.up, typeof(BossEntity), playerData.attackSet.BasicAttack));
             }
         }
 
         public async Awaitable LaunchAbility()
         {
-            if (!isAbilityReady) return;
+            if (!isAbilityReady || isCapacityCurrent) return;
 
+            isCapacityCurrent = true; //IsCapacityCurrent permet de voir si l'ability ou l'ultimate est en cours pour empecher de pouvoir lancer les 2 en meme temps
             m_playerGraphics.StartCoroutine(ReloadAbility());
 
             attackManager.CancelAttack();
 
             await Awaitable.WaitForSecondsAsync(playerData.attackSet.AbilityAttack.BaseCooldown);
 
-            m_bullets.Add(new Bullet(playerData.bulletGraphics.data, transform.position + Vector3.up * .2f, m_playerGraphics.transform, false, Vector3.up, typeof(BossEntity)));
+            m_bullets.Add(new Bullet(playerData.bulletGraphics.data, transform.position + Vector3.up * .2f, m_playerGraphics.transform, false, Vector3.up, typeof(BossEntity), playerData.attackSet.AbilityAttack));
+            
+            isCapacityCurrent = false;
+            attackManager.StartAttacking();
+        }
+        
+        public async Awaitable LaunchUltimate()
+        {
+            if (!isUltimateReady || isCapacityCurrent) return;
+
+            isCapacityCurrent = true; //IsCapacityCurrent permet de voir si l'ability ou l'ultimate est en cours pour empecher de pouvoir lancer les 2 en meme temps
+            m_playerGraphics.StartCoroutine(ReloadUltimate());
+            
+            attackManager.CancelAttack();
+            attackManager.StartUltimate();
+            
+            await Awaitable.WaitForSecondsAsync(playerData.attackSet.UltimateAttack.BaseDuration);
+            
+            isCapacityCurrent = false;
+            attackManager.CancelAttack();
+
             attackManager.StartAttacking();
         }
 
@@ -152,6 +184,13 @@ namespace GameEntity
             isAbilityReady = false;
             yield return new WaitForSeconds(playerData.attackSet.AbilityAttack.BaseReloadTime);
             isAbilityReady = true;
+        }
+        
+        private IEnumerator ReloadUltimate()
+        {
+            isUltimateReady = false;
+            yield return new WaitForSeconds(playerData.attackSet.UltimateAttack.BaseReloadTime);
+            isUltimateReady = true;
         }
 
         public override void TakeDamage(float amount) {

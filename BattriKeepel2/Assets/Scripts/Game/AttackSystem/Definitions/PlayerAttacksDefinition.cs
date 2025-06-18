@@ -19,6 +19,7 @@ namespace Game.AttackSystem.Definitions
         public void PlayerDistanceUltimate(Player player)
         {
             Debug.Log("distance ultimate");
+            player.LaunchUltimate();
         }
     }
 }

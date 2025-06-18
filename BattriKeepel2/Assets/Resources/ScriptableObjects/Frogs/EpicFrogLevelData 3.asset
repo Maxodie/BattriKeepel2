@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1621918269773d428a1d89e619245fa, type: 3}
-  m_Name: UncommonFrogLevelData
+  m_Name: EpicFrogLevelData 3
   m_EditorClassIdentifier: 
-  m_minimumRunLevel: 0
-  m_maximumRunLevel: 2
-  m_minimumFlyLevel: 0
-  m_maximumFlyLevel: 2
-  m_minimumSwimLevel: 0
-  m_maximumSwimLevel: 2
+  graphics: {fileID: 7627567162043801710, guid: afa34ac570d71ef4da9089ee2aa03298, type: 3}
+  leapCooldown: 5
+  m_minimumRunLevel: 1
+  m_maximumRunLevel: 5
+  m_minimumFlyLevel: 1
+  m_maximumFlyLevel: 5
+  m_minimumSwimLevel: 1
+  m_maximumSwimLevel: 5
