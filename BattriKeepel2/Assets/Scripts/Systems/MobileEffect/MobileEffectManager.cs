@@ -62,8 +62,6 @@ public static class MobileEffect
         {
             Handheld.Vibrate();
         }
-
-        Log.Info<MobileEffectLogger>("start vibration " + vibrationType.ToString());
     }
 
     public static void CancelVibration()

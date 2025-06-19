@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80f80d9c6b15cd0498712535fddbc909, type: 3}
+  m_Name: FrogDataBase
+  m_EditorClassIdentifier: 
+  SO_EggRarityRate: {fileID: 11400000, guid: 805179a4d4bd593448974d55a3dadac3, type: 2}
+  commonFrogLevelData: {fileID: 11400000, guid: b90568aaf0567674a9cc4954590ae9fe, type: 2}
+  uncommonFrogLevelData: {fileID: 11400000, guid: 67d87c310a86f9748a1b7487c821bad1, type: 2}
+  rareFrogLevelData: {fileID: 11400000, guid: d49e4621a0105a047b50f9d1dd05fad2, type: 2}
+  epicFrogLevelData: {fileID: 11400000, guid: 6ecb54b9dbd4148439697404941df4e3, type: 2}
+  keepelFrogLevelData: {fileID: 11400000, guid: 1fdada03c8fed2145871ffcb3326a678, type: 2}
+  commonFrogVisual: {fileID: 5284277239766167159, guid: df4da78d0b21d4144af6728124405567, type: 3}
+  uncommonFrogVisual: {fileID: 7873871983262815308, guid: 813b06963ad12724d9a15fb5df8623e1, type: 3}
+  rareFrogVisual: {fileID: 384998250322061819, guid: 872f5df17a5c7ce4595629bfea8d3e85, type: 3}
+  epicFrogVisual: {fileID: 7854623808886618951, guid: 5719226b781ecb54c95c416e592b0e33, type: 3}
+  keepelFrogVisual: {fileID: -533940496853794735, guid: 48c817db4efab5343bf9e113d8b9c1ef, type: 3}
+  commonFrogMaterial: {fileID: 2100000, guid: 1c0e0524fb9b1b74abe9b137f02f2d3d, type: 2}
+  uncommonFrogMaterial: {fileID: 2100000, guid: 6c064759a7efe784db0b5dc01218ad6a, type: 2}
+  rareFrogMaterial: {fileID: 2100000, guid: aaaa77396656d64409b2d5a009c9ec77, type: 2}
+  epicFrogMaterial: {fileID: 2100000, guid: ba02624b06a531a47a93f4ec2cbf71fe, type: 2}
+  keepelFrogMaterial: {fileID: 2100000, guid: d4462574d4689964db2b4ce784a25a81, type: 2}
