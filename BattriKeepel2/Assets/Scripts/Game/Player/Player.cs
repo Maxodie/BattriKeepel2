@@ -32,6 +32,8 @@ namespace GameEntity
         private bool isUltimateReady = true;
         private bool isCapacityCurrent;
 
+        private static Player s_Instance;
+
         public Player(SO_PlayerData data, Transform spawnPoint)
         {
             MaxHealth = data.maxHealth;
@@ -42,6 +44,12 @@ namespace GameEntity
 
             Init(spawnPoint);
             BindActions();
+
+            s_Instance = this;
+        }
+
+        public static Player GetInstance() {
+            return s_Instance;
         }
 
         private void Init(Transform spawnPoint) {
@@ -51,7 +59,7 @@ namespace GameEntity
             m_inputManager = m_playerGraphics.inputManager;
             transform = m_playerGraphics.transform;
             m_movement.rb = m_rb;
-            
+
             m_playerGraphics.SetPlayer(this);
 
             base.Init(playerData.attackSet, m_playerGraphics);
@@ -115,7 +123,9 @@ namespace GameEntity
             }
         }
 
+        public Vector3 position;
         public void Update() {
+            position = m_movement.rb.position;
             m_movement.HandleMovement();
             for (int i = 0; i < m_bullets.Count; i++) {
                 if (m_bullets[i].IsDead()) {
@@ -160,23 +170,23 @@ namespace GameEntity
             await Awaitable.WaitForSecondsAsync(playerData.attackSet.AbilityAttack.BaseCooldown);
 
             m_bullets.Add(new Bullet(playerData.abilityBulletData, transform.position + Vector3.up * .2f, m_playerGraphics.transform, false, Vector3.up, typeof(BossEntity)));
-            
+
             isCapacityCurrent = false;
             attackManager.StartAttacking();
         }
-        
+
         public async Awaitable LaunchUltimate()
         {
             if (!isUltimateReady || isCapacityCurrent) return;
 
             isCapacityCurrent = true; //IsCapacityCurrent permet de voir si l'ability ou l'ultimate est en cours pour empecher de pouvoir lancer les 2 en meme temps
             m_playerGraphics.StartCoroutine(ReloadUltimate());
-            
+
             attackManager.CancelAttack();
             attackManager.StartUltimate();
-            
+
             await Awaitable.WaitForSecondsAsync(playerData.attackSet.UltimateAttack.BaseDuration);
-            
+
             isCapacityCurrent = false;
             attackManager.CancelAttack();
 
@@ -189,7 +199,7 @@ namespace GameEntity
             yield return new WaitForSeconds(playerData.attackSet.AbilityAttack.BaseReloadTime);
             isAbilityReady = true;
         }
-        
+
         private IEnumerator ReloadUltimate()
         {
             isUltimateReady = false;

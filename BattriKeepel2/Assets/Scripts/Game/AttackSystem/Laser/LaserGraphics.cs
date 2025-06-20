@@ -16,6 +16,9 @@ public class LaserGraphics : GameEntityGraphics {
     }
 
     public void TriggerLaser() {
+        if (m_laser.activeSelf) {
+            return;
+        }
         m_laser.SetActive(true);
     }
 }
