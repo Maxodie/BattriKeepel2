@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "FrogLevelData", menuName = "Scriptable Objects/SO_FrogLevelData")]
+[CreateAssetMenu(fileName = "FrogLevelData", menuName = "Frog/SO_FrogLevelData")]
 public class SO_FrogLevelData : ScriptableObject
 {
     public FrogGraphics graphics;

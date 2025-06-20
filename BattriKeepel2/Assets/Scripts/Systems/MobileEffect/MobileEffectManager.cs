@@ -62,8 +62,6 @@ public static class MobileEffect
         {
             Handheld.Vibrate();
         }
-
-        Log.Info<MobileEffectLogger>("start vibration " + vibrationType.ToString());
     }
 
     public static void CancelVibration()
@@ -82,6 +80,11 @@ public static class MobileEffect
             if(m_cameraIDList.Length != 0)
             {
                 m_cameraService.Call("setTorchMode", (m_cameraIDList.Length - 1).ToString(), state ? true : false);
+
+                if(!state)
+                {
+                    return;
+                }
 
                 if(m_flashWaitForEnd != null && !m_flashWaitForEnd.IsCompleted)
                 {

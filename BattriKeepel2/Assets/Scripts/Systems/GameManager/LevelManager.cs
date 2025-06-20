@@ -93,7 +93,8 @@ public class LevelManager : GameManager {
         }
     }
 
-    protected override void OnUIManagerCreated() {
+    protected override void OnUIManagerCreated()
+    {
 
     }
 
@@ -117,9 +118,15 @@ public class LevelManager : GameManager {
     void OnGamePhaseContextEnd(bool isWin)
     {
         Log.Info<GameManagerLogger>("Level Manager detect the end of the game phases context");
+
+        FrogDynamicData frogData = FrogGenerator.Get().GenerateFrog();
+
         UIDataResult result = UIManager.GenerateUIData(m_endgameData, m_canvasSpawnLocation);
         ((EndGameUI)result.Menu).SetWinState(isWin);
+        ((EndGameUI)result.Menu).SetNewFrogDataInfos(frogData);
+
         m_player.SetActive(false);
         m_player.Destroy();
+
     }
 }

@@ -1,4 +1,4 @@
-using UnityEngine; 
+using UnityEngine;
 
 public class Build : MonoBehaviour
 {
@@ -6,10 +6,12 @@ public class Build : MonoBehaviour
 
     [SerializeField] private int m_TimeToEXPMultiplier;
 
-    private Frog m_CurrentFrogData;
     private float m_TimeSpentInBuild;
 
     private bool m_IsFrogWorking;
+
+    private Frog m_CurrentFrogData;
+    FrogFarm m_currentFarm;
 
     private void Update()
     {
@@ -24,7 +26,8 @@ public class Build : MonoBehaviour
 
     }
 
-    public void StartWorking()
+
+    public void StartWorking(Frog frog)
     {
         m_IsFrogWorking = true;
     }
@@ -32,22 +35,22 @@ public class Build : MonoBehaviour
     public void CancelWorking()
     {
         m_IsFrogWorking = false;
-        AddExpToFrog();
+        AddExpToFarm();
         m_TimeSpentInBuild = 0;
     }
 
-    public void AddExpToFrog()
+    public void AddExpToFarm()
     {
         switch (m_BuildType)
         {
             case EN_BuildType.RUN_BUILD:
-                m_CurrentFrogData.AddExpAmount(EN_FrogLevels.RUN, (int)m_TimeSpentInBuild * m_TimeToEXPMultiplier);
+                m_currentFarm.AddXp((int)(m_CurrentFrogData.m_frogDynamicData.m_RunLevel * m_TimeSpentInBuild * m_TimeToEXPMultiplier));
                 break;
             case EN_BuildType.FLY_BUILD:
-                m_CurrentFrogData.AddExpAmount(EN_FrogLevels.FLY, (int)m_TimeSpentInBuild * m_TimeToEXPMultiplier);
+                m_currentFarm.AddXp((int)(m_CurrentFrogData.m_frogDynamicData.m_FlyLevel * m_TimeSpentInBuild * m_TimeToEXPMultiplier));
                 break;
             case EN_BuildType.SWIM_BUILD:
-                m_CurrentFrogData.AddExpAmount(EN_FrogLevels.SWIM, (int)m_TimeSpentInBuild * m_TimeToEXPMultiplier);
+                m_currentFarm.AddXp((int)(m_CurrentFrogData.m_frogDynamicData.m_SwimLevel * m_TimeSpentInBuild * m_TimeToEXPMultiplier));
                 break;
             default:
                 Log.Error("Cannot find the correct type");

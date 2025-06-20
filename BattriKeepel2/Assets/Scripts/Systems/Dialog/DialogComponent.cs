@@ -18,6 +18,7 @@ public class DialogComponent
 
     public async Awaitable StartNextSentence(SO_DialogData data)
     {
+        MobileEffect.VibrationEffect(MobileEffectVibration.SMALL);
         NotificationControl.SendNotification(data.notificationProfile, data.dialogSentences[m_currentSentence].title, data.dialogSentences[m_currentSentence].content);
         await Awaitable.WaitForSecondsAsync(data.durationInTime);
 

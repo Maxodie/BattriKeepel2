@@ -4,7 +4,7 @@ using UnityEngine;
 public class Frog : IGameEntity
 {
     public string m_frogName;
-    public EN_FrogColors m_Color;
+    public FrogDynamicData m_frogDynamicData;
     public EN_FrogRarity m_Rarity;
 
     private FrogGraphics m_Graphics;
@@ -13,21 +13,23 @@ public class Frog : IGameEntity
     private FrogInteraction m_Interaction;
     private InputManager m_InputManager;
 
-    public Frog(string name, EN_FrogColors color, EN_FrogRarity rarity, InputManager inputManager, SO_FrogLevelData frogLevelData)
+    public Frog(FrogDynamicData frogDynamicData, InputManager inputManager)
     {
-        m_frogName = name;
-        m_Color = color;
-        m_Rarity = rarity;
+        m_frogDynamicData = frogDynamicData;
         m_InputManager = inputManager;
 
         m_Behavior = new FrogBehavior();
 
-        m_Graphics = GraphicsManager.Get().GenerateVisualInfos<FrogGraphics>(frogLevelData.graphics, new Vector2(), Quaternion.identity, this, false);
-        m_Graphics.InitFrogGraphics(this);
-        m_Behavior.InitFrogBehavior(m_Graphics, frogLevelData.leapCooldown);
+        SO_FrogLevelData quality = FrogGenerator.Get().QueryRarityLevel(frogDynamicData.m_rarity);
+        m_Graphics = GraphicsManager.Get().GenerateVisualInfos<FrogGraphics>(quality.graphics, new Vector2(), Quaternion.identity, this, false);
+        m_Graphics.InitFrogGraphics(m_frogDynamicData);
+
         m_Levelling = new FrogLevelling();
         m_Interaction = new FrogInteraction(m_Graphics.rb, m_Behavior);
-        m_Levelling.InitFrogLevelling(this, frogLevelData);
+
+        m_Behavior.InitFrogBehavior(m_Interaction, m_Graphics, quality.leapCooldown);
+
+        m_Levelling.InitFrogLevelling(this, quality);
 
         BindActions();
     }
@@ -48,14 +50,29 @@ public class Frog : IGameEntity
         return m_Interaction.HandleMovement();
     }
 
-    public void AddExpAmount(EN_FrogLevels type, int amount)
+    public void SetActive(bool state)
     {
-        m_Levelling.AddExpAmount(type, amount);
-        m_Levelling.CheckForLevelUp(type);
+        m_Behavior.m_isRunning = state;
+        m_Interaction.canInputInteraction = state;
+    }
+
+    public bool IsInInteraction()
+    {
+        return m_Interaction.isInInputInteraction;
+    }
+
+    public void SetPosition(Vector2 pos)
+    {
+        m_Graphics.transform.position = pos;
     }
 
     public void SetLevelUp(EN_FrogLevels type)
     {
         m_Levelling.SetLevelUp(type);
+    }
+
+    public void OnLevelUpdate()
+    {
+        m_Graphics.OnChangeLevel();
     }
 }

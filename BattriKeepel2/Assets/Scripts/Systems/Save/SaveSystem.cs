@@ -75,7 +75,14 @@ public static class SaveSystem
             resolvedData.loadedDynamicScriptableObject.Add(objectId.GetType().FullName, new SerializableDictionary<int, T>());
         }
 
-        resolvedData.loadedDynamicScriptableObject[objectId.GetType().FullName].Add(id, (T)dynamicData);
+        if(!resolvedData.loadedDynamicScriptableObject[objectId.GetType().FullName].ContainsKey(id))
+        {
+            resolvedData.loadedDynamicScriptableObject[objectId.GetType().FullName].Add(id, (T)dynamicData);
+        }
+        else
+        {
+            resolvedData.loadedDynamicScriptableObject[objectId.GetType().FullName][id] = (T)dynamicData;
+        }
 
         string data = JsonUtility.ToJson(resolvedData);
         FileStream file = new FileStream(savePath, FileMode.Create);
@@ -110,7 +117,7 @@ public static class SaveSystem
             {
                 result.Add(item);
             }
-            return result;
+            return result.Count == 0 ? null : result;
         }
         catch
         {

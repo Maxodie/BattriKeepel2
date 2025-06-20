@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EndGameUI : UIMenuBase
 {
@@ -7,6 +8,10 @@ public class EndGameUI : UIMenuBase
     [SerializeField] Color winColor;
     [SerializeField] Color loseColor;
     [SerializeField] SO_LevelData levelData;
+
+    [Header("Frog")]
+    [SerializeField] TMP_Text frogName;
+    [SerializeField] Image frogVisual;
     public void SetWinState(bool state)
     {
         if(state)
@@ -19,6 +24,12 @@ public class EndGameUI : UIMenuBase
             title.text = "L + Ratio + loser";
             title.color = loseColor;
         }
+    }
+
+    public void SetNewFrogDataInfos(FrogDynamicData frogData)
+    {
+        frogName.text = frogData.m_frogName;
+        frogVisual.sprite = FrogGenerator.Get().QueryVisual(frogData.m_rarity);
     }
 
     public void GoToMainMenu()

@@ -3,10 +3,10 @@ using UnityEngine.Events;
 
 public enum SpawnDir
 {
-    North,
-    West,
-    East,
-    South
+    North = 1 << 0,
+    West = 1 << 1,
+    East = 1 << 2,
+    South = 1 << 3
 }
 
 public class GraphicsManager
@@ -62,34 +62,42 @@ public class GraphicsManager
         return result;
     }
 
-    public Vector2 GetCameraLocation(SpawnDir spawnDir)
+    public Vector2 GetCameraLocation(int spawnDir)
     {
         Vector2 min = BoundsMin(Camera.main);
         Vector2 max = BoundsMax(Camera.main);
-        switch(spawnDir)
+
+        int dir = (int)spawnDir;
+        Vector3 result = Vector3.zero;
+
+        if((dir & (int)SpawnDir.North) != 0)
         {
-            case SpawnDir.North:
-                return new Vector3(0.0f, max.y);
-
-            case SpawnDir.West:
-                return new Vector3(min.x, 0.0f);
-
-            case SpawnDir.East:
-                return new Vector3(max.x, 0.0f);
-
-            case SpawnDir.South:
-                return new Vector3(0.0f, min.y);
-
-            default:
-                return new Vector3();
+            result.y = max.y;
         }
+
+        if((dir & (int)SpawnDir.West) != 0)
+        {
+            result.y = min.x;
+        }
+
+        if((dir & (int)SpawnDir.East) != 0)
+        {
+            result.x = max.x;
+        }
+
+        if((dir & (int)SpawnDir.South) != 0)
+        {
+            result.y = min.y;
+        }
+
+        return result;
     }
 
     public TGraphicsScript GenerateVisualInfos<TGraphicsScript>(GameEntityGraphics graphicsPrefab,
             SpawnDir spawnDir, Vector3 locationOffset, Quaternion rotation, IGameEntity owner, bool isChild = true,
             bool dontDestroyOnLoad = false) where TGraphicsScript : GameEntityGraphics
     {
-        Vector3 location = GetCameraLocation(spawnDir);
+        Vector3 location = GetCameraLocation((int)spawnDir);
 
         TGraphicsScript result = UnityEngine.Object.Instantiate<TGraphicsScript>((TGraphicsScript)graphicsPrefab, location + locationOffset, rotation);
         VisualInfosSpawnSetup(result, owner, isChild, dontDestroyOnLoad);

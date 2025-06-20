@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   graphics: {fileID: 7627567162043801710, guid: afa34ac570d71ef4da9089ee2aa03298, type: 3}
   leapCooldown: 5
-  m_minimumRunLevel: 1
-  m_maximumRunLevel: 3
-  m_minimumFlyLevel: 1
-  m_maximumFlyLevel: 3
-  m_minimumSwimLevel: 1
-  m_maximumSwimLevel: 3
+  m_minimumRunLevel: 2
+  m_maximumRunLevel: 4
+  m_minimumFlyLevel: 2
+  m_maximumFlyLevel: 4
+  m_minimumSwimLevel: 2
+  m_maximumSwimLevel: 4
