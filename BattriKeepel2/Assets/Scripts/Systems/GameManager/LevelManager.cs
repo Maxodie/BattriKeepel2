@@ -93,7 +93,8 @@ public class LevelManager : GameManager {
         }
     }
 
-    protected override void OnUIManagerCreated() {
+    protected override void OnUIManagerCreated()
+    {
 
     }
 

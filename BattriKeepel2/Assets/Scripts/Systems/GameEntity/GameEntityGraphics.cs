@@ -20,4 +20,9 @@ public class GameEntityGraphics : GameEntityMonoBehaviour
     {
         return m_owner;
     }
+
+    public T GetOwner<T>() where T : IGameEntity
+    {
+        return (T)m_owner;
+    }
 }

@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64757dd7b069848449afc77eadbfbdaf, type: 3}
-  m_Name: SO_MaxExpPoints
+  m_Script: {fileID: 11500000, guid: 51c6be879328f24458a7915a3bcf47ec, type: 3}
+  m_Name: FrogFarmUI
   m_EditorClassIdentifier: 
-  EXPPointsToGainLevel: 0000000064000000640000006400000064000000640000006400000064000000640000006400000064000000
+  frogFarmPrefab: {fileID: 2702766964209338434, guid: ba1e5b215c7a4d64b95dc930eb3d2b80, type: 3}

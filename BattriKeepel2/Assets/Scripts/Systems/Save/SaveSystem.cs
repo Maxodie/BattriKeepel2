@@ -117,7 +117,7 @@ public static class SaveSystem
             {
                 result.Add(item);
             }
-            return result;
+            return result.Count == 0 ? null : result;
         }
         catch
         {

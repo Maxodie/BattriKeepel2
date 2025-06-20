@@ -70,27 +70,27 @@ public class GraphicsManager
         int dir = (int)spawnDir;
         Vector3 result = Vector3.zero;
 
-        if((dir &= (int)SpawnDir.North) != 0)
+        if((dir & (int)SpawnDir.North) != 0)
         {
             result.y = max.y;
         }
 
-        if((dir &= (int)SpawnDir.West) != 0)
+        if((dir & (int)SpawnDir.West) != 0)
         {
             result.y = min.x;
         }
 
-        if((dir &= (int)SpawnDir.East) != 0)
+        if((dir & (int)SpawnDir.East) != 0)
         {
             result.x = max.x;
         }
 
-        if((dir &= (int)SpawnDir.South) != 0)
+        if((dir & (int)SpawnDir.South) != 0)
         {
             result.y = min.y;
         }
 
-        return Vector3.zero;
+        return result;
     }
 
     public TGraphicsScript GenerateVisualInfos<TGraphicsScript>(GameEntityGraphics graphicsPrefab,

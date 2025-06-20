@@ -4,6 +4,7 @@ using UnityEngine;
 public class SO_FrogDataBase : ScriptableObject
 {
     public SO_EggRarityRate SO_EggRarityRate;
+    public int startFrogFarmXpThreashold = 50;
 
     public SO_FrogLevelData commonFrogLevelData;
     public SO_FrogLevelData uncommonFrogLevelData;

@@ -10,6 +10,9 @@ public class FrogInteraction
     private UnityEngine.InputSystem.TouchPhase m_isPressed;
     private FrogBehavior frogBehavior;
 
+    public bool isInInputInteraction = false;
+    public bool canInputInteraction = true;
+
     public FrogInteraction(Rigidbody2D rb, FrogBehavior frogBehavior)
     {
         this.rb = rb;
@@ -34,7 +37,7 @@ public class FrogInteraction
 
     public bool HandleMovement()
     {
-        if (m_isPressed == UnityEngine.InputSystem.TouchPhase.Began
+        if (!canInputInteraction || m_isPressed == UnityEngine.InputSystem.TouchPhase.Began
                 || m_isPressed == UnityEngine.InputSystem.TouchPhase.Ended
                 || m_isPressed == UnityEngine.InputSystem.TouchPhase.None ||
             (newPos.x <= rb.position.x - 1 || newPos.x >= rb.position.x + 1 ||
@@ -42,10 +45,12 @@ public class FrogInteraction
         {
             rb.linearVelocity = Vector2.zero;
             frogBehavior.m_isRunning = true;
+            isInInputInteraction = false;
             return false;
         }
 
         frogBehavior.m_isRunning = false;
+        isInInputInteraction = true;
 
         vel = (newPos - dirtyPos) / Time.deltaTime;
         dirtyPos = newPos;

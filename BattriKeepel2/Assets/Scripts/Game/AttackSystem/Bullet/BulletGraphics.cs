@@ -20,7 +20,7 @@ public class BulletGraphics : GameEntityGraphics
         if(entityGraphics && entityGraphics.GetOwner().GetType() == m_damageableType)
         {
             entityGraphics.TakeDamage(Damage);
-            ((Bullet)GetOwner()).Kill();
+            GetOwner<Bullet>().Kill();
         }
     }
 }

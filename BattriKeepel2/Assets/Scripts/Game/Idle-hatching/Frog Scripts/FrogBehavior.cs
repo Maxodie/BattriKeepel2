@@ -20,16 +20,18 @@ public class FrogBehavior
     private float m_rotationTimer;
     private float m_leapTimer;
 
-    public bool m_isRunning = true;
+    public bool m_isRunning = false;
+    FrogInteraction m_frogInteraction;
     Vector2 boundMin;
     Vector2 boundMax;
 
-    public void InitFrogBehavior(FrogGraphics graphicsBehaviour, float leapCooldown)
+    public void InitFrogBehavior(FrogInteraction frogInteraction, FrogGraphics graphicsBehaviour, float leapCooldown)
     {
         m_MonoBehaviour = graphicsBehaviour;
         m_transform = graphicsBehaviour.transform;
         m_leapPosition = graphicsBehaviour.leapPosition;
         m_leapCooldown = leapCooldown;
+        m_frogInteraction = frogInteraction;
         StartBehavior();
 
     }
@@ -40,11 +42,12 @@ public class FrogBehavior
         boundMin = GraphicsManager.Get().BoundsMin(Camera.main);
         boundMax = GraphicsManager.Get().BoundsMax(Camera.main);
         m_MonoBehaviour.StartCoroutine(WaitBetweenLeaps(m_leapCooldown));
+        m_isRunning = true;
     }
 
     public void UpdateBehavior()
     {
-        if(!m_isRunning)
+        if(!m_isRunning || !m_frogInteraction.canInputInteraction)
         {
             return;
         }

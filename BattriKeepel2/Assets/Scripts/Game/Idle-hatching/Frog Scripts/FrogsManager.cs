@@ -1,6 +1,5 @@
 using Inputs;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class FrogGenerator : IGameEntity
@@ -12,9 +11,7 @@ public class FrogGenerator : IGameEntity
     public FrogGenerator()
     {
         m_frogDataBase = Resources.Load<SO_FrogDataBase>("ScriptableObjects/Frogs/FrogDataBase");
-        Log.Info(m_frogDataBase);
         LoadFrog();
-        Log.Info(frogDatas?.Count);
     }
 
     public static FrogGenerator Get()
@@ -25,6 +22,11 @@ public class FrogGenerator : IGameEntity
         }
 
         return s_instance;
+    }
+
+    public SO_FrogDataBase GetDataBase()
+    {
+        return m_frogDataBase;
     }
 
     public List<FrogDynamicData> LoadFrog()
@@ -128,21 +130,52 @@ public class FrogGenerator : IGameEntity
 }
 
 [System.Serializable]
-public class FrogsManager : MonoBehaviour
+public class FrogsManager : GameManager
 {
     [SerializeField] private List<Frog> frogList = new();
-
-    [SerializeField] private TMP_InputField frogNameInputField;
 
     [SerializeField] private Frog frogPrefab;
 
     [SerializeField] private InputManager inputManager;
 
     private string frogName;
+    FrogFarm m_frogFarm;
 
-    void Start()
+    [Header("Frog")]
+    [SerializeField] SO_FrogFarmUIData m_frogFarmUIData;
+    [SerializeField] Transform canvasContentTransform;
+    [SerializeField] FrogBuildGraphics graphicsPrefab;
+
+    FrogBuild m_flyBuild;
+    [SerializeField] Transform m_runBuildTr;
+    FrogBuild m_runBuild;
+    [SerializeField] Transform m_flyBuildTr;
+    FrogBuild m_swimBuild;
+    [SerializeField] Transform m_swimBuildTr;
+
+    protected override void OnUIManagerCreated()
     {
+
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        m_flyBuildTr.position = GraphicsManager.Get().GetCameraLocation((int)SpawnDir.North) - new Vector2(0, 2);
+        m_runBuildTr.position = GraphicsManager.Get().GetCameraLocation((int)SpawnDir.West | (int)SpawnDir.North) - Vector2.one;
+        m_swimBuildTr.position = GraphicsManager.Get().GetCameraLocation((int)SpawnDir.South) + new Vector2(1, 2);
+
         List<FrogDynamicData> frogDatas = FrogGenerator.Get().LoadFrog();
+
+        UIDataResult result = UIManager.GenerateUIData(m_frogFarmUIData, canvasContentTransform);
+        m_frogFarm = new((FrogFarmUIMenu)result.Menu, FrogGenerator.Get().GetDataBase().startFrogFarmXpThreashold);
+
+        m_flyBuild = new(EN_BuildType.FLY_BUILD, graphicsPrefab, m_frogFarm, m_flyBuildTr);
+        m_runBuild = new(EN_BuildType.RUN_BUILD, graphicsPrefab, m_frogFarm, m_runBuildTr);
+        m_swimBuild = new(EN_BuildType.SWIM_BUILD, graphicsPrefab, m_frogFarm, m_swimBuildTr);
+
+
         if(frogDatas != null)
         {
             foreach(FrogDynamicData frogData in frogDatas)
@@ -158,8 +191,10 @@ public class FrogsManager : MonoBehaviour
         frogList.Add(frog);
     }
 
-    public void Update()
+    protected override void Update()
     {
+        base.Update();
+
         foreach(Frog frog in frogList)
         {
             frog.Update();
@@ -172,11 +207,9 @@ public class FrogsManager : MonoBehaviour
                 break;
             }
         }
-    }
 
-    public void GiveEXPToFrog() //M�thode test du syst�me d'EXP, � commenter � un moment
-    {
-        Frog frog = frogList[0];
-        frog.AddExpAmount(EN_FrogLevels.RUN, 60);
+        m_runBuild.Update();
+        m_flyBuild.Update();
+        m_swimBuild.Update();
     }
 }

@@ -23,9 +23,12 @@ public class Frog : IGameEntity
         SO_FrogLevelData quality = FrogGenerator.Get().QueryRarityLevel(frogDynamicData.m_rarity);
         m_Graphics = GraphicsManager.Get().GenerateVisualInfos<FrogGraphics>(quality.graphics, new Vector2(), Quaternion.identity, this, false);
         m_Graphics.InitFrogGraphics(m_frogDynamicData);
-        m_Behavior.InitFrogBehavior(m_Graphics, quality.leapCooldown);
+
         m_Levelling = new FrogLevelling();
         m_Interaction = new FrogInteraction(m_Graphics.rb, m_Behavior);
+
+        m_Behavior.InitFrogBehavior(m_Interaction, m_Graphics, quality.leapCooldown);
+
         m_Levelling.InitFrogLevelling(this, quality);
 
         BindActions();
@@ -47,14 +50,29 @@ public class Frog : IGameEntity
         return m_Interaction.HandleMovement();
     }
 
-    public void AddExpAmount(EN_FrogLevels type, int amount)
+    public void SetActive(bool state)
     {
-        m_Levelling.AddExpAmount(type, amount);
-        m_Levelling.CheckForLevelUp(type);
+        m_Behavior.m_isRunning = state;
+        m_Interaction.canInputInteraction = state;
+    }
+
+    public bool IsInInteraction()
+    {
+        return m_Interaction.isInInputInteraction;
+    }
+
+    public void SetPosition(Vector2 pos)
+    {
+        m_Graphics.transform.position = pos;
     }
 
     public void SetLevelUp(EN_FrogLevels type)
     {
         m_Levelling.SetLevelUp(type);
+    }
+
+    public void OnLevelUpdate()
+    {
+        m_Graphics.OnChangeLevel();
     }
 }
