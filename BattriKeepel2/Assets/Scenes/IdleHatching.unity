@@ -395,9 +395,11 @@ MonoBehaviour:
   inputManager: {fileID: 1716896902}
   m_frogFarmUIData: {fileID: 11400000, guid: c65b2777472146a4284de5cf36060f23, type: 2}
   canvasContentTransform: {fileID: 1551236742}
-  graphicsPrefab: {fileID: 6683670834318461843, guid: b81140ee36ba38743aa4e4b5345fbba9, type: 3}
+  runGraphicsPrefab: {fileID: 6683670834318461843, guid: 6a939c7f9fd265740935dbcde2fd5b2d, type: 3}
   m_runBuildTr: {fileID: 1157057864}
+  flyGraphicsPrefab: {fileID: 6683670834318461843, guid: b81140ee36ba38743aa4e4b5345fbba9, type: 3}
   m_flyBuildTr: {fileID: 825568233}
+  swimGraphicsPrefab: {fileID: 6683670834318461843, guid: b49b980197c6a2849bea32b9030ea086, type: 3}
   m_swimBuildTr: {fileID: 2007513539}
 --- !u!4 &1685498209
 Transform:

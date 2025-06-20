@@ -144,13 +144,15 @@ public class FrogsManager : GameManager
     [Header("Frog")]
     [SerializeField] SO_FrogFarmUIData m_frogFarmUIData;
     [SerializeField] Transform canvasContentTransform;
-    [SerializeField] FrogBuildGraphics graphicsPrefab;
 
     FrogBuild m_flyBuild;
+    [SerializeField] FrogBuildGraphics runGraphicsPrefab;
     [SerializeField] Transform m_runBuildTr;
     FrogBuild m_runBuild;
+    [SerializeField] FrogBuildGraphics flyGraphicsPrefab;
     [SerializeField] Transform m_flyBuildTr;
     FrogBuild m_swimBuild;
+    [SerializeField] FrogBuildGraphics swimGraphicsPrefab;
     [SerializeField] Transform m_swimBuildTr;
 
     protected override void OnUIManagerCreated()
@@ -171,9 +173,9 @@ public class FrogsManager : GameManager
         UIDataResult result = UIManager.GenerateUIData(m_frogFarmUIData, canvasContentTransform);
         m_frogFarm = new((FrogFarmUIMenu)result.Menu, FrogGenerator.Get().GetDataBase().startFrogFarmXpThreashold);
 
-        m_flyBuild = new(EN_BuildType.FLY_BUILD, graphicsPrefab, m_frogFarm, m_flyBuildTr);
-        m_runBuild = new(EN_BuildType.RUN_BUILD, graphicsPrefab, m_frogFarm, m_runBuildTr);
-        m_swimBuild = new(EN_BuildType.SWIM_BUILD, graphicsPrefab, m_frogFarm, m_swimBuildTr);
+        m_flyBuild = new(EN_BuildType.FLY_BUILD, flyGraphicsPrefab, m_frogFarm, m_flyBuildTr);
+        m_runBuild = new(EN_BuildType.RUN_BUILD, runGraphicsPrefab, m_frogFarm, m_runBuildTr);
+        m_swimBuild = new(EN_BuildType.SWIM_BUILD, swimGraphicsPrefab, m_frogFarm, m_swimBuildTr);
 
 
         if(frogDatas != null)
