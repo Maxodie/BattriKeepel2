@@ -1,4 +1,3 @@
-using Game.AttackSystem.Attacks;
 using UnityEngine;
 
 public class Bullet : IGameEntity
@@ -11,16 +10,14 @@ public class Bullet : IGameEntity
 
     float maxDistance;
 
-    public Bullet(SO_BulletData data, Vector3 position, Transform spawnTransform, bool child, Vector3 up, System.Type damageable)
+    public Bullet(AttackGraphicsPool pool, SO_BulletData data, Vector3 position, Transform spawnTransform, bool child, Vector3 up, System.Type damageable)
     {
         this.data = data;
         this.position = position;
-        bulletGraphics = data.bulletGraphics;
-        bulletGraphics = GraphicsManager.Get()
-            .GenerateVisualInfos<BulletGraphics>
-            (bulletGraphics, spawnTransform, this, child);
+        bulletGraphics = pool.GetBulletGraphics(spawnTransform, this, child);
         bulletGraphics.transform.position = this.position;
-        bulletGraphics.Setup(damageable, data);
+        bulletGraphics.SetPool(pool);
+        bulletGraphics.Setup(damageable, data, this);
 
         bulletGraphics.transform.rotation = Quaternion.LookRotation(Vector3.forward, up);
 
@@ -39,14 +36,17 @@ public class Bullet : IGameEntity
 
     public void Kill()
     {
-        m_isDead = true;
-        Object.Destroy(bulletGraphics.gameObject);
+        if(!m_isDead)
+        {
+            m_isDead = true;
+            bulletGraphics.DetachFromEntity();
+            bulletGraphics = null;
+        }
     }
 
     private void CheckForDeath() {
         if (Vector2.Distance(bulletGraphics.transform.position, position) > maxDistance) {
-            MonoBehaviour.Destroy(bulletGraphics.gameObject);
-            Kill();
+            /*Kill();*/
         }
     }
 

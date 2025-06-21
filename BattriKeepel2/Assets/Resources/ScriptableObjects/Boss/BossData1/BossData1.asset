@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: BossData1
   m_EditorClassIdentifier: 
   bossGraphicsEntity: {fileID: 2208424763771030420, guid: 13dc40b671c18fe4f8b3d729b89e36a6, type: 3}
-  attackData: []
+  attackDataPhases:
+  - {fileID: 11400000, guid: dd5a6e01146d2ba43a3485ffc0b0f231, type: 2}
+  - {fileID: 11400000, guid: dd5a6e01146d2ba43a3485ffc0b0f231, type: 2}
   dialogData: {fileID: 11400000, guid: 673db666672661a4799d9afd27915ca6, type: 2}
   nuisanceDialogData: {fileID: 11400000, guid: 673db666672661a4799d9afd27915ca6, type: 2}
   damageSound: {fileID: 8300000, guid: 8c2baee04d5305d47a8d24cb50232daf, type: 3}
-  health: 2
+  health: 50
   nuisanceLoopTime: 10

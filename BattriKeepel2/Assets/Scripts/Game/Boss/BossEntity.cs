@@ -6,18 +6,23 @@ public class BossEntity : Entity
     SO_BossScriptableObject m_data;
     BossGraphicsEntity m_bossGraphics;
 
-    BossAttack[] m_attacks;
+    BossAttackPhaseSystem m_attack;
 
     SoundInstance soundInstance;
     bool m_isDead = false;
 
     BossNuisance m_nuisance;
+    AttackGraphicsPool m_bulletPool;
+    GameEntity.Player m_player;
 
-    public BossEntity(SO_BossScriptableObject data)
+    public BossEntity(AttackGraphicsPool bulletPool, SO_BossScriptableObject data, GameEntity.Player player)
     {
+        m_player = player;
         m_data = data;
         MaxHealth = m_data.health;
         Health = MaxHealth;
+
+        m_bulletPool = bulletPool;
 
         m_nuisance = new(data);
 
@@ -27,24 +32,18 @@ public class BossEntity : Entity
         soundInstance = AudioManager.CreateSoundInstance(false, false);
 
         InitAttacks();
-        HandleAttacks();
 
         UpdateVisualHealth();
     }
 
     public void Update()
     {
+        m_attack.UpdatePhase();
     }
 
     private void InitAttacks() {
-        m_attacks = new BossAttack[m_data.attackData.Length];
-    }
-
-    private async Awaitable HandleAttacks() {
-        for (int i = 0; i < m_attacks.Length; i++) {
-            m_attacks[i] = new(m_data.attackData[i], m_bossGraphics.transform.position);
-            await Awaitable.WaitForSecondsAsync(m_data.attackData[i].intervalBeforeNextAttack);
-        }
+        m_attack = new(m_data.attackDataPhases, m_bulletPool, m_player);
+        m_attack.StartPhaseSystem();
     }
 
     public bool IsDead()
@@ -76,13 +75,13 @@ public class BossEntity : Entity
     {
         m_isDead = true;
 
-        HandleAttacks().Cancel();
         m_nuisance.OnBossSetActive(false);
         Destroy();
     }
 
     public void Destroy()
     {
+        m_attack.Clear();
         AudioManager.DestroySoundInstance(soundInstance);
         Object.Destroy(m_bossGraphics);
     }

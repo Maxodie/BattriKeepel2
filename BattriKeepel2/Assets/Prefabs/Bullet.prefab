@@ -43,7 +43,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 0.25
   simulationSpeed: 1
-  stopAction: 2
+  stopAction: 1
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -5030,8 +5030,8 @@ MonoBehaviour:
   sprite: {fileID: 6244401551590643218}
   lights: {fileID: 576478283396541159}
   particles: {fileID: 3205297415082339354}
-  data: {fileID: 11400000, guid: 47b965fd45e16684c90ee9f823415f9b, type: 2}
   trail: {fileID: 1348049716505465270}
+  collide2D: {fileID: 5078931576105574428}
 --- !u!61 &5078931576105574428
 BoxCollider2D:
   m_ObjectHideFlags: 0

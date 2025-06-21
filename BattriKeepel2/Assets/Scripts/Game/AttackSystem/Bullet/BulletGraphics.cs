@@ -7,15 +7,45 @@ public class BulletGraphics : GameEntityGraphics
     [SerializeField] public SpriteRenderer sprite;
     [SerializeField] public Light2D lights;
     [SerializeField] public ParticleSystem particles;
-    [SerializeField] public SO_BulletData data;
+    SO_BulletData data;
     [SerializeField] public TrailRenderer trail;
+    [SerializeField] public Collider2D collide2D;
 
     System.Type m_damageableType;
+    Bullet linkdeBulled;
 
-    public void Setup(System.Type damageable, SO_BulletData bulletData)
+    AttackGraphicsPool m_pool;
+    public void SetPool(AttackGraphicsPool pool)
+    {
+        m_pool = pool;
+    }
+
+    public void StartPool()
+    {
+        trail.enabled = true;
+        gameObject.SetActive(true);
+        sprite.gameObject.SetActive(true);
+        lights.gameObject.SetActive(true);
+        collide2D.enabled = true;
+    }
+
+    public void EndPool()
+    {
+        collide2D.enabled = false;
+        transform.SetParent(null);
+        gameObject.SetActive(false);
+    }
+
+    public void DetachFromEntity()
+    {
+        StartCoroutine(StartParticles());
+    }
+
+    public void Setup(System.Type damageable, SO_BulletData bulletData, Bullet bullet)
     {
         m_damageableType = damageable;
         data = bulletData;
+        linkdeBulled = bullet;
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -24,23 +54,22 @@ public class BulletGraphics : GameEntityGraphics
         if(entityGraphics && entityGraphics.GetOwner().GetType() == m_damageableType)
         {
             entityGraphics.TakeDamage(data.damage);
-            
-            StartCoroutine(StartParticles());
-            GetOwner<Bullet>().Kill();
+
+            linkdeBulled.Kill();
         }
     }
 
     private IEnumerator StartParticles()
     {
         trail.enabled = false;
-            
+
         sprite.gameObject.SetActive(false);
         lights.gameObject.SetActive(false);
         particles.gameObject.SetActive(true);
+        collide2D.enabled = false;
         particles.Play();
-        
+
         yield return new WaitForSeconds(0.5f);
-        
-        ((Bullet)GetOwner()).Kill();
+        m_pool.StopBullet(this);
     }
 }

@@ -10,12 +10,16 @@ public class LevelManager : GameManager {
     [SerializeField] Transform m_canvasSpawnLocation;
     [SerializeField] SO_EndGameUIData m_endgameData;
 
-    Player m_player;
+    public Player m_player;
     SO_PlayerData m_playerData;
     SO_GameLevelData m_currentLevelData;
 
     LevelPhaseContext m_phaseContext;
     UIGameTransition m_transition;
+
+    public AttackGraphicsPool m_bulletPool;
+    [Header("Bullet pool")]
+    [SerializeField] Transform m_bulletPoolParent;
 
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
     [Header("Debug Data")]
@@ -41,7 +45,9 @@ public class LevelManager : GameManager {
 #endif
         }
 
-        m_player = new Player(m_playerData, m_playerTransform);
+        m_bulletPool = new(m_bulletPoolParent);
+
+        m_player = new Player(m_bulletPool, m_playerData, m_playerTransform);
 
         // Level data setup
         if(!GameInstance.GetCurrentLevelData())

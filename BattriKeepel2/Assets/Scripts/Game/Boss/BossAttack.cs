@@ -1,9 +1,22 @@
-using UnityEngine;
+using System;
 
 public class BossAttack : IGameEntity {
-    BossAttackParent m_attackGraphics;
+    public BossAttackParent m_attackGraphics;
 
-    public BossAttack(SO_BossAttackData data, Vector2 position) {
-        m_attackGraphics = new BossAttackParent();
+    public BossAttack(AttackGraphicsPool attackPool, SO_BossAttackData attackData, GameEntity.Player player)
+    {
+        m_attackGraphics = Activator.CreateInstance(attackData.GetAttackType()) as BossAttackParent;
+        m_attackGraphics.Init(attackData, attackPool, player);
     }
+
+    public void Update()
+    {
+        m_attackGraphics.Update();
+    }
+
+    public void Clean()
+    {
+        m_attackGraphics.Clean();
+    }
+
 }
