@@ -233,6 +233,7 @@ MonoBehaviour:
   m_gameInstance: {fileID: 11400000, guid: 7c4faeb2fa10cb048b959a18b6eb6c34, type: 2}
   m_playerTransform: {fileID: 1168611914}
   m_cameraTr: {fileID: 929189442}
+  m_endGameTimer: 0.7
   m_canvasSpawnLocation: {fileID: 1068685748}
   m_endgameData: {fileID: 11400000, guid: b497d0ccfc97845408b67ab6760bf96e, type: 2}
   m_bulletPoolParent: {fileID: 1944780558}

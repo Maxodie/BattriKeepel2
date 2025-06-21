@@ -31,7 +31,7 @@ public class Bullet : IGameEntity
     }
 
     public bool IsDead() {
-        return m_isDead;
+        return m_isDead || bulletGraphics == null;
     }
 
     public void Kill()
@@ -39,14 +39,14 @@ public class Bullet : IGameEntity
         if(!m_isDead)
         {
             m_isDead = true;
-            bulletGraphics.DetachFromEntity();
+            bulletGraphics?.DetachFromEntity();
             bulletGraphics = null;
         }
     }
 
     private void CheckForDeath() {
         if (Vector2.Distance(bulletGraphics.transform.position, position) > maxDistance) {
-            /*Kill();*/
+            Kill();
         }
     }
 

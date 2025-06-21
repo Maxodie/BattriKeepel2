@@ -1,10 +1,12 @@
 using GameEntity;
 using UnityEngine;
+using System.Collections;
 
 public class LevelManager : GameManager {
     [Header("Player")]
     [SerializeField] Transform m_playerTransform;
     [SerializeField] Transform m_cameraTr;
+    [SerializeField] float m_endGameTimer = 1.5f;
 
     [Header("UI")]
     [SerializeField] Transform m_canvasSpawnLocation;
@@ -16,6 +18,7 @@ public class LevelManager : GameManager {
 
     LevelPhaseContext m_phaseContext;
     UIGameTransition m_transition;
+    CameraEffect camEffect;
 
     public AttackGraphicsPool m_bulletPool;
     [Header("Bullet pool")]
@@ -48,6 +51,7 @@ public class LevelManager : GameManager {
         m_bulletPool = new(m_bulletPoolParent);
 
         m_player = new Player(m_bulletPool, m_playerData, m_playerTransform);
+        camEffect = new(Camera.main.transform, 20, 0.3f);
 
         // Level data setup
         if(!GameInstance.GetCurrentLevelData())
@@ -107,6 +111,7 @@ public class LevelManager : GameManager {
     void OnGamePhaseEnd()
     {
         m_player.SetActive(false);
+        m_player.ClearBullets();
 
         if(m_transition)
         {
@@ -125,14 +130,23 @@ public class LevelManager : GameManager {
     {
         Log.Info<GameManagerLogger>("Level Manager detect the end of the game phases context");
 
-        FrogDynamicData frogData = FrogGenerator.Get().GenerateFrog();
+        StartCoroutine(WaitforEndUI(isWin));
+    }
 
+    IEnumerator WaitforEndUI(bool isWin)
+    {
+        camEffect.StartShake(m_endGameTimer);
+        yield return new WaitForSeconds(m_endGameTimer);
+        EndGame(isWin);
+    }
+
+    void EndGame(bool isWin)
+    {
+        FrogDynamicData frogData = FrogGenerator.Get().GenerateFrog();
         UIDataResult result = UIManager.GenerateUIData(m_endgameData, m_canvasSpawnLocation);
         ((EndGameUI)result.Menu).SetWinState(isWin);
         ((EndGameUI)result.Menu).SetNewFrogDataInfos(frogData);
 
         m_player.SetActive(false);
-        m_player.Destroy();
-
     }
 }

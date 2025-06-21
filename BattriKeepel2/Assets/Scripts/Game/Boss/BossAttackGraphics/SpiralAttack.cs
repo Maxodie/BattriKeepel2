@@ -53,7 +53,7 @@ public class SpiralAttack : BossAttackParent {
 
         if(bulletCount == 0)
         {
-            Destroy();
+                Destroy();
         }
     }
 
@@ -67,9 +67,12 @@ public class SpiralAttack : BossAttackParent {
     {
         foreach(Bullet bullet in m_bullets)
         {
-            m_bulletPool.StopBullet(bullet.GetGraphics());
+            if(bullet.GetGraphics() != null)
+            {
+                m_bulletPool.StopBullet(bullet.GetGraphics());
+            }
         }
-        Object.Destroy(m_parent.gameObject); // get out of this shit
+        m_parent.gameObject.SetActive(false); // get out of this shit
     }
 }
 

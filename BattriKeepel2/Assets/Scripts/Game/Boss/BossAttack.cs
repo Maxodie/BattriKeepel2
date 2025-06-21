@@ -2,7 +2,7 @@ using System;
 
 public class BossAttack : IGameEntity {
     public BossAttackParent m_attackGraphics;
-    bool isActive;
+    public bool isActive;
 
     public BossAttack(BossEntity boss, AttackGraphicsPool attackPool, SO_BossAttackData attackData, GameEntity.Player player)
     {

@@ -138,10 +138,6 @@ namespace GameEntity
 
                 m_bullets[i].Update();
             }
-
-            foreach(Bullet bullet in m_bullets)
-            {
-            }
         }
 
         public bool IsScreenPressed() {
@@ -256,7 +252,18 @@ namespace GameEntity
                 AudioManager.DestroySoundInstance(soundInstance);
                 m_isDestroyed = true;
                 m_isActive = false;
+                ClearBullets();
             }
+        }
+
+        public void ClearBullets()
+        {
+            for(int i = 0; i < m_bullets.Count; i++)
+            {
+                m_bullets[i].Kill();
+            }
+
+            m_bullets.Clear();
         }
     }
 }

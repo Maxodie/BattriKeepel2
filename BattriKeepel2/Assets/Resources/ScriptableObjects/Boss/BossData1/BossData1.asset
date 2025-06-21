@@ -19,5 +19,5 @@ MonoBehaviour:
   dialogData: {fileID: 11400000, guid: 673db666672661a4799d9afd27915ca6, type: 2}
   nuisanceDialogData: {fileID: 11400000, guid: 673db666672661a4799d9afd27915ca6, type: 2}
   damageSound: {fileID: 8300000, guid: 8c2baee04d5305d47a8d24cb50232daf, type: 3}
-  health: 300
+  health: 200
   nuisanceLoopTime: 10

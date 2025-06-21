@@ -35,6 +35,7 @@ public class BossAttackPhase
             {
                 m_currentAttack.RemoveAt(i);
                 i--;
+                continue;
             }
 
             m_currentAttack[i].Update();
@@ -68,12 +69,14 @@ public class BossAttackPhase
         {
             m_currentAttack[i].Clean();
         }
+
+        m_currentAttack.Clear();
     }
 }
 
 public class BossAttackPhaseSystem
 {
-    BossAttackPhase currentPhase;
+    List<BossAttackPhase> currentPhases = new();
     public int m_currentPhaseID = 0;
     AttackGraphicsPool m_attackPool;
     GameEntity.Player m_player;
@@ -90,18 +93,19 @@ public class BossAttackPhaseSystem
 
     public void UpdatePhase()
     {
-        currentPhase.Update();
+        for(int i = 0; i < currentPhases.Count; i++)
+        {
+            currentPhases[i].Update();
+        }
     }
 
     public void StartPhaseSystem()
     {
-        currentPhase = new BossAttackPhase(m_boss, m_attackDatas[m_currentPhaseID].bossAttackData, m_attackPool, m_player);
+        currentPhases.Add(new BossAttackPhase(m_boss, m_attackDatas[m_currentPhaseID].bossAttackData, m_attackPool, m_player));
     }
 
     public void SwitchToNextPhase()
     {
-        currentPhase.Clear();
-
         if(m_currentPhaseID < m_attackDatas.Length - 1)
         {
             m_currentPhaseID++;
@@ -112,6 +116,9 @@ public class BossAttackPhaseSystem
 
     public void Clear()
     {
-        currentPhase.Clear();
+        foreach(BossAttackPhase phase in currentPhases)
+        {
+            phase.Clear();
+        }
     }
 }
