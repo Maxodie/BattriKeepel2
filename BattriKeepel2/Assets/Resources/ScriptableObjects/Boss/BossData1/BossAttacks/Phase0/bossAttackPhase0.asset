@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 037aea8d33e277946b5a183aaced5d22, type: 3}
-  m_Name: BossPhase1
+  m_Script: {fileID: 11500000, guid: 5dee934075fd7804bb67898f6d7f0cf0, type: 3}
+  m_Name: bossAttackPhase0
   m_EditorClassIdentifier: 
-  bossAttackData:
-  - {fileID: 11400000, guid: 221126806b67dc24ba38fa912f660a9d, type: 2}
-  - {fileID: 11400000, guid: 8ed3c55cbc193984b94c53cb3da3c540, type: 2}
+  intervalBeforeNextAttack: 1
+  m_amountPerWave: 8
+  m_rotationSpeed: 2
+  m_bulletData: {fileID: 11400000, guid: 47b965fd45e16684c90ee9f823415f9b, type: 2}
+  rotation: -1

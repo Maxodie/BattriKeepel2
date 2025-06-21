@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: BossPhase0
   m_EditorClassIdentifier: 
   bossAttackData:
-  - {fileID: 11400000, guid: 221126806b67dc24ba38fa912f660a9d, type: 2}
-  - {fileID: 11400000, guid: 11a513a404409e243b0d3c37341e0de6, type: 2}
+  - {fileID: 11400000, guid: 22e639cbd15c4c7439220f3d4c842b19, type: 2}
