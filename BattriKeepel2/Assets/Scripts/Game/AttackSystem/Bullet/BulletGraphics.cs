@@ -46,6 +46,10 @@ public class BulletGraphics : GameEntityGraphics
         m_damageableType = damageable;
         data = bulletData;
         linkdeBulled = bullet;
+
+        sprite.color = bulletData.color;
+        lights.color = bulletData.color;
+        trail.startColor = bulletData.color;
     }
 
     void OnTriggerEnter2D(Collider2D col)

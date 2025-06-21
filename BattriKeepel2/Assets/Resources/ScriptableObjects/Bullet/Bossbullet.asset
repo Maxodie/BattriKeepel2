@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85506f1e6c46bf248ba2168760998652, type: 3}
-  m_Name: bullet
+  m_Name: Bossbullet
   m_EditorClassIdentifier: 
   damage: 1
   speed: 1
-  bulletGraphics: {fileID: 4496678624898742819, guid: 88d373d2542134949add22c7d3b407da, type: 3}
+  bulletGraphics: {fileID: 4496678624898742819, guid: 4869274f3be39ec4ab242d58d3cb3714, type: 3}
+  color: {r: 0.6509804, g: 0.24313726, b: 0.24313726, a: 1}

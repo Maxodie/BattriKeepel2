@@ -13,7 +13,7 @@ public class LaserAttack : BossAttackParent {
 
     GameEntity.Player m_player;
 
-    public override void Init(SO_BossAttackData data, AttackGraphicsPool attackPool, GameEntity.Player player) {
+    public override void Init(BossEntity boss, SO_BossAttackData data, AttackGraphicsPool attackPool, GameEntity.Player player) {
         this.data = (SO_LaserAttackData)data;
         appearTime = this.data.m_timeToAppear;
         lastingTime = this.data.m_timeLasting;
@@ -63,7 +63,10 @@ public class LaserAttack : BossAttackParent {
     }
 
     private void HandleLastingTime() {
-        visual.TriggerLaser();
+        if(visual)
+        {
+            visual.TriggerLaser();
+        }
         lastingTime -= Time.deltaTime;
     }
 

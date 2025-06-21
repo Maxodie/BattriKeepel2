@@ -15,6 +15,8 @@ public class BossEntity : Entity
     AttackGraphicsPool m_bulletPool;
     GameEntity.Player m_player;
 
+    float m_phaseThreashold;
+
     public BossEntity(AttackGraphicsPool bulletPool, SO_BossScriptableObject data, GameEntity.Player player)
     {
         m_player = player;
@@ -25,6 +27,7 @@ public class BossEntity : Entity
         m_bulletPool = bulletPool;
 
         m_nuisance = new(data);
+        m_phaseThreashold = 1 / (float)m_data.attackDataPhases.Length;
 
         m_bossGraphics = GraphicsManager.Get().GenerateVisualInfos<BossGraphicsEntity>(data.bossGraphicsEntity, new Vector2(0, 2), Quaternion.identity, this);
         m_bossGraphics.ComputeLocations();
@@ -39,16 +42,28 @@ public class BossEntity : Entity
     public void Update()
     {
         m_attack.UpdatePhase();
+
+        float healthPercentage = Health / MaxHealth;
+
+        if(healthPercentage <= 1 - (m_attack.m_currentPhaseID + 1) * m_phaseThreashold)
+        {
+            m_attack.SwitchToNextPhase();
+        }
     }
 
     private void InitAttacks() {
-        m_attack = new(m_data.attackDataPhases, m_bulletPool, m_player);
+        m_attack = new(this, m_data.attackDataPhases, m_bulletPool, m_player);
         m_attack.StartPhaseSystem();
     }
 
     public bool IsDead()
     {
         return m_isDead;
+    }
+
+    public BossGraphicsEntity GetGraphics()
+    {
+        return m_bossGraphics;
     }
 
     public override void TakeDamage(float amount)

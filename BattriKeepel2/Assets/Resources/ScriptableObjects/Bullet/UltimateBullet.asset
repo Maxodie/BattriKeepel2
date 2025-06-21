@@ -15,3 +15,4 @@ MonoBehaviour:
   damage: 7
   speed: 6
   bulletGraphics: {fileID: 4496678624898742819, guid: 88d373d2542134949add22c7d3b407da, type: 3}
+  color: {r: 0, g: 0.056978226, b: 1, a: 1}

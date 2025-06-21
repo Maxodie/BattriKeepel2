@@ -17,17 +17,34 @@ public class AttackGraphicsPool : IGameEntity
         }
     }
 
+    void ClearBullets()
+    {
+        for(int i = 0; i < bullets.Count; i++)
+        {
+            if(bullets[i] == null)
+            {
+                bullets.RemoveAt(i);
+                i--;
+            }
+        }
+    }
+
     public BulletGraphics GetBulletGraphics(Vector2 position, Quaternion rotation, IGameEntity entity)
     {
+        ClearBullets();
+
         foreach(BulletGraphics bullet in bullets)
         {
-            if(!bullet.gameObject.activeSelf)
+            if(bullet != null)
             {
-                bullet.transform.SetParent(null);
-                bullet.transform.position = position;
-                bullet.transform.rotation = rotation;
-                bullet.StartPool();
-                return bullet;
+                if(!bullet.gameObject.activeSelf)
+                {
+                    bullet.transform.SetParent(null);
+                    bullet.transform.position = position;
+                    bullet.transform.rotation = rotation;
+                    bullet.StartPool();
+                    return bullet;
+                }
             }
         }
 
@@ -38,6 +55,8 @@ public class AttackGraphicsPool : IGameEntity
 
     public BulletGraphics GetBulletGraphics(Transform parent, IGameEntity entity, bool isChild)
     {
+        ClearBullets();
+
         foreach(BulletGraphics bullet in bullets)
         {
             if(!bullet.gameObject.activeSelf)

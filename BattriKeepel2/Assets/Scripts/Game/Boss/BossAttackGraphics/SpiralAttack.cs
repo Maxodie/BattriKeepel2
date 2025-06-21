@@ -14,13 +14,14 @@ public class SpiralAttack : BossAttackParent {
         m_parent = new GameObject().transform;
     }
 
-    public override void Init(SO_BossAttackData data, AttackGraphicsPool graphicsPool, GameEntity.Player player) {
+    public override void Init(BossEntity boss, SO_BossAttackData data, AttackGraphicsPool graphicsPool, GameEntity.Player player) {
         this.data = (SO_SpiralAttackData)data;
         float angle = GetAngle();
         Vector2 direction = Vector2.down;
         Vector2 position;
         m_bulletPool = graphicsPool;
 
+        m_parent.position = boss.GetGraphics().transform.position;
         m_parent.eulerAngles = new Vector3(0, 0, 0);
 
         for (int i = 0; i < this.data.m_amountPerWave; i++)
@@ -58,9 +59,7 @@ public class SpiralAttack : BossAttackParent {
 
     public void Destroy()
     {
-        //for detach all bullets and destroy this shit
         Clean();
-        Object.Destroy(m_parent.gameObject); // get out of this shit
         isActive = false;
     }
 
@@ -70,6 +69,7 @@ public class SpiralAttack : BossAttackParent {
         {
             m_bulletPool.StopBullet(bullet.GetGraphics());
         }
+        Object.Destroy(m_parent.gameObject); // get out of this shit
     }
 }
 

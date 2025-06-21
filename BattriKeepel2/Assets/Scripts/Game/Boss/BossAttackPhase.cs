@@ -11,9 +11,11 @@ public class BossAttackPhase
 
     AttackGraphicsPool m_attackPool;
     GameEntity.Player m_player;
+    BossEntity m_boss;
 
-    public BossAttackPhase(SO_BossAttackData[] attackDatas, AttackGraphicsPool attackPool, GameEntity.Player player)
+    public BossAttackPhase(BossEntity boss, SO_BossAttackData[] attackDatas, AttackGraphicsPool attackPool, GameEntity.Player player)
     {
+        m_boss = boss;
         m_attackPool = attackPool;
         m_player = player;
 
@@ -41,7 +43,7 @@ public class BossAttackPhase
 
     public void StartCurrentAttack(int id)
     {
-        m_currentAttack.Add(new(m_attackPool, m_attacks[id], m_player));
+        m_currentAttack.Add(new(m_boss, m_attackPool, m_attacks[id], m_player));
     }
 
     private async Awaitable HandleAttacks()
@@ -72,16 +74,18 @@ public class BossAttackPhase
 public class BossAttackPhaseSystem
 {
     BossAttackPhase currentPhase;
-    int m_currentPhaseID = 0;
+    public int m_currentPhaseID = 0;
     AttackGraphicsPool m_attackPool;
     GameEntity.Player m_player;
     SO_BossAttackPhase[] m_attackDatas;
+    BossEntity m_boss;
 
-    public BossAttackPhaseSystem(SO_BossAttackPhase[] attackDatas, AttackGraphicsPool attackPool, GameEntity.Player player)
+    public BossAttackPhaseSystem(BossEntity boss, SO_BossAttackPhase[] attackDatas, AttackGraphicsPool attackPool, GameEntity.Player player)
     {
         m_attackDatas = attackDatas;
         m_attackPool = attackPool;
         m_player = player;
+        m_boss = boss;
     }
 
     public void UpdatePhase()
@@ -91,7 +95,7 @@ public class BossAttackPhaseSystem
 
     public void StartPhaseSystem()
     {
-        currentPhase = new BossAttackPhase(m_attackDatas[m_currentPhaseID].bossAttackData, m_attackPool, m_player);
+        currentPhase = new BossAttackPhase(m_boss, m_attackDatas[m_currentPhaseID].bossAttackData, m_attackPool, m_player);
     }
 
     public void SwitchToNextPhase()

@@ -52,6 +52,7 @@ namespace GameEntity
         private void Init(Transform spawnPoint) {
             m_movement = new PlayerMovement();
             m_playerGraphics = GraphicsManager.Get().GenerateVisualInfos<PlayerGraphics>(playerData.playerGraphics, spawnPoint, this);
+            m_playerGraphics.transform.position = GraphicsManager.Get().GetCameraLocation((int)SpawnDir.South) + new Vector2(0, 2);
             m_rb = m_playerGraphics.rb;
             m_inputManager = m_playerGraphics.inputManager;
             transform = m_playerGraphics.transform;
