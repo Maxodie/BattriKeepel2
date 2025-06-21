@@ -10,6 +10,7 @@ public class DebuggerTool : MonoBehaviour
     List<System.Type> m_activeUITools = new List<System.Type>();
     bool m_isActive = true;
     ProfilerStats m_rtProfiler = new();
+    static bool exist = false;
 
     [SerializeField] InGameLogger inGameLogger;
 #endif
@@ -17,6 +18,15 @@ public class DebuggerTool : MonoBehaviour
     void Awake()
     {
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
+        if(!exist)
+        {
+            exist = true;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         if(!m_devToolNavigator)
         {
             m_devToolNavigator = Instantiate(m_devToolNavigatorPrefab, transform);
