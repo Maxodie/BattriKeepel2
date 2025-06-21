@@ -79,7 +79,7 @@ public static class MobileEffect
         {
             if(m_cameraIDList.Length != 0)
             {
-                m_cameraService.Call("setTorchMode", (m_cameraIDList.Length - 1).ToString(), state ? true : false);
+                m_cameraService.Call("setTorchMode", "0", state ? true : false);
 
                 if(!state)
                 {

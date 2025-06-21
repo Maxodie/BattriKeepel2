@@ -228,7 +228,7 @@ namespace GameEntity
         public override void Die()
         {
             MobileEffect.VibrationEffect(MobileEffectVibration.BIG);
-            MobileEffect.SetOnFlashlight(true, 0.5f);
+            MobileEffect.SetOnFlashlight(true, 1.5f);
 
             Destroy();
         }
