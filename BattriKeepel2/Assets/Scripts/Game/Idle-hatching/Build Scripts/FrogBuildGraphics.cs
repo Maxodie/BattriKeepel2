@@ -7,9 +7,12 @@ public class FrogBuildGraphics : GameEntityGraphics
     [SerializeField] Image m_progressFill;
     [SerializeField] GameObject m_progressVisual;
 
+    bool isInProgress = false;
+
     public void SetActiveProgress(bool state)
     {
         m_progressVisual.SetActive(state);
+        isInProgress = state;
     }
 
     public void SetFrogFill(float amount)
@@ -19,6 +22,11 @@ public class FrogBuildGraphics : GameEntityGraphics
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        if(isInProgress)
+        {
+            return;
+        }
+
         Frog frog = col.GetComponent<FrogGraphics>().GetFrog();
         if(frog.IsInInteraction())
         {
