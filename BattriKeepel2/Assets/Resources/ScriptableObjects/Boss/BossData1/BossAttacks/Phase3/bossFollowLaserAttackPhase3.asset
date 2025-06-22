@@ -21,3 +21,5 @@ MonoBehaviour:
   m_laserScale: 0.1
   m_followTime: 0.2
   m_followPlayer: 1
+  m_laserChargeSound: {fileID: 8300000, guid: 44489836c0d55d44cb6032e666b174bb, type: 3}
+  m_laserShotSound: {fileID: 8300000, guid: 0a5a13605c0f4b04bb69395830205999, type: 3}

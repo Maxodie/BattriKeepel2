@@ -10,6 +10,8 @@ public class SO_LaserAttackData : SO_BossAttackData {
     public float m_laserScale;
     public float m_followTime;
     public bool m_followPlayer;
+    public AudioClip m_laserChargeSound;
+    public AudioClip m_laserShotSound;
 
     public override System.Type GetAttackType()
     {

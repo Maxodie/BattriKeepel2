@@ -13,6 +13,8 @@ public class LaserAttack : BossAttackParent {
 
     GameEntity.Player m_player;
 
+    SoundInstance soundInstance;
+
     public override void Init(BossEntity boss, SO_BossAttackData data, AttackGraphicsPool attackPool, GameEntity.Player player) {
         this.data = (SO_LaserAttackData)data;
         appearTime = this.data.m_timeToAppear;
@@ -21,11 +23,15 @@ public class LaserAttack : BossAttackParent {
         followTime = this.data.m_followTime;
 
         m_player = player;
+
+        soundInstance = AudioManager.CreateSoundInstance(false, false);
         PartitionSpace();
         visual = GraphicsManager.Get().GenerateVisualInfos<LaserGraphics>
             (this.data.m_laserGraphics, positions[this.data.m_position], Quaternion.identity, this, false);
         Vector3 localScale = visual.transform.lossyScale;
         visual.transform.localScale = new Vector3(laserScale, localScale.y , localScale.z);
+
+        soundInstance.PlaySound(this.data.m_laserChargeSound);
 
         if (this.data.m_followPlayer) {
             followTime = 0.75f * appearTime;
@@ -60,6 +66,7 @@ public class LaserAttack : BossAttackParent {
     private void HandleAppearTime() {
         appearTime -= Time.deltaTime;
         visual.SetFillInSize(LerpTime(appearTime, data.m_timeToAppear));
+        soundInstance.PlaySound(this.data.m_laserShotSound);
     }
 
     private void HandleLastingTime() {
@@ -95,6 +102,7 @@ public class LaserAttack : BossAttackParent {
     {
         if(visual)
         {
+            soundInstance.Destroy();
             Object.Destroy(visual.gameObject);
             visual = null;
         }

@@ -25,6 +25,6 @@ MonoBehaviour:
   ultimateBulletData: {fileID: 11400000, guid: e1ecd4a0aa8bddd498a6b0f773fc1f60, type: 2}
   shakeAmount: 10
   shakeSpeed: 0.1
-  singleTapAttackSound: {fileID: 8300000, guid: 8c2baee04d5305d47a8d24cb50232daf, type: 3}
+  singleTapAttackSound: {fileID: 8300000, guid: 41f1bfd5ed3fbe740a2d4617fdefbf14, type: 3}
   doubleTapAttackSound: {fileID: 8300000, guid: 745d6bdfb8790894f96b865f64e43c10, type: 3}
   shakeAttackSound: {fileID: 8300000, guid: 8c2baee04d5305d47a8d24cb50232daf, type: 3}

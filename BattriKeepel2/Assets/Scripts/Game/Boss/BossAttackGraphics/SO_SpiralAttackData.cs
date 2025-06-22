@@ -6,6 +6,7 @@ public class SO_SpiralAttackData : SO_BossAttackData {
     public float m_rotationSpeed;
     public SO_BulletData m_bulletData;
     public Rotation rotation;
+    public AudioClip m_attackSound;
 
     public override System.Type GetAttackType()
     {

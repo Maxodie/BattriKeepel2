@@ -9,6 +9,8 @@ public class SpiralAttack : BossAttackParent {
 
     AttackGraphicsPool m_bulletPool;
 
+    SoundInstance soundInstance;
+
     public SpiralAttack()
     {
         m_parent = new GameObject().transform;
@@ -20,6 +22,9 @@ public class SpiralAttack : BossAttackParent {
         Vector2 direction = Vector2.down;
         Vector2 position;
         m_bulletPool = graphicsPool;
+        soundInstance = AudioManager.CreateSoundInstance(false, false);
+
+        soundInstance.PlaySound(this.data.m_attackSound);
 
         m_parent.position = boss.GetGraphics().transform.position;
         m_parent.eulerAngles = new Vector3(0, 0, 0);
@@ -73,6 +78,7 @@ public class SpiralAttack : BossAttackParent {
             }
         }
         m_parent.gameObject.SetActive(false); // get out of this shit
+        soundInstance.Destroy();
     }
 }
 

@@ -17,3 +17,4 @@ MonoBehaviour:
   m_rotationSpeed: 5
   m_bulletData: {fileID: 11400000, guid: 47b965fd45e16684c90ee9f823415f9b, type: 2}
   rotation: -1
+  m_attackSound: {fileID: 8300000, guid: 29217da8db3835244b7ae47777bf702e, type: 3}
