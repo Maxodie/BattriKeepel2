@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Player0
   m_EditorClassIdentifier: 
   playerName: AAA
-  playerDesc: 
+  playerDesc: "Pile tr\xE8s r\xE9pandue et tr\xE8s utilis\xE9e bien que polluante"
   playerVisual: {fileID: 21300000, guid: 9568372065cf5c34b965b77542666029, type: 3}
   maxHealth: 1
   selectionAnim: {fileID: 0}
