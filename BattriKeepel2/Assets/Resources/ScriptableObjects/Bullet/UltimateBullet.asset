@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 7
   speed: 6
-  bulletGraphics: {fileID: 4496678624898742819, guid: 88d373d2542134949add22c7d3b407da, type: 3}
-  color: {r: 0, g: 0.056978226, b: 1, a: 1}
+  bulletGraphics: {fileID: 4496678624898742819, guid: b6084b0be8c752c42bb90215670dadf0, type: 3}
+  color: {r: 0.85882354, g: 0.254902, b: 0.8134437, a: 1}
