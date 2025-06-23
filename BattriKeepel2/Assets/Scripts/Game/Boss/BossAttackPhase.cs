@@ -107,6 +107,7 @@ public class BossAttackPhaseSystem
     public void SwitchToNextPhase()
     {
         Clear();
+        currentPhases.RemoveAt(currentPhases.Count - 1);
 
         if(m_currentPhaseID < m_attackDatas.Length - 1)
         {
