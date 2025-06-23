@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossGraphicsEntity: {fileID: 2208424763771030420, guid: 13dc40b671c18fe4f8b3d729b89e36a6, type: 3}
   attackDataPhases:
-  - {fileID: 11400000, guid: 2ad884ee7a7cdad4abc6471d347b3a1b, type: 2}
   - {fileID: 11400000, guid: dd5a6e01146d2ba43a3485ffc0b0f231, type: 2}
+  - {fileID: 11400000, guid: 2ad884ee7a7cdad4abc6471d347b3a1b, type: 2}
   - {fileID: 11400000, guid: 5811849ebe4487f4ba94512acb829870, type: 2}
   - {fileID: 11400000, guid: 06cacadb8292a2343a645f4dd3f0b403, type: 2}
   dialogData: {fileID: 11400000, guid: 673db666672661a4799d9afd27915ca6, type: 2}
