@@ -18,7 +18,7 @@ public abstract class LevelPhase
         m_levelPhase = levelPhase;
     }
 
-    public abstract void OnStart();
+    public abstract void OnStart(LevelManager levelManager);
     public abstract void OnEnd();
     public abstract void Update();
 
@@ -41,13 +41,15 @@ public class LevelPhaseContext
     Awaitable m_waitForTransition = null;
     GameEntityMonoBehaviour m_monoContext;
     bool m_isContextPhaseActive = false;
+    LevelManager m_levelManager;
 
-    public void StartContext(SO_GameLevelData levelData, GameEntityMonoBehaviour monoContext)
+    public void StartContext(SO_GameLevelData levelData, LevelManager levelManager)
     {
+        m_levelManager = levelManager;
         m_currentPhases = new LevelPhase[levelData.levelPhases.Length];
         m_currentPhaseID = 0;
         m_phaseTransitionDelay = levelData.phaseTransitionDelay;
-        m_monoContext = monoContext;
+        m_monoContext = levelManager;
 
         Type phaseType;
         for(int i = 0; i < m_currentPhases.Length; i++)
@@ -137,7 +139,7 @@ public class LevelPhaseContext
     void SetupCurrentPhase()
     {
         m_currentPhase = m_currentPhases[m_currentPhaseID];
-        m_currentPhase.OnStart();
+        m_currentPhase.OnStart(m_levelManager);
         m_isContextPhaseActive = true;
     }
 }

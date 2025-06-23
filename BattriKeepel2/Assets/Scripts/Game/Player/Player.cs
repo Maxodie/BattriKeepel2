@@ -28,33 +28,31 @@ namespace GameEntity
 
         private bool isAbilityReady = true;
         bool m_isActive = true;
+        bool m_isDestroyed = false;
 
         private bool isUltimateReady = true;
         private bool isCapacityCurrent;
 
-        private static Player s_Instance;
+        AttackGraphicsPool m_bulletPool;
+        public Vector3 position;
 
-        public Player(SO_PlayerData data, Transform spawnPoint)
+        public Player(AttackGraphicsPool bulletPool, SO_PlayerData data, Transform spawnPoint)
         {
             MaxHealth = data.maxHealth;
             Health = MaxHealth;
             entityType = EntityType.Player;
             playerData = data;
             m_isActive = true;
+            m_bulletPool = bulletPool;
 
             Init(spawnPoint);
             BindActions();
-
-            s_Instance = this;
-        }
-
-        public static Player GetInstance() {
-            return s_Instance;
         }
 
         private void Init(Transform spawnPoint) {
             m_movement = new PlayerMovement();
             m_playerGraphics = GraphicsManager.Get().GenerateVisualInfos<PlayerGraphics>(playerData.playerGraphics, spawnPoint, this);
+            m_playerGraphics.transform.position = GraphicsManager.Get().GetCameraLocation((int)SpawnDir.South) + new Vector2(0, 2);
             m_rb = m_playerGraphics.rb;
             m_inputManager = m_playerGraphics.inputManager;
             transform = m_playerGraphics.transform;
@@ -123,8 +121,12 @@ namespace GameEntity
             }
         }
 
-        public Vector3 position;
         public void Update() {
+            if(!m_isActive)
+            {
+                return;
+            }
+
             position = m_movement.rb.position;
             m_movement.HandleMovement();
             for (int i = 0; i < m_bullets.Count; i++) {
@@ -135,10 +137,6 @@ namespace GameEntity
                 }
 
                 m_bullets[i].Update();
-            }
-
-            foreach(Bullet bullet in m_bullets)
-            {
             }
         }
 
@@ -154,7 +152,7 @@ namespace GameEntity
                 {
                     Debug.Log(playerData.ultimateBulletData.damage);
                 }
-                m_bullets.Add(new Bullet(isCapacityCurrent ? playerData.ultimateBulletData : playerData.attackBulletData, transform.position + Vector3.up * .2f, m_playerGraphics.transform, false, Vector3.up, typeof(BossEntity)));
+                m_bullets.Add(new Bullet(m_bulletPool, isCapacityCurrent ? playerData.ultimateBulletData : playerData.attackBulletData, transform.position + Vector3.up * .2f, m_playerGraphics.transform, false, Vector3.up, typeof(BossEntity)));
             }
         }
 
@@ -169,7 +167,7 @@ namespace GameEntity
 
             await Awaitable.WaitForSecondsAsync(playerData.attackSet.AbilityAttack.BaseCooldown);
 
-            m_bullets.Add(new Bullet(playerData.abilityBulletData, transform.position + Vector3.up * .2f, m_playerGraphics.transform, false, Vector3.up, typeof(BossEntity)));
+            m_bullets.Add(new Bullet(m_bulletPool, playerData.abilityBulletData, transform.position + Vector3.up * .2f, m_playerGraphics.transform, false, Vector3.up, typeof(BossEntity)));
 
             isCapacityCurrent = false;
             attackManager.StartAttacking();
@@ -229,23 +227,43 @@ namespace GameEntity
 
         public override void Die()
         {
-            m_isActive = false;
-
             MobileEffect.VibrationEffect(MobileEffectVibration.BIG);
-            MobileEffect.SetOnFlashlight(true, 0.5f);
+            MobileEffect.SetOnFlashlight(true, 1.5f);
 
             Destroy();
         }
 
         public void SetActive(bool state)
         {
+            if(m_isDestroyed)
+            {
+                m_isActive = false;
+                return;
+            }
+
             m_isActive = state;
         }
 
         public void Destroy()
         {
-            AudioManager.DestroySoundInstance(soundInstance);
-            Object.Destroy(m_playerGraphics.gameObject);
+            if(!m_isDestroyed)
+            {
+                Object.Destroy(m_playerGraphics.gameObject);
+                AudioManager.DestroySoundInstance(soundInstance);
+                m_isDestroyed = true;
+                m_isActive = false;
+                ClearBullets();
+            }
+        }
+
+        public void ClearBullets()
+        {
+            for(int i = 0; i < m_bullets.Count; i++)
+            {
+                m_bullets[i].Kill();
+            }
+
+            m_bullets.Clear();
         }
     }
 }

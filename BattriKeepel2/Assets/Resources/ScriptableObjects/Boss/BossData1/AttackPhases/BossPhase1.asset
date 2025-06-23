@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85506f1e6c46bf248ba2168760998652, type: 3}
-  m_Name: bullet
+  m_Script: {fileID: 11500000, guid: 037aea8d33e277946b5a183aaced5d22, type: 3}
+  m_Name: BossPhase1
   m_EditorClassIdentifier: 
-  damage: 1
-  speed: 1
-  bulletGraphics: {fileID: 4496678624898742819, guid: 88d373d2542134949add22c7d3b407da, type: 3}
+  bossAttackData:
+  - {fileID: 11400000, guid: 221126806b67dc24ba38fa912f660a9d, type: 2}
+  - {fileID: 11400000, guid: 8ed3c55cbc193984b94c53cb3da3c540, type: 2}

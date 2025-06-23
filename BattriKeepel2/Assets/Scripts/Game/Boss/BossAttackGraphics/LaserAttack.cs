@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using GameEntity;
 using UnityEngine;
 
 public class LaserAttack : BossAttackParent {
     [SerializeField] SO_LaserAttackData data;
+    LaserGraphics visual;
 
     float appearTime;
     float lastingTime;
@@ -11,21 +11,34 @@ public class LaserAttack : BossAttackParent {
     float followTime;
     List<Vector2> positions = new List<Vector2>();
 
-    private void Start() {
-        PartitionSpace();
-        data.m_laserGraphics = GraphicsManager.Get().GenerateVisualInfos<LaserGraphics>
-            (data.m_laserGraphics, positions[data.m_position], Quaternion.identity, this, false);
-        Vector3 localScale = data.m_laserGraphics.transform.localScale;
-        data.m_laserGraphics.transform.localScale = new Vector3(laserScale, localScale.y , localScale.z);
-        appearTime = data.m_timeToAppear;
-        lastingTime = data.m_timeLasting;
+    GameEntity.Player m_player;
 
-        if (data.m_followPlayer) {
+    SoundInstance soundInstance;
+
+    public override void Init(BossEntity boss, SO_BossAttackData data, AttackGraphicsPool attackPool, GameEntity.Player player) {
+        this.data = (SO_LaserAttackData)data;
+        appearTime = this.data.m_timeToAppear;
+        lastingTime = this.data.m_timeLasting;
+        laserScale = this.data.m_laserScale;
+        followTime = this.data.m_followTime;
+
+        m_player = player;
+
+        soundInstance = AudioManager.CreateSoundInstance(false, false);
+        PartitionSpace();
+        visual = GraphicsManager.Get().GenerateVisualInfos<LaserGraphics>
+            (this.data.m_laserGraphics, positions[this.data.m_position], Quaternion.identity, this, false);
+        Vector3 localScale = visual.transform.lossyScale;
+        visual.transform.localScale = new Vector3(laserScale, localScale.y , localScale.z);
+
+        soundInstance.PlaySound(this.data.m_laserChargeSound);
+
+        if (this.data.m_followPlayer) {
             followTime = 0.75f * appearTime;
         }
     }
 
-    private void Update() {
+    public override void Update() {
         if (data.m_followPlayer && followTime > 0) {
             HandleFollowPlayer();
         }
@@ -33,31 +46,34 @@ public class LaserAttack : BossAttackParent {
             HandleAppearTime();
         } else if (lastingTime > 0) {
             HandleLastingTime();
-        } else if (0 >= lastingTime) {
-            Destroy(data.m_laserGraphics.gameObject);
+        } else if (lastingTime <= 0) {
+            Clean();
         }
     }
 
     private void HandleFollowPlayer() {
         followTime -= Time.deltaTime;
 
-        Vector2 playerPosition = Player.GetInstance().position;
-        Vector3 currentPosition = data.m_laserGraphics.transform.position;
+        Vector2 playerPosition = m_player.position;
+        Vector3 currentPosition = visual.transform.position;
         float angle = Mathf.Atan2(playerPosition.y - currentPosition.y, playerPosition.x - currentPosition.x);
         angle = angle * Mathf.Rad2Deg;
 
-        Log.Info(angle);
-        Vector3 currentRotation = data.m_laserGraphics.transform.eulerAngles;
-        data.m_laserGraphics.transform.eulerAngles = new Vector3(currentRotation.x, currentRotation.y, angle + 90);
+        Vector3 currentRotation = visual.transform.eulerAngles;
+        visual.transform.eulerAngles = new Vector3(currentRotation.x, currentRotation.y, angle + 90);
     }
 
     private void HandleAppearTime() {
         appearTime -= Time.deltaTime;
-        data.m_laserGraphics.SetFillInSize(LerpTime(appearTime, data.m_timeToAppear));
+        visual.SetFillInSize(LerpTime(appearTime, data.m_timeToAppear));
+        soundInstance.PlaySound(this.data.m_laserShotSound);
     }
 
     private void HandleLastingTime() {
-        data.m_laserGraphics.TriggerLaser();
+        if(visual)
+        {
+            visual.TriggerLaser();
+        }
         lastingTime -= Time.deltaTime;
     }
 
@@ -80,5 +96,15 @@ public class LaserAttack : BossAttackParent {
             return 1;
         }
         return 1 - currentTime / maxTime;
+    }
+
+    public override void Clean()
+    {
+        if(visual)
+        {
+            soundInstance.Destroy();
+            Object.Destroy(visual.gameObject);
+            visual = null;
+        }
     }
 }

@@ -60,7 +60,8 @@ namespace Inputs {
 
         void OnShake(InputAction.CallbackContext context) {
             Vector3 shake = context.ReadValue<Vector3>();
-            if(shake.magnitude >= 13)
+            Log.Info(shake.magnitude);
+            if(shake.magnitude >= 5)
             {
                 m_onShake.Invoke(shake);
             }

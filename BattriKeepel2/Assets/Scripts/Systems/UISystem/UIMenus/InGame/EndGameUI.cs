@@ -21,7 +21,7 @@ public class EndGameUI : UIMenuBase
         }
         else
         {
-            title.text = "L + Ratio + loser";
+            title.text = "You loose";
             title.color = loseColor;
         }
     }

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 037aea8d33e277946b5a183aaced5d22, type: 3}
+  m_Name: BossPhase2
+  m_EditorClassIdentifier: 
+  bossAttackData:
+  - {fileID: 11400000, guid: f397cd78024d9ad479fdabd4c923ce1e, type: 2}
+  - {fileID: 11400000, guid: aeb3fb2163653f94dade45928491adf5, type: 2}
+  - {fileID: 11400000, guid: aeb3fb2163653f94dade45928491adf5, type: 2}
+  - {fileID: 11400000, guid: aeb3fb2163653f94dade45928491adf5, type: 2}
+  - {fileID: 11400000, guid: aeb3fb2163653f94dade45928491adf5, type: 2}
+  - {fileID: 11400000, guid: aeb3fb2163653f94dade45928491adf5, type: 2}
+  - {fileID: 11400000, guid: e229c91af32f0da4a99ec2cf754c5a3a, type: 2}
+  - {fileID: 11400000, guid: aeb3fb2163653f94dade45928491adf5, type: 2}
+  - {fileID: 11400000, guid: aeb3fb2163653f94dade45928491adf5, type: 2}
+  - {fileID: 11400000, guid: aeb3fb2163653f94dade45928491adf5, type: 2}
+  - {fileID: 11400000, guid: aeb3fb2163653f94dade45928491adf5, type: 2}
+  - {fileID: 11400000, guid: aeb3fb2163653f94dade45928491adf5, type: 2}
