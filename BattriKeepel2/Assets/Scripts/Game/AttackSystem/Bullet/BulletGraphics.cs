@@ -57,6 +57,8 @@ public class BulletGraphics : GameEntityGraphics
         EntityGraphics entityGraphics = col.gameObject.GetComponent<EntityGraphics>();
         if(entityGraphics && entityGraphics.GetOwner().GetType() == m_damageableType)
         {
+            if (col.GetComponent<PlayerGraphics>() && col.GetComponent<PlayerGraphics>().GetInvincibility()) return;
+            
             entityGraphics.TakeDamage(data.damage);
 
             linkdeBulled.Kill();

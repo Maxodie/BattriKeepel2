@@ -32,6 +32,17 @@ public class PlayerGraphics : EntityGraphics {
         return player;
     }
 
+    public bool GetInvincibility()
+    {
+        return player.GetInvincibility();
+    }
+
+    public void SetTransparency(bool isInvincibility)
+    {
+        m_playerSpriteRenderer.color = isInvincibility ? new Color(m_playerSpriteRenderer.color.r, m_playerSpriteRenderer.color.g, m_playerSpriteRenderer.color.b, 0.5f) 
+                                                        : new Color(m_playerSpriteRenderer.color.r, m_playerSpriteRenderer.color.g, m_playerSpriteRenderer.color.b, 1);
+    }
+
     public void SetPlayer(Player playerToSet)
     {
         player = playerToSet;
