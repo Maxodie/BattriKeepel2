@@ -29,17 +29,17 @@ public class TripleAttack : BossAttackParent {
 
         PlaceBullets();
 
-        origin.transform.eulerAngles = new Vector3(angle, 0, 0);
+        origin.transform.eulerAngles = new Vector3(0, 0, angle + 90);
     }
 
     private void PlaceBullets() {
         for (int i = -1; i < 2; i++) {
             float currentXEuleur = origin.transform.eulerAngles.x;
 
-            origin.transform.eulerAngles = new Vector3(currentXEuleur + m_data.angle * i, 0, 0);
-            m_bullets.Add(new Bullet(m_pool, m_data.bulletData, Vector3.down * 0.5f, origin.transform, true, Vector3.down, typeof(Player)));
+            origin.transform.eulerAngles = new Vector3(0, 0, currentXEuleur + m_data.angle * i);
+            m_bullets.Add(new Bullet(m_pool, m_data.bulletData, origin.transform.position + Vector3.down * 0.5f, origin.transform, true, Vector3.down, typeof(Player)));
 
-            origin.transform.eulerAngles = new Vector3(currentXEuleur, 0, 0);
+            origin.transform.eulerAngles = new Vector3(0, 0, currentXEuleur);
         }
     }
 
@@ -52,6 +52,7 @@ public class TripleAttack : BossAttackParent {
             }
             m_bullets[i].Update();
         }
+
         if(bulletCount == 0)
         {
             Clean();
