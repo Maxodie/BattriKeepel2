@@ -87,9 +87,16 @@ namespace GameEntity
             m_shakeEvent.AddListener(action);
         }
 
-        private void OnShakeReceived(Vector3 shake)
+        bool shook = false;
+
+        private void OnShakeReceived(float shake)
         {
+            if (shook) {
+                return;
+            }
+
             m_shakeEvent?.Invoke(this);
+            shook = true;
         }
 
         bool tapState = false;
@@ -181,7 +188,8 @@ namespace GameEntity
             if (!isUltimateReady || isCapacityCurrent) return;
 
             isCapacityCurrent = true; //IsCapacityCurrent permet de voir si l'ability ou l'ultimate est en cours pour empecher de pouvoir lancer les 2 en meme temps
-            m_playerGraphics.StartCoroutine(ReloadUltimate());
+            isUltimateReady = false;
+            m_playerGraphics.SetUltimateFill(0.0f);
 
             attackManager.CancelAttack();
             attackManager.StartUltimate();
@@ -197,15 +205,18 @@ namespace GameEntity
         private IEnumerator ReloadAbility()
         {
             isAbilityReady = false;
-            yield return new WaitForSeconds(playerData.attackSet.AbilityAttack.BaseReloadTime);
+            float timer = playerData.attackSet.AbilityAttack.BaseReloadTime;
+            while(true)
+            {
+                m_playerGraphics.SetAbilityFill(timer / playerData.attackSet.AbilityAttack.BaseReloadTime);
+                yield return null;
+                timer += Time.deltaTime;
+                if(timer <= 0)
+                {
+                    break;
+                }
+            }
             isAbilityReady = true;
-        }
-
-        private IEnumerator ReloadUltimate()
-        {
-            isUltimateReady = false;
-            yield return new WaitForSeconds(playerData.attackSet.UltimateAttack.BaseReloadTime);
-            isUltimateReady = true;
         }
 
         private void SetInvincibility(bool invincibilty)
@@ -221,7 +232,7 @@ namespace GameEntity
 
         public override void TakeDamage(float amount) {
             MobileEffect.VibrationEffect(MobileEffectVibration.SMALL);
-            
+
             Health -= amount;
             if(Health <= 0)
             {

@@ -1,5 +1,6 @@
 using GameEntity;
 using UnityEngine;
+using UnityEngine.UI;
 using Inputs;
 using UnityEngine.InputSystem;
 
@@ -7,6 +8,8 @@ public class PlayerGraphics : EntityGraphics {
     [SerializeField] Sprite m_playerSprite;
     [SerializeField] SpriteRenderer m_playerSpriteRenderer;
     [SerializeField] Material m_playerMat;
+    [SerializeField] Image abilityFill;
+    [SerializeField] Image ultimateFill;
     public Transform m_playerTransform;
     public InputManager inputManager;
     public Rigidbody2D rb;
@@ -39,12 +42,22 @@ public class PlayerGraphics : EntityGraphics {
 
     public void SetTransparency(bool isInvincibility)
     {
-        m_playerSpriteRenderer.color = isInvincibility ? new Color(m_playerSpriteRenderer.color.r, m_playerSpriteRenderer.color.g, m_playerSpriteRenderer.color.b, 0.5f) 
+        m_playerSpriteRenderer.color = isInvincibility ? new Color(m_playerSpriteRenderer.color.r, m_playerSpriteRenderer.color.g, m_playerSpriteRenderer.color.b, 0.5f)
                                                         : new Color(m_playerSpriteRenderer.color.r, m_playerSpriteRenderer.color.g, m_playerSpriteRenderer.color.b, 1);
     }
 
     public void SetPlayer(Player playerToSet)
     {
         player = playerToSet;
+    }
+
+    public void SetAbilityFill(float amount)
+    {
+        abilityFill.fillAmount = amount;
+    }
+
+    public void SetUltimateFill(float amount)
+    {
+        ultimateFill.fillAmount = amount;
     }
 }

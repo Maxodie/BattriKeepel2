@@ -9,11 +9,13 @@ namespace Inputs {
 
         UnityEvent<Vector2> m_onPosition = new UnityEvent<Vector2>();
         UnityEvent<UnityEngine.InputSystem.TouchPhase> m_onPress = new UnityEvent<UnityEngine.InputSystem.TouchPhase>();
-        UnityEvent<Vector3> m_onShake = new UnityEvent<Vector3>();
+        UnityEvent<float> m_onShake = new UnityEvent<float>();
         UnityEvent m_onTap = new UnityEvent();
+        Accelerometer m_acc;
 
         void Awake() {
             m_playerInputs = new PlayerInput();
+            InputSystem.EnableDevice(Accelerometer.current);
         }
 
         void OnEnable() {
@@ -59,11 +61,10 @@ namespace Inputs {
         }
 
         void OnShake(InputAction.CallbackContext context) {
-            Vector3 shake = context.ReadValue<Vector3>();
-            Log.Info(shake.magnitude);
-            if(shake.magnitude >= 5)
+            float magnitude = Accelerometer.current.acceleration.ReadValue().magnitude;
+            if(magnitude >= 2f)
             {
-                m_onShake.Invoke(shake);
+                m_onShake.Invoke(magnitude);
             }
         }
 
@@ -79,7 +80,7 @@ namespace Inputs {
             m_onPosition.AddListener(action);
         }
 
-        public void BindShake(UnityAction<Vector3> action) {
+        public void BindShake(UnityAction<float> action) {
             m_onShake.AddListener(action);
         }
 
