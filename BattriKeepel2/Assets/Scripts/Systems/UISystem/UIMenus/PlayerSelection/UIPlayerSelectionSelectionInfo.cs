@@ -5,7 +5,7 @@ using TMPro;
 public class UIPlayerSelectionInfo : UIMenuBase
 {
     Animation m_playerMainVisual;
-    [SerializeField] Button m_selectButton;
+    public Button m_selectButton;
     [SerializeField] TMP_Text m_nameText;
 
     SO_PlayerData m_data;
