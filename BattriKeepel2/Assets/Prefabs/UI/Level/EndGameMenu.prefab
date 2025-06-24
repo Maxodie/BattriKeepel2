@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Back to Menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9242b361201f0e14bb41676a6b4dfc53, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 9242b361201f0e14bb41676a6b4dfc53, type: 2}
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2830189, g: 0.2830189, b: 0.2830189, a: 1}
+  m_Color: {r: 0, g: 0.06154244, b: 0.9056604, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -400,7 +400,7 @@ MonoBehaviour:
   m_visual: {fileID: 2107780820697007055}
   title: {fileID: 7827135885485503593}
   winColor: {r: 0.10693307, g: 0.8396226, b: 0.15039776, a: 1}
-  loseColor: {r: 0.7924528, g: 0.18316127, b: 0.18316127, a: 1}
+  loseColor: {r: 1, g: 1, b: 1, a: 1}
   levelData: {fileID: 11400000, guid: 70d025a7f90b8df458bf8ce46d3c7e99, type: 2}
   frogName: {fileID: 6993212571061458455}
   frogVisual: {fileID: 5723673435580937977}

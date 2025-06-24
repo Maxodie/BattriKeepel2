@@ -59,6 +59,9 @@ namespace GameEntity
             transform = m_playerGraphics.transform;
             m_movement.rb = m_rb;
 
+            m_playerGraphics.SetAbilityFill(1.0f);
+            m_playerGraphics.SetUltimateFill(1.0f);
+
             m_playerGraphics.SetPlayer(this);
 
             base.Init(playerData.attackSet, m_playerGraphics);

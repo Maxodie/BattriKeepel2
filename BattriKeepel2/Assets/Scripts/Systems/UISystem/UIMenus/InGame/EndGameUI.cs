@@ -16,12 +16,12 @@ public class EndGameUI : UIMenuBase
     {
         if(state)
         {
-            title.text = "GG, your cool";
+            title.text = "GG, you're cool";
             title.color = winColor;
         }
         else
         {
-            title.text = "You loose";
+            title.text = "You lose";
             title.color = loseColor;
         }
     }
