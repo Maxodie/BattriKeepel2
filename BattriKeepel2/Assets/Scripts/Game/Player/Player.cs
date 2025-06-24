@@ -109,7 +109,7 @@ namespace GameEntity
             if (!tapState)
             {
                 cts = new CancellationTokenSource();
-                Task.Run(() => TapTimer(cts.Token), cts.Token);
+                /*Task.Run(() => TapTimer(cts.Token), cts.Token);*/
                 tapState = true;
                 return;
             }
@@ -120,7 +120,7 @@ namespace GameEntity
             tapState = false;
         }
 
-        private async Task TapTimer(CancellationToken token)
+        /*private async Task TapTimer(CancellationToken token)
         {
             await Task.Delay(500, token);
             Log.Success("single tap");
@@ -130,7 +130,7 @@ namespace GameEntity
                 m_singleTapEvent?.Invoke(this);
                 soundInstance.PlaySound(playerData.singleTapAttackSound);
             }
-        }
+        }*/
 
         public void Update() {
             if(!m_isActive)
@@ -211,9 +211,9 @@ namespace GameEntity
             float timer = playerData.attackSet.AbilityAttack.BaseReloadTime;
             while(true)
             {
-                m_playerGraphics.SetAbilityFill(timer / playerData.attackSet.AbilityAttack.BaseReloadTime);
+                m_playerGraphics.SetAbilityFill(1- timer / playerData.attackSet.AbilityAttack.BaseReloadTime);
                 yield return null;
-                timer += Time.deltaTime;
+                timer -= Time.deltaTime;
                 if(timer <= 0)
                 {
                     break;
