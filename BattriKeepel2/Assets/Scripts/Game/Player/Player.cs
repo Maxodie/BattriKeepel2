@@ -32,6 +32,7 @@ namespace GameEntity
 
         private bool isUltimateReady = true;
         private bool isCapacityCurrent;
+        private bool isInvincible;
 
         AttackGraphicsPool m_bulletPool;
         public Vector3 position;
@@ -161,6 +162,7 @@ namespace GameEntity
             if (!isAbilityReady || isCapacityCurrent) return;
 
             isCapacityCurrent = true; //IsCapacityCurrent permet de voir si l'ability ou l'ultimate est en cours pour empecher de pouvoir lancer les 2 en meme temps
+            SetInvincibility(true);
             m_playerGraphics.StartCoroutine(ReloadAbility());
 
             attackManager.CancelAttack();
@@ -170,6 +172,7 @@ namespace GameEntity
             m_bullets.Add(new Bullet(m_bulletPool, playerData.abilityBulletData, transform.position + Vector3.up * .2f, m_playerGraphics.transform, false, Vector3.up, typeof(BossEntity)));
 
             isCapacityCurrent = false;
+            SetInvincibility(false);
             attackManager.StartAttacking();
         }
 
@@ -205,9 +208,20 @@ namespace GameEntity
             isUltimateReady = true;
         }
 
+        private void SetInvincibility(bool invincibility)
+        {
+            isInvincible = invincibility;
+            m_playerGraphics.SetTransparency(invincibility);
+        }
+
+        public bool GetInvincibility()
+        {
+            return isInvincible;
+        }
+
         public override void TakeDamage(float amount) {
             MobileEffect.VibrationEffect(MobileEffectVibration.SMALL);
-
+            
             Health -= amount;
             if(Health <= 0)
             {
@@ -264,6 +278,11 @@ namespace GameEntity
             }
 
             m_bullets.Clear();
+        }
+
+        public PlayerGraphics GetPlayerGraphics()
+        {
+            return m_playerGraphics;
         }
     }
 }

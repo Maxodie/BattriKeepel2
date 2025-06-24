@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: BossData2
   m_EditorClassIdentifier: 
   bossGraphicsEntity: {fileID: 2208424763771030420, guid: 13dc40b671c18fe4f8b3d729b89e36a6, type: 3}
-  attackData: []
+  attackDataPhases: []
   dialogData: {fileID: 0}
+  nuisanceDialogData: {fileID: 0}
   damageSound: {fileID: 0}
-  health: 500
+  health: 1000
+  nuisanceLoopTime: 0

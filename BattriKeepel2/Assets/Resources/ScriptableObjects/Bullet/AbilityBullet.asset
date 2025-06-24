@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85506f1e6c46bf248ba2168760998652, type: 3}
   m_Name: AbilityBullet
   m_EditorClassIdentifier: 
-  damage: 25
-  speed: 5
+  damage: 30
+  speed: 6
   bulletGraphics: {fileID: 4496678624898742819, guid: a185e562d1a117c45b7ed3b57af1dc39, type: 3}
   color: {r: 0.79332066, g: 0, b: 1, a: 1}

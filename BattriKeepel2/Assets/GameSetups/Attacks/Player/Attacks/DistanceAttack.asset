@@ -18,7 +18,7 @@ MonoBehaviour:
   needTarget: 0
   attackSound: {fileID: 0}
   BaseDamage: 5
-  BaseCooldown: 0.5
+  BaseCooldown: 0.3
   BaseSpeed: 3
   BaseReloadTime: 0
   BaseDuration: 0
