@@ -208,10 +208,10 @@ namespace GameEntity
             isUltimateReady = true;
         }
 
-        private void SetInvincibility(bool invincibilty)
+        private void SetInvincibility(bool invincibility)
         {
-            isInvincible = invincibilty;
-            m_playerGraphics.SetTransparency(invincibilty);
+            isInvincible = invincibility;
+            m_playerGraphics.SetTransparency(invincibility);
         }
 
         public bool GetInvincibility()
@@ -278,6 +278,11 @@ namespace GameEntity
             }
 
             m_bullets.Clear();
+        }
+
+        public PlayerGraphics GetPlayerGraphics()
+        {
+            return m_playerGraphics;
         }
     }
 }

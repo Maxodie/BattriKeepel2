@@ -1,3 +1,4 @@
+using DG.Tweening;
 using GameEntity;
 using UnityEngine;
 using Inputs;
@@ -10,6 +11,11 @@ public class PlayerGraphics : EntityGraphics {
     public Transform m_playerTransform;
     public InputManager inputManager;
     public Rigidbody2D rb;
+    
+    private DOTween tween ;
+    private Sequence sequence = DOTween.Sequence();
+
+    private Vector2 scale;
 
     private Player player;
 
@@ -46,5 +52,21 @@ public class PlayerGraphics : EntityGraphics {
     public void SetPlayer(Player playerToSet)
     {
         player = playerToSet;
+    }
+
+    public void AttackAnim(float stretchStrength)
+    {
+        switch (stretchStrength)
+        {
+            case 1 : 
+                scale = Vector2.one;
+                sequence.Append(transform.DOScale(new Vector2(0.7f, 0.7f), 0.1f));
+                sequence.Append(transform.DOScale(new Vector2(1, 1), 0.1f));
+                break;
+            case 2 :
+                break;
+            default :
+                break;
+        }
     }
 }
