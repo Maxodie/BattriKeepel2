@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c943ed5c6d6f4b94ca504753425c80da, type: 3}
   m_Name: BossData1
   m_EditorClassIdentifier: 
-  bossGraphicsEntity: {fileID: 2208424763771030420, guid: 13dc40b671c18fe4f8b3d729b89e36a6, type: 3}
+  bossGraphicsEntity: {fileID: 2208424763771030420, guid: 85de9d1238d6df44697564a1b2ad9a71, type: 3}
   attackDataPhases:
   - {fileID: 11400000, guid: dd5a6e01146d2ba43a3485ffc0b0f231, type: 2}
   - {fileID: 11400000, guid: 2ad884ee7a7cdad4abc6471d347b3a1b, type: 2}

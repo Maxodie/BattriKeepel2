@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossSelectionInfoPrefab: {fileID: 8635091160604814650, guid: 9142a15acbf2e1e428a1b732bb55a8b9, type: 3}
   bossMainVisual: {fileID: 21300000, guid: 8c72a2dcff407fd43860d3b1a891a050, type: 3}
-  bossName: CLOUDY
+  bossName: FUNKY CLOUS
   bossDesc: Le chef des nuages, faites attention
   bossTitleColor: {r: 1, g: 0.5613208, b: 0.8257572, a: 1}
   levelData: {fileID: 11400000, guid: 5d96ecdb68916db45a8b420c99b7409d, type: 2}
