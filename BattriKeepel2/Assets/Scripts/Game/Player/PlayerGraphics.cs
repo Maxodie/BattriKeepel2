@@ -59,9 +59,9 @@ public class PlayerGraphics : EntityGraphics {
         switch (stretchStrength)
         {
             case 1 : 
-                scale = Vector2.one;
-                sequence.Append(transform.DOScale(new Vector2(0.7f, 0.7f), 0.1f));
-                sequence.Append(transform.DOScale(new Vector2(1, 1), 0.1f));
+                scale = new Vector2(0.45f, 0.45f);
+                sequence.Append(transform.DOScale(new Vector2(0.30f, 0.30f), 0.1f));
+                sequence.Append(transform.DOScale(new Vector2(0.45f, 0.45f), 0.1f));
                 break;
             case 2 :
                 break;
