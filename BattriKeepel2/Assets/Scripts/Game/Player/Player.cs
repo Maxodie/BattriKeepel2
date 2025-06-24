@@ -147,7 +147,7 @@ namespace GameEntity
                 m_bullets[i].Update();
             }
         }
-        
+
         public bool IsScreenPressed() {
             return m_movement.IsScreenPressed();
         }
