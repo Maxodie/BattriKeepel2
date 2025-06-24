@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c943ed5c6d6f4b94ca504753425c80da, type: 3}
+  m_Name: BossData0
+  m_EditorClassIdentifier: 
+  bossGraphicsEntity: {fileID: 2208424763771030420, guid: 13dc40b671c18fe4f8b3d729b89e36a6, type: 3}
+  attackDataPhases:
+  - {fileID: 11400000, guid: 02923660e44f8ec4894ec041c4d25882, type: 2}
+  - {fileID: 11400000, guid: e42b5511aab99b64782c22238b426f52, type: 2}
+  - {fileID: 11400000, guid: ed13f633bbb35ac46a5604b53ecac8a3, type: 2}
+  - {fileID: 11400000, guid: a777f26de0066a44c8aa6eb7f4de0592, type: 2}
+  dialogData: {fileID: 11400000, guid: 673db666672661a4799d9afd27915ca6, type: 2}
+  nuisanceDialogData: {fileID: 11400000, guid: 673db666672661a4799d9afd27915ca6, type: 2}
+  damageSound: {fileID: 8300000, guid: 8c2baee04d5305d47a8d24cb50232daf, type: 3}
+  health: 200
+  nuisanceLoopTime: 10

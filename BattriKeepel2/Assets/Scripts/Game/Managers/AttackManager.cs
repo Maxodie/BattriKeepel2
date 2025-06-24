@@ -53,6 +53,8 @@ namespace Game.Managers
             
             if (_isPlayer && _isAbleToAttack) {
                 attacks.BasicAttack.RaiseAttack((Player)_entityAttached);
+                
+                ((Player)_entityAttached).GetPlayerGraphics().AttackAnim(1);
             }
             
             currentAttackCoroutine = coroutineLauncher.StartCoroutine(DelayedAttacks(attack));

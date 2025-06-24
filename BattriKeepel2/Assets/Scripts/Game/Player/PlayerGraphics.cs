@@ -1,3 +1,4 @@
+using DG.Tweening;
 using GameEntity;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,12 +15,19 @@ public class PlayerGraphics : EntityGraphics {
     public InputManager inputManager;
     public Rigidbody2D rb;
 
+    private DOTween tween ;
+    private Sequence sequence;
+
+    private Vector2 scale;
+
     private Player player;
 
     public void Init()
     {
         m_playerSpriteRenderer.sprite = m_playerSprite;
         m_playerSpriteRenderer.material = m_playerMat;
+
+        sequence = DOTween.Sequence();
     }
 
     private void Update()
@@ -59,5 +67,21 @@ public class PlayerGraphics : EntityGraphics {
     public void SetUltimateFill(float amount)
     {
         ultimateFill.fillAmount = amount;
+    }
+
+    public void AttackAnim(float stretchStrength)
+    {
+        switch (stretchStrength)
+        {
+            case 1 :
+                scale = new Vector2(0.45f, 0.45f);
+                sequence.Append(transform.DOScale(new Vector2(0.30f, 0.30f), 0.1f));
+                sequence.Append(transform.DOScale(new Vector2(0.45f, 0.45f), 0.1f));
+                break;
+            case 2 :
+                break;
+            default :
+                break;
+        }
     }
 }
