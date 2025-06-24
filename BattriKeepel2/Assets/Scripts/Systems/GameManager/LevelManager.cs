@@ -25,7 +25,7 @@ public class LevelManager : GameManager {
     [Header("Bullet pool")]
     [SerializeField] Transform m_bulletPoolParent;
 
-    [Header("Level")] 
+    [Header("Level")]
     [SerializeField] private WallGraphics wallBound;
 
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
@@ -91,6 +91,7 @@ public class LevelManager : GameManager {
         m_transition = (UIGameTransition)result.Menu;
         m_transition.ActiveTransition(false);
         m_transition.BindOnTransitionEnd(OnGamePhaseTransitionEnd);
+        m_playerTransform.position = GraphicsManager.Get().GetCameraLocation((int)SpawnDir.North) - new Vector2(0, 1);
 
         CreateBounds();
     }
@@ -129,7 +130,7 @@ public class LevelManager : GameManager {
     private void CreateBounds()
     {
         SpawnDir[] directions = {SpawnDir.North, SpawnDir.South, SpawnDir.East, SpawnDir.West};
-        
+
         for (int i = 0; i < 4; i++)
         {
             WallGraphics wall = GraphicsManager.Get().GenerateVisualInfos<WallGraphics>(wallBound, directions[i], Vector3.zero, quaternion.identity, this);
