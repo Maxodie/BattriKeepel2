@@ -5,7 +5,7 @@ using TMPro;
 public class UIBossSelectionInfo : UIMenuBase
 {
     [SerializeField] Image bossMainVisual;
-    [SerializeField] Button bossStartButton;
+    public Button bossStartButton;
     [SerializeField] TMP_Text bossText;
 
     SO_BossSelectionInfos m_data;

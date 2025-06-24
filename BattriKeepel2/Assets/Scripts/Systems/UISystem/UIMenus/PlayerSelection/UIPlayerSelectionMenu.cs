@@ -7,6 +7,7 @@ public class UIPlayerSelectionMenu : UIMenuBase
     [SerializeField] Transform m_playerSelectionNavigationContent;
 
     UIPlayerSelectionInfo[] navigationsPanels;
+    UIButton[] buttons;
     int currentMenuID = -1;
 
     UnityEvent m_onPlayerSelectionEnded = new();
@@ -20,6 +21,7 @@ public class UIPlayerSelectionMenu : UIMenuBase
         m_soundInstance = AudioManager.CreateSoundInstance(false, false);
 
         navigationsPanels = new UIPlayerSelectionInfo[data.playerDatas.Length];
+        buttons = new UIButton[data.playerDatas.Length];
         for(int i=0; i < data.playerDatas.Length; i++)
         {
             int iCopy = i;
@@ -30,6 +32,7 @@ public class UIPlayerSelectionMenu : UIMenuBase
             UIButton buttonGo = Object.Instantiate(data.playerSelectionNavigation, m_playerSelectionNavigationContent);
             buttonGo.Button.onClick.AddListener(() => { ChangeNavigationMenu(iCopy, true); });
             buttonGo.Title = data.playerDatas[i].playerName;
+            buttons[i] = buttonGo;
         }
 
         ChangeNavigationMenu(0, false);
@@ -70,6 +73,7 @@ public class UIPlayerSelectionMenu : UIMenuBase
         for(int i=0; i < navigationsPanels.Length; i++)
         {
             navigationsPanels[i].SetActive(i == id);
+            buttons[i].Button.interactable = i != id;
         }
         Log.Success<MainMenuLogger>("Boss selection menu id : " + id);
     }
