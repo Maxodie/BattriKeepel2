@@ -237,6 +237,7 @@ MonoBehaviour:
   m_canvasSpawnLocation: {fileID: 1068685748}
   m_endgameData: {fileID: 11400000, guid: b497d0ccfc97845408b67ab6760bf96e, type: 2}
   m_bulletPoolParent: {fileID: 1944780558}
+  wallBound: {fileID: 506870987982105717, guid: 56c6c7e9bf4a56d4f92814227c171484, type: 3}
   m_playerDebugData: {fileID: 11400000, guid: 877d9e96e4e15eb4bbaee650a8f2faed, type: 2}
   m_debugLevelData: {fileID: 11400000, guid: 5d96ecdb68916db45a8b420c99b7409d, type: 2}
 --- !u!1001 &266037089

@@ -2,7 +2,9 @@ using DG.Tweening;
 using GameEntity;
 using UnityEngine;
 using Inputs;
+using Unity.VisualScripting;
 using UnityEngine.InputSystem;
+using Sequence = DG.Tweening.Sequence;
 
 public class PlayerGraphics : EntityGraphics {
     [SerializeField] Sprite m_playerSprite;

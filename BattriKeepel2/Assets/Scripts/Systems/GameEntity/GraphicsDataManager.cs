@@ -77,7 +77,7 @@ public class GraphicsManager
 
         if((dir & (int)SpawnDir.West) != 0)
         {
-            result.y = min.x;
+            result.x = min.x;
         }
 
         if((dir & (int)SpawnDir.East) != 0)

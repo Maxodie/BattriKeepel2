@@ -1,6 +1,7 @@
 using GameEntity;
 using UnityEngine;
 using System.Collections;
+using Unity.Mathematics;
 
 public class LevelManager : GameManager {
     [Header("Player")]
@@ -23,6 +24,9 @@ public class LevelManager : GameManager {
     public AttackGraphicsPool m_bulletPool;
     [Header("Bullet pool")]
     [SerializeField] Transform m_bulletPoolParent;
+
+    [Header("Level")] 
+    [SerializeField] private WallGraphics wallBound;
 
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
     [Header("Debug Data")]
@@ -87,6 +91,8 @@ public class LevelManager : GameManager {
         m_transition = (UIGameTransition)result.Menu;
         m_transition.ActiveTransition(false);
         m_transition.BindOnTransitionEnd(OnGamePhaseTransitionEnd);
+
+        CreateBounds();
     }
 
     protected override void Update()
@@ -117,6 +123,20 @@ public class LevelManager : GameManager {
         {
             m_transition.SetTransition(m_phaseContext.GetCurrentLevelPhase().m_levelPhase, m_playerData);
             m_transition.ActiveTransition(true);
+        }
+    }
+
+    private void CreateBounds()
+    {
+        SpawnDir[] directions = {SpawnDir.North, SpawnDir.South, SpawnDir.East, SpawnDir.West};
+        
+        for (int i = 0; i < 4; i++)
+        {
+            WallGraphics wall = GraphicsManager.Get().GenerateVisualInfos<WallGraphics>(wallBound, directions[i], Vector3.zero, quaternion.identity, this);
+            if (i >= 2)
+            {
+                wall.transform.rotation = Quaternion.Euler(0, 0, 90);
+            }
         }
     }
 
