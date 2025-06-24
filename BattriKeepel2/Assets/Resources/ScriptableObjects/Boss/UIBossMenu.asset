@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: UIBossMenu
   m_EditorClassIdentifier: 
   bossSelectionInfos:
+  - {fileID: 11400000, guid: 1576a4ded82598949a4a601a503266a5, type: 2}
   - {fileID: 11400000, guid: d3897b93f560b76418aad6cb7ae5d898, type: 2}
   bossSelectionNavigation: {fileID: 8795387205019758084, guid: e819c6024c0bf904283886f298e5206d, type: 3}
   menuBasePrefab: {fileID: 7814333189654480452, guid: 6924b41e8803a8244b2ed8a565d584eb, type: 3}

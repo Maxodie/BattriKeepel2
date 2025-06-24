@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 410c2fa40659b0c47bf0681263f4306c, type: 3}
-  m_Name: GameLevelData0
+  m_Name: GameLevelData1
   m_EditorClassIdentifier: 
   levelImage: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   path: Assets/Scenes/BossScenes/BossScene0.unity
   phaseTransitionDelay: 1.5
   levelPhases:
-  - {fileID: 11400000, guid: 43182aa7011537040b4962cedeca22b3, type: 2}
+  - {fileID: 11400000, guid: df70c8d223d8ade4faf468fe0c164fb4, type: 2}
   levelArtData: {fileID: 11400000, guid: 90fa18f874c1d2c4d95ed31f8d53c9fc, type: 2}
   transitionPrefab: {fileID: 11400000, guid: a7e13f6a0a87f2847965d61f228bb148, type: 2}
