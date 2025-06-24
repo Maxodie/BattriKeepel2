@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 303a2ed295c96e24ab85f916bc9d69ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 037aea8d33e277946b5a183aaced5d22, type: 3}
   m_Name: BossPhase0
   m_EditorClassIdentifier: 
-  phaseDisplayName: FUNKY CLOUD
-  phaseDisplayVisual: {fileID: 21300000, guid: 8f8607c9d4919e9429633fc63e135778, type: 3}
-  phaseTypeName: BossPhase
-  bossData: {fileID: 11400000, guid: 5647f4e07c6ce9b42965d62a6c6a6dde, type: 2}
+  bossAttackData:
+  - {fileID: 11400000, guid: 589004694b74b4ec6b0717aa9f66cf2b, type: 2}
+  - {fileID: 11400000, guid: 4544685762dc9db4996299ec6e2f4e84, type: 2}

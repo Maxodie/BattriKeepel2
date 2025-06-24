@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 303a2ed295c96e24ab85f916bc9d69ea, type: 3}
-  m_Name: BossPhase0
+  m_Name: BossPhase1
   m_EditorClassIdentifier: 
-  phaseDisplayName: FUNKY CLOUD
+  phaseDisplayName: DONKEY CLOUD
   phaseDisplayVisual: {fileID: 21300000, guid: 8f8607c9d4919e9429633fc63e135778, type: 3}
   phaseTypeName: BossPhase
-  bossData: {fileID: 11400000, guid: 5647f4e07c6ce9b42965d62a6c6a6dde, type: 2}
+  bossData: {fileID: 11400000, guid: 5a88251081bdce94f91aa0335596aa80, type: 2}

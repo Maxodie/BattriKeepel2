@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 479a7e90ad79c0e47b897e9487ac84eb, type: 3}
+  m_Name: bossLeftLaserPhase2
+  m_EditorClassIdentifier: 
+  intervalBeforeNextAttack: 0
+  m_timeToAppear: 2
+  m_timeLasting: 1
+  m_laserGraphics: {fileID: 5753076297623261859, guid: a2a7143d458660f45a1814376be157b6, type: 3}
+  m_spacePartitions: 4
+  m_position: 0
+  m_laserScale: 0.2
+  m_followTime: 1
+  m_followPlayer: 0
+  m_laserChargeSound: {fileID: 8300000, guid: 44489836c0d55d44cb6032e666b174bb, type: 3}
+  m_laserShotSound: {fileID: 8300000, guid: 0a5a13605c0f4b04bb69395830205999, type: 3}
