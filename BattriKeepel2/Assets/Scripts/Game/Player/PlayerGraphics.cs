@@ -13,7 +13,7 @@ public class PlayerGraphics : EntityGraphics {
     public Rigidbody2D rb;
     
     private DOTween tween ;
-    private Sequence sequence = DOTween.Sequence();
+    private Sequence sequence;
 
     private Vector2 scale;
 
@@ -23,6 +23,8 @@ public class PlayerGraphics : EntityGraphics {
     {
         m_playerSpriteRenderer.sprite = m_playerSprite;
         m_playerSpriteRenderer.material = m_playerMat;
+
+        sequence = DOTween.Sequence();
     }
 
     private void Update()

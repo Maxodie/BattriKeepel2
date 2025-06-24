@@ -36,6 +36,9 @@ namespace GameEntity
 
         AttackGraphicsPool m_bulletPool;
         public Vector3 position;
+        
+        Vector2 boundMin;
+        Vector2 boundMax;
 
         public Player(AttackGraphicsPool bulletPool, SO_PlayerData data, Transform spawnPoint)
         {
@@ -45,6 +48,9 @@ namespace GameEntity
             playerData = data;
             m_isActive = true;
             m_bulletPool = bulletPool;
+            
+            boundMin = GraphicsManager.Get().BoundsMin(Camera.main);
+            boundMax = GraphicsManager.Get().BoundsMax(Camera.main);
 
             Init(spawnPoint);
             BindActions();
@@ -138,6 +144,29 @@ namespace GameEntity
                 }
 
                 m_bullets[i].Update();
+            }
+        }
+        
+        void CheckCollision()
+        {
+            if(m_playerGraphics.transform.position.x <= boundMin.x)
+            {
+                m_playerGraphics.transform.position = new Vector2(boundMin.x + 0.5f, m_playerGraphics.transform.position.y);
+            }
+
+            if(m_playerGraphics.transform.position.x >= boundMax.x)
+            {
+                m_playerGraphics.transform.position = new Vector2(boundMax.x - 0.5f, m_playerGraphics.transform.position.y);
+            }
+
+            if(m_playerGraphics.transform.position.y <= boundMin.y)
+            {
+                m_playerGraphics.transform.position = new Vector2(m_playerGraphics.transform.position.x, boundMin.y + 0.5f);
+            }
+
+            if(m_playerGraphics.transform.position.y >= boundMax.y)
+            {
+                m_playerGraphics.transform.position = new Vector2(m_playerGraphics.transform.position.x, boundMax.y - 0.5f);
             }
         }
 
