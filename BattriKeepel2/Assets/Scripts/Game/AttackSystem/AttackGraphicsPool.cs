@@ -48,7 +48,7 @@ public class AttackGraphicsPool : IGameEntity
             }
         }
 
-        BulletGraphics newBullet = GraphicsManager.Get().GenerateVisualInfos<BulletGraphics>(bullets[0], position, rotation, entity, isChild);
+        BulletGraphics newBullet = GraphicsManager.Get().GenerateVisualInfos<BulletGraphics>(bullets[0], position, rotation, entity, false);
         bullets.Add(newBullet);
         newBullet.StartPool();
         return newBullet;
