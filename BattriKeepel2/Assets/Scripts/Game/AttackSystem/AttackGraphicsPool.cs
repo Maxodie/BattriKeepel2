@@ -48,7 +48,7 @@ public class AttackGraphicsPool : IGameEntity
             }
         }
 
-        BulletGraphics newBullet = GraphicsManager.Get().GenerateVisualInfos<BulletGraphics>(bullets[0], position, rotation, entity);
+        BulletGraphics newBullet = GraphicsManager.Get().GenerateVisualInfos<BulletGraphics>(bullets[0], position, rotation, entity, isChild);
         bullets.Add(newBullet);
         newBullet.StartPool();
         return newBullet;
@@ -79,7 +79,7 @@ public class AttackGraphicsPool : IGameEntity
             }
         }
 
-        BulletGraphics newBullet = GraphicsManager.Get().GenerateVisualInfos<BulletGraphics>(bullets[0], parent, entity);
+        BulletGraphics newBullet = GraphicsManager.Get().GenerateVisualInfos<BulletGraphics>(bullets[0], parent, entity, isChild);
         bullets.Add(newBullet);
         newBullet.StartPool();
         return newBullet;
