@@ -15,7 +15,10 @@ namespace Inputs {
 
         void Awake() {
             m_playerInputs = new PlayerInput();
-            InputSystem.EnableDevice(Accelerometer.current);
+            if(Accelerometer.current != null)
+            {
+                InputSystem.EnableDevice(Accelerometer.current);
+            }
         }
 
         void OnEnable() {
