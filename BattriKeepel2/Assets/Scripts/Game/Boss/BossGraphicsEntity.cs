@@ -14,6 +14,7 @@ public class BossGraphicsEntity : EntityGraphics
 
     public void ComputeLocations()
     {
+        transform.position = GraphicsManager.Get().GetCameraLocation((int)SpawnDir.North) - new Vector2(0, 2);
         locationPoints = new Vector2[transformPoints.Length];
         for(int i = 0; i < transformPoints.Length; i++)
         {

@@ -91,7 +91,8 @@ public class LevelManager : GameManager {
         m_transition = (UIGameTransition)result.Menu;
         m_transition.ActiveTransition(false);
         m_transition.BindOnTransitionEnd(OnGamePhaseTransitionEnd);
-        m_playerTransform.position = GraphicsManager.Get().GetCameraLocation((int)SpawnDir.North) - new Vector2(0, 1);
+
+        m_playerTransform.position = GraphicsManager.Get().GetCameraLocation((int)SpawnDir.South) + new Vector2(0, 5);
 
         CreateBounds();
     }
